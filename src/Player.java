@@ -1,4 +1,4 @@
-import Enumerations.Token;
+import enumeration.Token;
 
 public class Player {
 
