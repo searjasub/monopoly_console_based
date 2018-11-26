@@ -1,3 +1,4 @@
+
 public enum CardCategory {
 	RECEIVE_MONEY,
 	MOVEMENT,
