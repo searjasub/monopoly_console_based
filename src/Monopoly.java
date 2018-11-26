@@ -5,7 +5,5 @@ public class Monopoly {
 		
 		Game game = new Game();
 		game.run();
-		
 	}
-
 }

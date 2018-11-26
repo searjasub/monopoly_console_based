@@ -1,3 +1,4 @@
+package Enumerations;
 
 public enum TitleColor {
 	BROWN,

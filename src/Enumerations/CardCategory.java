@@ -1,3 +1,4 @@
+package Enumerations;
 public enum CardCategory {
 	RECEIVE_MONEY,
 	MOVEMENT,
