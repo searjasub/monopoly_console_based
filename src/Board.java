@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import enumeration.CardType;
-
-public class Board {
-
-	Card[] cards = new Card[32];
-
-	public Board() {
-		
-=======
 import enumeration.CardCategory;
 import enumeration.CardType;
 
@@ -17,7 +7,6 @@ public class Board {
 	TitleDeed[] deeds = new TitleDeed[22];
 	
 	public void initCards() {
->>>>>>> 54ff30393a2d58dedf8a262d48c0a519ac7c8125
 		cards[0] = new Card("Chance", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.CHANCE, CardCategory.JAIL_FREE);
 		cards[1] = new Card("Community Chest", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE);
 		cards[2] = new Card("Community Chest", "Advance to GO. (Collect $200)", CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT);
@@ -50,11 +39,9 @@ public class Board {
 		cards[29] = new Card("Community Chest", "From sale of stock you get $50.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50);
 		cards[30] = new Card("Community Chest", "You inherit $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100);
 		cards[31] = new Card("Community Chest", "Holiday fund matures. Receive $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100);
-<<<<<<< HEAD
 
 	}
-=======
-	}
+
 	
 	public void initDeeds() {
 		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50);
@@ -84,7 +71,4 @@ public class Board {
 		initCards();	
 		initDeeds();
 	}
-	
-	
->>>>>>> 54ff30393a2d58dedf8a262d48c0a519ac7c8125
 }
