@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import enumeration.CardType;
 
 public class Board {
@@ -6,6 +7,17 @@ public class Board {
 
 	public Board() {
 		
+=======
+import enumeration.CardCategory;
+import enumeration.CardType;
+
+public class Board {
+	
+	Card[] cards = new Card[32];
+	TitleDeed[] deeds = new TitleDeed[22];
+	
+	public void initCards() {
+>>>>>>> 54ff30393a2d58dedf8a262d48c0a519ac7c8125
 		cards[0] = new Card("Chance", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.CHANCE, CardCategory.JAIL_FREE);
 		cards[1] = new Card("Community Chest", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE);
 		cards[2] = new Card("Community Chest", "Advance to GO. (Collect $200)", CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT);
@@ -38,6 +50,41 @@ public class Board {
 		cards[29] = new Card("Community Chest", "From sale of stock you get $50.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50);
 		cards[30] = new Card("Community Chest", "You inherit $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100);
 		cards[31] = new Card("Community Chest", "Holiday fund matures. Receive $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100);
+<<<<<<< HEAD
 
 	}
+=======
+	}
+	
+	public void initDeeds() {
+		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50);
+		deeds[1] = new TitleDeed("Baltic Avenue", 60, enumeration.TitleColor.BROWN, 50);
+		deeds[2] = new TitleDeed("Oriental Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50);
+		deeds[3] = new TitleDeed("Vermont Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50);
+		deeds[4] = new TitleDeed("Connecticut Avenue", 120, enumeration.TitleColor.LIGHTBLUE, 50);
+		deeds[5] = new TitleDeed("St. Charles Place", 140, enumeration.TitleColor.PINK, 100);
+		deeds[6] = new TitleDeed("States Avenue", 140, enumeration.TitleColor.PINK, 100);
+		deeds[7] = new TitleDeed("Virginia Avenue", 160, enumeration.TitleColor.PINK, 100);
+		deeds[8] = new TitleDeed("St. James Place", 180, enumeration.TitleColor.ORANGE, 100);
+		deeds[9] = new TitleDeed("Tennessee Avenue", 180, enumeration.TitleColor.ORANGE, 100);
+		deeds[10] = new TitleDeed("New York Avenue", 200, enumeration.TitleColor.ORANGE, 100);
+		deeds[11] = new TitleDeed("Kentucky Avenue", 220, enumeration.TitleColor.RED, 150);
+		deeds[12] = new TitleDeed("Indiana Avenue", 220, enumeration.TitleColor.RED, 150);
+		deeds[13] = new TitleDeed("Illinois Avenue", 240, enumeration.TitleColor.RED, 150);
+		deeds[14] = new TitleDeed("Atlantic Avenue", 260, enumeration.TitleColor.YELLOW, 150);
+		deeds[15] = new TitleDeed("Ventnor Avenue", 260, enumeration.TitleColor.YELLOW, 150);
+		deeds[16] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150);
+		deeds[17] = new TitleDeed("Pacific Avenue", 300, enumeration.TitleColor.GREEN, 200);
+		deeds[18] = new TitleDeed("North Carolina Avenue", 300, enumeration.TitleColor.GREEN, 200);
+		deeds[19] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200);
+		deeds[20] = new TitleDeed("Park Place", 350, enumeration.TitleColor.BLUE, 200);
+		deeds[21] = new TitleDeed("Boardwalk", 400, enumeration.TitleColor.BLUE, 200);
+	}
+	public Board() {
+		initCards();	
+		initDeeds();
+	}
+	
+	
+>>>>>>> 54ff30393a2d58dedf8a262d48c0a519ac7c8125
 }
