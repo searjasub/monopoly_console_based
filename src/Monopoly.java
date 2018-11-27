@@ -5,7 +5,6 @@ public class Monopoly {
 	public static void main(String[] args) throws IOException {
 		
 		Game game = new Game();
-		game.init();
 		game.run();
 	
 	}

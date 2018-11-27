@@ -18,7 +18,7 @@ public class ConsoleUI {
 		int selection = 0;
 
 		while (!isValid) {
-			System.out.println("What would you like to do?");
+			System.out.println("Please choose one");
 
 			for (int i = 0; i < options.length; i++) {
 				System.out.println("[" + i + "]\t" + options[i]);
