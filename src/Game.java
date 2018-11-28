@@ -9,12 +9,14 @@ public class Game {
 	public Player[] players;
 
 	public void run() throws IOException {
-		boolean keepRunning = true;
-		while (keepRunning) {
+		//boolean keepRunning = true;
+		//while (keepRunning) {
 			System.out.println("Welcome to Monopoly!");
 			int action = printMainMenu();
-			keepRunning = takeAction(action);
-		}
+			takeAction(action);
+			
+		//	keepRunning = takeAction(action);
+		//}
 
 	}
 
