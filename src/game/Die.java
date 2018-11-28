@@ -1,5 +1,3 @@
-<<<<<<< HEAD:src/Die.java
-
 public class Die {
 	
 	private int diceOne = 0;
@@ -16,9 +14,3 @@ public class Die {
 	}
 
 }
-=======
-
-public class Die {
-
-}
->>>>>>> master:src/game/Die.java

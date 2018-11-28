@@ -1,5 +1,3 @@
-<<<<<<< HEAD:src/Player.java
-import enumeration.Token;
 
 public class Player {
 
@@ -9,13 +7,3 @@ public class Player {
 	
 
 }
-=======
-import enumeration.Token;
-
-public class Player {
-
-	int money;
-	public Token token;
-
-}
->>>>>>> master:src/game/Player.java
