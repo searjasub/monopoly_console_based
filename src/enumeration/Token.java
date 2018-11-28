@@ -8,5 +8,5 @@ public enum Token {
 	DOG,
 	THIMBLE,
 	BATTLESHIP,
-	WHEELBARROW,
+	WHEELBARROW
 }
