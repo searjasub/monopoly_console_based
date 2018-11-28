@@ -6,6 +6,11 @@ public class Board {
 	Card[] cards = new Card[32];
 	TitleDeed[] deeds = new TitleDeed[22];
 	
+	public Board() {
+		initCards();	
+		initDeeds();
+	}
+	
 	public void initCards() {
 		cards[0] = new Card("Chance", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.CHANCE, CardCategory.JAIL_FREE);
 		cards[1] = new Card("Community Chest", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE);
@@ -39,7 +44,6 @@ public class Board {
 		cards[29] = new Card("Community Chest", "From sale of stock you get $50.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50);
 		cards[30] = new Card("Community Chest", "You inherit $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100);
 		cards[31] = new Card("Community Chest", "Holiday fund matures. Receive $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100);
-
 	}
 
 	
@@ -67,8 +71,6 @@ public class Board {
 		deeds[20] = new TitleDeed("Park Place", 350, enumeration.TitleColor.BLUE, 200);
 		deeds[21] = new TitleDeed("Boardwalk", 400, enumeration.TitleColor.BLUE, 200);
 	}
-	public Board() {
-		initCards();	
-		initDeeds();
-	}
+	
+	
 }
