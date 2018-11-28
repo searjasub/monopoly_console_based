@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/Die.java
 
 public class Die {
 	
@@ -15,3 +16,9 @@ public class Die {
 	}
 
 }
+=======
+
+public class Die {
+
+}
+>>>>>>> master:src/game/Die.java
