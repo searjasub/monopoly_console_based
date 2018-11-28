@@ -1,3 +1,7 @@
+package game;
+import card.Card;
+import card.TitleDeed;
+import enumeration.CardCategory;
 import enumeration.CardType;
 
 public class Board {
