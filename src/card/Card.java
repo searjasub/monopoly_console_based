@@ -1,4 +1,5 @@
 package card;
+
 import enumeration.CardCategory;
 import enumeration.CardType;
 
