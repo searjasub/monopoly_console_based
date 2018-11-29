@@ -15,9 +15,10 @@ public class Player {
 	 * @param name of the player
 	 * @param token selected by the player
 	 */
-	public Player(String name, Token token){
+	public Player(String name, Token token, int balance){
 		this.name = name;
 		this.token = token;
+		this.balance += balance;
 	}
 	
 	/**
