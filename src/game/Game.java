@@ -22,9 +22,13 @@ public class Game {
 			takeAction(action);
 		//	keepRunning = takeAction(action);
 		//}
-
 	}
 
+	/**
+	 * Handles the selection from the user
+	 * @param action the selection from user of the main menu
+	 * @return if the game needs to keepRunning or not
+	 */
 	private boolean takeAction(int action) throws IOException {
 		switch (action) {
 		case 0:
@@ -38,10 +42,12 @@ public class Game {
 		default:
 			throw new IllegalArgumentException("Invalid action " + action);
 		}
-
 		return true;
 	}
-
+	
+	/**
+	 * After selection this method through the main menu, it will play this version of monopoly
+	 */
 	private void classicMonopolyRules() throws IOException {
 
 		System.out.println("Welcome to Monopoly\nClassic Rules");
@@ -53,10 +59,8 @@ public class Game {
 
 	private void speedDieRules() {
 		System.out.println("inside speed die rules");
-
 	}
 
-	
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
 	 * @param totalPlayers insert the number of player
@@ -77,7 +81,6 @@ public class Game {
 			else {
 				System.out.println("Thank you " + players[i].name + ". Now let me ask your friend.");
 			}
-		
 			Player newPlayer = new Player(playerName, selection);
 			players[i] = newPlayer;
 		}
@@ -120,7 +123,11 @@ public class Game {
 		}
 		return selection;
 	}
-
+	
+	/**
+	 * Prints the options of tokens
+	 * @return the selection from the options presented
+	 */
 	private int printTokenSelection() throws IOException {
 		String[] options = new String[8];
 		options[0] = Token.BATTLESHIP.toString();
@@ -134,6 +141,10 @@ public class Game {
 		return ConsoleUI.promptForMenuSelection(options);
 	}
 	
+	/**
+	 * Prints the options for the main menu
+	 * @return 
+	 */
 	private int printMainMenu() throws IOException {
 		String[] menuOptions = new String[3];
 		menuOptions[0] = "Speed Die Rules";
