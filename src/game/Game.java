@@ -9,7 +9,33 @@ public class Game {
 	public int turn;
 	public int countPlayers;
 	public Player[] players;
-
+	Die die = new Die();
+	
+	/**
+	 * Initialize the game by assigning names, tokens and initial balance.
+	 * @param totalPlayers insert the number of player
+	 */
+	private void init(int totalPlayers) throws IOException {
+		players = new Player[totalPlayers];
+		for (int i = 0; i < players.length; i++) {
+			String playerName = ConsoleUI.promptForInput("Enter player " + (i + 1) + "'s name", false);
+			
+			System.out.println("\nOk " + players[i].name + ", is time to choose your token.");
+			Token selection = chooseYourToken();
+			players[i].balance = 1500;
+			
+			//Finish interaction with players[i]
+			if(players.length == totalPlayers) {
+				System.out.println("Thank you " + players[i].name + ".");
+			}
+			else {
+				System.out.println("Thank you " + players[i].name + ". Now let me ask your friend.");
+			}
+			Player newPlayer = new Player(playerName, selection);
+			players[i] = newPlayer;
+		}
+	}
+	
 	/**
 	 * Without a while loop to only run the game once. Later on we can comment them back to let the game keep running.
 	 * Might need a little fix after one game is played
@@ -51,39 +77,37 @@ public class Game {
 	private void classicMonopolyRules() throws IOException {
 
 		System.out.println("Welcome to Monopoly\nClassic Rules");
-	
 		int howManyPlayers = ConsoleUI.promptForInt("First, let's get started by having a count of the players.\n"
 				+ "Remember that the minimun is 2 and maximun is  6", 2, 6);
 		init(howManyPlayers);
+		
+		
+
+		
+	}
+
+	public void turn(Player p) {
+		boolean isYourTurn = true;
+		System.out.println("\nAlright " + p.getToken() + ", you;re up.");
+		while(isYourTurn) {
+			
+		}
+	}
+	
+	private void movePlayer(int num, Player player) {
+		checkForGo(player);
+	}
+	
+	
+	private void checkForGo(Player player) {
+		if(player.location == 0) {
+			player.addMoney(200);
+		}
+		
 	}
 
 	private void speedDieRules() {
 		System.out.println("inside speed die rules");
-	}
-
-	/**
-	 * Initialize the game by assigning names, tokens and initial balance.
-	 * @param totalPlayers insert the number of player
-	 */
-	private void init(int totalPlayers) throws IOException {
-		players = new Player[totalPlayers];
-		for (int i = 0; i < players.length; i++) {
-			String playerName = ConsoleUI.promptForInput("Enter player " + (i + 1) + "'s name", false);
-			
-			System.out.println("\nOk " + players[i].name + ", is time to choose your token.");
-			Token selection = chooseYourToken();
-			players[i].balance = 1500;
-			
-			//Finish interaction with players[i]
-			if(players.length == totalPlayers) {
-				System.out.println("Thank you " + players[i].name + ".");
-			}
-			else {
-				System.out.println("Thank you " + players[i].name + ". Now let me ask your friend.");
-			}
-			Player newPlayer = new Player(playerName, selection);
-			players[i] = newPlayer;
-		}
 	}
 
 	/**
@@ -153,4 +177,11 @@ public class Game {
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
+	private int printTurnMenu() throws IOException {
+		String[] menuOptions = new String[2];
+		menuOptions[0] = "Roll dice";
+		menuOptions[1] = "See balance";
+		return ConsoleUI.promptForMenuSelection(menuOptions);
+		
+	}
 }
