@@ -4,6 +4,7 @@ import java.io.IOException;
 import enumeration.Token;
 import dependancy.*;
 
+
 public class Game {
 
 	public int turn;
