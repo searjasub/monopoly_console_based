@@ -34,14 +34,9 @@ public class Game {
 				System.out.println("Thank you " + players[i].getName() + ". Now let me ask your friend.");
 			}
 		}
-		
-		
-		
 		//For testing purposes
 		System.out.println(players[1].getName() + " " + players[1].getBalance() + " " + players[1].getToken());
 		System.out.println(players[0].getName() + " " + players[0].getBalance() + " " + players[0].getToken());
-		
-		
 	}
 
 	/**
