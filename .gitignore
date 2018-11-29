@@ -2,3 +2,4 @@
 .vs*
 .class*
 .project
+.idea/*
