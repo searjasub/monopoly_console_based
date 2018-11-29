@@ -1,13 +1,16 @@
 package game;
 import card.Card;
+import card.Property;
+import card.RailRoad;
 import card.TitleDeed;
+import card.Utility;
 import enumeration.CardCategory;
 import enumeration.CardType;
 
 public class Board {
 	
 	Card[] cards = new Card[32];
-	TitleDeed[] deeds = new TitleDeed[22];
+	Property[] deeds = new Property[28];
 	
 	public Board() {
 		initCards();	
@@ -73,6 +76,12 @@ public class Board {
 		deeds[19] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200);
 		deeds[20] = new TitleDeed("Park Place", 350, enumeration.TitleColor.BLUE, 200);
 		deeds[21] = new TitleDeed("Boardwalk", 400, enumeration.TitleColor.BLUE, 200);
+		deeds[22] = new Utility("Electric Company");
+		deeds[23] = new Utility("Water Works");
+		deeds[24] = new RailRoad("Reading Railroad");
+		deeds[25] = new RailRoad("Pennsylvania Railroad");
+		deeds[26] = new RailRoad("B. & O. Railroad");
+		deeds[27] = new RailRoad("Short Line");
 	}
 	
 	
