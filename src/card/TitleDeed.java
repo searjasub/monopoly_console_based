@@ -6,7 +6,7 @@ public class TitleDeed extends Property {
 
 	String name;
 
-	public TitleDeed(String name, int cost, TitleColor color, int buildingCost) {
+	public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location) {
 
 	}
 
