@@ -1,6 +1,8 @@
-import java.io.IOException;
+package game;
 
+import java.io.IOException;
 import enumeration.Token;
+import dependancy.*;
 
 public class Game {
 
@@ -63,13 +65,10 @@ public class Game {
 		players = new Player[totalPlayers];
 		for (int i = 0; i < players.length; i++) {
 			String playerName = ConsoleUI.promptForInput("Enter player " + (i + 1) + "'s name", false);
-			Player player = new Player();
-			player.name = playerName;
-			players[i] = player;
-			System.out.println("\nOk " + players[i].name + ", is time to choose your token.");
-			enumeration.Token selection = chooseYourToken();
-			players[i].balance = 1500;
 			
+			System.out.println("\nOk " + players[i].name + ", is time to choose your token.");
+			Token selection = chooseYourToken();
+			players[i].balance = 1500;
 			
 			//Finish interaction with players[i]
 			if(players.length == totalPlayers) {
@@ -78,8 +77,9 @@ public class Game {
 			else {
 				System.out.println("Thank you " + players[i].name + ". Now let me ask your friend.");
 			}
-			
-			player.token = selection;
+		
+			Player newPlayer = new Player(playerName, selection);
+			players[i] = newPlayer;
 		}
 	}
 

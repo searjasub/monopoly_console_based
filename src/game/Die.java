@@ -1,3 +1,6 @@
+package game;
+
+
 public class Die {
 	
 	private int diceOne = 0;

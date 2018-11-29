@@ -1,4 +1,5 @@
 package card;
+import enumeration.CardCategory;
 import enumeration.CardType;
 
 public class Card {
@@ -12,3 +13,4 @@ public class Card {
 
 	}
 }
+
