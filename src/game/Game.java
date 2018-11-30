@@ -104,7 +104,7 @@ public class Game {
 	 */
 	public void turn(Player p) throws IOException {
 		boolean isYourTurn = true;
-		System.out.println("\nAlright " + p.getToken() + ", you;re up.");
+		System.out.println("\nAlright " + p.getToken() + ", you're up.");
 		while (isYourTurn) {
 
 			int action = printTurnMenu();
