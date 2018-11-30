@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Random;
+
 public class Die {
 
 	private int dieOne;
@@ -17,8 +19,9 @@ public class Die {
 	 * and 6
 	 */
 	public void roll() {
-		dieOne = (int) (Math.random() * 6) + 1;
-		dieTwo = (int) (Math.random() * 6) + 1;
+		Random random = new Random();
+		dieOne = random.nextInt(6) + 1;
+		dieTwo = random.nextInt(6) + 1;
 	}
 
 	/**
