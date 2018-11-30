@@ -32,7 +32,19 @@ public class Game {
 			System.out.println("\nOk " + playerName + ", is time to choose your token.");
 			Token selection = chooseYourToken();
 			
-			Player newPlayer = new Player(playerName, selection, 1500);
+			System.out.println("Time to roll dice to see who starts");
+			String[] options = new String[1];
+			options[0] = "Let's roll those dice";
+			int rollOptions = ConsoleUI.promptForMenuSelection(options);
+			if(rollOptions == 0) {
+				die.roll();
+				System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
+				System.out.println("Your total is: " + die.getTotal());
+				
+			}
+			
+			//working on it
+			Player newPlayer = new Player(playerName, selection, 1500,die.getTotal());
 			players[i] = newPlayer;
 
 			// Finish interaction with players[i]
@@ -42,10 +54,6 @@ public class Game {
 				System.out.println("Thank you " + players[i].getName() + ". Now let me ask your friend.");
 			}
 		}
-		
-		//For testing purposes
-		System.out.println(players[1].getName() + " " + players[1].getBalance() + " " + players[1].getToken());
-		System.out.println(players[0].getName() + " " + players[0].getBalance() + " " + players[0].getToken());
 	}
 
 	/**
@@ -97,10 +105,8 @@ public class Game {
 		System.out.println("Welcome to Monopoly\nClassic Rules");
 		
 		int howManyPlayers = ConsoleUI.promptForInt("First, let's get started by having a count of the players.\n"
-				+ "Remember that the minimun is 2 and maximun is  6", 2, 6);
+				+ "Remember that the minimun is 2 and maximun is  6", 2, 8);
 		init(howManyPlayers);
-		
-
 		
 		while (!gameOver) {
 			// handle turns
@@ -110,6 +116,38 @@ public class Game {
 			System.out.println("\n\nThis round has ended! Let's keep going");
 		}
 	}
+
+	private void changeThePositions() throws IOException {
+		
+		System.out.println("********************************************************"
+						+ "\nWe'll get started by rolling out the dice and arraging the turns from whoever got the most amount rolled\n"
+						+ "********************************************************");
+		for(int i=0; i < players.length; i++) {
+			setTurns(players[i]);
+		}
+		
+		
+		
+	}
+	
+	private void setTurns(Player p) throws IOException{
+		boolean isYourTurn = true;
+		System.out.println("\nAlright " + p.getToken() + ", is your time to roll the dice");
+		while (isYourTurn) {
+			
+			String[] options = new String[1];
+			options[0] = "Let's roll those dice";
+			int selection = ConsoleUI.promptForMenuSelection(options);
+			if(selection == 0) {
+				die.roll();
+				System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
+				System.out.println("Your total is: " + die.getTotal());
+				
+			}
+		}
+		
+	}
+	
 
 	/**
 	 * 
