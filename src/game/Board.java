@@ -129,5 +129,47 @@ public class Board {
 		squares[39] = new square.Property("Boardwalk", (TitleDeed) deeds[21]);
 	}
 	
+	public void pintBoard(Player player) {
+		System.out.println(" _______________________________________________________________________________________________");
+		System.out.println("|			|		|		|		|		|		|		|		|		|		|			|");
+		System.out.println("|	FREE	|		|		|		|		|		|		|		|		|		|	GO TO	|");
+		System.out.println("|  PARKING	|	21	|	22	|	23	|   24  |	25	|	26	|	27	|	28	|	29	|	JAIL	|");
+		System.out.println("|			|		|		|		|		|		|		|		|		|		|			|");
+		System.out.println("|___________|_______|_______|_______|_______|_______|_______|_______|_______|_______|___________|");
+		System.out.println("|			|																		|			|");
+		System.out.println("|	 19		|																		|	 31		|");
+		System.out.println("|___________|							________________							|___________|");
+		System.out.println("|			|						   |				|  							|			|");
+		System.out.println("|	 18		|						   |	 CHANCE		|							|	 32		|");
+		System.out.println("|___________|						   |				|							|___________|");
+		System.out.println("|			|						   |________________|							|			|");
+		System.out.println("|	 17		|								               							|	 33		|		Current player: " + player.getToken() );
+		System.out.println("|___________|																		|___________|		Location: " + player.location);
+		System.out.println("|			|																		|			|");
+		System.out.println("|	 16		|																		|	 34		|");
+		System.out.println("|___________|																		|___________|");
+		System.out.println("|			|							M O N O P O L Y								|			|");
+		System.out.println("|	 15		|																		|	 35		|");
+		System.out.println("|___________|																		|___________|");
+		System.out.println("|			|																		|			|");
+		System.out.println("|	 14		|							________________							|	 36		|");
+		System.out.println("|___________|						   |				|							|___________|");
+		System.out.println("|			|						   |   COMMUNITY	|							|			|");
+		System.out.println("|	 13		|					 	   |	 CHEST		|							|	 37		|");
+		System.out.println("|___________|						   |________________|							|___________|");
+		System.out.println("|			|																		|			|");
+		System.out.println("|	 12		|																		|	 38		|");
+		System.out.println("|___________|																		|___________|");
+		System.out.println("|			|																		|			|");
+		System.out.println("|	 11		|																		|	 39		|");
+		System.out.println("|___________|_______________________________________________________________________|___________|");
+		System.out.println("|			|		|		|		|		|		|		|		|		|		|			|");
+		System.out.println("|			|		|		|		|		|		|		|		|		|		|			|");
+		System.out.println("|	JAIL	|	9	|	8	|	7	|	6	|	5	|	4	|	3	|	2	|	1	|	 GO		|");
+		System.out.println("|			|		|		|		|		|		|		|		|		|		|			|");
+		System.out.println("|___________|_______|_______|_______|_______|_______|_______|_______|_______|_______|___________|");
+		
+	}
+	
 	
 }

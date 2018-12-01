@@ -1,6 +1,7 @@
 package game;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import enumeration.Token;
 import dependancy.*;
 
@@ -9,6 +10,7 @@ public class Game {
 	public int turn;
 	public int countPlayers;
 	public Player[] players;
+	ArrayList<Token> tokenArray = new ArrayList<Token>();
 	Die die = new Die();
 
 	/**
@@ -17,14 +19,22 @@ public class Game {
 	 * @param totalPlayers insert the number of player
 	 */
 	private void init(int totalPlayers) throws IOException {
+
+		for (Token t : Token.values()) {
+			tokenArray.add(t);
+		}
+
 		players = new Player[totalPlayers];
 		for (int i = 0; i < players.length; i++) {
-			String playerName = ConsoleUI.promptForInput("Enter player " + (i + 1) + "'s name", false);
+			String playerName = ConsoleUI.promptForInput("\nEnter player " + (i + 1) + "'s name", false);
 
 			System.out.println("\nOk " + playerName + ", is time to choose your token.");
 			Token selection = chooseYourToken();
-			
-			Player newPlayer = new Player(playerName, selection, 1500);
+
+			System.out.println("Time to roll dice to see who starts");
+			int total = rollForOrder();
+
+			Player newPlayer = new Player(playerName, selection, 1500, total);
 			players[i] = newPlayer;
 
 			// Finish interaction with players[i]
@@ -33,11 +43,63 @@ public class Game {
 			} else {
 				System.out.println("Thank you " + players[i].getName() + ". Now let me ask your friend.");
 			}
+
 		}
-		
-		//For testing purposes
-		System.out.println(players[1].getName() + " " + players[1].getBalance() + " " + players[1].getToken());
-		System.out.println(players[0].getName() + " " + players[0].getBalance() + " " + players[0].getToken());
+		checkForTie();
+		sort();
+	}
+	
+	/**
+	 * Method that lets the user roll
+	 * @return the total number the player rolled
+	 */
+	private int rollForOrder() throws IOException {
+		String[] options = new String[1];
+		options[0] = "Let's roll those dice";
+		int rollOptions = ConsoleUI.promptForMenuSelection(options);
+		if (rollOptions == 0) {
+			die.roll();
+			System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
+			System.out.println("Your total is: " + die.getTotal());
+		}
+		return die.getTotal();
+	}
+
+	private void checkForTie() throws IOException {
+		for (int i = 2; i <= 12; i++) {
+			int count = 0;
+			for (int j = 0; j < players.length; j++) {
+				if(i == players[j].getTurn()) {
+					count++;
+				}
+			}
+			if(count > 1) {
+				for (int j2 = 0; j2 < players.length; j2++) {
+					if(i == players[j2].getTurn()) {
+						
+					System.out.println("\n\n" + players[j2].getName() + "You can roll again");
+						players[j2].setTurn(rollForOrder());  
+					}
+				}
+			}
+		}
+	}
+
+
+
+	/**
+	 * This method will sort the player in descending order
+	 */
+	public void sort() {
+		for (int i = 0; i < players.length - 1; i++) {
+			for (int j = 0; j < players.length - i - 1; j++) {
+				if (players[j].getTurn() < players[j + 1].getTurn()) {
+					Player temp = players[j];
+					players[j] = players[j + 1];
+					players[j + 1] = temp;
+				}
+			}
+		}
 	}
 
 	/**
@@ -48,6 +110,8 @@ public class Game {
 	public void run() throws IOException {
 		// boolean keepRunning = true;
 		// while (keepRunning) {
+
+		// printWelcome();
 		System.out.println("Welcome to Monopoly!");
 		int action = printMainMenu();
 		takeAction(action);
@@ -85,14 +149,18 @@ public class Game {
 		boolean gameOver = false;
 
 		System.out.println("Welcome to Monopoly\nClassic Rules");
+
 		int howManyPlayers = ConsoleUI.promptForInt("First, let's get started by having a count of the players.\n"
-				+ "Remember that the minimun is 2 and maximun is  6", 2, 6);
+				+ "Remember that the minimun is 2 and maximun is  6", 2, 8);
 		init(howManyPlayers);
 
 		while (!gameOver) {
 			// handle turns
+			for (int i = 0; i < players.length; i++) {
+				turn(players[i]);
+			}
+			System.out.println("\n\nThis round has ended! Let's keep going");
 		}
-
 	}
 
 	/**
@@ -102,15 +170,17 @@ public class Game {
 	 */
 	public void turn(Player p) throws IOException {
 		boolean isYourTurn = true;
-		System.out.println("\nAlright " + p.getToken() + ", you;re up.");
+		System.out.println("\nAlright " + p.getToken() + ", you're up.");
 		while (isYourTurn) {
 
 			int action = printTurnMenu();
 			switch (action) {
 			case 0:
 				die.roll();
-				System.out.println("You have rolled " + die.getDieOne() + " and " + die.getDieTwo());
-				movePlayer(die.getTotal(), p);
+				System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
+				// movePlayer(die.getTotal(), p);
+
+				isYourTurn = false;
 				break;
 			case 1:
 				break;
@@ -146,37 +216,46 @@ public class Game {
 	}
 
 	/**
-	 * By using switch to let user choose which token they want.
+	 * By using switch to let user choose which token they want. It removes the
+	 * token from tokensAvailable
 	 * 
 	 * @return what token user wants to get;
 	 */
 	private Token chooseYourToken() throws IOException {
 		Token selection = null;
-		int desireToken = printTokenSelection();
+		Token desireToken = printTokenSelection(tokenArray);
 		switch (desireToken) {
-		case 0:
-			selection = Token.BATTLESHIP;
-			break;
-		case 1:
-			selection = Token.CAR;
-			break;
-		case 2:
-			selection = Token.CAT;
-			break;
-		case 3:
-			selection = Token.DOG;
-			break;
-		case 4:
-			selection = Token.HAT;
-			break;
-		case 5:
+		case SHOE:
 			selection = Token.SHOE;
+			removeToken(selection);
 			break;
-		case 6:
+		case HAT:
+			selection = Token.HAT;
+			removeToken(selection);
+			break;
+		case CAR:
+			selection = Token.CAR;
+			removeToken(selection);
+			break;
+		case CAT:
+			selection = Token.CAT;
+			removeToken(selection);
+			break;
+		case DOG:
+			selection = Token.DOG;
+			removeToken(selection);
+			break;
+		case THIMBLE:
 			selection = Token.THIMBLE;
+			removeToken(selection);
 			break;
-		case 7:
+		case BATTLESHIP:
+			selection = Token.BATTLESHIP;
+			removeToken(selection);
+			break;
+		case WHEELBARROW:
 			selection = Token.WHEELBARROW;
+			removeToken(selection);
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid selection " + desireToken);
@@ -185,21 +264,28 @@ public class Game {
 	}
 
 	/**
-	 * Prints the options of tokens
+	 * Helper method to remove to token that user selected from the tokensAvailable
+	 * ArrayList
 	 * 
-	 * @return the selection from the options presented
+	 * @param selection
 	 */
-	private int printTokenSelection() throws IOException {
-		String[] options = new String[8];
-		options[0] = Token.BATTLESHIP.toString();
-		options[1] = Token.CAR.toString();
-		options[2] = Token.CAT.toString();
-		options[3] = Token.DOG.toString();
-		options[4] = Token.HAT.toString();
-		options[5] = Token.SHOE.toString();
-		options[6] = Token.THIMBLE.toString();
-		options[7] = Token.WHEELBARROW.toString();
-		return ConsoleUI.promptForMenuSelection(options);
+	private void removeToken(Token selection) {
+		tokenArray.remove(selection);
+	}
+
+	/**
+	 * Prints the current list of tokens available
+	 * 
+	 * @param tokensAvailable ArrayList with tokens available
+	 * @return the token selected
+	 */
+	private Token printTokenSelection(ArrayList<Token> tokensAvailable) throws IOException {
+		String[] options = new String[tokensAvailable.size()];
+		for (int i = 0; i < options.length; i++) {
+			options[i] = tokensAvailable.get(i).toString();
+		}
+		int selection = ConsoleUI.promptForMenuSelection(options);
+		return tokenArray.get(selection);
 	}
 
 	/**
@@ -215,6 +301,12 @@ public class Game {
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
+	/**
+	 * Prints the options for the turn menu
+	 * 
+	 * @return
+	 * @throws IOException
+	 */
 	private int printTurnMenu() throws IOException {
 		String[] menuOptions = new String[2];
 		menuOptions[0] = "Roll dice";
