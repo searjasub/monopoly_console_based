@@ -29,10 +29,10 @@ public class Game {
 		for (int i = 0; i < players.length; i++) {
 			String playerName = ConsoleUI.promptForInput("\nEnter player " + (i + 1) + "'s name", false);
 
-			System.out.println("\nOk " + playerName + ", is time to choose your token.");
+			System.out.println("\nOk " + playerName + ", it is time to choose your token.");
 			Token selection = chooseYourToken();
 
-			System.out.println("Time to roll dice to see who starts");
+			System.out.println("Time to roll the dice to see who starts");
 			int total = rollForOrder();
 
 			Player newPlayer = new Player(playerName, selection, 1500, total);
@@ -56,7 +56,7 @@ public class Game {
 	 */
 	private int rollForOrder() throws IOException {
 		String[] options = new String[1];
-		options[0] = "Let's roll those dice";
+		options[0] = "Let's roll those dice.";
 		int rollOptions = ConsoleUI.promptForMenuSelection(options);
 		if (rollOptions == 0) {
 			die.roll();
@@ -77,8 +77,8 @@ public class Game {
 			if(count > 1) {
 				for (int j2 = 0; j2 < players.length; j2++) {
 					if(i == players[j2].getTurn()) {
-						
-					System.out.println("\n\n" + players[j2].getName() + "You can roll again");
+					System.out.println("\nPlayers have tied. Please roll again.");	
+					System.out.println("\n" + players[j2].getName() + " you can roll again");
 						players[j2].setTurn(rollForOrder());  
 					}
 				}
@@ -101,12 +101,9 @@ public class Game {
 				}
 			}
 		}
-
-
-		// For testing purposes
-		System.out.println(players[1].getName() + " " + players[1].getBalance() + " " + players[1].getToken());
-		System.out.println(players[0].getName() + " " + players[0].getBalance() + " " + players[0].getToken());
-
+		for(int i = 0; i < players.length; i++) {
+			System.out.println(players[i]);
+		}
 
 	}
 
@@ -162,7 +159,7 @@ public class Game {
 		System.out.println("Welcome to Monopoly\nClassic Rules");
 
 		int howManyPlayers = ConsoleUI.promptForInt("First, let's get started by having a count of the players.\n"
-				+ "Remember that the minimum is 2 and maximum is  6", 2, 8);
+				+ "Remember that the minimum is 2 and maximum is 8.", 2, 8);
     
 		init(howManyPlayers);
 
@@ -183,7 +180,7 @@ public class Game {
 	public void turn(Player p) throws IOException {
 		boolean isYourTurn = true;
     
-		System.out.println("\nAlright player," + p.getToken() + " you're up.");
+		System.out.println("\nAlright player " + p.getToken() + " you're up.");
 
 		while (isYourTurn) {
 

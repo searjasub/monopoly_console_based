@@ -87,7 +87,7 @@ public class Board {
 	}
 	
 	public void initSquare() {
-		squares[0] = new Corner("Collect $200 salary as you pass GO");
+		squares[0] = new Corner("GO");
 		squares[1] = new square.Property("Mediterranean Avenue", (TitleDeed) deeds[0]);
 		squares[2] = new Special("Community Chest", CardType.COMMUNITY_CHEST);
 		squares[3] = new square.Property("Baltic Avenue", (TitleDeed) deeds[1]);
@@ -97,7 +97,7 @@ public class Board {
 		squares[7] = new Special("Chance", CardType.CHANCE);
 		squares[8] = new square.Property("Vermont Avenue", (TitleDeed) deeds[3]);
 		squares[9] = new square.Property("Connecticut Avenue", (TitleDeed) deeds[4]);
-		squares[10] = new Corner("Just Visiting");
+		squares[10] = new Corner("Jail/Just Visiting");
 		squares[11] = new square.Property("St. Charles Place", (TitleDeed) deeds[5]);
 		squares[12] = new square.Utility("Electric Company", (Utility) deeds[22]);
 		squares[13] = new square.Property("States Avenue", (TitleDeed) deeds[6]);
