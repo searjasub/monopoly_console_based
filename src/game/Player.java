@@ -47,5 +47,18 @@ public class Player {
 		return this.location;
 	}
 	
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
+	
+	public int getTurn() {
+		return this.turn;
+	}
+	
+	public String toString() {
+		return "turn = " + this.turn +
+		"\nlocation =  " + this.location;
+	}
+	
 	
 }
