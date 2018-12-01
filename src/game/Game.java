@@ -42,7 +42,7 @@ public class Game {
 			if (players.length == totalPlayers) {
 				System.out.println("Thank you " + players[i].getName() + ".");
 			} else {
-				System.out.println("Thank you " + players[i].getName() + ". Now let me ask your friend.");
+				System.out.println("Thank you " + players[i].getName() + ". Now let me ask your friend.\n");
 			}
 
 		}
@@ -77,8 +77,7 @@ public class Game {
 			if(count > 1) {
 				for (int j2 = 0; j2 < players.length; j2++) {
 					if(i == players[j2].getTurn()) {
-						
-					System.out.println("\n\n" + players[j2].getName() + "You can roll again");
+					System.out.println("\n" + players[j2].getName() + ", you can roll again");
 						players[j2].setTurn(rollForOrder());  
 					}
 				}
@@ -180,6 +179,7 @@ public class Game {
 
 		while (isYourTurn) {
 
+			board.printBoard(currentPlayer);
 			int action = printTurnMenu();
 			switch (action) {
 				case 0:
@@ -199,16 +199,16 @@ public class Game {
 						int action2 = printMenuAfterRoll();
 						switch (action2) {
 						case 0:
-							System.out.println(currentPlayer.getBalance());
+							System.out.println("\nYour balance is: " + currentPlayer.getBalance() + "\n");
 							break;
 						case 1:
-							System.out.println(currentPlayer.getPropertiesOwned().toString());
+							System.out.println("\nThe properties you own are:\n" + currentPlayer.getPropertiesOwned().toString() + "\n");
 							break;
 						case 2:
 							//Buy House
 							break;
 						case 3:
-							//Trade cards
+							//Trade Cards
 							break;
 						case 4:
 							isYourTurnAfterRoll = false;
@@ -355,6 +355,10 @@ public class Game {
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 	
+	/**
+	 * Print the options after they roll for first time
+	 * @return the selection
+	 */
 	private int printMenuAfterRoll() throws IOException {
 		String[] menuOptions = new String[5];
 		menuOptions[0] = "See balance";
@@ -364,7 +368,6 @@ public class Game {
 		menuOptions[4] = "End turn";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
-
 
 	/**
 	 * Prints out the monopoly board in 500 characters
