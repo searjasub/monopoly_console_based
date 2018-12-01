@@ -48,16 +48,29 @@ public class Player {
 		return this.balance;
 	}
 	
+	public void setBalance(int balance) {
+		this.balance += balance;
+	}
+	
 	public int getLocation() {
 		return this.location;
 	}
 	
-	public void setTurn(int turn) {
-		this.turn = turn;
+	public void addLocation(int location) {
+		this.location += location;
 	}
+	
+	public void setLocation(int location) {
+		this.location = 0;
+	}
+	
 	
 	public int getTurn() {
 		return this.turn;
+	}
+	
+	public void setTurn(int turn) {
+		this.turn = turn;
 	}
 	
 	public ArrayList<Property> getPropertiesOwned() {
