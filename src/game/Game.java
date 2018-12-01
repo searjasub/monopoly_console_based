@@ -47,7 +47,6 @@ public class Game {
 		}
 		checkForTie();
 		sort();
-		
 	}
 	
 	/**
