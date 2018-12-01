@@ -12,6 +12,7 @@ public class Game {
 	public Player[] players;
 	ArrayList<Token> tokenArray = new ArrayList<Token>();
 	Die die = new Die();
+	Board board = new Board();
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -112,6 +113,7 @@ public class Game {
 		// while (keepRunning) {
 
 		// printWelcome();
+		
 		System.out.println("Welcome to Monopoly!");
 		int action = printMainMenu();
 		takeAction(action);
