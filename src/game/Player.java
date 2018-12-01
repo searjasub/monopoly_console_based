@@ -1,5 +1,9 @@
 package game;
 
+import java.util.ArrayList;
+
+import card.Card;
+import card.Property;
 import enumeration.Token;
 
 public class Player {
@@ -10,6 +14,9 @@ public class Player {
 	final Token token;
 	final String name;
 	int turn;
+	Card[] jailCardOwned = new Card[2]; //Array to hold the jail free cards
+	ArrayList<Property> propertiesOwned = new ArrayList<Property>();  //Array to hold the property cards
+	
 	/**
 	 * Constructor for the player class
 	 * @param name of the player
@@ -21,8 +28,6 @@ public class Player {
 		this.balance += balance;
 		this.turn = turn;
 	}
-	
-
 	
 	/**
 	 * @param amount money added to the balance
@@ -53,6 +58,10 @@ public class Player {
 	
 	public int getTurn() {
 		return this.turn;
+	}
+	
+	public ArrayList<Property> getPropertiesOwned() {
+		return this.propertiesOwned;
 	}
 	
 	public String toString() {

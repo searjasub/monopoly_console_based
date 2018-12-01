@@ -86,8 +86,6 @@ public class Game {
 		}
 	}
 
-
-
 	/**
 	 * This method will sort the player in descending order
 	 */
@@ -101,13 +99,6 @@ public class Game {
 				}
 			}
 		}
-
-
-		// For testing purposes
-		System.out.println(players[1].getName() + " " + players[1].getBalance() + " " + players[1].getToken());
-		System.out.println(players[0].getName() + " " + players[0].getBalance() + " " + players[0].getToken());
-
-
 	}
 
 	/**
@@ -122,10 +113,10 @@ public class Game {
 		// while (keepRunning) {
 
 
-		printWelcome();
-//		printLargeBoard();
+		printWelcome();		
 		int action = printMainMenu();
 		takeAction(action);
+		
 		// keepRunning = takeAction(action);
 		// }
 	}
@@ -158,6 +149,7 @@ public class Game {
 	 */
 	private void classicMonopolyRules() throws IOException {
 		boolean gameOver = false;
+		int roundCount= 0;
 
 		System.out.println("Welcome to Monopoly\nClassic Rules");
 
@@ -171,7 +163,8 @@ public class Game {
 			for (int i = 0; i < players.length; i++) {
 				turn(players[i]);
 			}
-			System.out.println("\n\nThis round has ended! Let's keep going");
+			roundCount++;
+			System.out.println("\nthe round number: " + roundCount + " has ended. Let's keep going!");
 		}
 	}
 
@@ -180,27 +173,58 @@ public class Game {
 	 * @param p the player taking the turn
 	 * @throws IOException
 	 */
-	public void turn(Player p) throws IOException {
+	public void turn(Player currentPlayer) throws IOException {
 		boolean isYourTurn = true;
     
-		System.out.println("\nAlright player," + p.getToken() + " you're up.");
+		System.out.println("\nAlright player," + currentPlayer.getToken() + " you're up.");
 
 		while (isYourTurn) {
 
 			int action = printTurnMenu();
 			switch (action) {
-			case 0:
-				die.roll();
-				System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
-				// movePlayer(die.getTotal(), p);
-
-				isYourTurn = false;
-				break;
-			case 1:
-				break;
-			default:
-				throw new IllegalArgumentException("Invalid action " + action);
-			}
+				case 0:
+					die.roll();
+					System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
+					// movePlayer(die.getTotal(), p);
+					// deal with the property they land on
+					//
+				   
+					if(die.diceEqualsDoble()) {
+						die.roll();
+						System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
+					}
+					
+					boolean isYourTurnAfterRoll = true;
+					while (isYourTurnAfterRoll) {
+						int action2 = printMenuAfterRoll();
+						switch (action2) {
+						case 0:
+							System.out.println(currentPlayer.getBalance());
+							break;
+						case 1:
+							System.out.println(currentPlayer.getPropertiesOwned().toString());
+							break;
+						case 2:
+							//Buy House
+							break;
+						case 3:
+							//Trade cards
+							break;
+						case 4:
+							isYourTurnAfterRoll = false;
+							break;
+						default:
+							throw new IllegalArgumentException("Invalid action " + action);
+						}
+					}
+					isYourTurn = false;
+					break;
+				case 1:
+					
+					break;
+				default:
+					throw new IllegalArgumentException("Invalid action " + action);
+				}
 		}
 	}
 
@@ -322,12 +346,25 @@ public class Game {
 	 * @throws IOException
 	 */
 	private int printTurnMenu() throws IOException {
-		String[] menuOptions = new String[2];
+		String[] menuOptions = new String[5];
 		menuOptions[0] = "Roll dice";
 		menuOptions[1] = "See balance";
+		menuOptions[2] = "See your properties";
+		menuOptions[3] = "Buy house/hotel";
+		menuOptions[4] = "Trade cards";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
-
 	}
+	
+	private int printMenuAfterRoll() throws IOException {
+		String[] menuOptions = new String[5];
+		menuOptions[0] = "See balance";
+		menuOptions[1] = "See your properties";
+		menuOptions[2] = "Buy house/hotel";
+		menuOptions[3] = "Trade cards";
+		menuOptions[4] = "End turn";
+		return ConsoleUI.promptForMenuSelection(menuOptions);
+	}
+
 
 	/**
 	 * Prints out the monopoly board in 500 characters

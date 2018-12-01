@@ -44,5 +44,13 @@ public class Die {
 	public int getTotal() {
 		return dieOne + dieTwo;
 	}
+	
+	/**
+	 * @return
+	 */
+	public boolean diceEqualsDoble() {
+		return dieOne == dieTwo;
+		
+	}
 
 }
