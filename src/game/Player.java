@@ -9,17 +9,20 @@ public class Player {
 	int location;
 	final Token token;
 	final String name;
-	
+	int turn;
 	/**
 	 * Constructor for the player class
 	 * @param name of the player
 	 * @param token selected by the player
 	 */
-	public Player(String name, Token token, int balance){
+	public Player(String name, Token token, int balance, int turn){
 		this.name = name;
 		this.token = token;
 		this.balance += balance;
+		this.turn = turn;
 	}
+	
+
 	
 	/**
 	 * @param amount money added to the balance
@@ -42,6 +45,19 @@ public class Player {
 	
 	public int getLocation() {
 		return this.location;
+	}
+	
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
+	
+	public int getTurn() {
+		return this.turn;
+	}
+	
+	public String toString() {
+		return "turn = " + this.turn +
+		"\nlocation =  " + this.location;
 	}
 	
 	
