@@ -1,8 +1,10 @@
 package square;
 
 public class Corner extends Square {
+	String name;
 
-	public Corner(String desc) {
+	public Corner(String name) {
+		super(name);
 	}
 
 }
