@@ -83,8 +83,8 @@ public class Player {
 	}
 	
 	public String toString() {
-		return "turn = " + this.turn +
-		"\nlocation =  " + this.location;
+		return "\n" + this.name + " the " + this.token + " rolled " + this.turn + ".";
+		
 	}
 	
 	

@@ -71,5 +71,4 @@ public class Demo{
     // (selling/Trading) properties
     // Mortgages
     // bankruptcy
-
 }
