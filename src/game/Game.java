@@ -114,7 +114,7 @@ public class Game {
 	 * 
 	 * @throws InterruptedException
 	 */
-	public void run() throws IOException, InterruptedException {
+	public void run() throws Exception {
 		// boolean keepRunning = true;
 		// while (keepRunning) {
 
