@@ -12,6 +12,7 @@ public class Demo{
         System.out.println(TitleColor.BLUE + "Look at me I'm Blue!" + TitleColor.RESET);
         Game game = new Game();
         game.run();
+
     }
 
 
@@ -79,7 +80,6 @@ public class Demo{
         // do so evenly
     }
 
-
     // Go
     // Buying Property
     // Landing on rent
@@ -91,5 +91,4 @@ public class Demo{
     // (selling/Trading) properties
     // Mortgages
     // bankruptcy
-
 }

@@ -2,9 +2,6 @@ package game;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.print.event.PrintJobAttributeListener;
-
 import enumeration.Token;
 import dependancy.*;
 
@@ -12,7 +9,6 @@ public class Game {
 
 	public int turn;
 	public int countPlayers;
-	private int countOfDoublesRolled = 0;
 	public Player[] players;
 	ArrayList<Token> tokenArray = new ArrayList<Token>();
 	Die die = new Die();
@@ -33,20 +29,20 @@ public class Game {
 		for (int i = 0; i < players.length; i++) {
 			String playerName = ConsoleUI.promptForInput("\nEnter player " + (i + 1) + "'s name", false);
 
-			System.out.println("\nOk " + playerName + ", is time to choose your token.");
+			System.out.println("\nOk " + playerName + ", it is time to choose your token.");
 			Token selection = chooseYourToken();
 
-			System.out.println("Time to roll dice to see who starts");
+			System.out.println("Time to roll the dice to see who starts");
 			int total = rollForOrder();
 
-			Player newPlayer = new Player(playerName, selection, 1300, total);
+			Player newPlayer = new Player(playerName, selection, 1500, total);
 			players[i] = newPlayer;
 
 			// Finish interaction with players[i]
 			if (players.length == totalPlayers) {
 				System.out.println("Thank you " + players[i].getName() + ".");
 			} else {
-				System.out.println("Thank you " + players[i].getName() + ". Now let me ask your friend.\n");
+				System.out.println("Thank you " + players[i].getName() + ". Now let me ask your friend.");
 			}
 
 		}
@@ -60,18 +56,14 @@ public class Game {
 	 */
 	private int rollForOrder() throws IOException {
 		String[] options = new String[1];
-		options[0] = "Let's roll those dice";
+		options[0] = "Let's roll those dice.";
 		int rollOptions = ConsoleUI.promptForMenuSelection(options);
 		if (rollOptions == 0) {
 			die.roll();
-			whatYouRolled();
+			System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
+			System.out.println("Your total is: " + die.getTotal());
 		}
 		return die.getTotal();
-	}
-
-	private void whatYouRolled() {
-		System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
-		System.out.println("Your total is: " + die.getTotal());
 	}
 
 	private void checkForTie() throws IOException {
@@ -85,13 +77,16 @@ public class Game {
 			if(count > 1) {
 				for (int j2 = 0; j2 < players.length; j2++) {
 					if(i == players[j2].getTurn()) {
-					System.out.println("\n" + players[j2].getName() + ", you can roll again");
+					System.out.println("\nPlayers have tied. Please roll again.");	
+					System.out.println("\n" + players[j2].getName() + " you can roll again");
 						players[j2].setTurn(rollForOrder());  
 					}
 				}
 			}
 		}
 	}
+
+
 
 	/**
 	 * This method will sort the player in descending order
@@ -106,6 +101,10 @@ public class Game {
 				}
 			}
 		}
+		for(int i = 0; i < players.length; i++) {
+			System.out.println(players[i]);
+		}
+
 	}
 
 	/**
@@ -115,15 +114,15 @@ public class Game {
 	 * 
 	 * @throws InterruptedException
 	 */
-	public void run() throws IOException, InterruptedException {
+	public void run() throws Exception {
 		// boolean keepRunning = true;
 		// while (keepRunning) {
 
 
-		printWelcome();		
+		printWelcome();
+//		printLargeBoard();
 		int action = printMainMenu();
 		takeAction(action);
-		
 		// keepRunning = takeAction(action);
 		// }
 	}
@@ -156,12 +155,11 @@ public class Game {
 	 */
 	private void classicMonopolyRules() throws IOException {
 		boolean gameOver = false;
-		int roundCount= 0;
 
 		System.out.println("Welcome to Monopoly\nClassic Rules");
 
 		int howManyPlayers = ConsoleUI.promptForInt("First, let's get started by having a count of the players.\n"
-				+ "Remember that the minimum is 2 and maximum is  6", 2, 8);
+				+ "Remember that the minimum is 2 and maximum is 8.", 2, 8);
     
 		init(howManyPlayers);
 
@@ -170,8 +168,7 @@ public class Game {
 			for (int i = 0; i < players.length; i++) {
 				turn(players[i]);
 			}
-			roundCount++;
-			System.out.println("\nthe round number: " + roundCount + " has ended. Let's keep going!");
+			System.out.println("\n\nThis round has ended! Let's keep going");
 		}
 	}
 
@@ -180,108 +177,28 @@ public class Game {
 	 * @param p the player taking the turn
 	 * @throws IOException
 	 */
-	public void turn(Player currentPlayer) throws IOException {
-		
-		if (currentPlayer.isInJail) {
-			handleJail();
-		}
-		
+	public void turn(Player p) throws IOException {
 		boolean isYourTurn = true;
-		System.out.println("\nAlright player," + currentPlayer.getToken() + " you're up.");
+    
+		System.out.println("\nAlright player " + p.getToken() + " you're up.");
 
 		while (isYourTurn) {
-			board.printBoard(currentPlayer);
+
 			int action = printTurnMenu();
 			switch (action) {
-				case 0:
-					
-					isYourTurn = regularTurn(currentPlayer);
-					break;
-				case 1:
-					showBalance(currentPlayer);
-					break;
-				case 2:
-					showProperties(currentPlayer);
-					break;
-				case 3:
-					buyHouse();
-					break;
-				case 4:
-					tradeCards();
-					break;
-				default:
-					throw new IllegalArgumentException("Invalid action " + action);
-				}
-		}
-	}
-
-	private void handleJail() {
-		
-		
-	}
-
-	private boolean regularTurn(Player currentPlayer) throws IOException {
-		die.roll();
-		whatYouRolled();
-		movePlayer(die.getTotal(), currentPlayer);
-		// deal with the property they land on
-		
-		if(die.getDieOne() == die.getDieTwo()) {
-			countOfDoublesRolled++;
-			if(countOfDoublesRolled == 3) {
-				sendToJail(currentPlayer, 10);
-				return false;
-			}
-			turn(currentPlayer);
-			return false;
-		}
-		turnAfterRoll(currentPlayer);
-		return false;
-	}
-	
-	private void turnAfterRoll(Player currentPlayer) throws IOException {
-		boolean isYourTurnAfterRoll = true;
-		while (isYourTurnAfterRoll) {
-			board.printBoard(currentPlayer);
-			int action = printMenuAfterRoll();
-			switch (action) {
 			case 0:
-				showBalance(currentPlayer);
+				die.roll();
+				System.out.println("\nYou have rolled " + die.getDieOne() + " and " + die.getDieTwo());
+				// movePlayer(die.getTotal(), p);
+
+				isYourTurn = false;
 				break;
 			case 1:
-				showProperties(currentPlayer);
-				break;
-			case 2:
-				buyHouse();
-				break;
-			case 3:
-				tradeCards();
-				break;
-			case 4:
-				isYourTurnAfterRoll = false;
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid action " + action);
 			}
 		}
-	}
-	
-	private void showBalance(Player currentPlayer) {
-		System.out.println("\nYour balance is: " + currentPlayer.getBalance() + "\n");
-	}
-	
-	private void showProperties(Player currentPlayer) {
-		System.out.println("\nThe properties you own are:\n" + currentPlayer.getPropertiesOwned().toString() + "\n");
-	}
-	
-	//ADD CODE HERE
-	private void buyHouse() {
-		
-	}
-	
-	//ADD CODE HERE
-	private void tradeCards() {
-		
 	}
 
 	/**
@@ -289,22 +206,20 @@ public class Game {
 	 * @param num the total number that was rolled by dice
 	 * @param p   the player who's turn is it
 	 */
-	private void movePlayer(int totalDie, Player currentPlayer) {
-		while (totalDie > 0) {
-			totalDie--;
-			if(currentPlayer.getLocation() == 0) {
-				currentPlayer.setBalance(200);
-			}
-			currentPlayer.addLocation(1);
-			if(currentPlayer.getLocation() == 40) {
-				currentPlayer.setLocation(0);
-			}
-		}
+	private void movePlayer(int num, Player p) {
+
+		checkForGo(p);
 	}
-	
-	private void sendToJail(Player currentPlayer, int jailLocation) {
-		currentPlayer.setLocation(jailLocation);
-		currentPlayer.isInJail(true);
+
+	/**
+	 * Checks if the player passed for GO and add $200
+	 * 
+	 * @param p the player who's turn is it
+	 */
+	private void checkForGo(Player p) {
+		if (p.location == 0) {
+			p.addMoney(200);
+		}
 	}
 
 	private void speedDieRules() {
@@ -404,36 +319,11 @@ public class Game {
 	 * @throws IOException
 	 */
 	private int printTurnMenu() throws IOException {
-		String[] menuOptions = new String[5];
+		String[] menuOptions = new String[2];
 		menuOptions[0] = "Roll dice";
 		menuOptions[1] = "See balance";
-		menuOptions[2] = "See your properties";
-		menuOptions[3] = "Buy house/hotel";
-		menuOptions[4] = "Trade cards";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
-	}
-	
-	/**
-	 * Print the options after they roll for first time
-	 * @return the selection
-	 */
-	private int printMenuAfterRoll() throws IOException {
-		String[] menuOptions = new String[5];
-		menuOptions[0] = "See balance";
-		menuOptions[1] = "See your properties";
-		menuOptions[2] = "Buy house/hotel";
-		menuOptions[3] = "Trade cards";
-		menuOptions[4] = "End turn";
-		return ConsoleUI.promptForMenuSelection(menuOptions);
-	}
-	
-	private int PrintJailMenu() throws IOException {
-		String[] menuOptions = new String[3];
-		menuOptions[0] = "Try to roll doubles";
-		menuOptions[1] = "Use your card";
-		menuOptions[2] = "Pay $50";
-		return ConsoleUI.promptForMenuSelection(menuOptions);
-		
+
 	}
 
 	/**
