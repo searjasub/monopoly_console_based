@@ -1,14 +1,16 @@
 package demo;
+
 import game.Game;
 
 public class Demo{
-
+	
 
     public Demo(){}
 
     public static void main(String[] args) throws Exception{
         Game game = new Game();
         game.run();
+        
     }
 
 
@@ -69,5 +71,4 @@ public class Demo{
     // (selling/Trading) properties
     // Mortgages
     // bankruptcy
-
 }
