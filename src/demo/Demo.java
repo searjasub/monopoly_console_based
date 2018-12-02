@@ -1,5 +1,6 @@
 package demo;
 
+import enumeration.TitleColor;
 import game.Game;
 
 public class Demo{
@@ -8,6 +9,7 @@ public class Demo{
     public Demo(){}
 
     public static void main(String[] args) throws Exception {
+        System.out.println(TitleColor.BLUE + "Look at me I'm Blue!" + TitleColor.RESET);
         Game game = new Game();
         game.run();
     }
@@ -44,6 +46,7 @@ public class Demo{
         // try three times
         // have to pay after 3 times
         // or buy out before then
+        // get out of jail free card
     }
 
     public void housesBuyAndSell(){
