@@ -14,6 +14,7 @@ public class Player {
 	final Token token;
 	final String name;
 	int turn;
+	boolean isInJail = false;
 	Card[] jailCardOwned = new Card[2]; //Array to hold the jail free cards
 	ArrayList<Property> propertiesOwned = new ArrayList<Property>();  //Array to hold the property cards
 	
@@ -61,7 +62,7 @@ public class Player {
 	}
 	
 	public void setLocation(int location) {
-		this.location = 0;
+		this.location = location;
 	}
 	
 	
@@ -71,6 +72,10 @@ public class Player {
 	
 	public void setTurn(int turn) {
 		this.turn = turn;
+	}
+	
+	public void isInJail(boolean isInJail) {
+		this.isInJail = isInJail;
 	}
 	
 	public ArrayList<Property> getPropertiesOwned() {

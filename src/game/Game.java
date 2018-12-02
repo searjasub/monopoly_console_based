@@ -2,6 +2,9 @@ package game;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.print.event.PrintJobAttributeListener;
+
 import enumeration.Token;
 import dependancy.*;
 
@@ -9,6 +12,7 @@ public class Game {
 
 	public int turn;
 	public int countPlayers;
+	private int countOfDoublesRolled = 0;
 	public Player[] players;
 	ArrayList<Token> tokenArray = new ArrayList<Token>();
 	Die die = new Die();
@@ -88,7 +92,6 @@ public class Game {
 			}
 		}
 	}
-	
 
 	/**
 	 * This method will sort the player in descending order
@@ -178,8 +181,12 @@ public class Game {
 	 * @throws IOException
 	 */
 	public void turn(Player currentPlayer) throws IOException {
+		
+		if (currentPlayer.isInJail) {
+			handleJail();
+		}
+		
 		boolean isYourTurn = true;
-    
 		System.out.println("\nAlright player," + currentPlayer.getToken() + " you're up.");
 
 		while (isYourTurn) {
@@ -197,21 +204,23 @@ public class Game {
 					showProperties(currentPlayer);
 					break;
 				case 3:
-					//buy house
+					buyHouse();
 					break;
 				case 4:
-					//trade cards
+					tradeCards();
 					break;
 				default:
 					throw new IllegalArgumentException("Invalid action " + action);
 				}
 		}
 	}
-	
-	private int countOfDoublesRolled = 0;
-	
-	private boolean regularTurn(Player currentPlayer) throws IOException {
+
+	private void handleJail() {
 		
+		
+	}
+
+	private boolean regularTurn(Player currentPlayer) throws IOException {
 		die.roll();
 		whatYouRolled();
 		movePlayer(die.getTotal(), currentPlayer);
@@ -220,10 +229,10 @@ public class Game {
 		if(die.getDieOne() == die.getDieTwo()) {
 			countOfDoublesRolled++;
 			if(countOfDoublesRolled == 3) {
-				System.out.println("YOU ARE IN JAIL");
+				sendToJail(currentPlayer, 10);
 				return false;
 			}
-			turn(currentPlayer); //has an exit button for the extra roll
+			turn(currentPlayer);
 			return false;
 		}
 		turnAfterRoll(currentPlayer);
@@ -243,10 +252,10 @@ public class Game {
 				showProperties(currentPlayer);
 				break;
 			case 2:
-				//Buy House
+				buyHouse();
 				break;
 			case 3:
-				//Trade Cards
+				tradeCards();
 				break;
 			case 4:
 				isYourTurnAfterRoll = false;
@@ -254,8 +263,6 @@ public class Game {
 			default:
 				throw new IllegalArgumentException("Invalid action " + action);
 			}
-			
-			
 		}
 	}
 	
@@ -266,23 +273,38 @@ public class Game {
 	private void showProperties(Player currentPlayer) {
 		System.out.println("\nThe properties you own are:\n" + currentPlayer.getPropertiesOwned().toString() + "\n");
 	}
+	
+	//ADD CODE HERE
+	private void buyHouse() {
+		
+	}
+	
+	//ADD CODE HERE
+	private void tradeCards() {
+		
+	}
 
 	/**
 	 * 
 	 * @param num the total number that was rolled by dice
 	 * @param p   the player who's turn is it
 	 */
-	private void movePlayer(int totalDie, Player curentPlayer) {
+	private void movePlayer(int totalDie, Player currentPlayer) {
 		while (totalDie > 0) {
 			totalDie--;
-			if(curentPlayer.getLocation() == 0) {
-				curentPlayer.setBalance(200);
+			if(currentPlayer.getLocation() == 0) {
+				currentPlayer.setBalance(200);
 			}
-			curentPlayer.addLocation(1);
-			if(curentPlayer.getLocation() == 40) {
-				curentPlayer.setLocation(0);
+			currentPlayer.addLocation(1);
+			if(currentPlayer.getLocation() == 40) {
+				currentPlayer.setLocation(0);
 			}
 		}
+	}
+	
+	private void sendToJail(Player currentPlayer, int jailLocation) {
+		currentPlayer.setLocation(jailLocation);
+		currentPlayer.isInJail(true);
 	}
 
 	private void speedDieRules() {
@@ -405,15 +427,13 @@ public class Game {
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 	
-	private int printMenuAfterRollWithDoubles() throws IOException {
-		String[] menuOptions = new String[6];
-		menuOptions[0] = "Roll again";
-		menuOptions[1] = "See balance";
-		menuOptions[2] = "See your properties";
-		menuOptions[3] = "Buy house/hotel";
-		menuOptions[4] = "Trade cards";
-		menuOptions[5] = "Finish with the extra roll turn";
+	private int PrintJailMenu() throws IOException {
+		String[] menuOptions = new String[3];
+		menuOptions[0] = "Try to roll doubles";
+		menuOptions[1] = "Use your card";
+		menuOptions[2] = "Pay $50";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
+		
 	}
 
 	/**
