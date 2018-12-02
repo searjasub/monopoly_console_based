@@ -3,7 +3,6 @@ package game;
 import java.io.IOException;
 import java.util.ArrayList;
 import enumeration.Token;
-import sun.security.provider.JavaKeyStore.CaseExactJKS;
 import dependancy.*;
 
 public class Game {
@@ -184,20 +183,18 @@ public class Game {
 		System.out.println("\nAlright player," + currentPlayer.getToken() + " you're up.");
 
 		while (isYourTurn) {
-
-			
 			board.printBoard(currentPlayer);
 			int action = printTurnMenu();
 			switch (action) {
 				case 0:
-					regularTurn(currentPlayer);
-					isYourTurn = false;
+					
+					isYourTurn = regularTurn(currentPlayer);
 					break;
 				case 1:
-					System.out.println("\nYour balance is: " + currentPlayer.getBalance() + "\n");
+					showBalance(currentPlayer);
 					break;
 				case 2:
-					//see properties
+					showProperties(currentPlayer);
 					break;
 				case 3:
 					//buy house
@@ -211,62 +208,39 @@ public class Game {
 		}
 	}
 	
-	private void regularTurnWithDoubleRolled(Player currentPlayer) throws IOException {
-		boolean isYourTurnAfterRoll = true;
-		while (isYourTurnAfterRoll) {
-			board.printBoard(currentPlayer);
-			int action2 = printMenuAfterRollWithDoubles();
-			switch (action2) {
-			case 0:
-				System.out.println("\nYour balance is: " + currentPlayer.getBalance() + "\n");
-				break;
-			case 1:
-				System.out.println("\nThe properties you own are:\n" + currentPlayer.getPropertiesOwned().toString() + "\n");
-				break;
-			case 2:
-				//Buy House
-				break;
-			case 3:
-				//Trade Cards
-				break;
-			case 4:
-				isYourTurnAfterRoll = false;
-				break;
-			default:
-				throw new IllegalArgumentException("Invalid action " + action2);
-			}
-		}
+	private int countOfDoublesRolled = 0;
+	
+	private boolean regularTurn(Player currentPlayer) throws IOException {
 		
-	}
-
-	private void regularTurn(Player currentPlayer) throws IOException {
-		int countOfDoublesRolled = 0;
 		die.roll();
 		whatYouRolled();
 		movePlayer(die.getTotal(), currentPlayer);
 		// deal with the property they land on
-		if(die.getDieOne() == die.getDieTwo()) {
-			regularTurnWithDoubleRolled(currentPlayer);
-			countOfDoublesRolled++;
-			turnAfterRoll(currentPlayer);
-		}else {
-			turnAfterRoll(currentPlayer);
-			
-		}
 		
+		if(die.getDieOne() == die.getDieTwo()) {
+			countOfDoublesRolled++;
+			if(countOfDoublesRolled == 3) {
+				System.out.println("YOU ARE IN JAIL");
+				return false;
+			}
+			turn(currentPlayer); //has an exit button for the extra roll
+			return false;
+		}
+		turnAfterRoll(currentPlayer);
+		return false;
 	}
 	
 	private void turnAfterRoll(Player currentPlayer) throws IOException {
 		boolean isYourTurnAfterRoll = true;
 		while (isYourTurnAfterRoll) {
 			board.printBoard(currentPlayer);
-			int action2 = printMenuAfterRoll();
-			switch (action2) {
+			int action = printMenuAfterRoll();
+			switch (action) {
 			case 0:
-				System.out.println("\nYour balance is: " + currentPlayer.getBalance() + "\n");
+				showBalance(currentPlayer);
 				break;
 			case 1:
-				System.out.println("\nThe properties you own are:\n" + currentPlayer.getPropertiesOwned().toString() + "\n");
+				showProperties(currentPlayer);
 				break;
 			case 2:
 				//Buy House
@@ -278,9 +252,19 @@ public class Game {
 				isYourTurnAfterRoll = false;
 				break;
 			default:
-				throw new IllegalArgumentException("Invalid action " + action2);
+				throw new IllegalArgumentException("Invalid action " + action);
 			}
+			
+			
 		}
+	}
+	
+	private void showBalance(Player currentPlayer) {
+		System.out.println("\nYour balance is: " + currentPlayer.getBalance() + "\n");
+	}
+	
+	private void showProperties(Player currentPlayer) {
+		System.out.println("\nThe properties you own are:\n" + currentPlayer.getPropertiesOwned().toString() + "\n");
 	}
 
 	/**
@@ -422,12 +406,13 @@ public class Game {
 	}
 	
 	private int printMenuAfterRollWithDoubles() throws IOException {
-		String[] menuOptions = new String[5];
-		menuOptions[0] = "See balance";
-		menuOptions[1] = "See your properties";
-		menuOptions[2] = "Buy house/hotel";
-		menuOptions[3] = "Trade cards";
-		menuOptions[4] = "Finish with the extra roll turn";
+		String[] menuOptions = new String[6];
+		menuOptions[0] = "Roll again";
+		menuOptions[1] = "See balance";
+		menuOptions[2] = "See your properties";
+		menuOptions[3] = "Buy house/hotel";
+		menuOptions[4] = "Trade cards";
+		menuOptions[5] = "Finish with the extra roll turn";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
