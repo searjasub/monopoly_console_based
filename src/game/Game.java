@@ -161,7 +161,7 @@ public class Game {
 		System.out.println("Welcome to Monopoly\nClassic Rules");
 
 		int howManyPlayers = ConsoleUI.promptForInt("First, let's get started by having a count of the players.\n"
-				+ "Remember that the minimum is 2 and maximum is  6", 2, 8);
+				+ "Remember that the minimum is 2 and maximum is  8", 2, 8);
     
 		init(howManyPlayers);
 
