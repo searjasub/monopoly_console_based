@@ -13,9 +13,5 @@ public class TitleDeed extends Property {
 		this.buildingCost = buildingCost;
 		this.location = location;
 		this.color = color;
-		
-
 	}
-
-
 }

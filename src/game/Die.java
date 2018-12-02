@@ -22,7 +22,7 @@ public class Die {
 		Random random = new Random();
 		dieOne = random.nextInt(6) + 1;
 		dieTwo = random.nextInt(6) + 1;
-		
+
 //		dieOne = 3;
 //		dieTwo = 3;
 	}
@@ -47,13 +47,13 @@ public class Die {
 	public int getTotal() {
 		return dieOne + dieTwo;
 	}
-	
+
 	/**
 	 * @return
 	 */
 	public boolean diceEqualsDoble() {
 		return dieOne == dieTwo;
-		
+
 	}
 
 }
