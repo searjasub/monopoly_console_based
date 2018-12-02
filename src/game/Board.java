@@ -18,6 +18,7 @@ public class Board {
 	public Board() {
 		initCards();	
 		initDeeds();
+		initSquare();
 	}
 	
 	public void initCards() {
@@ -145,10 +146,10 @@ public class Board {
 				+ "|    18    |                           |                     |                              |    32    |\n"
 				+ "|__________|                           |       CHANCE        |                              |__________|\n"
 				+ "|          |                           |                     |                              |          |\n"
-				+ "|    17    |                           |_____________________|                              |    33    |\n      Current Player:\t" + player.getName()
-				+ "|__________|                                                                                |__________|\n      Token:\t " + player.getToken()
-				+ "|          |                                                                                |          |\n      Location:\t " + player.getLocation()
-				+ "|    16    |                                                                                |    34    |\n"
+				+ "|    17    |                           |_____________________|                              |    33    |      Player:\t\t " + player.getName() + "\n"
+				+ "|__________|                                                                                |__________|      Token:\t\t " + player.getToken() + "\n"
+				+ "|          |                                                                                |          |      Location:\t\t " + player.getLocation() + "\n"
+				+ "|    16    |                                                                                |    34    |      Description:\t " + squares[player.getLocation()].getName() + "\n"
 				+ "|__________|                                                                                |__________|\n"
 				+ "|          |                                                                                |          |\n"
 				+ "|    15    |                               M O N O P O L Y                                  |    35    |\n"
