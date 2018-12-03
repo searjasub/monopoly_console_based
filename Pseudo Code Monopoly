@@ -1,0 +1,121 @@
+Different Menus
+	>Properties 
+		if (property does not have owner){
+			0 = Buy property
+			1 = Not buy it (The bank sells it at auction)
+			}
+		else{
+			if (property morgaged){
+				no rent can be collected
+				end turn?
+				}
+			if (currentPlayer owns all title deed cards in color group){
+				double the rent
+				}
+			pay rent
+			}
+
+
+	Utilities
+
+
+	>Income Tax
+		menuOptions[0] = pay $200
+		menuOptions[1] = 10% of current balance
+		switch(menuOptions)
+			case 1:
+				currentPlayer.setBalance(-200);
+			case 2:
+				int total = (currentPlayer.getBalance * 10) / 100;
+				currentPlayer.setBalance(total);
+
+
+	>buyHouses
+		Menu = {buy house, buy hotel};
+		if((currentPlayer owns all title deed cards in color group){
+			double the rent
+		}
+
+		build evenly
+
+Auction
+	Show information about the property
+
+	*Create a flag that will determine if player is current actioning*
+
+	--first round--
+	ask each player (menu)
+		[0] Want to place a bet
+			turn flag on
+		[1] Not interested
+			Do nothing
+
+	check for players with flag on
+
+		print next round title: (bet) is the current bet by (player) for the (property)
+			ask the remaining players
+				[0] raise bet
+					turns flag on
+				[1] give up
+					turns flag off
+
+	if(player.flag == 1){ //meaning there is only one player left auctioning
+		take money from balance
+	}
+
+Mortgaging
+
+Chance
+
+Community Chest
+
+Sell properties
+
+**********************************************************************************
+FIXES
+
+---JAIL----
+
+>while trying to get doubles (max 3 times)
+	Menu:
+		roll();
+		pay $50 to get out
+
+>if (rolledDoubleAfter3Times = false){
+	pay $50
+	turn();
+}
+
+>While in Jail
+	(add menu options)
+		-Purchase the "Get Out of Jail Free" car from another player
+			check if other players have 1
+				Interaction between two player
+					first owner of the card will set a prize for the card
+					player needing the card will either agree or not to pay that amount
+		-buy/sell properties
+			(buy?)
+		-buy/sell houses and hotels
+		**Collect rent**(?)
+
+---Sort---
+	>only change the location of the array of the players that got same value
+	>while(is the same number rolled){
+		player should keep rolling
+	}
+
+
+**********************************************************************************
+OOP Improvements. (Repeated code);
+
+>currentPlayer owns all title deed cards in color group = 2 times used
+	private boolean
+>
+
+
+**********************************************************************************
+Rules that will not apply to a console base game
+
+>Building shortages
+>Collect rent (?)
+	will automatically collect rent || switch view to owner and ask if wants to collect rent or not
