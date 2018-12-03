@@ -2,7 +2,7 @@ package card;
 
 import enumeration.TitleColor;
 
-public class TitleDeed extends PropertyAbstract {
+public class TitleDeed extends Property {
 	
 	int cost, buildingCost, location;
 	TitleColor color;
