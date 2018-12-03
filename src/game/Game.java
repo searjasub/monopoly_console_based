@@ -310,15 +310,80 @@ public class Game {
 		return false;
 	}
 	
+	/**
+	 * Method that will handle the options available when the player lands on a property
+	 * @param currentPlayer taking the turn
+	 */
 	private void landOnProperty(Player currentPlayer) throws IOException {
+		if(currentPlayer.getLocation() == 1) {
+			propertyMenuSelection(currentPlayer, 0, -50);
+		}
 		if(currentPlayer.getLocation() == 3) {
 			//check if does not have owner
 			propertyMenuSelection(currentPlayer, 1, -50);
+			//else
+			//	handleRent
 		}
 		if(currentPlayer.getLocation() == 6) {
 			propertyMenuSelection(currentPlayer, 2, -50);
 		}
-		
+		if(currentPlayer.getLocation() == 8) {
+			propertyMenuSelection(currentPlayer, 3, -50);
+		}
+		if(currentPlayer.getLocation() == 9) {
+			propertyMenuSelection(currentPlayer, 4, -50);
+		}
+		if(currentPlayer.getLocation() == 11) {
+			propertyMenuSelection(currentPlayer, 5, -100);
+		}
+		if(currentPlayer.getLocation() == 13) {
+			propertyMenuSelection(currentPlayer, 6, -100);
+		}
+		if(currentPlayer.getLocation() == 14) {
+			propertyMenuSelection(currentPlayer, 7, -100);
+		}
+		if(currentPlayer.getLocation() == 16) {
+			propertyMenuSelection(currentPlayer, 8, -100);
+		}
+		if(currentPlayer.getLocation() == 18) {
+			propertyMenuSelection(currentPlayer, 9, -100);
+		}
+		if(currentPlayer.getLocation() == 19) {
+			propertyMenuSelection(currentPlayer, 10, -100);
+		}
+		if(currentPlayer.getLocation() == 21) {
+			propertyMenuSelection(currentPlayer, 11, -150);
+		}
+		if(currentPlayer.getLocation() == 23) {
+			propertyMenuSelection(currentPlayer, 12, -150);
+		}
+		if(currentPlayer.getLocation() == 24) {
+			propertyMenuSelection(currentPlayer, 13, -150);
+		}
+		if(currentPlayer.getLocation() == 26) {
+			propertyMenuSelection(currentPlayer, 14, -150);
+		}
+		if(currentPlayer.getLocation() == 27) {
+			propertyMenuSelection(currentPlayer, 15, -150);
+		}
+		if(currentPlayer.getLocation() == 29) {
+			propertyMenuSelection(currentPlayer, 16, -150);
+		}
+		if(currentPlayer.getLocation() == 31) {
+			propertyMenuSelection(currentPlayer, 17, -200);
+		}
+		if(currentPlayer.getLocation() == 32) {
+			propertyMenuSelection(currentPlayer, 18, -200);
+		}
+		if(currentPlayer.getLocation() == 34) {
+			propertyMenuSelection(currentPlayer, 19, -200);
+		}
+		if(currentPlayer.getLocation() == 37) {
+			propertyMenuSelection(currentPlayer, 20, -200);
+		}
+		if(currentPlayer.getLocation() == 39) {
+			propertyMenuSelection(currentPlayer, 21, -200);
+		}
 	}
 	
 	private void propertyMenuSelection(Player currentPlayer, int location, int balance) throws IOException {
@@ -330,7 +395,7 @@ public class Game {
 			currentPlayer.setBalance(balance);
 			break;
 		case 1:
-			System.out.println("Since you decide it not to buy it, the bank will auction this property");
+			System.out.println("\n\nSince you decide it not to buy it, the bank will auction this property");
 			//HANDLE AUCTIONING
 			break;
 		default:
@@ -385,15 +450,19 @@ public class Game {
 	 * @param currentPlayer who's turn is it
 	 */
 	private void showProperties(Player currentPlayer) {
-		System.out.print("\nThe properties you own are:\n[");
-		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-			if (i == currentPlayer.getPropertiesOwned().size() -1) {
-				System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName());
-			} else {
-				System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + ",");
+		if(currentPlayer.getPropertiesOwned().size() == 0) {
+			System.out.println("Sorry, you don't own any properties.\nKeep playing to see if get better luck!");
+		}else {
+			System.out.print("\nThe properties you own are:\n[");
+			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+				if (i == currentPlayer.getPropertiesOwned().size() -1) {
+					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName());
+				} else {
+					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + ",");
+				}
 			}
+			System.out.print("]");
 		}
-		System.out.print("]");
 	}
 
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
