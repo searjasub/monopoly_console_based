@@ -14,6 +14,7 @@ public class Board {
 	Card[] cards = new Card[32];
 	Property[] deeds = new Property[28];
 	Square[] squares = new Square[40];
+	Property deed;
 	
 	/**
 	 * Constructor
@@ -23,6 +24,17 @@ public class Board {
 		initDeeds();
 		initSquare();
 	}
+	
+	public boolean ownsDeed(int location, Player currentPlayer) {
+		boolean deedOwned = false;
+		
+		if(deeds[location].getOwner() == null) {
+			deeds[location].setOwner(currentPlayer);
+			deedOwned = true;
+		}
+		return deedOwned;
+	}
+	
 	
 	/**
 	 * Method to initialize every card in the game.

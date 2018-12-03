@@ -3,6 +3,7 @@ package game;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import card.TitleDeed;
 import enumeration.Token;
 import dependancy.*;
 
@@ -315,74 +316,162 @@ public class Game {
 	 * @param currentPlayer taking the turn
 	 */
 	private void landOnProperty(Player currentPlayer) throws IOException {
+		
 		if(currentPlayer.getLocation() == 1) {
-			propertyMenuSelection(currentPlayer, 0, -50);
+			if (board.ownsDeed(1, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 0, -50);
+			} else {
+				payRent(currentPlayer, 2);
+			}
 		}
 		if(currentPlayer.getLocation() == 3) {
-			//check if does not have owner
-			propertyMenuSelection(currentPlayer, 1, -50);
-			//else
-			//	handleRent
+			if (board.ownsDeed(3, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 1, -50);
+			} else {
+				payRent(currentPlayer, 4);
+			}
 		}
 		if(currentPlayer.getLocation() == 6) {
-			propertyMenuSelection(currentPlayer, 2, -50);
+			if (board.ownsDeed(6, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 2, -50);
+			} else {
+				payRent(currentPlayer, 6);
+			}
 		}
 		if(currentPlayer.getLocation() == 8) {
-			propertyMenuSelection(currentPlayer, 3, -50);
+			if (board.ownsDeed(8, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 3, -50);
+			} else {
+				payRent(currentPlayer, 6);
+			}
 		}
 		if(currentPlayer.getLocation() == 9) {
+			if (board.ownsDeed(9, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 4, -50);
+			} else {
+				payRent(currentPlayer, 8);
+			}
 			propertyMenuSelection(currentPlayer, 4, -50);
 		}
 		if(currentPlayer.getLocation() == 11) {
-			propertyMenuSelection(currentPlayer, 5, -100);
+			if (board.ownsDeed(11, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 5, -100);
+			} else {
+				payRent(currentPlayer, 10);
+			}
 		}
 		if(currentPlayer.getLocation() == 13) {
+			if (board.ownsDeed(13, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 6, -100);
+			} else {
+				payRent(currentPlayer, 10);
+			}
 			propertyMenuSelection(currentPlayer, 6, -100);
 		}
 		if(currentPlayer.getLocation() == 14) {
-			propertyMenuSelection(currentPlayer, 7, -100);
+			if (board.ownsDeed(14, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 7, -100);
+			} else {
+				payRent(currentPlayer, 12);
+			}
 		}
 		if(currentPlayer.getLocation() == 16) {
-			propertyMenuSelection(currentPlayer, 8, -100);
+			if (board.ownsDeed(16, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 8, -100);
+			} else {
+				payRent(currentPlayer, 14);
+			}
 		}
 		if(currentPlayer.getLocation() == 18) {
-			propertyMenuSelection(currentPlayer, 9, -100);
+			if (board.ownsDeed(18, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 9, -100);
+			} else {
+				payRent(currentPlayer, 14);
+			}
 		}
 		if(currentPlayer.getLocation() == 19) {
-			propertyMenuSelection(currentPlayer, 10, -100);
+			if (board.ownsDeed(19, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 10, -100);
+			} else {
+				payRent(currentPlayer, 16);
+			}
 		}
 		if(currentPlayer.getLocation() == 21) {
-			propertyMenuSelection(currentPlayer, 11, -150);
+			if (board.ownsDeed(21, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 11, -150);
+			} else {
+				payRent(currentPlayer, 18);
+			}
 		}
 		if(currentPlayer.getLocation() == 23) {
-			propertyMenuSelection(currentPlayer, 12, -150);
+			if (board.ownsDeed(23, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 12, -150);
+			} else {
+				payRent(currentPlayer, 18);
+			};
 		}
 		if(currentPlayer.getLocation() == 24) {
-			propertyMenuSelection(currentPlayer, 13, -150);
+			if (board.ownsDeed(24, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 13, -150);
+			} else {
+				payRent(currentPlayer, 20);
+			}
 		}
 		if(currentPlayer.getLocation() == 26) {
-			propertyMenuSelection(currentPlayer, 14, -150);
+			if (board.ownsDeed(26, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 14, -150);
+			} else {
+				payRent(currentPlayer, 22);
+			}
 		}
 		if(currentPlayer.getLocation() == 27) {
-			propertyMenuSelection(currentPlayer, 15, -150);
+			if (board.ownsDeed(27, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 15, -150);
+			} else {
+				payRent(currentPlayer, 22);
+			}
 		}
 		if(currentPlayer.getLocation() == 29) {
-			propertyMenuSelection(currentPlayer, 16, -150);
+			if (board.ownsDeed(29, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 16, -150);
+			} else {
+				payRent(currentPlayer, 22);
+			}
 		}
 		if(currentPlayer.getLocation() == 31) {
-			propertyMenuSelection(currentPlayer, 17, -200);
+			if (board.ownsDeed(31, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 17, -200);
+			} else {
+				payRent(currentPlayer, 26);
+			}
 		}
 		if(currentPlayer.getLocation() == 32) {
-			propertyMenuSelection(currentPlayer, 18, -200);
+			if (board.ownsDeed(32, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 18, -200);
+			} else {
+				payRent(currentPlayer, 26);
+			}
 		}
 		if(currentPlayer.getLocation() == 34) {
-			propertyMenuSelection(currentPlayer, 19, -200);
+			if (board.ownsDeed(34, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 19, -200);
+			} else {
+				payRent(currentPlayer, 28);
+			}
 		}
 		if(currentPlayer.getLocation() == 37) {
-			propertyMenuSelection(currentPlayer, 20, -200);
+			if (board.ownsDeed(1, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 20, -200);
+			} else {
+				payRent(currentPlayer, 35);
+			}
 		}
 		if(currentPlayer.getLocation() == 39) {
-			propertyMenuSelection(currentPlayer, 21, -200);
+			if (board.ownsDeed(1, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 21, -200);
+			} else {
+				payRent(currentPlayer, 50);
+			}
 		}
 	}
 	
@@ -402,6 +491,21 @@ public class Game {
 			break;
 		}
 	}
+	
+	private void payRent(Player currentPlayer, int regularRent) throws IOException {
+		int selection = printPayRentMenu();
+		if(selection == 0) {
+			// CHECK IF OWNER HAS ALL GROUP PROPERTIES
+				//DOUBLE RENT
+			// CHECK IF THERE IS HOUSES/HOTELS
+			//ELSE
+			currentPlayer.setBalance(-regularRent);
+			
+			//Null pointer
+			board.deed.getOwner().setBalance(regularRent);
+		}
+	}
+
 
 	/**
 	 * Method that will let finish your turn (does not have a roll dice option)
@@ -451,7 +555,7 @@ public class Game {
 	 */
 	private void showProperties(Player currentPlayer) {
 		if(currentPlayer.getPropertiesOwned().size() == 0) {
-			System.out.println("Sorry, you don't own any properties.\nKeep playing to see if get better luck!");
+			System.out.println("\n\nSorry, you don't own any properties.\nKeep playing to see if get better luck!");
 		}else {
 			System.out.print("\nThe properties you own are:\n[");
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
@@ -649,4 +753,11 @@ public class Game {
 		menuOptions[1] = "Not buy it";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
+
+	private int printPayRentMenu() throws IOException {
+		String[] menuOptions = new String[1];
+		menuOptions[0] = "Pay Rent";
+		return ConsoleUI.promptForMenuSelection(menuOptions);
+	}
+	
 }

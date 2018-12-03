@@ -14,4 +14,5 @@ public class TitleDeed extends Property {
 		this.location = location;
 		this.color = color;
 	}
+
 }
