@@ -7,7 +7,6 @@ import card.Property;
 import enumeration.Token;
 
 public class Player {
-	
 
 	int balance;
 	int location;
