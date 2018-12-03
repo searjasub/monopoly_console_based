@@ -2,8 +2,8 @@ package card;
 
 import enumeration.TitleColor;
 
-public class TitleDeed extends Property {
-	String name;
+public class TitleDeed extends PropertyAbstract {
+	
 	int cost, buildingCost, location;
 	TitleColor color;
 
@@ -13,6 +13,18 @@ public class TitleDeed extends Property {
 		this.buildingCost = buildingCost;
 		this.location = location;
 		this.color = color;
+	}
+	
+	public int getCost() {
+		return this.cost;
+	}
+	
+	public int getBuildingCost() {
+		return this.buildingCost;
+	}
+	
+	public int getLocation() {
+		return this.location;
 	}
 
 }

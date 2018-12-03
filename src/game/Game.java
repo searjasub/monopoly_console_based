@@ -319,156 +319,154 @@ public class Game {
 		
 		if(currentPlayer.getLocation() == 1) {
 			if (board.ownsDeed(1, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 0, -50);
+				propertyMenuSelection(currentPlayer, 0, -60);
 			} else {
 				payRent(currentPlayer, 2);
 			}
 		}
 		if(currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(3, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 1, -50);
+				propertyMenuSelection(currentPlayer, 1, -60);
 			} else {
 				payRent(currentPlayer, 4);
 			}
 		}
 		if(currentPlayer.getLocation() == 6) {
 			if (board.ownsDeed(6, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 2, -50);
+				propertyMenuSelection(currentPlayer, 2, -100);
 			} else {
 				payRent(currentPlayer, 6);
 			}
 		}
 		if(currentPlayer.getLocation() == 8) {
 			if (board.ownsDeed(8, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 3, -50);
+				propertyMenuSelection(currentPlayer, 3, -100);
 			} else {
 				payRent(currentPlayer, 6);
 			}
 		}
 		if(currentPlayer.getLocation() == 9) {
 			if (board.ownsDeed(9, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 4, -50);
+				propertyMenuSelection(currentPlayer, 4, -120);
 			} else {
 				payRent(currentPlayer, 8);
 			}
-			propertyMenuSelection(currentPlayer, 4, -50);
 		}
 		if(currentPlayer.getLocation() == 11) {
 			if (board.ownsDeed(11, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 5, -100);
+				propertyMenuSelection(currentPlayer, 5, -140);
 			} else {
 				payRent(currentPlayer, 10);
 			}
 		}
 		if(currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(13, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 6, -100);
+				propertyMenuSelection(currentPlayer, 6, -140);
 			} else {
 				payRent(currentPlayer, 10);
 			}
-			propertyMenuSelection(currentPlayer, 6, -100);
 		}
 		if(currentPlayer.getLocation() == 14) {
 			if (board.ownsDeed(14, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 7, -100);
+				propertyMenuSelection(currentPlayer, 7, -160);
 			} else {
 				payRent(currentPlayer, 12);
 			}
 		}
 		if(currentPlayer.getLocation() == 16) {
 			if (board.ownsDeed(16, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 8, -100);
+				propertyMenuSelection(currentPlayer, 8, -180);
 			} else {
 				payRent(currentPlayer, 14);
 			}
 		}
 		if(currentPlayer.getLocation() == 18) {
 			if (board.ownsDeed(18, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 9, -100);
+				propertyMenuSelection(currentPlayer, 9, -180);
 			} else {
 				payRent(currentPlayer, 14);
 			}
 		}
 		if(currentPlayer.getLocation() == 19) {
 			if (board.ownsDeed(19, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 10, -100);
+				propertyMenuSelection(currentPlayer, 10, -200);
 			} else {
 				payRent(currentPlayer, 16);
 			}
 		}
 		if(currentPlayer.getLocation() == 21) {
 			if (board.ownsDeed(21, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 11, -150);
+				propertyMenuSelection(currentPlayer, 11, -220);
 			} else {
 				payRent(currentPlayer, 18);
 			}
 		}
 		if(currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(23, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 12, -150);
+				propertyMenuSelection(currentPlayer, 12, -220);
 			} else {
 				payRent(currentPlayer, 18);
 			};
 		}
 		if(currentPlayer.getLocation() == 24) {
 			if (board.ownsDeed(24, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 13, -150);
+				propertyMenuSelection(currentPlayer, 13, -240);
 			} else {
 				payRent(currentPlayer, 20);
 			}
 		}
 		if(currentPlayer.getLocation() == 26) {
 			if (board.ownsDeed(26, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 14, -150);
+				propertyMenuSelection(currentPlayer, 14, -260);
 			} else {
 				payRent(currentPlayer, 22);
 			}
 		}
 		if(currentPlayer.getLocation() == 27) {
 			if (board.ownsDeed(27, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 15, -150);
+				propertyMenuSelection(currentPlayer, 15, -260);
 			} else {
 				payRent(currentPlayer, 22);
 			}
 		}
 		if(currentPlayer.getLocation() == 29) {
 			if (board.ownsDeed(29, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 16, -150);
+				propertyMenuSelection(currentPlayer, 16, -280);
 			} else {
 				payRent(currentPlayer, 22);
 			}
 		}
 		if(currentPlayer.getLocation() == 31) {
 			if (board.ownsDeed(31, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 17, -200);
+				propertyMenuSelection(currentPlayer, 17, -300);
 			} else {
 				payRent(currentPlayer, 26);
 			}
 		}
 		if(currentPlayer.getLocation() == 32) {
 			if (board.ownsDeed(32, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 18, -200);
+				propertyMenuSelection(currentPlayer, 18, -300);
 			} else {
 				payRent(currentPlayer, 26);
 			}
 		}
 		if(currentPlayer.getLocation() == 34) {
 			if (board.ownsDeed(34, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 19, -200);
+				propertyMenuSelection(currentPlayer, 19, -320);
 			} else {
 				payRent(currentPlayer, 28);
 			}
 		}
 		if(currentPlayer.getLocation() == 37) {
 			if (board.ownsDeed(1, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 20, -200);
+				propertyMenuSelection(currentPlayer, 20, -350);
 			} else {
 				payRent(currentPlayer, 35);
 			}
 		}
 		if(currentPlayer.getLocation() == 39) {
 			if (board.ownsDeed(1, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 21, -200);
+				propertyMenuSelection(currentPlayer, 21, -400);
 			} else {
 				payRent(currentPlayer, 50);
 			}
