@@ -3,21 +3,19 @@ package game;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.print.event.PrintJobAttributeListener;
-
 import enumeration.Token;
 import dependancy.*;
 
 public class Game {
 
-	public int turn;
+	//public int turn;
 	public int countPlayers;
 	private int countOfDoublesRolled = 0;
 	public Player[] players;
 	ArrayList<Token> tokenArray = new ArrayList<Token>();
 	Die die = new Die();
 	Board board = new Board();
-
+	
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
 	 * 
@@ -50,8 +48,32 @@ public class Game {
 			}
 
 		}
-		checkForTie();
-		sort();
+		setPlayerOrder();
+//		checkForTie();
+//		sort();
+	}
+
+	public void setPlayerOrder() {
+		//TODO possibly fix :(
+		
+//		int highestNumber = 0;
+//		int highestNumberIndex = 0;
+//		for (int i = 0; i < players.length; i++) {
+//			if (players[i].turn > highestNumber) {
+//				highestNumber = players[i].turn;
+//				highestNumberIndex = i;
+//			}
+//		}
+//		for (int i = highestNumberIndex; i >= 0; i--) {
+//			Player temp = players[players.length - 1];
+//			players[i] = players[0];
+//			for (int j = players.length - 2; j >= 1; j--) {
+//				players[players.length - 1] = players[j];
+//			}
+//			players[players.length - 2] = temp;
+//
+//		}
+
 	}
 	
 	/**
@@ -115,7 +137,7 @@ public class Game {
 	 * 
 	 * @throws InterruptedException
 	 */
-	public void run() throws IOException, InterruptedException {
+	public void run() throws Exception {
 		// boolean keepRunning = true;
 		// while (keepRunning) {
 
@@ -161,7 +183,7 @@ public class Game {
 		System.out.println("Welcome to Monopoly\nClassic Rules");
 
 		int howManyPlayers = ConsoleUI.promptForInt("First, let's get started by having a count of the players.\n"
-				+ "Remember that the minimum is 2 and maximum is  8", 2, 8);
+				+ "Remember that the minimum is 2 and maximum is 8", 2, 8);
     
 		init(howManyPlayers);
 
@@ -171,7 +193,7 @@ public class Game {
 				turn(players[i]);
 			}
 			roundCount++;
-			System.out.println("\nthe round number: " + roundCount + " has ended. Let's keep going!");
+			System.out.println("\nThe round number: " + roundCount + " has ended. Let's keep going!");
 		}
 	}
 
