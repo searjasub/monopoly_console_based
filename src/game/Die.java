@@ -19,12 +19,12 @@ public class Die {
 	 * and 6
 	 */
 	public void roll() {
-		Random random = new Random();
-		dieOne = random.nextInt(6) + 1;
-		dieTwo = random.nextInt(6) + 1;
+//		Random random = new Random();
+//		dieOne = random.nextInt(6) + 1;
+//		dieTwo = random.nextInt(6) + 1;
 
-//		dieOne = 3;
-//		dieTwo = 3;
+		dieOne = 1;
+		dieTwo = 2;
 	}
 
 	/**

@@ -78,6 +78,7 @@ public class Player {
 	}
 
 	public ArrayList<Property> getPropertiesOwned() {
+		
 		return this.propertiesOwned;
 	}
 

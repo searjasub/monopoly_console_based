@@ -2,6 +2,7 @@ package game;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import enumeration.Token;
 import dependancy.*;
 
@@ -286,7 +287,8 @@ public class Game {
 		die.roll();
 		whatYouRolled();
 		movePlayer(die.getTotal(), currentPlayer);
-		// deal with the property they land on
+		
+		landOnProperty(currentPlayer);
 
 		if (die.getDieOne() == die.getDieTwo()) {
 			countOfDoublesRolled++;
@@ -306,6 +308,34 @@ public class Game {
 		}
 		turnAfterRoll(currentPlayer);
 		return false;
+	}
+	
+	private void landOnProperty(Player currentPlayer) throws IOException {
+		if(currentPlayer.getLocation() == 3) {
+			//check if does not have owner
+			propertyMenuSelection(currentPlayer, 1, -50);
+		}
+		if(currentPlayer.getLocation() == 6) {
+			propertyMenuSelection(currentPlayer, 2, -50);
+		}
+		
+	}
+	
+	private void propertyMenuSelection(Player currentPlayer, int location, int balance) throws IOException {
+		int selection = printBuyPropertiesMenu();
+		switch (selection) {
+		case 0:
+			System.out.println("\nYou now own this deed!");
+			currentPlayer.propertiesOwned.add(board.deeds[location]);
+			currentPlayer.setBalance(balance);
+			break;
+		case 1:
+			System.out.println("Since you decide it not to buy it, the bank will auction this property");
+			//HANDLE AUCTIONING
+			break;
+		default:
+			break;
+		}
 	}
 
 	/**
@@ -355,7 +385,15 @@ public class Game {
 	 * @param currentPlayer who's turn is it
 	 */
 	private void showProperties(Player currentPlayer) {
-		System.out.println("\nThe properties you own are:\n" + currentPlayer.getPropertiesOwned().toString() + "\n");
+		System.out.print("\nThe properties you own are:\n[");
+		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+			if (i == currentPlayer.getPropertiesOwned().size() -1) {
+				System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName());
+			} else {
+				System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + ",");
+			}
+		}
+		System.out.print("]");
 	}
 
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
@@ -536,4 +574,10 @@ public class Game {
 
 	}
 
+	private int printBuyPropertiesMenu() throws IOException {
+		String[] menuOptions = new String[2];
+		menuOptions[0] = "Buy property";
+		menuOptions[1] = "Not buy it";
+		return ConsoleUI.promptForMenuSelection(menuOptions);
+	}
 }
