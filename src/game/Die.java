@@ -56,4 +56,76 @@ public class Die {
 
 	}
 
+	public int returnOne(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 1;
+	}
+	public int returnTwo(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 2;
+	}
+
+	public int returnThree(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 3;
+	}
+
+	public int returnFour(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 4;
+	}
+	public int returnFive(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 5;
+	}
+	public int returnSix(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 6;
+	}
+	public int returnSeven(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 7;
+	}
+	public int returnEight(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 8;
+	}
+	public int returnNine(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 9;
+	}
+	public int returnTen(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 10;
+	}
+	
+	public int returnEleven(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 11;
+	}
+	public int returnTwelve(){
+		dieOne = -1;
+		dieTwo = -2;
+		return 12;
+	}
+
+
+
+
+
+
+
+
+
 }

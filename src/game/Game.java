@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Menu;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -499,7 +498,7 @@ public class Game {
 
 
 	private int utilityRent(Player currentPlayer) {
-		if(currentPlayer)
+//		if(currentPlayer)
 		return 0;
 	}
 
