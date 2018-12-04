@@ -15,9 +15,10 @@ public abstract class Property {
 		this.location = location;
 	}
 	
-	public Property(String name, int location) {
+	public Property(String name, int location, int cost) {
 		this.name = name;
 		this.location =location;
+		this.cost = cost;
 	}
 
 	public String getPropertyName() {
