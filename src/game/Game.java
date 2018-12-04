@@ -11,6 +11,7 @@ public class Game {
 	public Player[] players;
 	Die die = new Die();
 	Board board = new Board();
+	private boolean mortgaged;
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -709,6 +710,24 @@ public class Game {
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void tradeCards() {
 
+	}
+	//tells whether or not property is mortgaged
+	public boolean isMortgaged(){
+		return mortgaged;
+	}
+	//unmortgages property
+	public void setMortgage(boolean bool){
+		mortgaged = bool;
+	}
+	public String toString(){
+		String status = "";
+		
+		if (isMortgaged())
+			//will show if property is mortgaged
+			status += " (Mortgaged)";
+		
+		
+		return super.toString() + status;
 	}
 
 	/**
