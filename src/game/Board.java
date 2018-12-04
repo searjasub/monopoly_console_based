@@ -13,8 +13,6 @@ import square.*;
 
 public class Board {
 	
-	//Card[] cards = new Card[32];
-	
 	ArrayList<Card> communityChest = new ArrayList<Card>();
 	ArrayList<Card> chance = new ArrayList<Card>();
 	Property[] deeds = new Property[28];

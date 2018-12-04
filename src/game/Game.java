@@ -4,11 +4,10 @@ import java.awt.Menu;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import card.Card;
 import enumeration.Token;
 import square.Property;
 import dependancy.*;
-
-
 
 public class Game {
 
@@ -17,7 +16,6 @@ public class Game {
 	public Player[] players;
 	Die die = new Die();
 	Board board = new Board();
-	
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -332,12 +330,10 @@ public class Game {
 				payRent(currentPlayer, 2, 0);
 			}
 		}
-		if(currentPlayer.getLocation() == 2) {
-			
+		if (currentPlayer.getLocation() == 2) {
+
 		}
-		
-		
-		
+
 		if (currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(3, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 1, -60);
@@ -373,15 +369,14 @@ public class Game {
 				payRent(currentPlayer, 10, 5);
 			}
 		}
-		if(currentPlayer.getLocation() == 12) {
-			if(board.ownsDeed(12, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 21, 150);
-			}
-			else {
-				payRent(currentPlayer, utilityRent(currentPlayer), 21);
+		if (currentPlayer.getLocation() == 12) {
+			if (board.ownsDeed(12, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 21, -150);
+			} else {
+				utilityRent(currentPlayer, 21);
 			}
 		}
-		
+
 		if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(13, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 6, -140);
@@ -497,10 +492,31 @@ public class Game {
 		}
 	}
 
-
-	private int utilityRent(Player currentPlayer) {
-		if(currentPlayer)
-		return 0;
+	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
+		int totalOwed = 0;
+		int howManyCards = 0;
+		int selection = menu.printPayRentMenu();
+		if (selection == 0) {
+			System.out.println("\nYou will now roll dice to see how much you will have to pay rent");
+			int selection2 = menu.rollDiceMenu();
+			if(selection2 == 0) {
+				die.roll();
+				whatYouRolled();
+				for (Player player : players) {
+					if (currentPlayer.propertiesOwned.contains(board.deeds[deedLocation])) {
+						howManyCards++;
+					}
+	
+					if(howManyCards == 2) {
+						totalOwed = 10 * die.getTotal();
+					} else {
+						totalOwed = 4 * die.getTotal();
+					}
+					player.setBalance(totalOwed);
+				}
+				currentPlayer.setBalance(-totalOwed);
+			}
+		}
 	}
 
 	private void propertyMenuSelection(Player currentPlayer, int location, int cost) throws IOException {
@@ -658,8 +674,5 @@ public class Game {
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
 	}
-
-
-
 
 }

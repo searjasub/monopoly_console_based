@@ -151,6 +151,12 @@ public class menu {
 		menuOptions[0] = "Pay Rent";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
+	
+	public static int rollDiceMenu()throws IOException {
+		String[] menuOptions = new String[1];
+		menuOptions[0] = "Roll dice";
+		return ConsoleUI.promptForMenuSelection(menuOptions);
+	}
 
 
 }
