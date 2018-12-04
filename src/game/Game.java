@@ -327,7 +327,7 @@ public class Game {
 				if (board.ownsDeed(location, currentPlayer)) {
 					propertyMenuSelection(currentPlayer, i, -board.deeds[i].getCost());
 				} else {
-					payRent(currentPlayer, 1, i);
+					payRent(currentPlayer, board.deeds[i].getRent(), i);
 				}
 			}
 		}

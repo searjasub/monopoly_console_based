@@ -9,8 +9,9 @@ import card.TitleDeed;
 import card.Utility;
 import enumeration.CardCategory;
 import enumeration.CardType;
-import enumeration.TitleColor;
-import square.*;
+import square.Corner;
+import square.Special;
+import square.Square;
 
 public class Board {
 	
