@@ -156,6 +156,8 @@ public class menu {
 		String[] menuOptions = new String[2];
 		menuOptions[0] = "Buy House";
 		menuOptions[1] = "Buy Hotel";
+		return ConsoleUI.promptForMenuSelection(menuOptions);
+	}
 	
 	public static int rollDiceMenu()throws IOException {
 		String[] menuOptions = new String[1];
