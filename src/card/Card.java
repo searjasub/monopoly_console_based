@@ -22,5 +22,7 @@ public class Card {
 	public Card(String name, String desc, CardType cardType, CardCategory cardName) {
 		this(name, desc, cardType, cardName, 0);
 	}
+	
+	
 }
 
