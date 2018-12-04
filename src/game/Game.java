@@ -1,4 +1,3 @@
-
 package game;
 
 import java.awt.Menu;
@@ -710,10 +709,5 @@ public class Game {
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
 	}
-
-<<<<<<< HEAD
->>>>>>> bd91c207dbc1ba4709e0ede4324fe5a413a25e89
-=======
-
->>>>>>> 47aa93c39086eefd3cf0fe166983acd02f1a8faa
 }
+
