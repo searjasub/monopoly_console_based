@@ -4,6 +4,7 @@ package enumeration;
  * <pre>to use the color, in the String call <code>TitleColor.COLOR</code><br>
  * make sure to call <code>TitleColor.RESET</code> to clear the color that was set <br>
  * <b>In Example: </b> <code> System.out.println(TitleColor.RED + "This Color is Red!" + TitleColor.RESET);</code></pre>
+ * https://misc.flogisoft.com/bash/tip_colors_and_formatting
  */
 public enum TitleColor {
 	BROWN("\u001B[38;5;94m"),
