@@ -102,11 +102,11 @@ public class menu {
 	 */
 	public static int printTurnMenu() throws IOException {
 		String[] menuOptions = new String[5];
-		menuOptions[0] = "Roll dice";
-		menuOptions[1] = "See balance";
-		menuOptions[2] = "See your properties";
-		menuOptions[3] = "Buy house/hotel";
-		menuOptions[4] = "Trade cards";
+		menuOptions[0] = "Roll Dice";
+		menuOptions[1] = "See Balance";
+		menuOptions[2] = "See Your Properties";
+		menuOptions[3] = "Buy House/Hotel";
+		menuOptions[4] = "Trade Cards";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
@@ -117,11 +117,11 @@ public class menu {
 	 */
 	public static int printMenuAfterRoll() throws IOException {
 		String[] menuOptions = new String[5];
-		menuOptions[0] = "See balance";
-		menuOptions[1] = "See your properties";
-		menuOptions[2] = "Buy house/hotel";
-		menuOptions[3] = "Trade cards";
-		menuOptions[4] = "End turn";
+		menuOptions[0] = "See Balance";
+		menuOptions[1] = "See Your Properties";
+		menuOptions[2] = "Buy House/Hotel";
+		menuOptions[3] = "Trade Cards";
+		menuOptions[4] = "End Turn";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
@@ -132,8 +132,8 @@ public class menu {
 	 */
 	public static int printJailMenu() throws IOException {
 		String[] menuOptions = new String[3];
-		menuOptions[0] = "Try to roll doubles";
-		menuOptions[1] = "Use your card";
+		menuOptions[0] = "Try To Roll Doubles";
+		menuOptions[1] = "Use Your 'Get Out Of Jail Free' Card";
 		menuOptions[2] = "Pay $50";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 
@@ -141,8 +141,8 @@ public class menu {
 
 	public static int printBuyPropertiesMenu() throws IOException {
 		String[] menuOptions = new String[2];
-		menuOptions[0] = "Buy property";
-		menuOptions[1] = "Not buy it";
+		menuOptions[0] = "Buy Property";
+		menuOptions[1] = "Auction Off Property";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
@@ -151,6 +151,11 @@ public class menu {
 		menuOptions[0] = "Pay Rent";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
+
+	public static int printBuyBuildingMenu() throws IOException {
+		String[] menuOptions = new String[2];
+		menuOptions[0] = "Buy House";
+		menuOptions[1] = "Buy Hotel";
 	
 	public static int rollDiceMenu()throws IOException {
 		String[] menuOptions = new String[1];
