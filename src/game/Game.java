@@ -320,8 +320,6 @@ public class Game {
 	private void landOnProperty(Player currentPlayer, int location) throws IOException {
 
 		
-		
-		
 		for (int i = 0; i < board.getSizeOfBoard(); i++) {
 			if (currentPlayer.getLocation() == location) {
 				if (board.ownsDeed(location, currentPlayer)) {
@@ -333,182 +331,182 @@ public class Game {
 		}
 		
 		
-		if (currentPlayer.getLocation() == 12) {
-			if (board.ownsDeed(12, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 22, -150);
-			} else {
-				utilityRent(currentPlayer, 22);
-			}
-		}
-		
-		
-		
-		
-		
-		if (currentPlayer.getLocation() == location) {
-			if (board.ownsDeed(location, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 0, -board.deeds[location].getCost());
-			} else {
-				payRent(currentPlayer, 2, 0);
-			}
-		}
-		
-		
-		
-		if (currentPlayer.getLocation() == 2) {
-
-		}
-
-		if (currentPlayer.getLocation() == 3) {
-			if (board.ownsDeed(3, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 1, -60);
-			} else {
-				payRent(currentPlayer, 4, 1);
-			}
-		}
-		if (currentPlayer.getLocation() == 6) {
-			if (board.ownsDeed(6, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 2, -100);
-			} else {
-				payRent(currentPlayer, 6, 2);
-			}
-		}
-		if (currentPlayer.getLocation() == 8) {
-			if (board.ownsDeed(8, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 3, -100);
-			} else {
-				payRent(currentPlayer, 6, 3);
-			}
-		}
-		if (currentPlayer.getLocation() == 9) {
-			if (board.ownsDeed(9, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 4, -120);
-			} else {
-				payRent(currentPlayer, 8, 4);
-			}
-		}
-		if (currentPlayer.getLocation() == 11) {
-			if (board.ownsDeed(11, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 5, -140);
-			} else {
-				payRent(currentPlayer, 10, 5);
-			}
-		}
-		
-
-		if (currentPlayer.getLocation() == 13) {
-			if (board.ownsDeed(13, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 6, -140);
-			} else {
-				payRent(currentPlayer, 10, 6);
-			}
-		}
-		if (currentPlayer.getLocation() == 14) {
-			if (board.ownsDeed(14, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 7, -160);
-			} else {
-				payRent(currentPlayer, 12, 7);
-			}
-		}
-		if (currentPlayer.getLocation() == 16) {
-			if (board.ownsDeed(16, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 8, -180);
-			} else {
-				payRent(currentPlayer, 14, 8);
-			}
-		}
-		if (currentPlayer.getLocation() == 18) {
-			if (board.ownsDeed(18, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 9, -180);
-			} else {
-				payRent(currentPlayer, 14, 9);
-			}
-		}
-		if (currentPlayer.getLocation() == 19) {
-			if (board.ownsDeed(19, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 10, -200);
-			} else {
-				payRent(currentPlayer, 16, 10);
-			}
-		}
-		if (currentPlayer.getLocation() == 21) {
-			if (board.ownsDeed(21, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 11, -220);
-			} else {
-				payRent(currentPlayer, 18, 11);
-			}
-		}
-		if (currentPlayer.getLocation() == 23) {
-			if (board.ownsDeed(23, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 12, -220);
-			} else {
-				payRent(currentPlayer, 18, 12);
-			}
-			;
-		}
-		if (currentPlayer.getLocation() == 24) {
-			if (board.ownsDeed(24, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 13, -240);
-			} else {
-				payRent(currentPlayer, 20, 13);
-			}
-		}
-		if (currentPlayer.getLocation() == 26) {
-			if (board.ownsDeed(26, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 14, -260);
-			} else {
-				payRent(currentPlayer, 22, 14);
-			}
-		}
-		if (currentPlayer.getLocation() == 27) {
-			if (board.ownsDeed(27, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 15, -260);
-			} else {
-				payRent(currentPlayer, 22, 15);
-			}
-		}
-		if (currentPlayer.getLocation() == 29) {
-			if (board.ownsDeed(29, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 16, -280);
-			} else {
-				payRent(currentPlayer, 22, 16);
-			}
-		}
-		if (currentPlayer.getLocation() == 31) {
-			if (board.ownsDeed(31, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 17, -300);
-			} else {
-				payRent(currentPlayer, 26, 17);
-			}
-		}
-		if (currentPlayer.getLocation() == 32) {
-			if (board.ownsDeed(32, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 18, -300);
-			} else {
-				payRent(currentPlayer, 26, 18);
-			}
-		}
-		if (currentPlayer.getLocation() == 34) {
-			if (board.ownsDeed(34, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 19, -320);
-			} else {
-				payRent(currentPlayer, 28, 19);
-			}
-		}
-		if (currentPlayer.getLocation() == 37) {
-			if (board.ownsDeed(1, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 20, -350);
-			} else {
-				payRent(currentPlayer, 35, 20);
-			}
-		}
-		if (currentPlayer.getLocation() == 39) {
-			if (board.ownsDeed(1, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 21, -400);
-			} else {
-				payRent(currentPlayer, 50, 21);
-			}
-		}
+//		if (currentPlayer.getLocation() == 12) {
+//			if (board.ownsDeed(12, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 22, -150);
+//			} else {
+//				utilityRent(currentPlayer, 22);
+//			}
+//		}
+//		
+//		
+//		
+//		
+//		
+//		if (currentPlayer.getLocation() == location) {
+//			if (board.ownsDeed(location, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 0, -board.deeds[location].getCost());
+//			} else {
+//				payRent(currentPlayer, 2, 0);
+//			}
+//		}
+//		
+//		
+//		
+//		if (currentPlayer.getLocation() == 2) {
+//
+//		}
+//
+//		if (currentPlayer.getLocation() == 3) {
+//			if (board.ownsDeed(3, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 1, -60);
+//			} else {
+//				payRent(currentPlayer, 4, 1);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 6) {
+//			if (board.ownsDeed(6, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 2, -100);
+//			} else {
+//				payRent(currentPlayer, 6, 2);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 8) {
+//			if (board.ownsDeed(8, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 3, -100);
+//			} else {
+//				payRent(currentPlayer, 6, 3);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 9) {
+//			if (board.ownsDeed(9, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 4, -120);
+//			} else {
+//				payRent(currentPlayer, 8, 4);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 11) {
+//			if (board.ownsDeed(11, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 5, -140);
+//			} else {
+//				payRent(currentPlayer, 10, 5);
+//			}
+//		}
+//		
+//
+//		if (currentPlayer.getLocation() == 13) {
+//			if (board.ownsDeed(13, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 6, -140);
+//			} else {
+//				payRent(currentPlayer, 10, 6);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 14) {
+//			if (board.ownsDeed(14, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 7, -160);
+//			} else {
+//				payRent(currentPlayer, 12, 7);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 16) {
+//			if (board.ownsDeed(16, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 8, -180);
+//			} else {
+//				payRent(currentPlayer, 14, 8);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 18) {
+//			if (board.ownsDeed(18, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 9, -180);
+//			} else {
+//				payRent(currentPlayer, 14, 9);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 19) {
+//			if (board.ownsDeed(19, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 10, -200);
+//			} else {
+//				payRent(currentPlayer, 16, 10);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 21) {
+//			if (board.ownsDeed(21, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 11, -220);
+//			} else {
+//				payRent(currentPlayer, 18, 11);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 23) {
+//			if (board.ownsDeed(23, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 12, -220);
+//			} else {
+//				payRent(currentPlayer, 18, 12);
+//			}
+//			;
+//		}
+//		if (currentPlayer.getLocation() == 24) {
+//			if (board.ownsDeed(24, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 13, -240);
+//			} else {
+//				payRent(currentPlayer, 20, 13);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 26) {
+//			if (board.ownsDeed(26, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 14, -260);
+//			} else {
+//				payRent(currentPlayer, 22, 14);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 27) {
+//			if (board.ownsDeed(27, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 15, -260);
+//			} else {
+//				payRent(currentPlayer, 22, 15);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 29) {
+//			if (board.ownsDeed(29, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 16, -280);
+//			} else {
+//				payRent(currentPlayer, 22, 16);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 31) {
+//			if (board.ownsDeed(31, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 17, -300);
+//			} else {
+//				payRent(currentPlayer, 26, 17);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 32) {
+//			if (board.ownsDeed(32, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 18, -300);
+//			} else {
+//				payRent(currentPlayer, 26, 18);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 34) {
+//			if (board.ownsDeed(34, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 19, -320);
+//			} else {
+//				payRent(currentPlayer, 28, 19);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 37) {
+//			if (board.ownsDeed(1, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 20, -350);
+//			} else {
+//				payRent(currentPlayer, 35, 20);
+//			}
+//		}
+//		if (currentPlayer.getLocation() == 39) {
+//			if (board.ownsDeed(1, currentPlayer)) {
+//				propertyMenuSelection(currentPlayer, 21, -400);
+//			} else {
+//				payRent(currentPlayer, 50, 21);
+//			}
+//		}
 	}
 
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
