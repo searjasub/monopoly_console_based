@@ -332,6 +332,12 @@ public class Game {
 				payRent(currentPlayer, 2, 0);
 			}
 		}
+		if(currentPlayer.getLocation() == 2) {
+			
+		}
+		
+		
+		
 		if (currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(3, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 1, -60);

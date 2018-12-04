@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+
 import card.Card;
 import card.Property;
 import card.RailRoad;
@@ -11,7 +13,10 @@ import square.*;
 
 public class Board {
 	
-	Card[] cards = new Card[32];
+	//Card[] cards = new Card[32];
+	
+	ArrayList<Card> communityChest = new ArrayList<Card>();
+	ArrayList<Card> chance = new ArrayList<Card>();
 	Property[] deeds = new Property[28];
 	Square[] squares = new Square[40];
 	Property deed;
@@ -35,13 +40,12 @@ public class Board {
 		return deedOwned;
 	}
 	
-	
 	/**
 	 * Method to initialize every card in the game.
 	 */
 	public void initCards() {
-		cards[0] = new Card("Chance", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.CHANCE, CardCategory.JAIL_FREE);
-		cards[1] = new Card("Community Chest", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE);
+		chance.add(new Card("Chance", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.CHANCE, CardCategory.JAIL_FREE));
+		communityChest.add(new Card("Community Chest", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE));
 		cards[2] = new Card("Community Chest", "Advance to GO. (Collect $200)", CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT);
 		cards[3] = new Card("Chance", "Go back three spaces.", CardType.CHANCE, CardCategory.MOVEMENT);
 		cards[4] = new Card("Chance", "ADVANCE TO THE NEAREST RAILROAD. If UNOWNED, you may buy it from the bank. If OWNED, pay owner twice the rental to which they are otherwise entitled.", CardType.CHANCE, CardCategory.MOVEMENT);
