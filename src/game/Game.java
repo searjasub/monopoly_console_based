@@ -1,7 +1,11 @@
 package game;
 
 import java.io.IOException;
+
+import card.RailRoad;
+import card.TitleDeed;
 import enumeration.Token;
+import square.Property;
 import dependancy.*;
 
 public class Game {
@@ -318,31 +322,12 @@ public class Game {
 	 */
 	private void landOnProperty(Player currentPlayer, int location) throws IOException {
 
-//		for (int i = 0; i < board.getSizeOfBoard(); i++) {
-//			if (currentPlayer.getLocation() == location) {
-//				if (board.ownsDeed(location, currentPlayer)) {
-//					propertyMenuSelection(currentPlayer, i, -board.deeds[i].getCost());
-//				} else {
-//					payRent(currentPlayer, board.deeds[i].getRent(), i);
-//				}
-//			}
-//		}
-
-//		if (currentPlayer.getLocation() == location) {
-//			if (board.ownsDeed(location, currentPlayer)) {
-//				propertyMenuSelection(currentPlayer, 0, -board.deeds[location].getCost());
-//			} else {
-//				payRent(currentPlayer, 2, 0);
-//			}
-//		}
-
 		// MEDITERRANEAN AVENUE
 
 		// COMMUNITY CHEST
 		if (currentPlayer.getLocation() == 2) {
 
 		}
-
 		// BALTIC AVENUE
 		if (currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(1, currentPlayer)) {
@@ -351,8 +336,14 @@ public class Game {
 				payRent(currentPlayer, 4, 1);
 			}
 		}
-
 		// READING RAILROAD
+		if(currentPlayer.getLocation() == 5) {
+			if(board.ownsDeed(2, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 2, -200);
+			} else {
+				railRoadRent(currentPlayer, 2);
+			}
+		}
 
 		// ORIENTAL AVENUE
 		if (currentPlayer.getLocation() == 6) {
@@ -362,7 +353,6 @@ public class Game {
 				payRent(currentPlayer, 6, 3);
 			}
 		}
-
 		// VERMONT AVENUE
 		if (currentPlayer.getLocation() == 8) {
 			if (board.ownsDeed(4, currentPlayer)) {
@@ -371,7 +361,6 @@ public class Game {
 				payRent(currentPlayer, 6, 4);
 			}
 		}
-
 		// CONNECTICUT AVENUE
 		if (currentPlayer.getLocation() == 9) {
 			if (board.ownsDeed(5, currentPlayer)) {
@@ -380,7 +369,6 @@ public class Game {
 				payRent(currentPlayer, 8, 5);
 			}
 		}
-
 		// ST. CHARLES PLACE
 		if (currentPlayer.getLocation() == 11) {
 			if (board.ownsDeed(6, currentPlayer)) {
@@ -389,7 +377,6 @@ public class Game {
 				payRent(currentPlayer, 10, 6);
 			}
 		}
-
 		// ELECTRIC COMPANY
 		if (currentPlayer.getLocation() == 12) {
 			if (board.ownsDeed(7, currentPlayer)) {
@@ -398,7 +385,6 @@ public class Game {
 				utilityRent(currentPlayer, 7);
 			}
 		}
-
 		// STATES AVENUE
 		if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(8, currentPlayer)) {
@@ -407,7 +393,6 @@ public class Game {
 				payRent(currentPlayer, 10, 8);
 			}
 		}
-
 		// VIRGINIA AVENUE
 		if (currentPlayer.getLocation() == 14) {
 			if (board.ownsDeed(9, currentPlayer)) {
@@ -416,9 +401,14 @@ public class Game {
 				payRent(currentPlayer, 12, 9);
 			}
 		}
-
 		// PENNSYLVANIA RAILROAD
-
+		if(currentPlayer.getLocation() == 15) {
+			if(board.ownsDeed(10, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 10, -200);
+			} else {
+				railRoadRent(currentPlayer, 10);
+			}
+		}
 		// ST. JAMES PLACE
 		if (currentPlayer.getLocation() == 16) {
 			if (board.ownsDeed(11, currentPlayer)) {
@@ -427,7 +417,6 @@ public class Game {
 				payRent(currentPlayer, 14, 11);
 			}
 		}
-
 		// TENNESSE AVENUE
 		if (currentPlayer.getLocation() == 18) {
 			if (board.ownsDeed(12, currentPlayer)) {
@@ -436,7 +425,6 @@ public class Game {
 				payRent(currentPlayer, 14, 12);
 			}
 		}
-
 		// NEW YORK AVENUE
 		if (currentPlayer.getLocation() == 19) {
 			if (board.ownsDeed(13, currentPlayer)) {
@@ -445,9 +433,6 @@ public class Game {
 				payRent(currentPlayer, 16, 13);
 			}
 		}
-
-		// **************************************************************
-
 		// KENTUCKY AVENUE
 		if (currentPlayer.getLocation() == 21) {
 			if (board.ownsDeed(14, currentPlayer)) {
@@ -456,7 +441,6 @@ public class Game {
 				payRent(currentPlayer, 18, 14);
 			}
 		}
-
 		// INDIANA AVENUE
 		if (currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(15, currentPlayer)) {
@@ -465,7 +449,6 @@ public class Game {
 				payRent(currentPlayer, 18, 15);
 			}
 		}
-
 		// ILLINOIS AVENUE
 		if (currentPlayer.getLocation() == 24) {
 			if (board.ownsDeed(16, currentPlayer)) {
@@ -474,9 +457,14 @@ public class Game {
 				payRent(currentPlayer, 20, 16);
 			}
 		}
-
 		// B. & O. RAILROAD
-
+		if(currentPlayer.getLocation() == 25) {
+			if(board.ownsDeed(17, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 17, -200);
+			} else {
+				railRoadRent(currentPlayer, 17);
+			}
+		}
 		// ATLANTIC AVENUE
 		if (currentPlayer.getLocation() == 26) {
 			if (board.ownsDeed(18, currentPlayer)) {
@@ -491,6 +479,14 @@ public class Game {
 				propertyMenuSelection(currentPlayer, 19, -260);
 			} else {
 				payRent(currentPlayer, 22, 19);
+			}
+		}
+		// WATER WORKS
+		if (currentPlayer.getLocation() == 28) {
+			if (board.ownsDeed(20, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 20, -150);
+			} else {
+				utilityRent(currentPlayer, 20);
 			}
 		}
 		// MARVIN GARDENS
@@ -525,6 +521,14 @@ public class Game {
 				payRent(currentPlayer, 28, 24);
 			}
 		}
+		// SHORT LINE
+		if(currentPlayer.getLocation() == 35) {
+			if(board.ownsDeed(25, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 25, -200);
+			} else {
+				railRoadRent(currentPlayer, 25);
+			}
+		}
 		// PARK PLACE
 		if (currentPlayer.getLocation() == 37) {
 			if (board.ownsDeed(26, currentPlayer)) {
@@ -545,7 +549,6 @@ public class Game {
 
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
 		int totalOwed = 0;
-		int howManyCards = 0;
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
 			System.out.println("\nYou will now roll dice to see how much you will have to pay rent");
@@ -553,25 +556,69 @@ public class Game {
 			if (selection2 == 0) {
 				die.roll();
 				whatYouRolled();
-				for (Player player : players) {
-					if (player.propertiesOwned.contains(board.deeds[deedLocation])) {
-						howManyCards++;
-						if (howManyCards == 2) {
+				for (Player playerOwner : players) {
+					if (playerOwner.propertiesOwned.contains(board.deeds[deedLocation])) {
+						if (playerOwner.propertiesOwned.contains(board.deeds[7]) && playerOwner.propertiesOwned.contains(board.deeds[20])) {
 							totalOwed = 10 * die.getTotal();
-							System.out.println("Since you rolled " + die.getTotal() + ", and " + player.getName()
+							System.out.println("Since you rolled " + die.getTotal() + ", and " + playerOwner.getName()
 									+ " owns 2 property\n" + "You are paying $" + totalOwed);
-						} else if (howManyCards == 1) {
+						}
+						else if (playerOwner.propertiesOwned.contains(board.deeds[7])
+								|| playerOwner.propertiesOwned.contains(board.deeds[20])) {
 							totalOwed = 4 * die.getTotal();
-							System.out.println("Since you rolled " + die.getTotal() + ", and " + player.getName()
+							System.out.println("Since you rolled " + die.getTotal() + ", and " + playerOwner.getName()
 									+ " owns 1 property\n" + "You are paying $" + totalOwed);
 						}
-						player.setBalance(totalOwed);
+						playerOwner.setBalance(totalOwed);
+						currentPlayer.setBalance(-totalOwed);
 					}
 				}
-				currentPlayer.setBalance(-totalOwed);
+			}
+			
+		}
+	}
+	
+	private void railRoadRent(Player currentPlayer, int deedLocation) throws IOException {
+		int totalOwed = 0;
+		int selection = menu.printPayRentMenu();
+		if (selection == 0) {
+			System.out.println("\nYou will now roll dice to see how much you will have to pay rent");
+			int selection2 = menu.rollDiceMenu();
+			if (selection2 == 0) {
+				die.roll();
+				whatYouRolled();
+				for (Player playerOwner : players) {
+					if (playerOwner.propertiesOwned.contains(board.deeds[deedLocation])) {
+						int counter = 0;
+						for(card.Property titledeed: playerOwner.propertiesOwned) {
+							if(titledeed instanceof RailRoad) {
+								counter++;
+							}
+						}
+						switch (counter) {
+						case 1:
+							totalOwed = 25;
+							break;
+						case 2:
+							totalOwed = 50;
+							break;
+						case 3:
+							totalOwed = 100;
+							break;
+						case 4:
+							totalOwed = 200;
+							break;
+						default:
+							break;
+						}
+						playerOwner.setBalance(totalOwed);
+						currentPlayer.setBalance(-totalOwed);
+					}
+				}
 			}
 		}
 	}
+
 
 	private void propertyMenuSelection(Player currentPlayer, int location, int cost) throws IOException {
 		int selection = menu.printBuyPropertiesMenu();
@@ -688,9 +735,9 @@ public class Game {
 					}
 				}
 			}
-			
-			
-			
+
+			// SHOW RENT
+
 		}
 	}
 
