@@ -1,12 +1,7 @@
 package game;
 
-import java.awt.Menu;
 import java.io.IOException;
-import java.util.ArrayList;
-
-import card.Card;
 import enumeration.Token;
-import square.Property;
 import dependancy.*;
 
 public class Game {
@@ -709,5 +704,7 @@ public class Game {
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
 	}
+
+
 }
 

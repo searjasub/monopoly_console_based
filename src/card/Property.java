@@ -4,7 +4,7 @@ import game.Player;
 
 public abstract class Property {
 	
-	int cost, buildingCost, location;
+	int cost, buildingCost, location, rent;
 	String name;
 	Player owner;
 	
@@ -13,6 +13,7 @@ public abstract class Property {
 		this.cost = cost;
 		this.buildingCost = buildingCost;
 		this.location = location;
+		this.rent = rent;
 	}
 	
 	public Property(String name, int location, int cost) {
