@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Menu;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -7,14 +8,16 @@ import enumeration.Token;
 import square.Property;
 import dependancy.*;
 
+
+
 public class Game {
 
 	// Class level variables
 	public int turn, countPlayers, roundCount, countOfDoublesRolled = 0;
 	public Player[] players;
-	ArrayList<Token> tokenArray = new ArrayList<Token>();
 	Die die = new Die();
 	Board board = new Board();
+	
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -24,7 +27,7 @@ public class Game {
 	private void init(int totalPlayers) throws IOException {
 
 		for (Token t : Token.values()) {
-			tokenArray.add(t);
+			menu.tokenArray.add(t);
 		}
 
 		players = new Player[totalPlayers];
@@ -32,7 +35,7 @@ public class Game {
 			String playerName = ConsoleUI.promptForInput("\nEnter player " + (i + 1) + "'s name", false);
 
 			System.out.println("\nOk " + playerName + ", is time to choose your token.");
-			Token selection = chooseYourToken();
+			Token selection = menu.chooseYourToken();
 
 			System.out.println("Time to roll dice to see who starts");
 			int total = rollForOrder();
@@ -127,7 +130,7 @@ public class Game {
 		// while (keepRunning) {
 
 		board.printWelcome();
-		int action = printMainMenu();
+		int action = menu.printMainMenu();
 		takeAction(action);
 
 		// keepRunning = takeAction(action);
@@ -192,7 +195,7 @@ public class Game {
 
 			while (isYourTurn) {
 				board.printBoard(currentPlayer);
-				int action = printTurnMenu();
+				int action = menu.printTurnMenu();
 				switch (action) {
 				case 0:
 					isYourTurn = regularTurn(currentPlayer);
@@ -225,7 +228,7 @@ public class Game {
 	private void handleJail(Player currentPlayer) throws IOException {
 		boolean ableToGetOut = false;
 		while (!ableToGetOut) {
-			int action = PrintJailMenu();
+			int action = menu.printJailMenu();
 			switch (action) {
 			case 0:
 				System.out.println("You have 3 chances to get doubles and get out of jail this turn");
@@ -481,7 +484,7 @@ public class Game {
 
 	
 	private void propertyMenuSelection(Player currentPlayer, int location, int balance) throws IOException {
-		int selection = printBuyPropertiesMenu();
+		int selection = menu.printBuyPropertiesMenu();
 		switch (selection) {
 		case 0:
 			System.out.println("\nYou now own this deed!");
@@ -498,7 +501,7 @@ public class Game {
 	}
 
 	private void payRent(Player currentPlayer, int regularRent, int deedLocation) throws IOException {
-		int selection = printPayRentMenu();
+		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
 			// CHECK IF OWNER HAS ALL GROUP PROPERTIES
 			// DOUBLE RENT
@@ -524,7 +527,7 @@ public class Game {
 		boolean isYourTurnAfterRoll = true;
 		while (isYourTurnAfterRoll) {
 			board.printBoard(currentPlayer);
-			int action = printMenuAfterRoll();
+			int action = menu.printMenuAfterRoll();
 			switch (action) {
 			case 0:
 				showBalance(currentPlayer);
@@ -636,148 +639,7 @@ public class Game {
 		System.out.println("Please read rules inside box.");
 	}
 
-	/**
-	 * By using switch to let user choose which token they want. It removes the
-	 * token from tokensAvailable
-	 * 
-	 * @return what token user wants to get;
-	 */
-	private Token chooseYourToken() throws IOException {
-		Token selection = null;
-		Token desireToken = printTokenSelection(tokenArray);
-		switch (desireToken) {
-		case SHOE:
-			selection = Token.SHOE;
-			removeToken(selection);
-			break;
-		case HAT:
-			selection = Token.HAT;
-			removeToken(selection);
-			break;
-		case CAR:
-			selection = Token.CAR;
-			removeToken(selection);
-			break;
-		case CAT:
-			selection = Token.CAT;
-			removeToken(selection);
-			break;
-		case DOG:
-			selection = Token.DOG;
-			removeToken(selection);
-			break;
-		case THIMBLE:
-			selection = Token.THIMBLE;
-			removeToken(selection);
-			break;
-		case BATTLESHIP:
-			selection = Token.BATTLESHIP;
-			removeToken(selection);
-			break;
-		case WHEELBARROW:
-			selection = Token.WHEELBARROW;
-			removeToken(selection);
-			break;
-		default:
-			throw new IllegalArgumentException("Invalid selection " + desireToken);
-		}
-		return selection;
-	}
 
-	/**
-	 * Helper method to remove to token that user selected from the tokensAvailable
-	 * ArrayList
-	 * 
-	 * @param selection
-	 */
-	private void removeToken(Token selection) {
-		tokenArray.remove(selection);
-	}
 
-	/**
-	 * Prints the current list of tokens available
-	 * 
-	 * @param tokensAvailable ArrayList with tokens available
-	 * @return the token selected
-	 */
-	private Token printTokenSelection(ArrayList<Token> tokensAvailable) throws IOException {
-		String[] options = new String[tokensAvailable.size()];
-		for (int i = 0; i < options.length; i++) {
-			options[i] = tokensAvailable.get(i).toString();
-		}
-		int selection = ConsoleUI.promptForMenuSelection(options);
-		return tokenArray.get(selection);
-	}
-
-	/**
-	 * Prints the options for the main menu
-	 * 
-	 * @return
-	 */
-	private int printMainMenu() throws IOException {
-		String[] menuOptions = new String[3];
-		menuOptions[0] = "Speed Die Rules";
-		menuOptions[1] = "Classic Monopoly Rules";
-		menuOptions[2] = "Exit";
-		return ConsoleUI.promptForMenuSelection(menuOptions);
-	}
-
-	/**
-	 * Prints the options for the turn menu
-	 * 
-	 * @return
-	 * @throws IOException
-	 */
-	private int printTurnMenu() throws IOException {
-		String[] menuOptions = new String[5];
-		menuOptions[0] = "Roll dice";
-		menuOptions[1] = "See balance";
-		menuOptions[2] = "See your properties";
-		menuOptions[3] = "Buy house/hotel";
-		menuOptions[4] = "Trade cards";
-		return ConsoleUI.promptForMenuSelection(menuOptions);
-	}
-
-	/**
-	 * Print the options after they roll for first time
-	 * 
-	 * @return the selection
-	 */
-	private int printMenuAfterRoll() throws IOException {
-		String[] menuOptions = new String[5];
-		menuOptions[0] = "See balance";
-		menuOptions[1] = "See your properties";
-		menuOptions[2] = "Buy house/hotel";
-		menuOptions[3] = "Trade cards";
-		menuOptions[4] = "End turn";
-		return ConsoleUI.promptForMenuSelection(menuOptions);
-	}
-
-	/**
-	 * Prints the options for the menu when you need to get out of jail.
-	 * 
-	 * @return the user's selection
-	 */
-	private int PrintJailMenu() throws IOException {
-		String[] menuOptions = new String[3];
-		menuOptions[0] = "Try to roll doubles";
-		menuOptions[1] = "Use your card";
-		menuOptions[2] = "Pay $50";
-		return ConsoleUI.promptForMenuSelection(menuOptions);
-
-	}
-
-	private int printBuyPropertiesMenu() throws IOException {
-		String[] menuOptions = new String[2];
-		menuOptions[0] = "Buy property";
-		menuOptions[1] = "Not buy it";
-		return ConsoleUI.promptForMenuSelection(menuOptions);
-	}
-
-	private int printPayRentMenu() throws IOException {
-		String[] menuOptions = new String[1];
-		menuOptions[0] = "Pay Rent";
-		return ConsoleUI.promptForMenuSelection(menuOptions);
-	}
 
 }
