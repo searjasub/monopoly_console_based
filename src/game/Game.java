@@ -3,7 +3,6 @@ package game;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import card.TitleDeed;
 import enumeration.Token;
 import dependancy.*;
 
@@ -288,7 +287,11 @@ public class Game {
 		die.roll();
 		whatYouRolled();
 		movePlayer(die.getTotal(), currentPlayer);
+
 		
+		System.out.println("\n*************************************\n"
+				+ "You landed on: " + board.squares[currentPlayer.getLocation()].getName() + "\n"
+						+ "*************************************");
 		landOnProperty(currentPlayer);
 
 		if (die.getDieOne() == die.getDieTwo()) {
@@ -310,161 +313,164 @@ public class Game {
 		turnAfterRoll(currentPlayer);
 		return false;
 	}
-	
+
 	/**
-	 * Method that will handle the options available when the player lands on a property
+	 * Method that will handle the options available when the player lands on a
+	 * property
+	 * 
 	 * @param currentPlayer taking the turn
 	 */
 	private void landOnProperty(Player currentPlayer) throws IOException {
-		
-		if(currentPlayer.getLocation() == 1) {
+
+		if (currentPlayer.getLocation() == 1) {
 			if (board.ownsDeed(1, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 0, -60);
 			} else {
 				payRent(currentPlayer, 2);
 			}
 		}
-		if(currentPlayer.getLocation() == 3) {
+		if (currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(3, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 1, -60);
 			} else {
 				payRent(currentPlayer, 4);
 			}
 		}
-		if(currentPlayer.getLocation() == 6) {
+		if (currentPlayer.getLocation() == 6) {
 			if (board.ownsDeed(6, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 2, -100);
 			} else {
 				payRent(currentPlayer, 6);
 			}
 		}
-		if(currentPlayer.getLocation() == 8) {
+		if (currentPlayer.getLocation() == 8) {
 			if (board.ownsDeed(8, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 3, -100);
 			} else {
 				payRent(currentPlayer, 6);
 			}
 		}
-		if(currentPlayer.getLocation() == 9) {
+		if (currentPlayer.getLocation() == 9) {
 			if (board.ownsDeed(9, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 4, -120);
 			} else {
 				payRent(currentPlayer, 8);
 			}
 		}
-		if(currentPlayer.getLocation() == 11) {
+		if (currentPlayer.getLocation() == 11) {
 			if (board.ownsDeed(11, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 5, -140);
 			} else {
 				payRent(currentPlayer, 10);
 			}
 		}
-		if(currentPlayer.getLocation() == 13) {
+		if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(13, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 6, -140);
 			} else {
 				payRent(currentPlayer, 10);
 			}
 		}
-		if(currentPlayer.getLocation() == 14) {
+		if (currentPlayer.getLocation() == 14) {
 			if (board.ownsDeed(14, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 7, -160);
 			} else {
 				payRent(currentPlayer, 12);
 			}
 		}
-		if(currentPlayer.getLocation() == 16) {
+		if (currentPlayer.getLocation() == 16) {
 			if (board.ownsDeed(16, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 8, -180);
 			} else {
 				payRent(currentPlayer, 14);
 			}
 		}
-		if(currentPlayer.getLocation() == 18) {
+		if (currentPlayer.getLocation() == 18) {
 			if (board.ownsDeed(18, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 9, -180);
 			} else {
 				payRent(currentPlayer, 14);
 			}
 		}
-		if(currentPlayer.getLocation() == 19) {
+		if (currentPlayer.getLocation() == 19) {
 			if (board.ownsDeed(19, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 10, -200);
 			} else {
 				payRent(currentPlayer, 16);
 			}
 		}
-		if(currentPlayer.getLocation() == 21) {
+		if (currentPlayer.getLocation() == 21) {
 			if (board.ownsDeed(21, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 11, -220);
 			} else {
 				payRent(currentPlayer, 18);
 			}
 		}
-		if(currentPlayer.getLocation() == 23) {
+		if (currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(23, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 12, -220);
 			} else {
 				payRent(currentPlayer, 18);
-			};
+			}
+			;
 		}
-		if(currentPlayer.getLocation() == 24) {
+		if (currentPlayer.getLocation() == 24) {
 			if (board.ownsDeed(24, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 13, -240);
 			} else {
 				payRent(currentPlayer, 20);
 			}
 		}
-		if(currentPlayer.getLocation() == 26) {
+		if (currentPlayer.getLocation() == 26) {
 			if (board.ownsDeed(26, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 14, -260);
 			} else {
 				payRent(currentPlayer, 22);
 			}
 		}
-		if(currentPlayer.getLocation() == 27) {
+		if (currentPlayer.getLocation() == 27) {
 			if (board.ownsDeed(27, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 15, -260);
 			} else {
 				payRent(currentPlayer, 22);
 			}
 		}
-		if(currentPlayer.getLocation() == 29) {
+		if (currentPlayer.getLocation() == 29) {
 			if (board.ownsDeed(29, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 16, -280);
 			} else {
 				payRent(currentPlayer, 22);
 			}
 		}
-		if(currentPlayer.getLocation() == 31) {
+		if (currentPlayer.getLocation() == 31) {
 			if (board.ownsDeed(31, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 17, -300);
 			} else {
 				payRent(currentPlayer, 26);
 			}
 		}
-		if(currentPlayer.getLocation() == 32) {
+		if (currentPlayer.getLocation() == 32) {
 			if (board.ownsDeed(32, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 18, -300);
 			} else {
 				payRent(currentPlayer, 26);
 			}
 		}
-		if(currentPlayer.getLocation() == 34) {
+		if (currentPlayer.getLocation() == 34) {
 			if (board.ownsDeed(34, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 19, -320);
 			} else {
 				payRent(currentPlayer, 28);
 			}
 		}
-		if(currentPlayer.getLocation() == 37) {
+		if (currentPlayer.getLocation() == 37) {
 			if (board.ownsDeed(1, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 20, -350);
 			} else {
 				payRent(currentPlayer, 35);
 			}
 		}
-		if(currentPlayer.getLocation() == 39) {
+		if (currentPlayer.getLocation() == 39) {
 			if (board.ownsDeed(1, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 21, -400);
 			} else {
@@ -472,7 +478,7 @@ public class Game {
 			}
 		}
 	}
-	
+
 	private void propertyMenuSelection(Player currentPlayer, int location, int balance) throws IOException {
 		int selection = printBuyPropertiesMenu();
 		switch (selection) {
@@ -483,27 +489,26 @@ public class Game {
 			break;
 		case 1:
 			System.out.println("\n\nSince you decide it not to buy it, the bank will auction this property");
-			//HANDLE AUCTIONING
+			// HANDLE AUCTIONING
 			break;
 		default:
 			break;
 		}
 	}
-	
+
 	private void payRent(Player currentPlayer, int regularRent) throws IOException {
 		int selection = printPayRentMenu();
-		if(selection == 0) {
+		if (selection == 0) {
 			// CHECK IF OWNER HAS ALL GROUP PROPERTIES
-				//DOUBLE RENT
+			// DOUBLE RENT
 			// CHECK IF THERE IS HOUSES/HOTELS
-			//ELSE
+			// ELSE
 			currentPlayer.setBalance(-regularRent);
+
+			// Null pointer
 			
-			//Null pointer
-			board.deed.getOwner().setBalance(regularRent);
 		}
 	}
-
 
 	/**
 	 * Method that will let finish your turn (does not have a roll dice option)
@@ -552,15 +557,27 @@ public class Game {
 	 * @param currentPlayer who's turn is it
 	 */
 	private void showProperties(Player currentPlayer) {
-		if(currentPlayer.getPropertiesOwned().size() == 0) {
+		if (currentPlayer.getPropertiesOwned().size() == 0) {
 			System.out.println("\n\nSorry, you don't own any properties.\nKeep playing to see if get better luck!");
-		}else {
+		} else {
 			System.out.print("\nThe properties you own are:\n[");
+
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-				if (i == currentPlayer.getPropertiesOwned().size() -1) {
+				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
 					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName());
 				} else {
 					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + ",");
+				}
+			}
+			System.out.print("]");
+
+			System.out.print("\nThe cost of the building is:\n[");
+
+			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
+					System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost());
+				} else {
+					System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + ",");
 				}
 			}
 			System.out.print("]");
@@ -757,5 +774,5 @@ public class Game {
 		menuOptions[0] = "Pay Rent";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
-	
+
 }

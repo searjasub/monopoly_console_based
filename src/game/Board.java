@@ -154,6 +154,7 @@ public class Board {
 		squares[39] = new square.Property("Boardwalk", (TitleDeed) deeds[21]);
 	}
 	
+	
 	/**
 	 * Print the board in the console
 	 * @param player adding information of the current player to the right side of the board
