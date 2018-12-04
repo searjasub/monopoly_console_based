@@ -3,10 +3,9 @@ package game;
 import java.io.IOException;
 
 import card.RailRoad;
-import card.TitleDeed;
+import dependancy.ConsoleUI;
+import dependancy.menu;
 import enumeration.Token;
-import square.Property;
-import dependancy.*;
 
 public class Game {
 
@@ -37,7 +36,7 @@ public class Game {
 			System.out.println("Time to roll dice to see who starts");
 			int total = rollForOrder();
 
-			Player newPlayer = new Player(playerName, selection, 1500, total);
+			Player newPlayer = new Player(playerName, selection, 1500, total, 0);
 			players[i] = newPlayer;
 
 			// Finish interaction with players[i]
@@ -223,14 +222,11 @@ public class Game {
 	 * @param currentPlayer who's turn is it.
 	 */
 	private void handleJail(Player currentPlayer) throws IOException {
-		boolean ableToGetOut = false;
-		while (!ableToGetOut) {
 			int action = menu.printJailMenu();
 			switch (action) {
 			case 0:
 				System.out.println("You have 3 chances to get doubles and get out of jail this turn");
-				boolean rolledDoubles = false;
-				while (!rolledDoubles) {
+				
 					int selection = ConsoleUI.promptForInt("[0]\tRoll dice", 0, 0);
 					if (selection == 0) {
 						die.roll();
@@ -239,17 +235,26 @@ public class Game {
 							breakOutOfJail(currentPlayer);
 							movePlayer(die.getTotal(), currentPlayer);
 							board.printBoard(currentPlayer);
+							currentPlayer.setTurnInJail(0);
 							// handle what happens when you lay on a property
-							rolledDoubles = true;
+						} else {
+							if(currentPlayer.getTurnInJail() > 1) {
+								System.out.println("\nSince you have rolled 3 times and you didn't rolled double, the bank took $50 off of your balance.");
+								breakOutOfJail(currentPlayer);
+								currentPlayer.setBalance(-50);
+								break;
+							}
+							currentPlayer.setTurnInJail(currentPlayer.getTurnInJail() + 1);
+							turnAfterRoll(currentPlayer);
+							break;
 						}
-					}
 				}
-				ableToGetOut = true;
+				breakOutOfJail(currentPlayer);
 				break;
 			case 1:
 				if (currentPlayer.jailCardOwned != null) {
 
-					ableToGetOut = !breakOutOfJail(currentPlayer);
+					breakOutOfJail(currentPlayer);
 				}
 
 				break;
@@ -257,13 +262,13 @@ public class Game {
 				System.out.println("" + "*********************************************************************"
 						+ "\n\nOk " + currentPlayer.getName() + ", you are free now.");
 				currentPlayer.setBalance(-50);
-				ableToGetOut = !breakOutOfJail(currentPlayer);
+				breakOutOfJail(currentPlayer);
 				turn(currentPlayer);
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid action " + action);
 			}
-		}
+
 	}
 
 	/**
@@ -336,9 +341,14 @@ public class Game {
 				payRent(currentPlayer, 4, 1);
 			}
 		}
+		//INCOME TAX
+		if(currentPlayer.getLocation() == 4) {
+			handleIncomeTax(currentPlayer);
+		}
+		
 		// READING RAILROAD
-		if(currentPlayer.getLocation() == 5) {
-			if(board.ownsDeed(2, currentPlayer)) {
+		if (currentPlayer.getLocation() == 5) {
+			if (board.ownsDeed(2, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 2, -200);
 			} else {
 				railRoadRent(currentPlayer, 2);
@@ -402,8 +412,8 @@ public class Game {
 			}
 		}
 		// PENNSYLVANIA RAILROAD
-		if(currentPlayer.getLocation() == 15) {
-			if(board.ownsDeed(10, currentPlayer)) {
+		if (currentPlayer.getLocation() == 15) {
+			if (board.ownsDeed(10, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 10, -200);
 			} else {
 				railRoadRent(currentPlayer, 10);
@@ -458,8 +468,8 @@ public class Game {
 			}
 		}
 		// B. & O. RAILROAD
-		if(currentPlayer.getLocation() == 25) {
-			if(board.ownsDeed(17, currentPlayer)) {
+		if (currentPlayer.getLocation() == 25) {
+			if (board.ownsDeed(17, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 17, -200);
 			} else {
 				railRoadRent(currentPlayer, 17);
@@ -497,6 +507,12 @@ public class Game {
 				payRent(currentPlayer, 24, 21);
 			}
 		}
+		//GO TO JAIL
+		if(currentPlayer.getLocation() == 30) {
+			currentPlayer.setLocation(10);
+			currentPlayer.isInJail = true;
+		}
+		
 		// PACIFIC AVENUE
 		if (currentPlayer.getLocation() == 31) {
 			if (board.ownsDeed(22, currentPlayer)) {
@@ -522,8 +538,8 @@ public class Game {
 			}
 		}
 		// SHORT LINE
-		if(currentPlayer.getLocation() == 35) {
-			if(board.ownsDeed(25, currentPlayer)) {
+		if (currentPlayer.getLocation() == 35) {
+			if (board.ownsDeed(25, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 25, -200);
 			} else {
 				railRoadRent(currentPlayer, 25);
@@ -537,6 +553,12 @@ public class Game {
 				payRent(currentPlayer, 35, 26);
 			}
 		}
+		//LUXURY TAX
+		if(currentPlayer.getLocation() == 38) {
+			System.out.println("\nThe bank took $100 off of your balance");
+			currentPlayer.setBalance(-100);
+		}
+		
 		// BOARDWALK
 		if (currentPlayer.getLocation() == 39) {
 			if (board.ownsDeed(27, currentPlayer)) {
@@ -545,6 +567,20 @@ public class Game {
 				payRent(currentPlayer, 50, 27);
 			}
 		}
+	}
+
+	private void handleIncomeTax(Player currentPlayer) {
+
+		int totalToPay = 0;
+		for (card.Property cards : currentPlayer.propertiesOwned) {
+			totalToPay += cards.getCost() * 0.1;
+		}
+		totalToPay += currentPlayer.getBalance() * 0.1;
+		// HOUSES
+		
+		System.out.println("10% of your income is: " + totalToPay);
+		currentPlayer.setBalance(totalToPay);
+		
 	}
 
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
@@ -558,12 +594,12 @@ public class Game {
 				whatYouRolled();
 				for (Player playerOwner : players) {
 					if (playerOwner.propertiesOwned.contains(board.deeds[deedLocation])) {
-						if (playerOwner.propertiesOwned.contains(board.deeds[7]) && playerOwner.propertiesOwned.contains(board.deeds[20])) {
+						if (playerOwner.propertiesOwned.contains(board.deeds[7])
+								&& playerOwner.propertiesOwned.contains(board.deeds[20])) {
 							totalOwed = 10 * die.getTotal();
 							System.out.println("Since you rolled " + die.getTotal() + ", and " + playerOwner.getName()
 									+ " owns 2 property\n" + "You are paying $" + totalOwed);
-						}
-						else if (playerOwner.propertiesOwned.contains(board.deeds[7])
+						} else if (playerOwner.propertiesOwned.contains(board.deeds[7])
 								|| playerOwner.propertiesOwned.contains(board.deeds[20])) {
 							totalOwed = 4 * die.getTotal();
 							System.out.println("Since you rolled " + die.getTotal() + ", and " + playerOwner.getName()
@@ -574,51 +610,44 @@ public class Game {
 					}
 				}
 			}
-			
+
 		}
 	}
-	
+
 	private void railRoadRent(Player currentPlayer, int deedLocation) throws IOException {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
-			System.out.println("\nYou will now roll dice to see how much you will have to pay rent");
-			int selection2 = menu.rollDiceMenu();
-			if (selection2 == 0) {
-				die.roll();
-				whatYouRolled();
-				for (Player playerOwner : players) {
-					if (playerOwner.propertiesOwned.contains(board.deeds[deedLocation])) {
-						int counter = 0;
-						for(card.Property titledeed: playerOwner.propertiesOwned) {
-							if(titledeed instanceof RailRoad) {
-								counter++;
-							}
+			for (Player playerOwner : players) {
+				if (playerOwner.propertiesOwned.contains(board.deeds[deedLocation])) {
+					int counter = 0;
+					for (card.Property titledeed : playerOwner.propertiesOwned) {
+						if (titledeed instanceof RailRoad) {
+							counter++;
 						}
-						switch (counter) {
-						case 1:
-							totalOwed = 25;
-							break;
-						case 2:
-							totalOwed = 50;
-							break;
-						case 3:
-							totalOwed = 100;
-							break;
-						case 4:
-							totalOwed = 200;
-							break;
-						default:
-							break;
-						}
-						playerOwner.setBalance(totalOwed);
-						currentPlayer.setBalance(-totalOwed);
 					}
+					switch (counter) {
+					case 1:
+						totalOwed = 25;
+						break;
+					case 2:
+						totalOwed = 50;
+						break;
+					case 3:
+						totalOwed = 100;
+						break;
+					case 4:
+						totalOwed = 200;
+						break;
+					default:
+						break;
+					}
+					playerOwner.setBalance(totalOwed);
+					currentPlayer.setBalance(-totalOwed);
 				}
 			}
 		}
 	}
-
 
 	private void propertyMenuSelection(Player currentPlayer, int location, int cost) throws IOException {
 		int selection = menu.printBuyPropertiesMenu();
