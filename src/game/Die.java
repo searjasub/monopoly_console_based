@@ -24,7 +24,7 @@ public class Die {
 //		dieTwo = random.nextInt(6) + 1;
 
 		dieOne = 6;
-		dieTwo = 5;
+		dieTwo = 2;
 	}
 
 	/**
