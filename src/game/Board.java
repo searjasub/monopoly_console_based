@@ -47,38 +47,38 @@ public class Board {
 	 * Method to initialize every card in the game.
 	 */
 	public void initCards() {
-		chance.add(new Card("Chance", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.CHANCE, CardCategory.JAIL_FREE));
-		communityChest.add(new Card("Community Chest", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE));
-		communityChest.add(new Card("Community Chest", "Advance to GO. (Collect $200)", CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Go back three spaces.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "ADVANCE TO THE NEAREST RAILROAD. If UNOWNED, you may buy it from the bank. If OWNED, pay owner twice the rental to which they are otherwise entitled.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "ADVANCE TO THE NEAREST UTILITY. If UNOWNED, you may buy it from the bank. If OWNED, throw dice and pay owner ten times the amount thrown.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "ADVANCE TO THE NEAREST RAILROAD. If UNOWNED, you may buy it from the bank. If OWNED, pay owner twice the rental to which they are otherwise entitled.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Advance to GO. (Collect $200)", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Advance to Illinois Avenue. If you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Take a trip to Reading Railroad. If you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Advance to ST. Charles Place. If you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "GO TO JAIL. GO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.", CardType.CHANCE, CardCategory.MOVEMENT));
-		communityChest.add(new Card("Community Chest", "GO TO JAIL. GO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.", CardType.COMMUNITY_CHEST,CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Advance to Boardwalk.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Speeding fine $15.", CardType.CHANCE, CardCategory.PAY_MONEY, 15));
-		communityChest.add(new Card("Community Chest", "Doctor's fees. Pay $50.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50));
-		communityChest.add(new Card("Community Chest", "School fees. Pay $50.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50));
-		communityChest.add(new Card("Community Chest", "Hospital fees. Pay $100.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 100));
-		communityChest.add(new Card("Community Chest", "You are assessed for street repairs: pay $40 per house and $115 per hotel you own.", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX));
-		chance.add(new Card("Chance", "Make general repairs on all your property: for each house pay $25, for each hotel pay $100.", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX));
-		communityChest.add(new Card("Community Chest", "It is your birthday. COllect $10 from every player.", CardType.COMMUNITY_CHEST, CardCategory.PAY_OR_RECEIVE_PLAYERS));
-		chance.add(new Card("Chance", "You have been elected chairman of the board. Pay each player $50.",CardType.CHANCE, CardCategory.PAY_OR_RECEIVE_PLAYERS));
-		chance.add(new Card("Chance", "Your building loan matures. Collect $150.", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 150));
-		chance.add(new Card("Chance", "Bank pays you dividend of $50.", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 50));
-		communityChest.add(new Card("Community Chest", "Bank error in your favor. Collect $200.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 200));
-		communityChest.add(new Card("Community Chest", "Life insurance matures. Collect $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
-		communityChest.add(new Card("Community Chest", "Income tax refund. Collect $20.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 20));
-		communityChest.add(new Card("Community Chest", "Receive $25 consultancy fee.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 25));
-		communityChest.add(new Card("Community Chest", "You have won second prize in a beauty contest. Collect $10.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 10));
-		communityChest.add(new Card("Community Chest", "From sale of stock you get $50.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50));
-		communityChest.add(new Card("Community Chest", "You inherit $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
-		communityChest.add(new Card("Community Chest", "Holiday fund matures. Receive $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
+		chance.add(new Card("\t\tChance\n", "\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.", CardType.CHANCE, CardCategory.JAIL_FREE));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "\tAdvance to GO. (Collect $200)", CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\tChance\n", "\tGo back three spaces.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n\tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST UTILITY.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, throw dice and pay owner ten times the amount thrown.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "\tAdvance to GO. (Collect $200)", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "Advance to Illinois Avenue.\nIf you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "Take a trip to Reading Railroad.\nIf you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "Advance to St. Charles Place.\nIf you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\t  Chance\n", "\t\tGO TO JAIL.\nGO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.", CardType.CHANCE, CardCategory.MOVEMENT));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "\t\t  GO TO JAIL.\nGO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.", CardType.COMMUNITY_CHEST,CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "Advance to Boardwalk.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "  Speeding fine $15.", CardType.CHANCE, CardCategory.PAY_MONEY, 15));
+		communityChest.add(new Card("\t   Community Chest\n", "\tDoctor's fees. Pay $50.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50));
+		communityChest.add(new Card("\t  Community Chest\n", "\tSchool fees. Pay $50.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50));
+		communityChest.add(new Card("\t   Community Chest\n", "\tHospital fees. Pay $100.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 100));
+		communityChest.add(new Card("\t    Community Chest\n", "    You are assessed for street repairs: \nPay $40 per house and $115 per hotel you own.", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX));
+		chance.add(new Card("\t\tChance\n", "   Make general repairs on all your property: \nFor each house pay $25, for each hotel pay $100.", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "It is your birthday. Collect $10 from every player.", CardType.COMMUNITY_CHEST, CardCategory.PAY_OR_RECEIVE_PLAYERS));
+		chance.add(new Card("     Chance\n", "You have been elected chairman of the board.\n \tPay each player $50.",CardType.CHANCE, CardCategory.PAY_OR_RECEIVE_PLAYERS));
+		chance.add(new Card("\t\tChance\n", "Your building loan matures. Collect $150.", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 150));
+		chance.add(new Card("\t  Chance\n", "Bank pays you dividend of $50.", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 50));
+		communityChest.add(new Card("\t  Community Chest\n", "Bank error in your favor. Collect $200.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 200));
+		communityChest.add(new Card("\tCommunity Chest\n", "Life insurance matures. Collect $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
+		communityChest.add(new Card("\tCommunity Chest\n", "Income tax refund. Collect $20.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 20));
+		communityChest.add(new Card("\tCommunity Chest\n", "  Receive $25 consultancy fee.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 25));
+		communityChest.add(new Card("\t\t Community Chest\n", "You have won second prize in a beauty contest. Collect $10.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 10));
+		communityChest.add(new Card("\tCommunity Chest\n", "From sale of stock you get $50.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50));
+		communityChest.add(new Card("\t Community Chest\n", "\tYou inherit $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
+		communityChest.add(new Card("\tCommunity Chest\n", "Holiday fund matures. Receive $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
 	}
 	
 	/**
