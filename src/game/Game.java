@@ -373,6 +373,15 @@ public class Game {
 				payRent(currentPlayer, 10, 5);
 			}
 		}
+		if(currentPlayer.getLocation() == 12) {
+			if(board.ownsDeed(12, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 21, 150);
+			}
+			else {
+				payRent(currentPlayer, utilityRent(currentPlayer), 21);
+			}
+		}
+		
 		if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(13, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 6, -140);
@@ -488,14 +497,19 @@ public class Game {
 		}
 	}
 
-	
-	private void propertyMenuSelection(Player currentPlayer, int location, int balance) throws IOException {
+
+	private int utilityRent(Player currentPlayer) {
+		if(currentPlayer)
+		return 0;
+	}
+
+	private void propertyMenuSelection(Player currentPlayer, int location, int cost) throws IOException {
 		int selection = menu.printBuyPropertiesMenu();
 		switch (selection) {
 		case 0:
 			System.out.println("\nYou now own this deed!");
 			currentPlayer.propertiesOwned.add(board.deeds[location]);
-			currentPlayer.setBalance(balance);
+			currentPlayer.setBalance(cost);
 			break;
 		case 1:
 			System.out.println("\n\nSince you decide it not to buy it, the bank will auction this property");
