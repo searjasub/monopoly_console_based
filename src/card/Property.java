@@ -45,4 +45,8 @@ public abstract class Property {
 	public int getLocation() {
 		return this.location;
 	}
+	
+	public int getRent() {
+		return this.rent;
+	}
 }

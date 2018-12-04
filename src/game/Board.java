@@ -9,8 +9,9 @@ import card.TitleDeed;
 import card.Utility;
 import enumeration.CardCategory;
 import enumeration.CardType;
-import enumeration.TitleColor;
-import square.*;
+import square.Corner;
+import square.Special;
+import square.Square;
 
 public class Board {
 	
@@ -106,7 +107,7 @@ public class Board {
 		deeds[18] = new TitleDeed("Atlantic Avenue", 260, enumeration.TitleColor.YELLOW, 150, 26, 22);
 		deeds[19] = new TitleDeed("Ventnor Avenue", 260, enumeration.TitleColor.YELLOW, 150, 27, 22);
 		deeds[20] = new Utility("Water Works", 28, 150);
-		deeds[21] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29, 22);
+		deeds[21] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29, 24);
 		deeds[22] = new TitleDeed("Pacific Avenue", 300, enumeration.TitleColor.GREEN, 200, 31, 26);
 		deeds[23] = new TitleDeed("North Carolina Avenue", 300, enumeration.TitleColor.GREEN, 200, 32, 26);
 		deeds[24] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200, 34, 28);
@@ -126,41 +127,41 @@ public class Board {
 		squares[2] = new Special("Community Chest", CardType.COMMUNITY_CHEST);
 		squares[3] = new square.Property("Baltic Avenue", (TitleDeed) deeds[1]);
 		squares[4] = new Special("Income Tax");
-		squares[5] = new square.RailRoad("Reading Railroad", (RailRoad) deeds[24]);
-		squares[6] = new square.Property("Oriental Avenue", (TitleDeed) deeds[2]);
+		squares[5] = new square.RailRoad("Reading Railroad", (RailRoad) deeds[2]);
+		squares[6] = new square.Property("Oriental Avenue", (TitleDeed) deeds[3]);
 		squares[7] = new Special("Chance", CardType.CHANCE);
-		squares[8] = new square.Property("Vermont Avenue", (TitleDeed) deeds[3]);
-		squares[9] = new square.Property("Connecticut Avenue", (TitleDeed) deeds[4]);
+		squares[8] = new square.Property("Vermont Avenue", (TitleDeed) deeds[4]);
+		squares[9] = new square.Property("Connecticut Avenue", (TitleDeed) deeds[5]);
 		squares[10] = new Corner("Jail/Just Visiting");
-		squares[11] = new square.Property("St. Charles Place", (TitleDeed) deeds[5]);
-		squares[12] = new square.Utility("Electric Company", (Utility) deeds[22]);
-		squares[13] = new square.Property("States Avenue", (TitleDeed) deeds[6]);
-		squares[14] = new square.Property("Virginia Avenue", (TitleDeed) deeds[7]);
-		squares[15] = new square.RailRoad("Pennsylvania Railroad", (RailRoad) deeds[25]);
-		squares[16] = new square.Property("St. James Place", (TitleDeed) deeds[8]);
+		squares[11] = new square.Property("St. Charles Place", (TitleDeed) deeds[6]);
+		squares[12] = new square.Utility("Electric Company", (Utility) deeds[7]);
+		squares[13] = new square.Property("States Avenue", (TitleDeed) deeds[8]);
+		squares[14] = new square.Property("Virginia Avenue", (TitleDeed) deeds[9]);
+		squares[15] = new square.RailRoad("Pennsylvania Railroad", (RailRoad) deeds[10]);
+		squares[16] = new square.Property("St. James Place", (TitleDeed) deeds[11]);
 		squares[17] = new Special("Community Chest", CardType.COMMUNITY_CHEST);
-		squares[18] = new square.Property("Tennessee Avenue", (TitleDeed) deeds[9]);
-		squares[19] = new square.Property("New York Avenue", (TitleDeed) deeds[10]);
+		squares[18] = new square.Property("Tennessee Avenue", (TitleDeed) deeds[12]);
+		squares[19] = new square.Property("New York Avenue", (TitleDeed) deeds[13]);
 		squares[20] = new Corner("Free Parking");
-		squares[21] = new square.Property("Kentucky Avenue", (TitleDeed) deeds[11]);
+		squares[21] = new square.Property("Kentucky Avenue", (TitleDeed) deeds[14]);
 		squares[22] = new Special("Chance", CardType.CHANCE);
-		squares[23] = new square.Property("Indiana Avenue", (TitleDeed) deeds[12]);
-		squares[24] = new square.Property("Illinois Avenue", (TitleDeed) deeds[13]);
-		squares[25] = new square.RailRoad("B. & O. Railroad", (RailRoad) deeds[26]);
-		squares[26] = new square.Property("Atlantic Avenue", (TitleDeed) deeds[14]);
-		squares[27] = new square.Property("Ventnor Avenue", (TitleDeed) deeds[15]);
-		squares[28] = new square.Utility("Water Works", (Utility) deeds[23]);
-		squares[29] = new square.Property("Marvin Gardens", (TitleDeed) deeds[16]);
+		squares[23] = new square.Property("Indiana Avenue", (TitleDeed) deeds[15]);
+		squares[24] = new square.Property("Illinois Avenue", (TitleDeed) deeds[16]);
+		squares[25] = new square.RailRoad("B. & O. Railroad", (RailRoad) deeds[17]);
+		squares[26] = new square.Property("Atlantic Avenue", (TitleDeed) deeds[18]);
+		squares[27] = new square.Property("Ventnor Avenue", (TitleDeed) deeds[19]);
+		squares[28] = new square.Utility("Water Works", (Utility) deeds[20]);
+		squares[29] = new square.Property("Marvin Gardens", (TitleDeed) deeds[21]);
 		squares[30] = new Corner("Go To Jail");
-		squares[31] = new square.Property("Pacific Avenue", (TitleDeed) deeds[17]);
-		squares[32] = new square.Property("North Carolina Avenue", (TitleDeed) deeds[18]);
+		squares[31] = new square.Property("Pacific Avenue", (TitleDeed) deeds[22]);
+		squares[32] = new square.Property("North Carolina Avenue", (TitleDeed) deeds[23]);
 		squares[33] = new Special("Community Chest", CardType.COMMUNITY_CHEST);
-		squares[34] = new square.Property("Pennsylvania Avenue", (TitleDeed) deeds[19]);
-		squares[35] = new square.RailRoad("Short Line", (RailRoad) deeds[27]);
+		squares[34] = new square.Property("Pennsylvania Avenue", (TitleDeed) deeds[24]);
+		squares[35] = new square.RailRoad("Short Line", (RailRoad) deeds[25]);
 		squares[36] = new Special("Chance", CardType.CHANCE);
-		squares[37] = new square.Property("Park Place", (TitleDeed) deeds[20]);
+		squares[37] = new square.Property("Park Place", (TitleDeed) deeds[26]);
 		squares[38] = new Special("Luxury Tax");
-		squares[39] = new square.Property("Boardwalk", (TitleDeed) deeds[21]);
+		squares[39] = new square.Property("Boardwalk", (TitleDeed) deeds[27]);
 		
 	}
 	

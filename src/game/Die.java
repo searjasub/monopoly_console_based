@@ -23,7 +23,7 @@ public class Die {
 //		dieOne = random.nextInt(6) + 1;
 //		dieTwo = random.nextInt(6) + 1;
 
-		dieOne = 7;
+		dieOne = 6;
 		dieTwo = 5;
 	}
 
