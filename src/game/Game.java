@@ -28,10 +28,10 @@ public class Game {
 		for (int i = 0; i < players.length; i++) {
 			String playerName = ConsoleUI.promptForInput("\nEnter player " + (i + 1) + "'s name", false);
 
-			System.out.println("\nOk " + playerName + ", is time to choose your token.");
+			System.out.println("\nOk, " + playerName + " it is time to choose your token.");
 			Token selection = menu.chooseYourToken();
 
-			System.out.println("Time to roll dice to see who starts");
+			System.out.println("Time to roll the dice to see who starts.");
 			int total = rollForOrder();
 
 			Player newPlayer = new Player(playerName, selection, 1500, total);
@@ -56,7 +56,7 @@ public class Game {
 	 */
 	private int rollForOrder() throws IOException {
 		String[] options = new String[1];
-		options[0] = "Let's roll those dice";
+		options[0] = "Let's roll those dice!";
 		int rollOptions = ConsoleUI.promptForMenuSelection(options);
 		if (rollOptions == 0) {
 			die.roll();
@@ -91,6 +91,7 @@ public class Game {
 						System.out.println("\nThere is a tie!");
 						System.out.println("\n" + players[j2].getName() + ", you can roll again");
 						players[j2].setTurn(rollForOrder());
+						count = 0;
 					}
 				}
 			}
@@ -161,8 +162,8 @@ public class Game {
 		boolean gameOver = false;
 		System.out.println("Welcome to Monopoly\nClassic Rules");
 		int howManyPlayers = ConsoleUI
-				.promptForInt("Now that is your turn, let's get started by having a count of the players.\n"
-						+ "Remember that the minimum is 2 and maximum is  8", 2, 8);
+				.promptForInt("Let's get started by having a count of the players.\n"
+						+ "Remember that the minimum is 2 and maximum is 8", 2, 8);
 		init(howManyPlayers);
 		while (!gameOver) {
 			// handle turns
@@ -181,11 +182,11 @@ public class Game {
 	public void turn(Player currentPlayer) throws IOException {
 
 		if (currentPlayer.isInJail == true) {
-			System.out.println("\n\n\nOk " + currentPlayer.getName() + ", let's get out of jail.");
+			System.out.println("\n\n\nOk " + currentPlayer.getName() + ", let's get you out of jail.");
 			handleJail(currentPlayer);
 		} else {
 			boolean isYourTurn = true;
-			System.out.println("\nAlright player," + currentPlayer.getToken() + " you're up.");
+			System.out.println("\nAlright player, " + currentPlayer.getToken() + " you're up.");
 
 			while (isYourTurn) {
 				board.printBoard(currentPlayer);
@@ -225,10 +226,10 @@ public class Game {
 			int action = menu.printJailMenu();
 			switch (action) {
 			case 0:
-				System.out.println("You have 3 chances to get doubles and get out of jail this turn");
+				System.out.println("You have 3 chances to get doubles and get out of jail.");
 				boolean rolledDoubles = false;
 				while (!rolledDoubles) {
-					int selection = ConsoleUI.promptForInt("[0]\tRoll dice", 0, 0);
+					int selection = ConsoleUI.promptForInt("[0]\tRoll dice.", 0, 0);
 					if (selection == 0) {
 						die.roll();
 						whatYouRolled();
@@ -296,8 +297,8 @@ public class Game {
 			if (countOfDoublesRolled == 3) {
 				System.out.println(""
 						+ "\n*************************************************************************************\n"
-						+ currentPlayer.name + " have rolled 3 doubles. You will not be visiting jail this time.\n"
-						+ "You also loose your turn. Better luck next time!\n"
+						+ currentPlayer.name + " you have rolled 3 doubles. You will not be visiting jail this time; you will be going to jail.\n"
+						+ "You also lose your turn. Better luck next time!\n Have fun pumping iron.\n"
 						+ "*************************************************************************************");
 				sendToJail(currentPlayer, 10);
 				currentPlayer.isInJail(true);
@@ -551,7 +552,7 @@ public class Game {
 		int howManyCards = 0;
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
-			System.out.println("\nYou will now roll dice to see how much you will have to pay rent");
+			System.out.println("\nYou will now roll the dice to see how much you will have to pay rent." );
 			int selection2 = menu.rollDiceMenu();
 			if (selection2 == 0) {
 				die.roll();
@@ -561,12 +562,12 @@ public class Game {
 						howManyCards++;
 						if (howManyCards == 2) {
 							totalOwed = 10 * die.getTotal();
-							System.out.println("Since you rolled " + die.getTotal() + ", and " + player.getName()
-									+ " owns 2 property\n" + "You are paying $" + totalOwed);
+							System.out.println("You rolled " + die.getTotal() + ", and " + player.getName()
+									+ " owns both utilities.\n" + "You must pay $" + totalOwed);
 						} else if (howManyCards == 1) {
 							totalOwed = 4 * die.getTotal();
-							System.out.println("Since you rolled " + die.getTotal() + ", and " + player.getName()
-									+ " owns 1 property\n" + "You are paying $" + totalOwed);
+							System.out.println("You rolled " + die.getTotal() + ", and " + player.getName()
+									+ " owns 1 utility.\n" + "You must pay $" + totalOwed);
 						}
 						player.setBalance(totalOwed);
 					}
@@ -585,7 +586,7 @@ public class Game {
 			currentPlayer.setBalance(cost);
 			break;
 		case 1:
-			System.out.println("\n\nSince you decide it not to buy it, the bank will auction this property");
+			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
 			// HANDLE AUCTIONING
 			break;
 		default:
@@ -687,13 +688,13 @@ public class Game {
 			System.out.print("[");
 			if (i == currentPlayer.getPropertiesOwned().size() - 1) {
 				if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
-					System.out.print("Not allowed]");
+					System.out.print("N/A]");
 				} else {
 					System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
 				}
 			} else {
 				if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
-					System.out.print("Not allowed]");
+					System.out.print("N/A]");
 				} else {
 					System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
 				}
