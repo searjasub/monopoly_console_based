@@ -8,7 +8,7 @@ public abstract class Property {
 	String name;
 	Player owner;
 	
-	public Property(String name, int cost, int buildingCost, int location) {
+	public Property(String name, int cost, int buildingCost, int location, int rent) {
 		this.name = name;
 		this.cost = cost;
 		this.buildingCost = buildingCost;

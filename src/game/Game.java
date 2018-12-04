@@ -8,8 +8,6 @@ import enumeration.Token;
 import square.Property;
 import dependancy.*;
 
-
-
 public class Game {
 
 	// Class level variables
@@ -17,7 +15,6 @@ public class Game {
 	public Player[] players;
 	Die die = new Die();
 	Board board = new Board();
-	
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -332,12 +329,10 @@ public class Game {
 				payRent(currentPlayer, 2, 0);
 			}
 		}
-		if(currentPlayer.getLocation() == 2) {
-			
+		if (currentPlayer.getLocation() == 2) {
+
 		}
-		
-		
-		
+
 		if (currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(3, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 1, -60);
@@ -373,15 +368,14 @@ public class Game {
 				payRent(currentPlayer, 10, 5);
 			}
 		}
-		if(currentPlayer.getLocation() == 12) {
-			if(board.ownsDeed(12, currentPlayer)) {
+		if (currentPlayer.getLocation() == 12) {
+			if (board.ownsDeed(12, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 21, 150);
-			}
-			else {
+			} else {
 				payRent(currentPlayer, utilityRent(currentPlayer), 21);
 			}
 		}
-		
+
 		if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(13, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 6, -140);
@@ -497,7 +491,6 @@ public class Game {
 		}
 	}
 
-
 	private int utilityRent(Player currentPlayer) {
 		return 0;
 	}
@@ -612,8 +605,13 @@ public class Game {
 	}
 
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
-	private void buyHouse() {
-
+	private void buyHouse() throws IOException {
+		int selection = menu.printBuyBuildingMenu();
+		if (selection == 0) {
+			// CHECK IF OWNER HAS ALL GROUP PROPERTIES
+			// OPTION FOR NUMBER OF HOUSES WANTED
+			// ELSE
+		}
 	}
 
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
@@ -657,8 +655,5 @@ public class Game {
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
 	}
-
-
-
 
 }
