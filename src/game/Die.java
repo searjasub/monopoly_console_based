@@ -19,12 +19,12 @@ public class Die {
 	 * and 6
 	 */
 	public void roll() {
-		Random random = new Random();
-		dieOne = random.nextInt(6) + 1;
-		dieTwo = random.nextInt(6) + 1;
-		
-//		dieOne = 3;
-//		dieTwo = 3;
+//		Random random = new Random();
+//		dieOne = random.nextInt(6) + 1;
+//		dieTwo = random.nextInt(6) + 1;
+
+		dieOne = 3;
+		dieTwo = 4;
 	}
 
 	/**
@@ -47,13 +47,13 @@ public class Die {
 	public int getTotal() {
 		return dieOne + dieTwo;
 	}
-	
+
 	/**
 	 * @return
 	 */
 	public boolean diceEqualsDoble() {
 		return dieOne == dieTwo;
-		
+
 	}
 
 }
