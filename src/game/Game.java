@@ -499,7 +499,6 @@ public class Game {
 
 
 	private int utilityRent(Player currentPlayer) {
-		if(currentPlayer)
 		return 0;
 	}
 
