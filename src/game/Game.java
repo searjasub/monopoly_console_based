@@ -345,7 +345,7 @@ public class Game {
 		
 		//BALTIC AVENUE
 		if (currentPlayer.getLocation() == 3) {
-			if (board.ownsDeed(3, currentPlayer)) {
+			if (board.ownsDeed(1, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 1, -60);
 			} else {
 				payRent(currentPlayer, 4, 1);
@@ -357,7 +357,7 @@ public class Game {
 		
 		//ORIENTAL AVENUE
 		if (currentPlayer.getLocation() == 6) {
-			if (board.ownsDeed(6, currentPlayer)) {
+			if (board.ownsDeed(3, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 3, -100);
 			} else {
 				payRent(currentPlayer, 6, 3);
@@ -366,7 +366,7 @@ public class Game {
 		
 		//VERMONT AVENUE
 		if (currentPlayer.getLocation() == 8) {
-			if (board.ownsDeed(8, currentPlayer)) {
+			if (board.ownsDeed(4, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 4, -board.deeds[location].getCost());
 			} else {
 				payRent(currentPlayer, 6, 4);
@@ -375,7 +375,7 @@ public class Game {
 		
 		//CONNECTICUT AVENUE
 		if (currentPlayer.getLocation() == 9) {
-			if (board.ownsDeed(9, currentPlayer)) {
+			if (board.ownsDeed(5, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 5, -120);
 			} else {
 				payRent(currentPlayer, 8, 5);
@@ -384,7 +384,7 @@ public class Game {
 		
 		//ST. CHARLES PLACE
 		if (currentPlayer.getLocation() == 11) {
-			if (board.ownsDeed(11, currentPlayer)) {
+			if (board.ownsDeed(6, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 6, -140);
 			} else {
 				payRent(currentPlayer, 10, 6);
@@ -393,7 +393,7 @@ public class Game {
 		
 		//ELECTRIC COMPANY
 		if (currentPlayer.getLocation() == 12) {
-			if (board.ownsDeed(12, currentPlayer)) {
+			if (board.ownsDeed(7, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 7, -150);
 			} else {
 				utilityRent(currentPlayer, 7);
@@ -403,7 +403,7 @@ public class Game {
 		
 		//STATES AVENUE
 		if (currentPlayer.getLocation() == 13) {
-			if (board.ownsDeed(13, currentPlayer)) {
+			if (board.ownsDeed(8, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 8, -140);
 			} else {
 				payRent(currentPlayer, 10, 8);
@@ -412,7 +412,7 @@ public class Game {
 		
 		//VIRGINIA AVENUE
 		if (currentPlayer.getLocation() == 14) {
-			if (board.ownsDeed(14, currentPlayer)) {
+			if (board.ownsDeed(9, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 9, -160);
 			} else {
 				payRent(currentPlayer, 12, 9);
@@ -423,7 +423,7 @@ public class Game {
 		
 		//ST. JAMES PLACE
 		if (currentPlayer.getLocation() == 16) {
-			if (board.ownsDeed(16, currentPlayer)) {
+			if (board.ownsDeed(11, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 11, -180);
 			} else {
 				payRent(currentPlayer, 14, 11);
@@ -432,7 +432,7 @@ public class Game {
 		
 		//TENNESSE AVENUE
 		if (currentPlayer.getLocation() == 18) {
-			if (board.ownsDeed(18, currentPlayer)) {
+			if (board.ownsDeed(12, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 12, -180);
 			} else {
 				payRent(currentPlayer, 14, 12);
@@ -441,7 +441,7 @@ public class Game {
 		
 		//NEW YORK AVENUE
 		if (currentPlayer.getLocation() == 19) {
-			if (board.ownsDeed(19, currentPlayer)) {
+			if (board.ownsDeed(13, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 13, -200);
 			} else {
 				payRent(currentPlayer, 16, 13);
