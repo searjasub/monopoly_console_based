@@ -1,4 +1,3 @@
-
 package game;
 
 import java.io.IOException;
@@ -703,6 +702,4 @@ public class Game {
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
 	}
-
-
 }

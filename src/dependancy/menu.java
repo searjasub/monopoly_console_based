@@ -151,7 +151,6 @@ public class menu {
 		menuOptions[0] = "Pay Rent";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
-
 	public static int printBuyBuildingMenu() throws IOException {
 		String[] menuOptions = new String[2];
 		menuOptions[0] = "Buy House";
