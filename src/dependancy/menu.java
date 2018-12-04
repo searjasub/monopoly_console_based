@@ -151,10 +151,17 @@ public class menu {
 		menuOptions[0] = "Pay Rent";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
+<<<<<<< HEAD
 	public static int printBuyBuildingMenu() throws IOException {
 		String[] menuOptions = new String[2];
 		menuOptions[0] = "Buy House";
 		menuOptions[1] = "Buy Hotel";
+=======
+	
+	public static int rollDiceMenu()throws IOException {
+		String[] menuOptions = new String[1];
+		menuOptions[0] = "Roll dice";
+>>>>>>> bd91c207dbc1ba4709e0ede4324fe5a413a25e89
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
