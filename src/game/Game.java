@@ -4,11 +4,10 @@ import java.awt.Menu;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import card.Card;
 import enumeration.Token;
 import square.Property;
 import dependancy.*;
-
-
 
 public class Game {
 
@@ -17,7 +16,6 @@ public class Game {
 	public Player[] players;
 	Die die = new Die();
 	Board board = new Board();
-	
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -295,7 +293,7 @@ public class Game {
 		System.out.println("\n*************************************\n" + "You landed on: "
 				+ board.squares[currentPlayer.getLocation()].getName() + "\n"
 				+ "*************************************");
-		landOnProperty(currentPlayer);
+		landOnProperty(currentPlayer, die.getTotal());
 
 		if (die.getDieOne() == die.getDieTwo()) {
 			countOfDoublesRolled++;
@@ -323,21 +321,48 @@ public class Game {
 	 * 
 	 * @param currentPlayer taking the turn
 	 */
-	private void landOnProperty(Player currentPlayer) throws IOException {
+	private void landOnProperty(Player currentPlayer, int location) throws IOException {
 
-		if (currentPlayer.getLocation() == 1) {
-			if (board.ownsDeed(1, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 0, -60);
+		
+		
+		
+		for (int i = 0; i < board.getSizeOfBoard(); i++) {
+			if (currentPlayer.getLocation() == location) {
+				if (board.ownsDeed(location, currentPlayer)) {
+					propertyMenuSelection(currentPlayer, i, -board.deeds[i].getCost());
+				} else {
+					payRent(currentPlayer, 1, i);
+				}
+			}
+		}
+		
+		
+		if (currentPlayer.getLocation() == 12) {
+			if (board.ownsDeed(12, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 22, -150);
+			} else {
+				utilityRent(currentPlayer, 22);
+			}
+		}
+		
+		
+		
+		
+		
+		if (currentPlayer.getLocation() == location) {
+			if (board.ownsDeed(location, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 0, -board.deeds[location].getCost());
 			} else {
 				payRent(currentPlayer, 2, 0);
 			}
 		}
-		if(currentPlayer.getLocation() == 2) {
-			
+		
+		
+		
+		if (currentPlayer.getLocation() == 2) {
+
 		}
-		
-		
-		
+
 		if (currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(3, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 1, -60);
@@ -373,15 +398,8 @@ public class Game {
 				payRent(currentPlayer, 10, 5);
 			}
 		}
-		if(currentPlayer.getLocation() == 12) {
-			if(board.ownsDeed(12, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 21, 150);
-			}
-			else {
-				payRent(currentPlayer, utilityRent(currentPlayer), 21);
-			}
-		}
 		
+
 		if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(13, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 6, -140);
@@ -497,10 +515,34 @@ public class Game {
 		}
 	}
 
-
-	private int utilityRent(Player currentPlayer) {
-		if(currentPlayer)
-		return 0;
+	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
+		int totalOwed = 0;
+		int howManyCards = 0;
+		int selection = menu.printPayRentMenu();
+		if (selection == 0) {
+			System.out.println("\nYou will now roll dice to see how much you will have to pay rent");
+			int selection2 = menu.rollDiceMenu();
+			if (selection2 == 0) {
+				die.roll();
+				whatYouRolled();
+				for (Player player : players) {
+					if (player.propertiesOwned.contains(board.deeds[deedLocation])) {
+						howManyCards++;
+						if (howManyCards == 2) {
+							totalOwed = 10 * die.getTotal();
+							System.out.println("Since you rolled " + die.getTotal() + ", and " + player.getName()
+									+ " owns 2 property\n" + "You are paying $" + totalOwed);
+						} else if (howManyCards == 1) {
+							totalOwed = 4 * die.getTotal();
+							System.out.println("Since you rolled " + die.getTotal() + ", and " + player.getName()
+									+ " owns 1 property\n" + "You are paying $" + totalOwed);
+						}
+						player.setBalance(totalOwed);
+					}
+				}
+				currentPlayer.setBalance(-totalOwed);
+			}
+		}
 	}
 
 	private void propertyMenuSelection(Player currentPlayer, int location, int cost) throws IOException {
@@ -592,23 +634,32 @@ public class Game {
 
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
 				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
-					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName());
-				} else {
-					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + ",");
-				}
+					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + "]");
+				} 
+//				else {
+//					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + "]");
+//				}
 			}
-			System.out.print("]");
+			//System.out.print("]");
 
-			System.out.print("\nThe cost of the building is:\n[");
+			System.out.print("\nThe cost of the building is:\n");
 
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+				System.out.print("[");
 				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
-					System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost());
+					if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
+						System.out.print("Not allowed]");
+					} else {
+						System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
+					}
 				} else {
-					System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + ",");
+					if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
+						System.out.print("Not allowed]");
+					} else {
+						System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
+					}
 				}
 			}
-			System.out.print("]");
 		}
 	}
 
@@ -658,8 +709,5 @@ public class Game {
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
 	}
-
-
-
 
 }
