@@ -152,8 +152,8 @@ public class Board {
 		squares[37] = new square.Property("Park Place", (TitleDeed) deeds[20]);
 		squares[38] = new Special("Luxury Tax");
 		squares[39] = new square.Property("Boardwalk", (TitleDeed) deeds[21]);
+		
 	}
-	
 	
 	/**
 	 * Print the board in the console
