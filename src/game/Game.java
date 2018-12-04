@@ -335,15 +335,15 @@ public class Game {
 //				payRent(currentPlayer, 2, 0);
 //			}
 //		}
-		
-		//MEDITERRANEAN AVENUE
 
-		//COMMUNITY CHEST
+		// MEDITERRANEAN AVENUE
+
+		// COMMUNITY CHEST
 		if (currentPlayer.getLocation() == 2) {
 
 		}
-		
-		//BALTIC AVENUE
+
+		// BALTIC AVENUE
 		if (currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(1, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 1, -60);
@@ -351,11 +351,10 @@ public class Game {
 				payRent(currentPlayer, 4, 1);
 			}
 		}
-		
-		//READING RAILROAD
-		
-		
-		//ORIENTAL AVENUE
+
+		// READING RAILROAD
+
+		// ORIENTAL AVENUE
 		if (currentPlayer.getLocation() == 6) {
 			if (board.ownsDeed(3, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 3, -100);
@@ -363,8 +362,8 @@ public class Game {
 				payRent(currentPlayer, 6, 3);
 			}
 		}
-		
-		//VERMONT AVENUE
+
+		// VERMONT AVENUE
 		if (currentPlayer.getLocation() == 8) {
 			if (board.ownsDeed(4, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 4, -board.deeds[location].getCost());
@@ -372,8 +371,8 @@ public class Game {
 				payRent(currentPlayer, 6, 4);
 			}
 		}
-		
-		//CONNECTICUT AVENUE
+
+		// CONNECTICUT AVENUE
 		if (currentPlayer.getLocation() == 9) {
 			if (board.ownsDeed(5, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 5, -120);
@@ -381,8 +380,8 @@ public class Game {
 				payRent(currentPlayer, 8, 5);
 			}
 		}
-		
-		//ST. CHARLES PLACE
+
+		// ST. CHARLES PLACE
 		if (currentPlayer.getLocation() == 11) {
 			if (board.ownsDeed(6, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 6, -140);
@@ -390,8 +389,8 @@ public class Game {
 				payRent(currentPlayer, 10, 6);
 			}
 		}
-		
-		//ELECTRIC COMPANY
+
+		// ELECTRIC COMPANY
 		if (currentPlayer.getLocation() == 12) {
 			if (board.ownsDeed(7, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 7, -150);
@@ -400,8 +399,7 @@ public class Game {
 			}
 		}
 
-		
-		//STATES AVENUE
+		// STATES AVENUE
 		if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(8, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 8, -140);
@@ -409,8 +407,8 @@ public class Game {
 				payRent(currentPlayer, 10, 8);
 			}
 		}
-		
-		//VIRGINIA AVENUE
+
+		// VIRGINIA AVENUE
 		if (currentPlayer.getLocation() == 14) {
 			if (board.ownsDeed(9, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 9, -160);
@@ -418,10 +416,10 @@ public class Game {
 				payRent(currentPlayer, 12, 9);
 			}
 		}
-		
-		//PENNSYLVANIA RAILROAD
-		
-		//ST. JAMES PLACE
+
+		// PENNSYLVANIA RAILROAD
+
+		// ST. JAMES PLACE
 		if (currentPlayer.getLocation() == 16) {
 			if (board.ownsDeed(11, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 11, -180);
@@ -429,8 +427,8 @@ public class Game {
 				payRent(currentPlayer, 14, 11);
 			}
 		}
-		
-		//TENNESSE AVENUE
+
+		// TENNESSE AVENUE
 		if (currentPlayer.getLocation() == 18) {
 			if (board.ownsDeed(12, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 12, -180);
@@ -438,8 +436,8 @@ public class Game {
 				payRent(currentPlayer, 14, 12);
 			}
 		}
-		
-		//NEW YORK AVENUE
+
+		// NEW YORK AVENUE
 		if (currentPlayer.getLocation() == 19) {
 			if (board.ownsDeed(13, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 13, -200);
@@ -447,10 +445,10 @@ public class Game {
 				payRent(currentPlayer, 16, 13);
 			}
 		}
-		
-		//**************************************************************
-		
-		//KENTUCKY AVENUE
+
+		// **************************************************************
+
+		// KENTUCKY AVENUE
 		if (currentPlayer.getLocation() == 21) {
 			if (board.ownsDeed(14, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 14, -220);
@@ -458,8 +456,8 @@ public class Game {
 				payRent(currentPlayer, 18, 14);
 			}
 		}
-		
-		//INDIANA AVENUE
+
+		// INDIANA AVENUE
 		if (currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(15, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 15, -220);
@@ -467,8 +465,8 @@ public class Game {
 				payRent(currentPlayer, 18, 15);
 			}
 		}
-		
-		//ILLINOIS AVENUE
+
+		// ILLINOIS AVENUE
 		if (currentPlayer.getLocation() == 24) {
 			if (board.ownsDeed(16, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 16, -240);
@@ -476,10 +474,10 @@ public class Game {
 				payRent(currentPlayer, 20, 16);
 			}
 		}
-		
-		//B. & O. RAILROAD
-		
-		//ATLANTIC AVENUE
+
+		// B. & O. RAILROAD
+
+		// ATLANTIC AVENUE
 		if (currentPlayer.getLocation() == 26) {
 			if (board.ownsDeed(18, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 18, -260);
@@ -487,7 +485,7 @@ public class Game {
 				payRent(currentPlayer, 22, 18);
 			}
 		}
-		//VENTNOR AVENUE
+		// VENTNOR AVENUE
 		if (currentPlayer.getLocation() == 27) {
 			if (board.ownsDeed(19, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 19, -260);
@@ -495,7 +493,7 @@ public class Game {
 				payRent(currentPlayer, 22, 19);
 			}
 		}
-		//MARVIN GARDENS
+		// MARVIN GARDENS
 		if (currentPlayer.getLocation() == 29) {
 			if (board.ownsDeed(21, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 21, -280);
@@ -503,7 +501,7 @@ public class Game {
 				payRent(currentPlayer, 24, 21);
 			}
 		}
-		//PACIFIC AVENUE
+		// PACIFIC AVENUE
 		if (currentPlayer.getLocation() == 31) {
 			if (board.ownsDeed(22, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 22, -300);
@@ -511,7 +509,7 @@ public class Game {
 				payRent(currentPlayer, 26, 22);
 			}
 		}
-		//NORTH CAROLINA AVENUE
+		// NORTH CAROLINA AVENUE
 		if (currentPlayer.getLocation() == 32) {
 			if (board.ownsDeed(23, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 23, -300);
@@ -519,7 +517,7 @@ public class Game {
 				payRent(currentPlayer, 26, 23);
 			}
 		}
-		//PENNSYLVANIA AVENUE
+		// PENNSYLVANIA AVENUE
 		if (currentPlayer.getLocation() == 34) {
 			if (board.ownsDeed(24, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 24, -320);
@@ -527,7 +525,7 @@ public class Game {
 				payRent(currentPlayer, 28, 24);
 			}
 		}
-		//PARK PLACE
+		// PARK PLACE
 		if (currentPlayer.getLocation() == 37) {
 			if (board.ownsDeed(26, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 26, -350);
@@ -535,7 +533,7 @@ public class Game {
 				payRent(currentPlayer, 35, 26);
 			}
 		}
-		//BOARDWALK
+		// BOARDWALK
 		if (currentPlayer.getLocation() == 39) {
 			if (board.ownsDeed(27, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 27, -400);
@@ -660,45 +658,40 @@ public class Game {
 		if (currentPlayer.getPropertiesOwned().isEmpty()) {
 			System.out.println("\n\nSorry, you don't own any properties.\nKeep playing to see if get better luck!");
 		} else {
-			System.out.print("\nThe properties you own are:\n[");
-
-			System.out.println(currentPlayer.getPropertiesOwned().toString());
-
-			System.out.println();
+			System.out.print("\nThe properties you own are:\n");
 
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-				System.out.print(currentPlayer.getPropertiesOwned().get(i).getPropertyName());
-			}
-
-//			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-//				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
-//					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + "]");
-//				} 
-//				else {
-//					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + "]");
-//				}
-		}
-		// System.out.print("]");
-
-		System.out.print("\nThe cost of the building is:\n");
-
-		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-			System.out.print("[");
-			if (i == currentPlayer.getPropertiesOwned().size() - 1) {
-				if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
-					System.out.print("Not allowed]");
+				System.out.println("[");
+				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
+					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName());
 				} else {
-					System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
-				}
-			} else {
-				if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
-					System.out.print("Not allowed]");
-				} else {
-					System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
+					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName() + "]");
 				}
 			}
-		}
+			System.out.print("]");
 
+			System.out.print("\nThe cost of buying a house is is:\n");
+
+			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+				System.out.print("[");
+				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
+					if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
+						System.out.print("Not allowed]");
+					} else {
+						System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
+					}
+				} else {
+					if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
+						System.out.print("Not allowed]");
+					} else {
+						System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
+					}
+				}
+			}
+			
+			
+			
+		}
 	}
 
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
