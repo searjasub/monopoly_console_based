@@ -107,7 +107,7 @@ public class Board {
 		deeds[18] = new TitleDeed("Atlantic Avenue", 260, enumeration.TitleColor.YELLOW, 150, 26, 22);
 		deeds[19] = new TitleDeed("Ventnor Avenue", 260, enumeration.TitleColor.YELLOW, 150, 27, 22);
 		deeds[20] = new Utility("Water Works", 28, 150);
-		deeds[21] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29, 22);
+		deeds[21] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29, 24);
 		deeds[22] = new TitleDeed("Pacific Avenue", 300, enumeration.TitleColor.GREEN, 200, 31, 26);
 		deeds[23] = new TitleDeed("North Carolina Avenue", 300, enumeration.TitleColor.GREEN, 200, 32, 26);
 		deeds[24] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200, 34, 28);
