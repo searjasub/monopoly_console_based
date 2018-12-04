@@ -478,60 +478,69 @@ public class Game {
 		}
 		
 		//B. & O. RAILROAD
+		
+		//ATLANTIC AVENUE
 		if (currentPlayer.getLocation() == 26) {
-			if (board.ownsDeed(26, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 14, -260);
+			if (board.ownsDeed(18, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 18, -260);
 			} else {
-				payRent(currentPlayer, 22, 14);
+				payRent(currentPlayer, 22, 18);
 			}
 		}
+		//VENTNOR AVENUE
 		if (currentPlayer.getLocation() == 27) {
-			if (board.ownsDeed(27, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 15, -260);
+			if (board.ownsDeed(19, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 19, -260);
 			} else {
-				payRent(currentPlayer, 22, 15);
+				payRent(currentPlayer, 22, 19);
 			}
 		}
+		//MARVIN GARDENS
 		if (currentPlayer.getLocation() == 29) {
-			if (board.ownsDeed(29, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 16, -280);
+			if (board.ownsDeed(21, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 21, -280);
 			} else {
-				payRent(currentPlayer, 24, 16);
+				payRent(currentPlayer, 24, 21);
 			}
 		}
+		//PACIFIC AVENUE
 		if (currentPlayer.getLocation() == 31) {
-			if (board.ownsDeed(31, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 17, -300);
+			if (board.ownsDeed(22, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 22, -300);
 			} else {
-				payRent(currentPlayer, 26, 17);
+				payRent(currentPlayer, 26, 22);
 			}
 		}
+		//NORTH CAROLINA AVENUE
 		if (currentPlayer.getLocation() == 32) {
-			if (board.ownsDeed(32, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 18, -300);
+			if (board.ownsDeed(23, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 23, -300);
 			} else {
-				payRent(currentPlayer, 26, 18);
+				payRent(currentPlayer, 26, 23);
 			}
 		}
+		//PENNSYLVANIA AVENUE
 		if (currentPlayer.getLocation() == 34) {
-			if (board.ownsDeed(34, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 19, -320);
+			if (board.ownsDeed(24, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 24, -320);
 			} else {
-				payRent(currentPlayer, 28, 19);
+				payRent(currentPlayer, 28, 24);
 			}
 		}
+		//PARK PLACE
 		if (currentPlayer.getLocation() == 37) {
-			if (board.ownsDeed(1, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 20, -350);
+			if (board.ownsDeed(26, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 26, -350);
 			} else {
-				payRent(currentPlayer, 35, 20);
+				payRent(currentPlayer, 35, 26);
 			}
 		}
+		//BOARDWALK
 		if (currentPlayer.getLocation() == 39) {
-			if (board.ownsDeed(1, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 21, -400);
+			if (board.ownsDeed(27, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 27, -400);
 			} else {
-				payRent(currentPlayer, 50, 21);
+				payRent(currentPlayer, 50, 27);
 			}
 		}
 	}
