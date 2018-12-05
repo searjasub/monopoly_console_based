@@ -336,7 +336,7 @@ public class Game {
 
 		// COMMUNITY CHEST
 		if (currentPlayer.getLocation() == 2) {
-			handleSpecialCard(currentPlayer);
+			handleChanceCard(currentPlayer);
 		}
 		// BALTIC AVENUE
 		if (currentPlayer.getLocation() == 3) {
@@ -370,7 +370,7 @@ public class Game {
 		}
 		// CHANCE
 		if (currentPlayer.getLocation() == 7) {
-			handleSpecialCard(currentPlayer);
+			handleChanceCard(currentPlayer);
 		}
 
 		// VERMONT AVENUE
@@ -439,7 +439,7 @@ public class Game {
 		}
 		// COMMUNITY CHEST
 		if (currentPlayer.getLocation() == 17) {
-			handleSpecialCard(currentPlayer);
+			handleChanceCard(currentPlayer);
 		}
 		// TENNESSE AVENUE
 		if (currentPlayer.getLocation() == 18) {
@@ -467,7 +467,7 @@ public class Game {
 		}
 		// CHANCE
 		if (currentPlayer.getLocation() == 22) {
-			handleSpecialCard(currentPlayer);
+			handleChanceCard(currentPlayer);
 		}
 
 		// INDIANA AVENUE
@@ -550,7 +550,7 @@ public class Game {
 		}
 		// COMMUNITY CHEST
 		if (currentPlayer.getLocation() == 33) {
-			handleSpecialCard(currentPlayer);
+			handleChanceCard(currentPlayer);
 		}
 		// PENNSYLVANIA AVENUE
 		if (currentPlayer.getLocation() == 34) {
@@ -570,7 +570,7 @@ public class Game {
 		}
 		// CHANCE
 		if (currentPlayer.getLocation() == 36) {
-			handleSpecialCard(currentPlayer);
+			handleChanceCard(currentPlayer);
 		}
 		// PARK PLACE
 		if (currentPlayer.getLocation() == 37) {
@@ -623,7 +623,7 @@ public class Game {
 		}
 	}
 	
-	private void landOnUtilityByChace(Player currentPlayer) throws IOException {
+	private void landOnUtilityByChance(Player currentPlayer) throws IOException {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
@@ -644,9 +644,10 @@ public class Game {
 		}
 	}
 
-	private void handleSpecialCard(Player currentPlayer) throws IOException {
+	private void handleChanceCard(Player currentPlayer) throws IOException {
 
 		Card topCard = board.chance.get(0);
+		board.chance.remove(0);
 		switch (topCard.cardName) {
 		case JAIL_FREE:
 			if (currentPlayer.jailCardOwned[0] == null) {
@@ -658,40 +659,34 @@ public class Game {
 			}
 			break;
 		case MOVEMENT:
-			if (topCard.getId() == 3) {
-				// Advance to GO
-				printCardInfo(topCard);
-				if(currentPlayer.getLocation() == 2){
-					movePlayer(38, currentPlayer);
-				}else if(currentPlayer.getLocation() == 17) {
-					movePlayer(23, currentPlayer);
-				} else if(currentPlayer.getLocation() == 33) {
-					movePlayer(7, currentPlayer);
-				}
-			}
+			board.chance.add(topCard);
 			if (topCard.getId() == 4) {
 				// Go back 3 spaces
 				printCardInfo(topCard);
 				currentPlayer.setLocation(currentPlayer.getLocation() - 3);
+				landOnProperty(currentPlayer, currentPlayer.getLocation() - 3);
 			}
 			if (topCard.getId() == 5 || topCard.getId() == 7) {
 				//Go to nearest railroad
 				printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(8, currentPlayer);
-					if(board.deeds[10].getOwner() != null) {
-						int doubleRent = board.deeds[2].getRent() * 2;
-						payRent(currentPlayer, doubleRent, 10);
-						System.out.println("You paid $" + doubleRent );
-					}
+					landOnProperty(currentPlayer, 15);
+//					if(board.deeds[10].getOwner() != null) {
+//						int doubleRent = board.deeds[2].getRent() * 2;
+//						payRent(currentPlayer, doubleRent, 10);
+//						System.out.println("You paid $" + doubleRent );
+//					}
 				} else if (currentPlayer.getLocation() == 22) {
 					movePlayer(3, currentPlayer);
-					if(board.deeds[17].getOwner() != null) {
-						int doubleRent = board.deeds[17].getRent() * 2;
-						payRent(currentPlayer, doubleRent, 17);
-					}
+					landOnProperty(currentPlayer, 25);
+//					if(board.deeds[17].getOwner() != null) {
+//						int doubleRent = board.deeds[17].getRent() * 2;
+//						payRent(currentPlayer, doubleRent, 17);
+//					}
 				} else if (currentPlayer.getLocation() == 36) {
 					movePlayer(9, currentPlayer);
+					landOnProperty(currentPlayer, 5);
 					if(board.deeds[2].getOwner() != null) {
 						int doubleRent = board.deeds[2].getRent() * 2;
 						payRent(currentPlayer, doubleRent, 2);
@@ -703,73 +698,94 @@ public class Game {
 				printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(5, currentPlayer);
-					landOnUtilityByChace(currentPlayer);
+					landOnUtilityByChance(currentPlayer);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(6, currentPlayer);
-					landOnUtilityByChace(currentPlayer);
+					landOnUtilityByChance(currentPlayer);
 				} else if(currentPlayer.getLocation() == 36) {
 					movePlayer(16, currentPlayer);
-					landOnUtilityByChace(currentPlayer);
+					landOnUtilityByChance(currentPlayer);
 				}
 			}
 			if (topCard.getId() == 8) {
+				//Advance to GO
 				printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(33, currentPlayer);
+					landOnProperty(currentPlayer, 0);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(18, currentPlayer);
+					landOnProperty(currentPlayer, 0);
 				} else if(currentPlayer.getLocation() == 36) {
 					movePlayer(4, currentPlayer);
+					landOnProperty(currentPlayer, 0);
 				}
 			}
 			if(topCard.getId() == 9) {
 				//Advance to Illinois avenue
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(17, currentPlayer);
+					landOnProperty(currentPlayer, 24);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(2, currentPlayer);
+					landOnProperty(currentPlayer, 24);
 				} else if(currentPlayer.getLocation() == 36) {
 					movePlayer(28, currentPlayer);
+					landOnProperty(currentPlayer, 24);
 				}
 			}
 			if(topCard.getId() == 10) {
+				//Taka a trip to reading railroad
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(38, currentPlayer);
+					landOnProperty(currentPlayer, 5);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(23, currentPlayer);
+					landOnProperty(currentPlayer, 5);
 				} else if(currentPlayer.getLocation() == 36) {
 					movePlayer(9, currentPlayer);
+					landOnProperty(currentPlayer, 5);
 				}
 			}
 			if(topCard.getId() == 11) {
+				//Advance to St. Charles
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(4, currentPlayer);
+					landOnProperty(currentPlayer, 11);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(29, currentPlayer);
+					landOnProperty(currentPlayer, 11);
 				} else if(currentPlayer.getLocation() == 36) {
 					movePlayer(15, currentPlayer);
+					landOnProperty(currentPlayer, 11);
 				}
 			}
-			if (topCard.getId() == 12 || topCard.getId() == 13) {
+			if (topCard.getId() == 12) {
 				// Go to jail
 				printCardInfo(topCard);
 				currentPlayer.setLocation(10);
+				landOnProperty(currentPlayer, 10);
 			}
 			if(topCard.getId() == 14) {
+				//Advance to Boardwalk
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(32, currentPlayer);
+					landOnProperty(currentPlayer, 39);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(17, currentPlayer);
+					landOnProperty(currentPlayer, 39);
 				} else if(currentPlayer.getLocation() == 36) {
 					movePlayer(3, currentPlayer);
+					landOnProperty(currentPlayer, 39);
 				}
 			}
 			
 			break;
 		case PAY_BUILDING_TAX:
+			board.chance.add(topCard);
 			break;
 		case PAY_MONEY:
-
+			board.chance.add(topCard);
 			if(topCard.getId() == 15) {
 				currentPlayer.setBalance(-15);
 			}
@@ -785,15 +801,7 @@ public class Game {
 
 			break;
 		case PAY_OR_RECEIVE_PLAYERS:
-        if(topCard.getId() == 21) {
-				int totalAmountCollected = 0;
-				for(Player player : players) {
-					player.setBalance(-10);
-					totalAmountCollected += 10;
-				}
-				
-				currentPlayer.setBalance(totalAmountCollected);
-			}
+			board.chance.add(topCard);
 			if(topCard.getId() == 22) {
 				int totalAmountGiven = 0;
 				currentPlayer.setBalance(-50 * players.length);
@@ -803,12 +811,86 @@ public class Game {
 			}
 			break;
 		case RECEIVE_MONEY:
+			board.chance.add(topCard);
 			if(topCard.getId() == 23) {
 				currentPlayer.setBalance(+150);
 			}
 			if(topCard.getId() == 24) {
 				currentPlayer.setBalance(+50);
 			}
+			break;
+		default:
+			break;
+		}
+	}
+	public void handleCommunityChestCard(Player currentPlayer) throws IOException {
+
+		Card topCard = board.communityChest.get(0);
+		board.communityChest.remove(0);
+		switch (topCard.cardName) {
+		case JAIL_FREE:
+			board.communityChest.add(topCard);
+			if (currentPlayer.jailCardOwned[0] == null) {
+				currentPlayer.jailCardOwned[0] = topCard;
+				board.communityChest.remove(0);
+			} else {
+				currentPlayer.jailCardOwned[1] = topCard;
+				board.communityChest.remove(0);
+			}
+			break;
+		case MOVEMENT:
+			board.communityChest.add(topCard);
+			if (topCard.getId() == 3) {
+				// Advance to GO
+				printCardInfo(topCard);
+				if(currentPlayer.getLocation() == 2){
+					movePlayer(38, currentPlayer);
+					landOnProperty(currentPlayer, 0);
+				}else if(currentPlayer.getLocation() == 17) {
+					movePlayer(23, currentPlayer);
+					landOnProperty(currentPlayer, 0);
+				} else if(currentPlayer.getLocation() == 33) {
+					movePlayer(7, currentPlayer);
+					landOnProperty(currentPlayer, 0);
+				}
+			}
+			if (topCard.getId() == 13) {
+				// Go to jail
+				printCardInfo(topCard);
+				currentPlayer.setLocation(10);
+				landOnProperty(currentPlayer, 10);
+			}
+			break;
+		case PAY_BUILDING_TAX:
+			board.communityChest.add(topCard);
+			break;
+		case PAY_MONEY:
+			board.communityChest.add(topCard);
+			if(topCard.getId() == 16) {
+				currentPlayer.setBalance(-50);
+			}
+			if(topCard.getId() == 17) {
+				currentPlayer.setBalance(-50);
+			}
+			if(topCard.getId() == 18) {
+				currentPlayer.setBalance(-100);
+			}
+
+			break;
+		case PAY_OR_RECEIVE_PLAYERS:
+			board.communityChest.add(topCard);
+        if(topCard.getId() == 21) {
+				int totalAmountCollected = 0;
+				for(Player player : players) {
+					player.setBalance(-10);
+					totalAmountCollected += 10;
+				}
+				
+				currentPlayer.setBalance(totalAmountCollected);
+			}
+			break;
+		case RECEIVE_MONEY:
+			board.communityChest.add(topCard);
 			if(topCard.getId() == 25) {
 				currentPlayer.setBalance(+200);
 			}
