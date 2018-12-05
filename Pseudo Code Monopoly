@@ -41,7 +41,7 @@ Different Menus
 Auction
 	Show information about the property
 
-	*Create a flag that will determine if player is current actioning*
+	*Create a flag that will determine if player is current auctioning*
 
 	--first round--
 	ask each player (menu)
