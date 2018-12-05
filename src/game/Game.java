@@ -700,7 +700,7 @@ public class Game {
 			}
 			
 			if(topCard.getId() == 9) {
-				//Advance to illinois avenue
+				//Advance to Illinois avenue
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(17, currentPlayer);
 				}
