@@ -14,6 +14,7 @@ public class Game {
 	public Player[] players;
 	Die die = new Die();
 	Board board = new Board();
+	private boolean mortgaged;
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -30,10 +31,10 @@ public class Game {
 		for (int i = 0; i < players.length; i++) {
 			String playerName = ConsoleUI.promptForInput("\nEnter player " + (i + 1) + "'s name", false);
 
-			System.out.println("\nOk " + playerName + ", is time to choose your token.");
+			System.out.println("\nOk, " + playerName + " it is time to choose your token.");
 			Token selection = menu.chooseYourToken();
 
-			System.out.println("Time to roll dice to see who starts");
+			System.out.println("Time to roll the dice to see who starts.");
 			int total = rollForOrder();
 
 			Player newPlayer = new Player(playerName, selection, 1500, total, 0);
@@ -58,7 +59,7 @@ public class Game {
 	 */
 	private int rollForOrder() throws IOException {
 		String[] options = new String[1];
-		options[0] = "Let's roll those dice";
+		options[0] = "Let's roll those dice!";
 		int rollOptions = ConsoleUI.promptForMenuSelection(options);
 		if (rollOptions == 0) {
 			die.roll();
@@ -93,6 +94,7 @@ public class Game {
 						System.out.println("\nThere is a tie!");
 						System.out.println("\n" + players[j2].getName() + ", you can roll again");
 						players[j2].setTurn(rollForOrder());
+						count = 0;
 					}
 				}
 			}
@@ -163,8 +165,8 @@ public class Game {
 		boolean gameOver = false;
 		System.out.println("Welcome to Monopoly\nClassic Rules");
 		int howManyPlayers = ConsoleUI
-				.promptForInt("Now that is your turn, let's get started by having a count of the players.\n"
-						+ "Remember that the minimum is 2 and maximum is  8", 2, 8);
+				.promptForInt("Let's get started by having a count of the players.\n"
+						+ "Remember that the minimum is 2 and maximum is 8", 2, 8);
 		init(howManyPlayers);
 		while (!gameOver) {
 			// handle turns
@@ -183,11 +185,11 @@ public class Game {
 	public void turn(Player currentPlayer) throws IOException {
 
 		if (currentPlayer.isInJail == true) {
-			System.out.println("\n\n\nOk " + currentPlayer.getName() + ", let's get out of jail.");
+			System.out.println("\n\n\nOk " + currentPlayer.getName() + ", let's get you out of jail.");
 			handleJail(currentPlayer);
 		} else {
 			boolean isYourTurn = true;
-			System.out.println("\nAlright player," + currentPlayer.getToken() + " you're up.");
+			System.out.println("\nAlright player, " + currentPlayer.getToken() + " you're up.");
 
 			while (isYourTurn) {
 				board.printBoard(currentPlayer);
@@ -225,6 +227,7 @@ public class Game {
 			int action = menu.printJailMenu();
 			switch (action) {
 			case 0:
+
 				System.out.println("You have 3 chances to get doubles and get out of jail this turn");
 				
 					int selection = ConsoleUI.promptForInt("[0]\tRoll dice", 0, 0);
@@ -304,8 +307,8 @@ public class Game {
 			if (countOfDoublesRolled == 3) {
 				System.out.println(""
 						+ "\n*************************************************************************************\n"
-						+ currentPlayer.name + " have rolled 3 doubles. You will not be visiting jail this time.\n"
-						+ "You also loose your turn. Better luck next time!\n"
+						+ currentPlayer.name + " you have rolled 3 doubles. You will not be visiting jail this time; you will be going to jail.\n"
+						+ "You also lose your turn. Better luck next time!\n Have fun pumping iron.\n"
 						+ "*************************************************************************************");
 				sendToJail(currentPlayer, 10);
 				currentPlayer.isInJail(true);
@@ -587,7 +590,7 @@ public class Game {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
-			System.out.println("\nYou will now roll dice to see how much you will have to pay rent");
+			System.out.println("\nYou will now roll the dice to see how much you will have to pay rent." );
 			int selection2 = menu.rollDiceMenu();
 			if (selection2 == 0) {
 				die.roll();
@@ -658,7 +661,7 @@ public class Game {
 			currentPlayer.setBalance(cost);
 			break;
 		case 1:
-			System.out.println("\n\nSince you decide it not to buy it, the bank will auction this property");
+			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
 			// HANDLE AUCTIONING
 			break;
 		default:
@@ -737,7 +740,7 @@ public class Game {
 			System.out.print("\nThe properties you own are:\n");
 
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-				System.out.println("[");
+				System.out.print("[");
 				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
 					System.out.print(currentPlayer.propertiesOwned.get(i).getPropertyName());
 				} else {
@@ -747,6 +750,7 @@ public class Game {
 			System.out.print("]");
 
 			System.out.print("\nThe cost of buying a house is is:\n");
+
 
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
 				System.out.print("[");
@@ -778,6 +782,24 @@ public class Game {
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void tradeCards() {
 
+	}
+	//tells whether or not property is mortgaged
+	public boolean isMortgaged(){
+		return mortgaged;
+	}
+	//unmortgages property
+	public void setMortgage(boolean bool){
+		mortgaged = bool;
+	}
+	public String toString(){
+		String status = "";
+		
+		if (isMortgaged())
+			//will show if property is mortgaged
+			status += " (Mortgaged)";
+		
+		
+		return super.toString() + status;
 	}
 
 	/**
