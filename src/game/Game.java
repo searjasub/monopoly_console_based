@@ -207,7 +207,11 @@ public class Game {
 					buyHouse();
 					break;
 				case 4:
-					tradeCards();
+					sell();
+					break;
+				case 5:
+					buy();
+		
 					break;
 				default:
 					throw new IllegalArgumentException("Invalid action " + action);
@@ -817,11 +821,7 @@ public class Game {
 			break;
 		default:
 			break;
-			
-			
-
 		}
-
 	}
 
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
@@ -947,15 +947,56 @@ public class Game {
 				buyHouse();
 				break;
 			case 3:
-				tradeCards();
+				sell();
 				break;
 			case 4:
+				buy();
+				break;
+			case 5:
 				isYourTurnAfterRoll = false;
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid action " + action);
 			}
 		}
+	}
+
+	private void sell() throws IOException {
+		// Choose property and set prize
+		// choose player (for loop to find the player)
+		//sout player's name to simulate we change the view
+		//acceptMenu()
+		//		Accept
+		//			change the owner of the deed and set money - the value agreed for second player
+		//		Decline
+		//			break/false?
+		//	
+		int action = menu.printSellBuyMainMenu();
+		switch(action) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid action " + action);
+		}
+	}
+	
+	private void buy() throws IOException{
+		// TODO
+		//choose either property or jail card
+		//	property
+		//		choose a property and set money
+		//	Switch the view
+		//		find the player who has that card and switch to the acceptMenu()
+		//			Accept
+		//				change the owner of deed and set money ++ to the other player
+		//			Decline
+		//				break/false?
+		//
+		
 	}
 
 	/**
@@ -1015,12 +1056,7 @@ public class Game {
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void buyHouse() {
 
-	}
-
-	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
-	private void tradeCards() {
-
-	}
+	}	
 
 	/**
 	 * Method that will move the player base on the total number they rolled
