@@ -14,7 +14,6 @@ public class Game {
 	public Player[] players;
 	Die die = new Die();
 	Board board = new Board();
-	private boolean mortgaged;
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -164,9 +163,8 @@ public class Game {
 	private void classicMonopolyRules() throws IOException {
 		boolean gameOver = false;
 		System.out.println("Welcome to Monopoly\nClassic Rules");
-		int howManyPlayers = ConsoleUI
-				.promptForInt("Let's get started by having a count of the players.\n"
-						+ "Remember that the minimum is 2 and maximum is 8", 2, 8);
+		int howManyPlayers = ConsoleUI.promptForInt("Let's get started by having a count of the players.\n"
+				+ "Remember that the minimum is 2 and maximum is 8", 2, 8);
 		init(howManyPlayers);
 		while (!gameOver) {
 			// handle turns
@@ -224,53 +222,54 @@ public class Game {
 	 * @param currentPlayer who's turn is it.
 	 */
 	private void handleJail(Player currentPlayer) throws IOException {
-			int action = menu.printJailMenu();
-			switch (action) {
-			case 0:
+		int action = menu.printJailMenu();
+		switch (action) {
+		case 0:
 
-				System.out.println("You have 3 chances to get doubles and get out of jail this turn");
-				
-					int selection = ConsoleUI.promptForInt("[0]\tRoll dice", 0, 0);
-					if (selection == 0) {
-						die.roll();
-						whatYouRolled();
-						if (die.getDieOne() == die.getDieTwo()) {
-							breakOutOfJail(currentPlayer);
-							movePlayer(die.getTotal(), currentPlayer);
-							board.printBoard(currentPlayer);
-							currentPlayer.setTurnInJail(0);
-							// handle what happens when you lay on a property
-						} else {
-							if(currentPlayer.getTurnInJail() > 1) {
-								System.out.println("\nSince you have rolled 3 times and you didn't rolled double, the bank took $50 off of your balance.");
-								breakOutOfJail(currentPlayer);
-								currentPlayer.setBalance(-50);
-								break;
-							}
-							currentPlayer.setTurnInJail(currentPlayer.getTurnInJail() + 1);
-							turnAfterRoll(currentPlayer);
-							break;
-						}
-				}
-				breakOutOfJail(currentPlayer);
-				break;
-			case 1:
-				if (currentPlayer.jailCardOwned != null) {
+			System.out.println("You have 3 chances to get doubles and get out of jail this turn");
 
+			int selection = ConsoleUI.promptForInt("[0]\tRoll dice", 0, 0);
+			if (selection == 0) {
+				die.roll();
+				whatYouRolled();
+				if (die.getDieOne() == die.getDieTwo()) {
 					breakOutOfJail(currentPlayer);
+					movePlayer(die.getTotal(), currentPlayer);
+					board.printBoard(currentPlayer);
+					currentPlayer.setTurnInJail(0);
+					// handle what happens when you lay on a property
+				} else {
+					if (currentPlayer.getTurnInJail() > 1) {
+						System.out.println(
+								"\nSince you have rolled 3 times and you didn't rolled double, the bank took $50 off of your balance.");
+						breakOutOfJail(currentPlayer);
+						currentPlayer.setBalance(-50);
+						break;
+					}
+					currentPlayer.setTurnInJail(currentPlayer.getTurnInJail() + 1);
+					turnAfterRoll(currentPlayer);
+					break;
 				}
-
-				break;
-			case 2:
-				System.out.println("" + "*********************************************************************"
-						+ "\n\nOk " + currentPlayer.getName() + ", you are free now.");
-				currentPlayer.setBalance(-50);
-				breakOutOfJail(currentPlayer);
-				turn(currentPlayer);
-				break;
-			default:
-				throw new IllegalArgumentException("Invalid action " + action);
 			}
+			breakOutOfJail(currentPlayer);
+			break;
+		case 1:
+			if (currentPlayer.jailCardOwned != null) {
+
+				breakOutOfJail(currentPlayer);
+			}
+
+			break;
+		case 2:
+			System.out.println("" + "*********************************************************************" + "\n\nOk "
+					+ currentPlayer.getName() + ", you are free now.");
+			currentPlayer.setBalance(-50);
+			breakOutOfJail(currentPlayer);
+			turn(currentPlayer);
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid action " + action);
+		}
 
 	}
 
@@ -307,7 +306,8 @@ public class Game {
 			if (countOfDoublesRolled == 3) {
 				System.out.println(""
 						+ "\n*************************************************************************************\n"
-						+ currentPlayer.name + " you have rolled 3 doubles. You will not be visiting jail this time; you will be going to jail.\n"
+						+ currentPlayer.name
+						+ " you have rolled 3 doubles. You will not be visiting jail this time; you will be going to jail.\n"
 						+ "You also lose your turn. Better luck next time!\n Have fun pumping iron.\n"
 						+ "*************************************************************************************");
 				sendToJail(currentPlayer, 10);
@@ -344,11 +344,11 @@ public class Game {
 				payRent(currentPlayer, 4, 1);
 			}
 		}
-		//INCOME TAX
-		if(currentPlayer.getLocation() == 4) {
+		// INCOME TAX
+		if (currentPlayer.getLocation() == 4) {
 			handleIncomeTax(currentPlayer);
 		}
-		
+
 		// READING RAILROAD
 		if (currentPlayer.getLocation() == 5) {
 			if (board.ownsDeed(2, currentPlayer)) {
@@ -510,12 +510,12 @@ public class Game {
 				payRent(currentPlayer, 24, 21);
 			}
 		}
-		//GO TO JAIL
-		if(currentPlayer.getLocation() == 30) {
+		// GO TO JAIL
+		if (currentPlayer.getLocation() == 30) {
 			currentPlayer.setLocation(10);
 			currentPlayer.isInJail = true;
 		}
-		
+
 		// PACIFIC AVENUE
 		if (currentPlayer.getLocation() == 31) {
 			if (board.ownsDeed(22, currentPlayer)) {
@@ -556,12 +556,12 @@ public class Game {
 				payRent(currentPlayer, 35, 26);
 			}
 		}
-		//LUXURY TAX
-		if(currentPlayer.getLocation() == 38) {
+		// LUXURY TAX
+		if (currentPlayer.getLocation() == 38) {
 			System.out.println("\nThe bank took $100 off of your balance");
 			currentPlayer.setBalance(-100);
 		}
-		
+
 		// BOARDWALK
 		if (currentPlayer.getLocation() == 39) {
 			if (board.ownsDeed(27, currentPlayer)) {
@@ -574,7 +574,7 @@ public class Game {
 
 	private void handleIncomeTax(Player currentPlayer) throws IOException {
 		int taxSelection = menu.payLuxuryTaxMenu();
-		switch(taxSelection) {
+		switch (taxSelection) {
 		case 0:
 			currentPlayer.setBalance(-200);
 			break;
@@ -585,21 +585,21 @@ public class Game {
 			}
 			totalToPay += currentPlayer.getBalance() * 0.1;
 			// HOUSES
-			
+
 			System.out.println("10% of your income is: " + totalToPay);
 			currentPlayer.setBalance(totalToPay);
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid selection" + taxSelection);
 		}
-		
+
 	}
 
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
-			System.out.println("\nYou will now roll the dice to see how much you will have to pay for rent." );
+			System.out.println("\nYou will now roll the dice to see how much you will have to pay for rent.");
 			int selection2 = menu.rollDiceMenu();
 			if (selection2 == 0) {
 				die.roll();
@@ -761,7 +761,6 @@ public class Game {
 
 			System.out.print("\nThe cost of buying a house is is:\n");
 
-
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
 				System.out.print("[");
 				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
@@ -792,24 +791,6 @@ public class Game {
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void tradeCards() {
 
-	}
-	//tells whether or not property is mortgaged
-	public boolean isMortgaged(){
-		return mortgaged;
-	}
-	//unmortgages property
-	public void setMortgage(boolean bool){
-		mortgaged = bool;
-	}
-	public String toString(){
-		String status = "";
-		
-		if (isMortgaged())
-			//will show if property is mortgaged
-			status += " (Mortgaged)";
-		
-		
-		return super.toString() + status;
 	}
 
 	/**
