@@ -4,20 +4,22 @@ import game.Player;
 
 public abstract class Property {
 	
-	int cost, buildingCost, location;
+	int cost, buildingCost, location, rent;
 	String name;
 	Player owner;
 	
-	public Property(String name, int cost, int buildingCost, int location) {
+	public Property(String name, int cost, int buildingCost, int location, int rent) {
 		this.name = name;
 		this.cost = cost;
 		this.buildingCost = buildingCost;
 		this.location = location;
+		this.rent = rent;
 	}
 	
-	public Property(String name, int location) {
+	public Property(String name, int location, int cost) {
 		this.name = name;
 		this.location =location;
+		this.cost = cost;
 	}
 
 	public String getPropertyName() {
@@ -42,5 +44,9 @@ public abstract class Property {
 	
 	public int getLocation() {
 		return this.location;
+	}
+	
+	public int getRent() {
+		return this.rent;
 	}
 }

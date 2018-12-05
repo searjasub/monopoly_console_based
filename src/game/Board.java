@@ -12,9 +12,8 @@ import enumeration.CardType;
 import enumeration.TitleColor;
 import square.*;
 
+
 public class Board {
-	
-	//Card[] cards = new Card[32];
 	
 	ArrayList<Card> communityChest = new ArrayList<Card>();
 	ArrayList<Card> chance = new ArrayList<Card>();
@@ -31,6 +30,9 @@ public class Board {
 		initSquare();
 	}
 	
+	public int getSizeOfBoard() {
+		return squares.length;
+	}
 	public boolean ownsDeed(int location, Player currentPlayer) {
 		boolean deedOwned = false;
 		
@@ -45,72 +47,75 @@ public class Board {
 	 * Method to initialize every card in the game.
 	 */
 	public void initCards() {
-		chance.add(new Card("Chance", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.CHANCE, CardCategory.JAIL_FREE));
-		communityChest.add(new Card("Community Chest", "GET OUT OF JAIL FREE This card may be kept until needed or traded.", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE));
-		communityChest.add(new Card("Community Chest", "Advance to GO. (Collect $200)", CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Go back three spaces.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "ADVANCE TO THE NEAREST RAILROAD. If UNOWNED, you may buy it from the bank. If OWNED, pay owner twice the rental to which they are otherwise entitled.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "ADVANCE TO THE NEAREST UTILITY. If UNOWNED, you may buy it from the bank. If OWNED, throw dice and pay owner ten times the amount thrown.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "ADVANCE TO THE NEAREST RAILROAD. If UNOWNED, you may buy it from the bank. If OWNED, pay owner twice the rental to which they are otherwise entitled.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Advance to GO. (Collect $200)", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Advance to Illinois Avenue. If you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Take a trip to Reading Railroad. If you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Advance to ST. Charles Place. If you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "GO TO JAIL. GO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.", CardType.CHANCE, CardCategory.MOVEMENT));
-		communityChest.add(new Card("Community Chest", "GO TO JAIL. GO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.", CardType.COMMUNITY_CHEST,CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Advance to Boardwalk.", CardType.CHANCE, CardCategory.MOVEMENT));
-		chance.add(new Card("Chance", "Speeding fine $15.", CardType.CHANCE, CardCategory.PAY_MONEY, 15));
-		communityChest.add(new Card("Community Chest", "Doctor's fees. Pay $50.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50));
-		communityChest.add(new Card("Community Chest", "School fees. Pay $50.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50));
-		communityChest.add(new Card("Community Chest", "Hospital fees. Pay $100.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 100));
-		communityChest.add(new Card("Community Chest", "You are assessed for street repairs: pay $40 per house and $115 per hotel you own.", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX));
-		chance.add(new Card("Chance", "Make general repairs on all your property: for each house pay $25, for each hotel pay $100.", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX));
-		communityChest.add(new Card("Community Chest", "It is your birthday. COllect $10 from every player.", CardType.COMMUNITY_CHEST, CardCategory.PAY_OR_RECEIVE_PLAYERS));
-		chance.add(new Card("Chance", "You have been elected chairman of the board. Pay each player $50.",CardType.CHANCE, CardCategory.PAY_OR_RECEIVE_PLAYERS));
-		chance.add(new Card("Chance", "Your building loan matures. Collect $150.", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 150));
-		chance.add(new Card("Chance", "Bank pays you dividend of $50.", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 50));
-		communityChest.add(new Card("Community Chest", "Bank error in your favor. Collect $200.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 200));
-		communityChest.add(new Card("Community Chest", "Life insurance matures. Collect $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
-		communityChest.add(new Card("Community Chest", "Income tax refund. Collect $20.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 20));
-		communityChest.add(new Card("Community Chest", "Receive $25 consultancy fee.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 25));
-		communityChest.add(new Card("Community Chest", "You have won second prize in a beauty contest. Collect $10.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 10));
-		communityChest.add(new Card("Community Chest", "From sale of stock you get $50.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50));
-		communityChest.add(new Card("Community Chest", "You inherit $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
-		communityChest.add(new Card("Community Chest", "Holiday fund matures. Receive $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
+		chance.add(new Card("\t\tChance\n", "\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.", CardType.CHANCE, CardCategory.JAIL_FREE));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "\tAdvance to GO. (Collect $200)", CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\tChance\n", "\tGo back three spaces.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n\tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST UTILITY.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, throw dice and pay owner ten times the amount thrown.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "\tAdvance to GO. (Collect $200)", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "Advance to Illinois Avenue.\nIf you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "Take a trip to Reading Railroad.\nIf you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "Advance to St. Charles Place.\nIf you pass GO, collect $200.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\t\t  Chance\n", "\t\tGO TO JAIL.\nGO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.", CardType.CHANCE, CardCategory.MOVEMENT));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "\t\t  GO TO JAIL.\nGO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.", CardType.COMMUNITY_CHEST,CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "Advance to Boardwalk.", CardType.CHANCE, CardCategory.MOVEMENT));
+		chance.add(new Card("\tChance\n", "  Speeding fine $15.", CardType.CHANCE, CardCategory.PAY_MONEY, 15));
+		communityChest.add(new Card("\t   Community Chest\n", "\tDoctor's fees. Pay $50.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50));
+		communityChest.add(new Card("\t  Community Chest\n", "\tSchool fees. Pay $50.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50));
+		communityChest.add(new Card("\t   Community Chest\n", "\tHospital fees. Pay $100.", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 100));
+		communityChest.add(new Card("\t    Community Chest\n", "    You are assessed for street repairs: \nPay $40 per house and $115 per hotel you own.", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX));
+		chance.add(new Card("\t\tChance\n", "   Make general repairs on all your property: \nFor each house pay $25, for each hotel pay $100.", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "It is your birthday. Collect $10 from every player.", CardType.COMMUNITY_CHEST, CardCategory.PAY_OR_RECEIVE_PLAYERS));
+		chance.add(new Card("     Chance\n", "You have been elected chairman of the board.\n \tPay each player $50.",CardType.CHANCE, CardCategory.PAY_OR_RECEIVE_PLAYERS));
+		chance.add(new Card("\t\tChance\n", "Your building loan matures. Collect $150.", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 150));
+		chance.add(new Card("\t  Chance\n", "Bank pays you dividend of $50.", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 50));
+		communityChest.add(new Card("\t  Community Chest\n", "Bank error in your favor. Collect $200.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 200));
+		communityChest.add(new Card("\tCommunity Chest\n", "Life insurance matures. Collect $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
+		communityChest.add(new Card("\tCommunity Chest\n", "Income tax refund. Collect $20.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 20));
+		communityChest.add(new Card("\tCommunity Chest\n", "  Receive $25 consultancy fee.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 25));
+		communityChest.add(new Card("\t\t Community Chest\n", "You have won second prize in a beauty contest. Collect $10.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 10));
+		communityChest.add(new Card("\tCommunity Chest\n", "From sale of stock you get $50.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50));
+		communityChest.add(new Card("\t Community Chest\n", "\tYou inherit $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
+		communityChest.add(new Card("\tCommunity Chest\n", "Holiday fund matures. Receive $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100));
 	}
 	
 	/**
 	 * Method to initialize every property in the game.
+	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location) {
 	 */
 	public void initDeeds() {
-		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1);
-		deeds[1] = new TitleDeed("Baltic Avenue", 60, enumeration.TitleColor.BROWN, 50, 3);
-		deeds[2] = new TitleDeed("Oriental Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 6);
-		deeds[3] = new TitleDeed("Vermont Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 8);
-		deeds[4] = new TitleDeed("Connecticut Avenue", 120, enumeration.TitleColor.LIGHTBLUE, 50, 9);
-		deeds[5] = new TitleDeed("St. Charles Place", 140, enumeration.TitleColor.PINK, 100, 11);
-		deeds[6] = new TitleDeed("States Avenue", 140, enumeration.TitleColor.PINK, 100, 13);
-		deeds[7] = new TitleDeed("Virginia Avenue", 160, enumeration.TitleColor.PINK, 100, 14);
-		deeds[8] = new TitleDeed("St. James Place", 180, enumeration.TitleColor.ORANGE, 100, 16);
-		deeds[9] = new TitleDeed("Tennessee Avenue", 180, enumeration.TitleColor.ORANGE, 100, 18);
-		deeds[10] = new TitleDeed("New York Avenue", 200, enumeration.TitleColor.ORANGE, 100, 19);
-		deeds[11] = new TitleDeed("Kentucky Avenue", 220, enumeration.TitleColor.RED, 150, 21);
-		deeds[12] = new TitleDeed("Indiana Avenue", 220, enumeration.TitleColor.RED, 150, 23);
-		deeds[13] = new TitleDeed("Illinois Avenue", 240, enumeration.TitleColor.RED, 150, 24);
-		deeds[14] = new TitleDeed("Atlantic Avenue", 260, enumeration.TitleColor.YELLOW, 150, 26);
-		deeds[15] = new TitleDeed("Ventnor Avenue", 260, enumeration.TitleColor.YELLOW, 150, 27);
-		deeds[16] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29);
-		deeds[17] = new TitleDeed("Pacific Avenue", 300, enumeration.TitleColor.GREEN, 200, 31);
-		deeds[18] = new TitleDeed("North Carolina Avenue", 300, enumeration.TitleColor.GREEN, 200, 32);
-		deeds[19] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200, 34);
-		deeds[20] = new TitleDeed("Park Place", 350, enumeration.TitleColor.BLUE, 200, 37);
-		deeds[21] = new TitleDeed("Boardwalk", 400, enumeration.TitleColor.BLUE, 200, 39);
-		deeds[22] = new Utility("Electric Company", 12);
-		deeds[23] = new Utility("Water Works", 28);
-		deeds[24] = new RailRoad("Reading Railroad", 5);
-		deeds[25] = new RailRoad("Pennsylvania Railroad", 15);
-		deeds[26] = new RailRoad("B. & O. Railroad", 25);
-		deeds[27] = new RailRoad("Short Line", 35);
+		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1, 2);
+		deeds[1] = new TitleDeed("Baltic Avenue", 60, enumeration.TitleColor.BROWN, 50, 3, 4);
+		deeds[2] = new RailRoad("Reading Railroad", 5, 200);
+		deeds[3] = new TitleDeed("Oriental Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 6, 6);
+		deeds[4] = new TitleDeed("Vermont Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 8, 6);
+		deeds[5] = new TitleDeed("Connecticut Avenue", 120, enumeration.TitleColor.LIGHTBLUE, 50, 9, 8);
+		deeds[6] = new TitleDeed("St. Charles Place", 140, enumeration.TitleColor.PINK, 100, 11, 10);
+		deeds[7] = new Utility("Electric Company", 12, 150);
+		deeds[8] = new TitleDeed("States Avenue", 140, enumeration.TitleColor.PINK, 100, 13, 10);
+		deeds[9] = new TitleDeed("Virginia Avenue", 160, enumeration.TitleColor.PINK, 100, 14, 12);
+		deeds[10] = new RailRoad("Pennsylvania Railroad", 15, 200);
+		deeds[11] = new TitleDeed("St. James Place", 180, enumeration.TitleColor.ORANGE, 100, 16, 14);
+		deeds[12] = new TitleDeed("Tennessee Avenue", 180, enumeration.TitleColor.ORANGE, 100, 18, 14);
+		deeds[13] = new TitleDeed("New York Avenue", 200, enumeration.TitleColor.ORANGE, 100, 19,16);
+		deeds[14] = new TitleDeed("Kentucky Avenue", 220, enumeration.TitleColor.RED, 150, 21, 18);
+		deeds[15] = new TitleDeed("Indiana Avenue", 220, enumeration.TitleColor.RED, 150, 23, 18);
+		deeds[16] = new TitleDeed("Illinois Avenue", 240, enumeration.TitleColor.RED, 150, 24, 20);
+		deeds[17] = new RailRoad("B. & O. Railroad", 25, 200);
+		deeds[18] = new TitleDeed("Atlantic Avenue", 260, enumeration.TitleColor.YELLOW, 150, 26, 22);
+		deeds[19] = new TitleDeed("Ventnor Avenue", 260, enumeration.TitleColor.YELLOW, 150, 27, 22);
+		deeds[20] = new Utility("Water Works", 28, 150);
+		deeds[21] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29, 24);
+		deeds[22] = new TitleDeed("Pacific Avenue", 300, enumeration.TitleColor.GREEN, 200, 31, 26);
+		deeds[23] = new TitleDeed("North Carolina Avenue", 300, enumeration.TitleColor.GREEN, 200, 32, 26);
+		deeds[24] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200, 34, 28);
+		deeds[25] = new RailRoad("Short Line", 35, 200);
+		deeds[26] = new TitleDeed("Park Place", 350, enumeration.TitleColor.BLUE, 200, 37, 35);
+		deeds[27] = new TitleDeed("Boardwalk", 400, enumeration.TitleColor.BLUE, 200, 39, 50);
+		
+		
 	}
 	
 	/**
@@ -122,41 +127,41 @@ public class Board {
 		squares[2] = new Special("Community Chest", CardType.COMMUNITY_CHEST);
 		squares[3] = new square.Property("Baltic Avenue", (TitleDeed) deeds[1]);
 		squares[4] = new Special("Income Tax");
-		squares[5] = new square.RailRoad("Reading Railroad", (RailRoad) deeds[24]);
-		squares[6] = new square.Property("Oriental Avenue", (TitleDeed) deeds[2]);
+		squares[5] = new square.RailRoad("Reading Railroad", (RailRoad) deeds[2]);
+		squares[6] = new square.Property("Oriental Avenue", (TitleDeed) deeds[3]);
 		squares[7] = new Special("Chance", CardType.CHANCE);
-		squares[8] = new square.Property("Vermont Avenue", (TitleDeed) deeds[3]);
-		squares[9] = new square.Property("Connecticut Avenue", (TitleDeed) deeds[4]);
+		squares[8] = new square.Property("Vermont Avenue", (TitleDeed) deeds[4]);
+		squares[9] = new square.Property("Connecticut Avenue", (TitleDeed) deeds[5]);
 		squares[10] = new Corner("Jail/Just Visiting");
-		squares[11] = new square.Property("St. Charles Place", (TitleDeed) deeds[5]);
-		squares[12] = new square.Utility("Electric Company", (Utility) deeds[22]);
-		squares[13] = new square.Property("States Avenue", (TitleDeed) deeds[6]);
-		squares[14] = new square.Property("Virginia Avenue", (TitleDeed) deeds[7]);
-		squares[15] = new square.RailRoad("Pennsylvania Railroad", (RailRoad) deeds[25]);
-		squares[16] = new square.Property("St. James Place", (TitleDeed) deeds[8]);
+		squares[11] = new square.Property("St. Charles Place", (TitleDeed) deeds[6]);
+		squares[12] = new square.Utility("Electric Company", (Utility) deeds[7]);
+		squares[13] = new square.Property("States Avenue", (TitleDeed) deeds[8]);
+		squares[14] = new square.Property("Virginia Avenue", (TitleDeed) deeds[9]);
+		squares[15] = new square.RailRoad("Pennsylvania Railroad", (RailRoad) deeds[10]);
+		squares[16] = new square.Property("St. James Place", (TitleDeed) deeds[11]);
 		squares[17] = new Special("Community Chest", CardType.COMMUNITY_CHEST);
-		squares[18] = new square.Property("Tennessee Avenue", (TitleDeed) deeds[9]);
-		squares[19] = new square.Property("New York Avenue", (TitleDeed) deeds[10]);
+		squares[18] = new square.Property("Tennessee Avenue", (TitleDeed) deeds[12]);
+		squares[19] = new square.Property("New York Avenue", (TitleDeed) deeds[13]);
 		squares[20] = new Corner("Free Parking");
-		squares[21] = new square.Property("Kentucky Avenue", (TitleDeed) deeds[11]);
+		squares[21] = new square.Property("Kentucky Avenue", (TitleDeed) deeds[14]);
 		squares[22] = new Special("Chance", CardType.CHANCE);
-		squares[23] = new square.Property("Indiana Avenue", (TitleDeed) deeds[12]);
-		squares[24] = new square.Property("Illinois Avenue", (TitleDeed) deeds[13]);
-		squares[25] = new square.RailRoad("B. & O. Railroad", (RailRoad) deeds[26]);
-		squares[26] = new square.Property("Atlantic Avenue", (TitleDeed) deeds[14]);
-		squares[27] = new square.Property("Ventnor Avenue", (TitleDeed) deeds[15]);
-		squares[28] = new square.Utility("Water Works", (Utility) deeds[23]);
-		squares[29] = new square.Property("Marvin Gardens", (TitleDeed) deeds[16]);
+		squares[23] = new square.Property("Indiana Avenue", (TitleDeed) deeds[15]);
+		squares[24] = new square.Property("Illinois Avenue", (TitleDeed) deeds[16]);
+		squares[25] = new square.RailRoad("B. & O. Railroad", (RailRoad) deeds[17]);
+		squares[26] = new square.Property("Atlantic Avenue", (TitleDeed) deeds[18]);
+		squares[27] = new square.Property("Ventnor Avenue", (TitleDeed) deeds[19]);
+		squares[28] = new square.Utility("Water Works", (Utility) deeds[20]);
+		squares[29] = new square.Property("Marvin Gardens", (TitleDeed) deeds[21]);
 		squares[30] = new Corner("Go To Jail");
-		squares[31] = new square.Property("Pacific Avenue", (TitleDeed) deeds[17]);
-		squares[32] = new square.Property("North Carolina Avenue", (TitleDeed) deeds[18]);
+		squares[31] = new square.Property("Pacific Avenue", (TitleDeed) deeds[22]);
+		squares[32] = new square.Property("North Carolina Avenue", (TitleDeed) deeds[23]);
 		squares[33] = new Special("Community Chest", CardType.COMMUNITY_CHEST);
-		squares[34] = new square.Property("Pennsylvania Avenue", (TitleDeed) deeds[19]);
-		squares[35] = new square.RailRoad("Short Line", (RailRoad) deeds[27]);
+		squares[34] = new square.Property("Pennsylvania Avenue", (TitleDeed) deeds[24]);
+		squares[35] = new square.RailRoad("Short Line", (RailRoad) deeds[25]);
 		squares[36] = new Special("Chance", CardType.CHANCE);
-		squares[37] = new square.Property("Park Place", (TitleDeed) deeds[20]);
+		squares[37] = new square.Property("Park Place", (TitleDeed) deeds[26]);
 		squares[38] = new Special("Luxury Tax");
-		squares[39] = new square.Property("Boardwalk", (TitleDeed) deeds[21]);
+		squares[39] = new square.Property("Boardwalk", (TitleDeed) deeds[27]);
 		
 	}
 	
