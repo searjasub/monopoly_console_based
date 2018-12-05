@@ -1,7 +1,9 @@
 package demo;
 
 import enumeration.TitleColor;
+import enumeration.Token;
 import game.Game;
+import game.Player;
 
 public class Demo{
 
@@ -11,7 +13,10 @@ public class Demo{
     public static void main(String[] args) throws Exception {
         System.out.println(TitleColor.BLUE + "Look at me I'm Blue!" + TitleColor.RESET);
         Game game = new Game();
-        game.run();
+        game.players = new Player[3];
+        game.players[0] = new Player("Sear", Token.HAT, 1300, 0, 0);
+        game.players[1] = new Player("Brooke", Token.BATTLESHIP, 1300, 0, 0);
+        game.players[2] = new Player("Spencer", Token.CAT, 1300, 0, 0);
 
     }
 
@@ -20,13 +25,10 @@ public class Demo{
         // collect go
     }
 
-    public void buyingProperty(){
-        // buying property
+    public void landOnProperty(){
+        // buy property
         // removes money 
-    }
-
-    public void landOnRent(){
-        // paying rent
+        // pay rent
         // checking for full set
     }
 
@@ -53,11 +55,11 @@ public class Demo{
     public void housesBuyAndSell(){
         // do it evenly
         // need a full color group
-        // sell evenly
+        // sell evenly :(
     }
 
     public void auctioning(){
-        // :(
+        // ez
     }
 
     public void sellingAndTradingProperties(){

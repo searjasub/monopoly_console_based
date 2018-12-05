@@ -1,4 +1,3 @@
-
 package game;
 
 import java.io.IOException;
@@ -207,7 +206,11 @@ public class Game {
 					buyHouse();
 					break;
 				case 4:
-					tradeCards();
+					sell();
+					break;
+				case 5:
+					buy();
+		
 					break;
 				default:
 					throw new IllegalArgumentException("Invalid action " + action);
@@ -782,7 +785,7 @@ public class Game {
 
 			break;
 		case PAY_OR_RECEIVE_PLAYERS:
-			if(topCard.getId() == 21) {
+        if(topCard.getId() == 21) {
 				int totalAmountCollected = 0;
 				for(Player player : players) {
 					player.setBalance(-10);
@@ -833,11 +836,7 @@ public class Game {
 			break;
 		default:
 			break;
-			
-			
-
 		}
-
 	}
 
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
@@ -918,6 +917,39 @@ public class Game {
 		case 1:
 			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
 			// HANDLE AUCTIONING
+			int costOfAuction = 50;
+			Player[] inAuction = players;
+			int totalPlayersInAuction = inAuction.length;
+			boolean playerBoughtProperty = false;
+			while(!playerBoughtProperty){
+				for(Player AuctionPlayer: inAuction){
+					System.out.println("Current Auction Price: " + costOfAuction);
+					if(AuctionPlayer == null){
+						// skipping auctioned player
+						continue;
+					}
+					if(totalPlayersInAuction == 1){
+						// you win pay the price.
+						AuctionPlayer.setBalance(-1 * costOfAuction);
+						playerBoughtProperty = true;
+						AuctionPlayer.propertiesOwned.add(board.deeds[location]);
+						break;
+					}
+					System.out.println("It is your turn, " + AuctionPlayer.getName() + "!");
+					int chooseToLeave = ConsoleUI.promptForMenuSelection(new String[] {"Leave The Auction", "Increment Value"});
+					if(chooseToLeave == 0){
+						// left the auction
+						AuctionPlayer = null;
+						totalPlayersInAuction--;
+					}
+					else {
+							//you must auction to the death
+							int amountToIncreaseBy = ConsoleUI.promptForInt("Enter amount you want to increase the bid price by: ", 50, Integer.MAX_VALUE);
+							costOfAuction += amountToIncreaseBy;
+						}
+					}
+				}
+			
 			break;
 		default:
 			break;
@@ -963,15 +995,56 @@ public class Game {
 				buyHouse();
 				break;
 			case 3:
-				tradeCards();
+				sell();
 				break;
 			case 4:
+				buy();
+				break;
+			case 5:
 				isYourTurnAfterRoll = false;
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid action " + action);
 			}
 		}
+	}
+
+	private void sell() throws IOException {
+		// Choose property and set prize
+		// choose player (for loop to find the player)
+		//sout player's name to simulate we change the view
+		//acceptMenu()
+		//		Accept
+		//			change the owner of the deed and set money - the value agreed for second player
+		//		Decline
+		//			break/false?
+		//	
+		int action = menu.printSellBuyMainMenu();
+		switch(action) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid action " + action);
+		}
+	}
+	
+	private void buy() throws IOException{
+		// TODO
+		//choose either property or jail card
+		//	property
+		//		choose a property and set money
+		//	Switch the view
+		//		find the player who has that card and switch to the acceptMenu()
+		//			Accept
+		//				change the owner of deed and set money ++ to the other player
+		//			Decline
+		//				break/false?
+		//
+		
 	}
 
 	/**
@@ -1030,13 +1103,8 @@ public class Game {
 
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void buyHouse() {
-		
-	}
 
-	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
-	private void tradeCards() {
-
-	}
+	}	
 
 	/**
 	 * Method that will move the player base on the total number they rolled
