@@ -101,14 +101,19 @@ public class menu {
 	 * @throws IOException
 	 */
 	public static int printTurnMenu() throws IOException {
-		String[] menuOptions = new String[5];
+		String[] menuOptions = new String[6];
 		menuOptions[0] = "Roll Dice";
 		menuOptions[1] = "See Balance";
 		menuOptions[2] = "See Your Properties";
 		menuOptions[3] = "Buy House/Hotel";
-		menuOptions[4] = "Trade Cards";
+		menuOptions[4] = "Sell Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[5] = "Buy Properties Or \"Get Out Of Jail\" Card";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
+	
+//	public static int printSellBuyMenu() throws IOException{
+//		String[]strings menuOptions = new String[2];
+//	}
 
 	/**
 	 * Print the options after they roll for first time
@@ -116,12 +121,13 @@ public class menu {
 	 * @return the selection
 	 */
 	public static int printMenuAfterRoll() throws IOException {
-		String[] menuOptions = new String[5];
+		String[] menuOptions = new String[6];
 		menuOptions[0] = "See Balance";
 		menuOptions[1] = "See Your Properties";
 		menuOptions[2] = "Buy House/Hotel";
-		menuOptions[3] = "Trade Cards";
-		menuOptions[4] = "End Turn";
+		menuOptions[3] = "Sell Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[4] = "Buy Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[5] = "End Turn";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
@@ -168,8 +174,23 @@ public class menu {
 		menuOptions[0] = "Pay $200.";
 		menuOptions[1] = "Pay 10% Of Your Assets";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
-			
 	}
+	
+	public static int printAcceptMenu() throws IOException{
+		String[] menuOption = new String[2];
+		menuOption[0] = "Accept";
+		menuOption[1] = "Decline";
+		return ConsoleUI.promptForMenuSelection(menuOption);
+	}
+	
+	public static int printSellBuyMainMenu() throws IOException{
+		String[] menuOption = new String[3];
+		menuOption[0] = "Property";
+		menuOption[1] = "\"Get Out Of Jail\"";
+		menuOption[2] = "Abandon transaction";
+		return ConsoleUI.promptForMenuSelection(menuOption);
+	}
+
 
 
 }
