@@ -86,34 +86,34 @@ public class Board {
 	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location) {
 	 */
 	public void initDeeds() {
-		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1, 2);
-		deeds[1] = new TitleDeed("Baltic Avenue", 60, enumeration.TitleColor.BROWN, 50, 3, 4);
+		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1, 2, 10, 30, 90, 160, 250);
+		deeds[1] = new TitleDeed("Baltic Avenue", 60, enumeration.TitleColor.BROWN, 50, 3, 4, 20, 60, 180, 320, 450);
 		deeds[2] = new RailRoad("Reading Railroad", 5, 200);
-		deeds[3] = new TitleDeed("Oriental Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 6, 6);
-		deeds[4] = new TitleDeed("Vermont Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 8, 6);
-		deeds[5] = new TitleDeed("Connecticut Avenue", 120, enumeration.TitleColor.LIGHTBLUE, 50, 9, 8);
-		deeds[6] = new TitleDeed("St. Charles Place", 140, enumeration.TitleColor.PINK, 100, 11, 10);
+		deeds[3] = new TitleDeed("Oriental Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 6, 6, 30, 90, 270, 400, 550);
+		deeds[4] = new TitleDeed("Vermont Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 8, 6, 30, 90, 270, 400, 550);
+		deeds[5] = new TitleDeed("Connecticut Avenue", 120, enumeration.TitleColor.LIGHTBLUE, 50, 9, 8, 40, 100, 300, 450, 600);
+		deeds[6] = new TitleDeed("St. Charles Place", 140, enumeration.TitleColor.PINK, 100, 11, 10, 50, 150, 450, 625, 750);
 		deeds[7] = new Utility("Electric Company", 12, 150);
-		deeds[8] = new TitleDeed("States Avenue", 140, enumeration.TitleColor.PINK, 100, 13, 10);
-		deeds[9] = new TitleDeed("Virginia Avenue", 160, enumeration.TitleColor.PINK, 100, 14, 12);
+		deeds[8] = new TitleDeed("States Avenue", 140, enumeration.TitleColor.PINK, 100, 13, 10, 50, 150, 450, 625, 750);
+		deeds[9] = new TitleDeed("Virginia Avenue", 160, enumeration.TitleColor.PINK, 100, 14, 12, 60, 180, 500, 700, 900);
 		deeds[10] = new RailRoad("Pennsylvania Railroad", 15, 200);
-		deeds[11] = new TitleDeed("St. James Place", 180, enumeration.TitleColor.ORANGE, 100, 16, 14);
-		deeds[12] = new TitleDeed("Tennessee Avenue", 180, enumeration.TitleColor.ORANGE, 100, 18, 14);
-		deeds[13] = new TitleDeed("New York Avenue", 200, enumeration.TitleColor.ORANGE, 100, 19,16);
-		deeds[14] = new TitleDeed("Kentucky Avenue", 220, enumeration.TitleColor.RED, 150, 21, 18);
-		deeds[15] = new TitleDeed("Indiana Avenue", 220, enumeration.TitleColor.RED, 150, 23, 18);
-		deeds[16] = new TitleDeed("Illinois Avenue", 240, enumeration.TitleColor.RED, 150, 24, 20);
+		deeds[11] = new TitleDeed("St. James Place", 180, enumeration.TitleColor.ORANGE, 100, 16, 14, 70, 200, 550, 750, 950);
+		deeds[12] = new TitleDeed("Tennessee Avenue", 180, enumeration.TitleColor.ORANGE, 100, 18, 14, 70, 200, 550, 750, 950);
+		deeds[13] = new TitleDeed("New York Avenue", 200, enumeration.TitleColor.ORANGE, 100, 19, 16, 80, 220, 600, 800, 1000);
+		deeds[14] = new TitleDeed("Kentucky Avenue", 220, enumeration.TitleColor.RED, 150, 21, 18, 90, 250, 700, 875, 1050);
+		deeds[15] = new TitleDeed("Indiana Avenue", 220, enumeration.TitleColor.RED, 150, 23, 18, 90, 250, 700, 875, 1050);
+		deeds[16] = new TitleDeed("Illinois Avenue", 240, enumeration.TitleColor.RED, 150, 24, 20, 100, 300, 750, 925, 1100);
 		deeds[17] = new RailRoad("B. & O. Railroad", 25, 200);
-		deeds[18] = new TitleDeed("Atlantic Avenue", 260, enumeration.TitleColor.YELLOW, 150, 26, 22);
-		deeds[19] = new TitleDeed("Ventnor Avenue", 260, enumeration.TitleColor.YELLOW, 150, 27, 22);
+		deeds[18] = new TitleDeed("Atlantic Avenue", 260, enumeration.TitleColor.YELLOW, 150, 26, 22, 110, 330, 800, 975, 1150);
+		deeds[19] = new TitleDeed("Ventnor Avenue", 260, enumeration.TitleColor.YELLOW, 150, 27, 22, 110, 330, 800, 975, 1150);
 		deeds[20] = new Utility("Water Works", 28, 150);
-		deeds[21] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29, 24);
-		deeds[22] = new TitleDeed("Pacific Avenue", 300, enumeration.TitleColor.GREEN, 200, 31, 26);
-		deeds[23] = new TitleDeed("North Carolina Avenue", 300, enumeration.TitleColor.GREEN, 200, 32, 26);
-		deeds[24] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200, 34, 28);
+		deeds[21] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29, 24, 120, 360, 850, 1025, 1200);
+		deeds[22] = new TitleDeed("Pacific Avenue", 300, enumeration.TitleColor.GREEN, 200, 31, 26, 130, 390, 900, 1100, 1275);
+		deeds[23] = new TitleDeed("North Carolina Avenue", 300, enumeration.TitleColor.GREEN, 200, 32, 26, 130, 390, 900, 1100, 1275);
+		deeds[24] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200, 34, 28, 150, 450, 1000, 1200, 1400);
 		deeds[25] = new RailRoad("Short Line", 35, 200);
-		deeds[26] = new TitleDeed("Park Place", 350, enumeration.TitleColor.BLUE, 200, 37, 35);
-		deeds[27] = new TitleDeed("Boardwalk", 400, enumeration.TitleColor.BLUE, 200, 39, 50);
+		deeds[26] = new TitleDeed("Park Place", 350, enumeration.TitleColor.BLUE, 200, 37, 35, 175, 500, 1100, 1300, 1500);
+		deeds[27] = new TitleDeed("Boardwalk", 400, enumeration.TitleColor.BLUE, 200, 39, 50, 200, 600, 1400, 1700, 2000);
 		
 		
 	}
