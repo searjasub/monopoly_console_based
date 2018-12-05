@@ -15,6 +15,7 @@ public enum TitleColor {
 	YELLOW("\u001B[38;5;11m"),
 	GREEN("\u001B[38;5;10m"),
 	BLUE("\u001B[38;5;21m"),
+	COMMUNITY_CHEST("\u001B[38;5;33m"),
 	RESET("\u001B[0m");
 
 	public String colorTag;

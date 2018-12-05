@@ -9,9 +9,9 @@ import card.TitleDeed;
 import card.Utility;
 import enumeration.CardCategory;
 import enumeration.CardType;
-import square.Corner;
-import square.Special;
-import square.Square;
+import enumeration.TitleColor;
+import square.*;
+
 
 public class Board {
 	
@@ -177,35 +177,35 @@ public class Board {
 				+ "|   FREE   |        |        |        |        |        |        |        |        |        |          |\n"
 				+ "|  PARKING |   21   |   22   |   23   |   24   |   25   |   26   |   27   |   28   |   29   |    30    |\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
-				+ "|__________|________|________|________|________|________|________|________|________|________|__________|\n"
-				+ "|          |                                                                                |          |\n"
-				+ "|    19    |                                                                                |    31    |\n"
-				+ "|__________|                            _____________________                               |__________|\n"
-				+ "|          |                           |                     |                              |          |\n"
-				+ "|    18    |                           |                     |                              |    32    |\n"
-				+ "|__________|                           |       CHANCE        |                              |__________|\n"
-				+ "|          |                           |                     |                              |          |\n"
-				+ "|    17    |                           |_____________________|                              |    33    |      Player:\t\t " + player.getName() + "\n"
+				+ "|__________|" + TitleColor.RED + "########" + TitleColor.RESET+ "|________|" + TitleColor.RED + "########" + TitleColor.RESET + "|" + TitleColor.RED +  "########" + TitleColor.RESET + "|________|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|________|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|__________|\n"
+				+ "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "         |\n"
+				+ "|    19   " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "   31    |\n"
+				+ "|_________" + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                            _____________________                               |" + TitleColor.GREEN + "#" + TitleColor.RESET + "_________|\n"
+				+ "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                           |" + TitleColor.ORANGE + "#####################" + TitleColor.RESET +  "|                              |" + TitleColor.GREEN + "#" + TitleColor.RESET + "         |\n"
+				+ "|    18   " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                           |" + TitleColor.ORANGE + "####             ####" + TitleColor.RESET + "|                              |" + TitleColor.GREEN + "#" + TitleColor.RESET + "   32    |\n"
+				+ "|_________" + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                           |" +TitleColor.ORANGE +  "####" + TitleColor.RESET + "   CHANCE    " + TitleColor.ORANGE + "####" + TitleColor.RESET + "|                              |" + TitleColor.GREEN + "#" + TitleColor.RESET + "_________|\n"
+				+ "|          |                           |" + TitleColor.ORANGE + "####             ####"  + TitleColor.RESET + "|                              |          |\n"
+				+ "|    17    |                           |" + TitleColor.ORANGE +"#####################" + TitleColor.RESET + "|                              |    33    |      Player:\t\t " + player.getName() + "\n"
 				+ "|__________|                                                                                |__________|      Token:\t\t " + player.getToken() + "\n"
-				+ "|          |                                                                                |          |      Location:\t\t " + player.getLocation() + "\n"
-				+ "|    16    |                                                                                |    34    |      Description:\t " + squares[player.getLocation()].getName() + "\n"
-				+ "|__________|                                                                                |__________|\n"
+				+ "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "         |      Location:\t\t " + player.getLocation() + "\n"
+				+ "|    16   " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "    34   |      Description:\t " + squares[player.getLocation()].getName() + "\n"
+				+ "|_________" + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "_________|\n"
 				+ "|          |                                                                                |          |\n"
 				+ "|    15    |                               M O N O P O L Y                                  |    35    |\n"
 				+ "|__________|                                                                                |__________|\n"
-				+ "|          |                                                                                |          |\n"
-				+ "|    14    |                                                                                |    36    |\n"
-				+ "|__________|                            _____________________                               |__________|\n"
-				+ "|          |                           |                     |                              |          |\n"
-				+ "|    13    |                           |      COMMUNITY      |                              |    37    |\n"
-				+ "|__________|                           |        CHEST        |                              |__________|\n"
-				+ "|          |                           |                     |                              |          |\n"
-				+ "|    12    |                           |_____________________|                              |    38    |\n"
+				+ "|         " + TitleColor.PINK + "#" + TitleColor.RESET + "|                                                                                |          |\n"
+				+ "|    14   " + TitleColor.PINK + "#" + TitleColor.RESET + "|                                                                                |    36    |\n"
+				+ "|_________" + TitleColor.PINK + "#" + TitleColor.RESET + "|                            _____________________                               |__________|\n"
+				+ "|         " + TitleColor.PINK + "#" + TitleColor.RESET + "|                           |" + TitleColor.COMMUNITY_CHEST + "#####################" + TitleColor.RESET+ "|                              |" + TitleColor.BLUE + "#" + TitleColor.RESET + "         |\n"
+				+ "|    13   " + TitleColor.PINK + "#" + TitleColor.RESET + "|                           |" + TitleColor.COMMUNITY_CHEST + "###" + TitleColor.RESET + "   COMMUNITY   "+ TitleColor.COMMUNITY_CHEST+ "###" + TitleColor.RESET + "|                              |" + TitleColor.BLUE + "#" + TitleColor.RESET + "   37    |\n"
+				+ "|_________" + TitleColor.PINK + "#" + TitleColor.RESET + "|                           |" + TitleColor.COMMUNITY_CHEST + "####" + TitleColor.RESET + "    CHEST    "+ TitleColor.COMMUNITY_CHEST + "####" + TitleColor.RESET +"|                              |" + TitleColor.BLUE + "#" + TitleColor.RESET + "_________|\n"
+				+ "|          |                           |" + TitleColor.COMMUNITY_CHEST +  "######         ######" + TitleColor.RESET +  "|                              |          |\n"
+				+ "|    12    |                           |" + TitleColor.COMMUNITY_CHEST + "#####################" + TitleColor.RESET + "|                              |    38    |\n"
 				+ "|__________|                                                                                |__________|\n"
-				+ "|          |                                                                                |          |\n"
-				+ "|    11    |                                                                                |    39    |\n"
-				+ "|__________|________________________________________________________________________________|__________|\n"
-				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
+				+ "|         " + TitleColor.PINK + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.BLUE + "#" + TitleColor.RESET + "         |\n"
+				+ "|    11   " + TitleColor.PINK + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.BLUE + "#" + TitleColor.RESET + "   39    |\n"
+				+ "|_________" + TitleColor.PINK + "#" + TitleColor.RESET + "|________________________________________________________________________________|" + TitleColor.BLUE + "#" + TitleColor.RESET + "_________|\n"
+				+ "|          |" + TitleColor.LIGHTBLUE + "########" + TitleColor.RESET +"|" + TitleColor.LIGHTBLUE + "########" + TitleColor.RESET + "|        |" + TitleColor.LIGHTBLUE + "########" +  TitleColor.RESET +"|        |        |"+ TitleColor.BROWN + "########" + TitleColor.RESET +"|        |" + TitleColor.BROWN + "########" + TitleColor.RESET +"|          |\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
 				+ "|   JAIL   |   9    |   8    |   7    |   6    |   5    |   4    |   3    |   2    |    1   |    GO    |\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"

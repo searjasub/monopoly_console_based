@@ -574,6 +574,7 @@ public class Game {
 
 	private void handleIncomeTax(Player currentPlayer) {
 
+
 		int totalToPay = 0;
 		for (card.Property cards : currentPlayer.propertiesOwned) {
 			totalToPay += cards.getCost() * 0.1;
@@ -650,6 +651,7 @@ public class Game {
 				}
 			}
 		}
+
 	}
 
 	private void propertyMenuSelection(Player currentPlayer, int location, int cost) throws IOException {
