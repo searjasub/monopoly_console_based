@@ -76,7 +76,7 @@ public class Board {
 		communityChest.add(new Card("\tCommunity Chest\n", "Life insurance matures. Collect $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100,26));
 		communityChest.add(new Card("\tCommunity Chest\n", "Income tax refund. Collect $20.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 20,27));
 		communityChest.add(new Card("\tCommunity Chest\n", "  Receive $25 consultancy fee.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 25,28));
-		communityChest.add(new Card("\t\t Community Chest\n", "You have won second prize in a beauty contest. Collect $10.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 10,299));
+		communityChest.add(new Card("\t\t Community Chest\n", "You have won second prize in a beauty contest. Collect $10.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 10,29));
 		communityChest.add(new Card("\tCommunity Chest\n", "From sale of stock you get $50.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50,30));
 		communityChest.add(new Card("\t Community Chest\n", "\tYou inherit $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100,31));
 		communityChest.add(new Card("\tCommunity Chest\n", "Holiday fund matures. Receive $100.", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100,32));
