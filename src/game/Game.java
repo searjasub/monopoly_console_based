@@ -1,3 +1,4 @@
+
 package game;
 
 import java.io.IOException;
@@ -384,7 +385,7 @@ public class Game {
 			} else {
 				payRent(currentPlayer, 8, 5);
 			}
-		}
+		}		
 		// ST. CHARLES PLACE
 		if (currentPlayer.getLocation() == 11) {
 			if (board.ownsDeed(6, currentPlayer)) {
@@ -592,6 +593,11 @@ public class Game {
 		}
 	}
 
+
+	private void printCardInfo(Card topCard) {
+		System.out.print(topCard.getName() + topCard.getDesc());
+	}
+	
 	private void handleIncomeTax(Player currentPlayer) throws IOException {
 		int taxSelection = menu.payLuxuryTaxMenu();
 		switch (taxSelection) {
@@ -614,19 +620,97 @@ public class Game {
 		}
 	}
 
-	private void handleSpecialCard(Player currentPlayer) {
-		Card topcard = board.chance.get(0);
-		switch (topcard.cardName) {
+	private void handleSpecialCard(Player currentPlayer) throws IOException {
+
+		Card topCard = board.chance.get(0);
+		switch (topCard.cardName) {
 		case JAIL_FREE:
 			if (currentPlayer.jailCardOwned[0] == null) {
-				currentPlayer.jailCardOwned[0] = topcard;
+				currentPlayer.jailCardOwned[0] = topCard;
 				board.chance.remove(0);
 			} else {
-				currentPlayer.jailCardOwned[1] = topcard;
+				currentPlayer.jailCardOwned[1] = topCard;
 				board.chance.remove(0);
 			}
 			break;
 		case MOVEMENT:
+			if (topCard.getId() == 3 || topCard.getId() == 8) {
+				// Advance to GO
+				printCardInfo(topCard);
+				currentPlayer.setLocation(0);
+				// CHECK IF JUST BY DOING THIS WILL GIVE $200
+			}
+			if (topCard.getId() == 4) {
+				// Go back 3 spaces
+				printCardInfo(topCard);
+				currentPlayer.setLocation(currentPlayer.getLocation() - 3);
+			}
+			if (topCard.getId() == 5 || topCard.getId() == 7) {
+				//Go to nearest railroad
+				printCardInfo(topCard);
+				if (currentPlayer.getLocation() == 7) {
+					movePlayer(8, currentPlayer);
+					if(board.deeds[10].getOwner() != null) {
+						int doubleRent = board.deeds[2].getRent() * 2;
+						payRent(currentPlayer, doubleRent, 10);
+						System.out.println("You paid $" + doubleRent );
+					}
+				} else if (currentPlayer.getLocation() == 22) {
+					movePlayer(3, currentPlayer);
+					if(board.deeds[17].getOwner() != null) {
+						int doubleRent = board.deeds[17].getRent() * 2;
+						payRent(currentPlayer, doubleRent, 17);
+					}
+				} else if (currentPlayer.getLocation() == 36) {
+					movePlayer(9, currentPlayer);
+					if(board.deeds[2].getOwner() != null) {
+						int doubleRent = board.deeds[2].getRent() * 2;
+						payRent(currentPlayer, doubleRent, 2);
+					}
+				}
+			}
+			if(topCard.getId() == 6) {
+				//Go to nearest utility
+				printCardInfo(topCard);
+				if(currentPlayer.getLocation() < 20 && currentPlayer.getLocation() >= 0) {
+					currentPlayer.setLocation(12);
+					int totalOwed = 0;
+					int selection = menu.printPayRentMenu();
+					if (selection == 0) {
+						System.out.println("\nYou will now roll the dice to see how much you will have to pay rent.");
+						int selection2 = menu.rollDiceMenu();
+						if (selection2 == 0) {
+							die.roll();
+							whatYouRolled();
+							for (Player playerOwner : players) {
+								if (playerOwner.propertiesOwned.contains(board.deeds[7]) || playerOwner.propertiesOwned.contains(board.deeds[20])) {
+									
+										totalOwed = 10 * die.getTotal();
+										System.out.println("Since you rolled " + die.getTotal() + ". You are paying $" + totalOwed);	
+									playerOwner.setBalance(totalOwed);
+									currentPlayer.setBalance(-totalOwed);
+								}
+							}
+						}
+
+					}
+				}else if(currentPlayer.getLocation() <= 39  && currentPlayer.getLocation() >= 20) {
+					currentPlayer.setLocation(28);
+				}
+			}
+			
+			if(topCard.getId() == 9) {
+				//Advance to illinois avenue
+				if(currentPlayer.getLocation() == 7){
+					movePlayer(17, currentPlayer);
+				}
+				else if(currentPlayer.getLocation() == 22) {
+					movePlayer(2, currentPlayer);
+				} else if(currentPlayer.getLocation() == 36) {
+					movePlayer(28, currentPlayer);
+				}
+				
+			}
 			break;
 		case PAY_BUILDING_TAX:
 			break;
