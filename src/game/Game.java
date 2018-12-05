@@ -255,8 +255,8 @@ public class Game {
 			break;
 		case 1:
 			if (currentPlayer.jailCardOwned != null) {
-
 				breakOutOfJail(currentPlayer);
+			}
 			break;
 		case 2:
 			System.out.println("" + "*********************************************************************" + "\n\nOk "
@@ -591,6 +591,7 @@ public class Game {
 			}
 		}
 	}
+
 	private void handleIncomeTax(Player currentPlayer) throws IOException {
 		int taxSelection = menu.payLuxuryTaxMenu();
 		switch (taxSelection) {
@@ -611,6 +612,8 @@ public class Game {
 		default:
 			throw new IllegalArgumentException("Invalid selection" + taxSelection);
 		}
+	}
+
 	private void handleSpecialCard(Player currentPlayer) {
 		Card topcard = board.chance.get(0);
 		switch (topcard.cardName) {
