@@ -242,7 +242,7 @@ public class Game {
 				} else {
 					if (currentPlayer.getTurnInJail() > 1) {
 						System.out.println(
-								"\nSince you have rolled 3 times and you didn't rolled double, the bank took $50 off of your balance.");
+								"\nSince you have rolled 3 times and you didn't rolled doubles, the bank took $50 off of your balance.");
 						breakOutOfJail(currentPlayer);
 						currentPlayer.setBalance(-50);
 						break;
@@ -715,10 +715,52 @@ public class Game {
 		case PAY_BUILDING_TAX:
 			break;
 		case PAY_MONEY:
+			if(topCard.getId() == 15) {
+				currentPlayer.setBalance(-15);
+			}
+			if(topCard.getId() == 16) {
+				currentPlayer.setBalance(-50);
+			}
+			if(topCard.getId() == 17) {
+				currentPlayer.setBalance(-50);
+			}
+			if(topCard.getId() == 18) {
+				currentPlayer.setBalance(-100);
+			}
 			break;
 		case PAY_OR_RECEIVE_PLAYERS:
 			break;
 		case RECEIVE_MONEY:
+			if(topCard.getId() == 23) {
+				currentPlayer.setBalance(+150);
+			}
+			if(topCard.getId() == 24) {
+				currentPlayer.setBalance(+50);
+			}
+			if(topCard.getId() == 25) {
+				currentPlayer.setBalance(+200);
+			}
+			if(topCard.getId() == 26) {
+				currentPlayer.setBalance(+100);
+			}
+			if(topCard.getId() == 27) {
+				currentPlayer.setBalance(+20);
+			}
+			if(topCard.getId() == 28) {
+				currentPlayer.setBalance(+25);
+			}
+			if(topCard.getId() == 29) {
+				currentPlayer.setBalance(+10);
+			}
+			if(topCard.getId() == 30) {
+				currentPlayer.setBalance(+50);
+			}
+			if(topCard.getId() == 31) {
+				currentPlayer.setBalance(+100);
+			}
+			if(topCard.getId() == 32) {
+				currentPlayer.setBalance(+100);
+			}
 			break;
 		default:
 			break;
