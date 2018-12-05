@@ -902,6 +902,39 @@ public class Game {
 		case 1:
 			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
 			// HANDLE AUCTIONING
+			int costOfAuction = 50;
+			Player[] inAuction = players;
+			int totalPlayersInAuction = inAuction.length;
+			boolean playerBoughtProperty = false;
+			while(!playerBoughtProperty){
+				for(Player AuctionPlayer: inAuction){
+					System.out.println("Current Auction Price: " + costOfAuction);
+					if(AuctionPlayer == null){
+						// skipping auctioned player
+						continue;
+					}
+					if(totalPlayersInAuction == 1){
+						// you win pay the price.
+						AuctionPlayer.setBalance(-1 * costOfAuction);
+						playerBoughtProperty = true;
+						AuctionPlayer.propertiesOwned.add(board.deeds[location]);
+						break;
+					}
+					System.out.println("It is your turn, " + AuctionPlayer.getName() + "!");
+					int chooseToLeave = ConsoleUI.promptForMenuSelection(new String[] {"Leave The Auction", "Increment Value"});
+					if(chooseToLeave == 0){
+						// left the auction
+						AuctionPlayer = null;
+						totalPlayersInAuction--;
+					}
+					else {
+							//you must auction to the death
+							int amountToIncreaseBy = ConsoleUI.promptForInt("Enter amount you want to increase the bid price by: ", 50, Integer.MAX_VALUE);
+							costOfAuction += amountToIncreaseBy;
+						}
+					}
+				}
+			
 			break;
 		default:
 			break;
