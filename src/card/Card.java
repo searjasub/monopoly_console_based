@@ -7,8 +7,8 @@ import enumeration.CardType;
 public class Card {
 	Building[] buildings= new Building[5];
 	String name, desc;
-	CardType cardType;
-	CardCategory cardName;
+	public CardType cardType;
+	public CardCategory cardName;
 	int cost;
 
 	public Card(String name, String desc, CardType cardType, CardCategory cardName, int cost) {
@@ -22,6 +22,8 @@ public class Card {
 	public Card(String name, String desc, CardType cardType, CardCategory cardName) {
 		this(name, desc, cardType, cardName, 0);
 	}
+	
+	
 	
 	
 }
