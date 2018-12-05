@@ -333,13 +333,19 @@ public class Game {
 	private void landOnProperty(Player currentPlayer, int location) throws IOException {
 
 		// MEDITERRANEAN AVENUE
-
+		if (currentPlayer.getLocation() == 1) {
+			if (board.ownsDeed(0, currentPlayer)) {
+				propertyMenuSelection(currentPlayer, 0, -60);
+			} else {
+				payRent(currentPlayer, 2, 0);
+			}
+		}
 		// COMMUNITY CHEST
-		if (currentPlayer.getLocation() == 2) {
+			else if (currentPlayer.getLocation() == 2) {
 			handleChanceCard(currentPlayer);
 		}
 		// BALTIC AVENUE
-		if (currentPlayer.getLocation() == 3) {
+		else if (currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(1, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 1, -60);
 			} else {
@@ -347,12 +353,12 @@ public class Game {
 			}
 		}
 		// INCOME TAX
-		if (currentPlayer.getLocation() == 4) {
+		else if (currentPlayer.getLocation() == 4) {
 			handleIncomeTax(currentPlayer);
 		}
 
 		// READING RAILROAD
-		if (currentPlayer.getLocation() == 5) {
+		else if (currentPlayer.getLocation() == 5) {
 			if (board.ownsDeed(2, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 2, -200);
 			} else {
@@ -361,7 +367,7 @@ public class Game {
 		}
 
 		// ORIENTAL AVENUE
-		if (currentPlayer.getLocation() == 6) {
+		else if (currentPlayer.getLocation() == 6) {
 			if (board.ownsDeed(3, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 3, -100);
 			} else {
@@ -369,12 +375,12 @@ public class Game {
 			}
 		}
 		// CHANCE
-		if (currentPlayer.getLocation() == 7) {
+		else if (currentPlayer.getLocation() == 7) {
 			handleChanceCard(currentPlayer);
 		}
 
 		// VERMONT AVENUE
-		if (currentPlayer.getLocation() == 8) {
+		else if (currentPlayer.getLocation() == 8) {
 			if (board.ownsDeed(4, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 4, -board.deeds[location].getCost());
 			} else {
@@ -382,7 +388,7 @@ public class Game {
 			}
 		}
 		// CONNECTICUT AVENUE
-		if (currentPlayer.getLocation() == 9) {
+		else if (currentPlayer.getLocation() == 9) {
 			if (board.ownsDeed(5, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 5, -120);
 			} else {
@@ -390,7 +396,7 @@ public class Game {
 			}
 		}		
 		// ST. CHARLES PLACE
-		if (currentPlayer.getLocation() == 11) {
+		else if (currentPlayer.getLocation() == 11) {
 			if (board.ownsDeed(6, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 6, -140);
 			} else {
@@ -398,7 +404,7 @@ public class Game {
 			}
 		}
 		// ELECTRIC COMPANY
-		if (currentPlayer.getLocation() == 12) {
+		else if (currentPlayer.getLocation() == 12) {
 			if (board.ownsDeed(7, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 7, -150);
 			} else {
@@ -406,7 +412,7 @@ public class Game {
 			}
 		}
 		// STATES AVENUE
-		if (currentPlayer.getLocation() == 13) {
+		else if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(8, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 8, -140);
 			} else {
@@ -414,7 +420,7 @@ public class Game {
 			}
 		}
 		// VIRGINIA AVENUE
-		if (currentPlayer.getLocation() == 14) {
+		else if (currentPlayer.getLocation() == 14) {
 			if (board.ownsDeed(9, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 9, -160);
 			} else {
@@ -422,7 +428,7 @@ public class Game {
 			}
 		}
 		// PENNSYLVANIA RAILROAD
-		if (currentPlayer.getLocation() == 15) {
+		else if (currentPlayer.getLocation() == 15) {
 			if (board.ownsDeed(10, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 10, -200);
 			} else {
@@ -430,7 +436,7 @@ public class Game {
 			}
 		}
 		// ST. JAMES PLACE
-		if (currentPlayer.getLocation() == 16) {
+		else if (currentPlayer.getLocation() == 16) {
 			if (board.ownsDeed(11, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 11, -180);
 			} else {
@@ -438,11 +444,11 @@ public class Game {
 			}
 		}
 		// COMMUNITY CHEST
-		if (currentPlayer.getLocation() == 17) {
+		else if (currentPlayer.getLocation() == 17) {
 			handleChanceCard(currentPlayer);
 		}
 		// TENNESSE AVENUE
-		if (currentPlayer.getLocation() == 18) {
+		else if (currentPlayer.getLocation() == 18) {
 			if (board.ownsDeed(12, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 12, -180);
 			} else {
@@ -450,7 +456,7 @@ public class Game {
 			}
 		}
 		// NEW YORK AVENUE
-		if (currentPlayer.getLocation() == 19) {
+		else if (currentPlayer.getLocation() == 19) {
 			if (board.ownsDeed(13, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 13, -200);
 			} else {
@@ -458,7 +464,7 @@ public class Game {
 			}
 		}
 		// KENTUCKY AVENUE
-		if (currentPlayer.getLocation() == 21) {
+		else if (currentPlayer.getLocation() == 21) {
 			if (board.ownsDeed(14, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 14, -220);
 			} else {
@@ -466,12 +472,12 @@ public class Game {
 			}
 		}
 		// CHANCE
-		if (currentPlayer.getLocation() == 22) {
+		else if (currentPlayer.getLocation() == 22) {
 			handleChanceCard(currentPlayer);
 		}
 
 		// INDIANA AVENUE
-		if (currentPlayer.getLocation() == 23) {
+		else if (currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(15, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 15, -220);
 			} else {
@@ -479,7 +485,7 @@ public class Game {
 			}
 		}
 		// ILLINOIS AVENUE
-		if (currentPlayer.getLocation() == 24) {
+		else if (currentPlayer.getLocation() == 24) {
 			if (board.ownsDeed(16, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 16, -240);
 			} else {
@@ -487,7 +493,7 @@ public class Game {
 			}
 		}
 		// B. & O. RAILROAD
-		if (currentPlayer.getLocation() == 25) {
+		else if (currentPlayer.getLocation() == 25) {
 			if (board.ownsDeed(17, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 17, -200);
 			} else {
@@ -495,7 +501,7 @@ public class Game {
 			}
 		}
 		// ATLANTIC AVENUE
-		if (currentPlayer.getLocation() == 26) {
+		else if (currentPlayer.getLocation() == 26) {
 			if (board.ownsDeed(18, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 18, -260);
 			} else {
@@ -503,7 +509,7 @@ public class Game {
 			}
 		}
 		// VENTNOR AVENUE
-		if (currentPlayer.getLocation() == 27) {
+		else if (currentPlayer.getLocation() == 27) {
 			if (board.ownsDeed(19, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 19, -260);
 			} else {
@@ -511,7 +517,7 @@ public class Game {
 			}
 		}
 		// WATER WORKS
-		if (currentPlayer.getLocation() == 28) {
+		else if (currentPlayer.getLocation() == 28) {
 			if (board.ownsDeed(20, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 20, -150);
 			} else {
@@ -519,7 +525,7 @@ public class Game {
 			}
 		}
 		// MARVIN GARDENS
-		if (currentPlayer.getLocation() == 29) {
+		else if (currentPlayer.getLocation() == 29) {
 			if (board.ownsDeed(21, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 21, -280);
 			} else {
@@ -527,13 +533,13 @@ public class Game {
 			}
 		}
 		// GO TO JAIL
-		if (currentPlayer.getLocation() == 30) {
+		else if (currentPlayer.getLocation() == 30) {
 			currentPlayer.setLocation(10);
 			currentPlayer.isInJail = true;
 		}
 
 		// PACIFIC AVENUE
-		if (currentPlayer.getLocation() == 31) {
+		else if (currentPlayer.getLocation() == 31) {
 			if (board.ownsDeed(22, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 22, -300);
 			} else {
@@ -541,7 +547,7 @@ public class Game {
 			}
 		}
 		// NORTH CAROLINA AVENUE
-		if (currentPlayer.getLocation() == 32) {
+		else if (currentPlayer.getLocation() == 32) {
 			if (board.ownsDeed(23, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 23, -300);
 			} else {
@@ -549,11 +555,11 @@ public class Game {
 			}
 		}
 		// COMMUNITY CHEST
-		if (currentPlayer.getLocation() == 33) {
+		else if (currentPlayer.getLocation() == 33) {
 			handleChanceCard(currentPlayer);
 		}
 		// PENNSYLVANIA AVENUE
-		if (currentPlayer.getLocation() == 34) {
+		else if (currentPlayer.getLocation() == 34) {
 			if (board.ownsDeed(24, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 24, -320);
 			} else {
@@ -561,7 +567,7 @@ public class Game {
 			}
 		}
 		// SHORT LINE
-		if (currentPlayer.getLocation() == 35) {
+		else if (currentPlayer.getLocation() == 35) {
 			if (board.ownsDeed(25, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 25, -200);
 			} else {
@@ -569,11 +575,11 @@ public class Game {
 			}
 		}
 		// CHANCE
-		if (currentPlayer.getLocation() == 36) {
+		else if (currentPlayer.getLocation() == 36) {
 			handleChanceCard(currentPlayer);
 		}
 		// PARK PLACE
-		if (currentPlayer.getLocation() == 37) {
+		else if (currentPlayer.getLocation() == 37) {
 			if (board.ownsDeed(26, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 26, -350);
 			} else {
@@ -581,13 +587,13 @@ public class Game {
 			}
 		}
 		// LUXURY TAX
-		if (currentPlayer.getLocation() == 38) {
+		else if (currentPlayer.getLocation() == 38) {
 			System.out.println("\nThe bank took $100 off of your balance");
 			currentPlayer.setBalance(-100);
 		}
 
 		// BOARDWALK
-		if (currentPlayer.getLocation() == 39) {
+		else if (currentPlayer.getLocation() == 39) {
 			if (board.ownsDeed(27, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 27, -400);
 			} else {
