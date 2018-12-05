@@ -45,7 +45,6 @@ public class Game {
 			Player newPlayer = new Player(playerName, selection, 1500, total, 0);
 			newPlayer.jailCardOwned[0] = board.chance.get(0);
 			players[i] = newPlayer;
-		
 
 			// Finish interaction with players[i]
 			if (players.length == totalPlayers) {
@@ -272,7 +271,7 @@ public class Game {
 				currentPlayer.jailCardOwned[1] = null;
 				breakOutOfJail(currentPlayer);
 				turn(currentPlayer);
-			} else if (currentPlayer.jailCardOwned[0] == null) {
+			} else if (currentPlayer.jailCardOwned[0] != null) {
 				if (currentPlayer.jailCardOwned[0].cardType == CardType.CHANCE) {
 					board.chance.add(currentPlayer.jailCardOwned[0]);
 				} else {
@@ -353,6 +352,9 @@ public class Game {
 	 * Method that will handle the options available when the player lands on a
 	 * property
 	 * 
+	 * ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▀█▄▀▄▀██████ ▀█▄▀▄▀████▀ ▀█▄█▄███▀
+	 * ▀██▄██▀﻿
+	 * 
 	 * @param currentPlayer taking the turn
 	 */
 	private void landOnProperty(Player currentPlayer, int location) throws IOException {
@@ -361,7 +363,7 @@ public class Game {
 
 		// COMMUNITY CHEST
 		if (currentPlayer.getLocation() == 2) {
-
+			handleSpecialCard(currentPlayer);
 		}
 		// BALTIC AVENUE
 		if (currentPlayer.getLocation() == 3) {
@@ -395,7 +397,7 @@ public class Game {
 		}
 		// CHANCE
 		if (currentPlayer.getLocation() == 7) {
-			handleChanceCard(currentPlayer);
+			handleSpecialCard(currentPlayer);
 		}
 
 		// VERMONT AVENUE
@@ -462,6 +464,10 @@ public class Game {
 				payRent(currentPlayer, 14, 11);
 			}
 		}
+		// COMMUNITY CHEST
+		if (currentPlayer.getLocation() == 17) {
+			handleSpecialCard(currentPlayer);
+		}
 		// TENNESSE AVENUE
 		if (currentPlayer.getLocation() == 18) {
 			if (board.ownsDeed(12, currentPlayer)) {
@@ -486,6 +492,11 @@ public class Game {
 				payRent(currentPlayer, 18, 14);
 			}
 		}
+		// CHANCE
+		if (currentPlayer.getLocation() == 22) {
+			handleSpecialCard(currentPlayer);
+		}
+
 		// INDIANA AVENUE
 		if (currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(15, currentPlayer)) {
@@ -564,6 +575,10 @@ public class Game {
 				payRent(currentPlayer, 26, 23);
 			}
 		}
+		// COMMUNITY CHEST
+		if (currentPlayer.getLocation() == 33) {
+			handleSpecialCard(currentPlayer);
+		}
 		// PENNSYLVANIA AVENUE
 		if (currentPlayer.getLocation() == 34) {
 			if (board.ownsDeed(24, currentPlayer)) {
@@ -579,6 +594,10 @@ public class Game {
 			} else {
 				railRoadRent(currentPlayer, 25);
 			}
+		}
+		// CHANCE
+		if (currentPlayer.getLocation() == 36) {
+			handleSpecialCard(currentPlayer);
 		}
 		// PARK PLACE
 		if (currentPlayer.getLocation() == 37) {
@@ -604,7 +623,7 @@ public class Game {
 		}
 	}
 
-	private void handleChanceCard(Player currentPlayer) {
+	private void handleSpecialCard(Player currentPlayer) {
 		Card topcard = board.chance.get(0);
 		switch (topcard.cardName) {
 		case JAIL_FREE:
