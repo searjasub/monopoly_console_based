@@ -1,11 +1,6 @@
-
 package game;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.print.attribute.standard.NumberUp;
-
 import card.Card;
 import card.RailRoad;
 import dependancy.ConsoleUI;
@@ -46,7 +41,6 @@ public class Game {
 			Player newPlayer = new Player(playerName, selection, 1500, total, 0);
 			newPlayer.jailCardOwned[0] = board.chance.get(0);
 			players[i] = newPlayer;
-		
 
 			// Finish interaction with players[i]
 			if (players.length == totalPlayers) {
@@ -273,7 +267,7 @@ public class Game {
 				currentPlayer.jailCardOwned[1] = null;
 				breakOutOfJail(currentPlayer);
 				turn(currentPlayer);
-			} else if (currentPlayer.jailCardOwned[0] == null) {
+			} else if (currentPlayer.jailCardOwned[0] != null) {
 				if (currentPlayer.jailCardOwned[0].cardType == CardType.CHANCE) {
 					board.chance.add(currentPlayer.jailCardOwned[0]);
 				} else {
@@ -362,7 +356,7 @@ public class Game {
 
 		// COMMUNITY CHEST
 		if (currentPlayer.getLocation() == 2) {
-
+			handleSpecialCard(currentPlayer);
 		}
 		// BALTIC AVENUE
 		if (currentPlayer.getLocation() == 3) {
@@ -396,7 +390,7 @@ public class Game {
 		}
 		// CHANCE
 		if (currentPlayer.getLocation() == 7) {
-			handleChanceCard(currentPlayer);
+			handleSpecialCard(currentPlayer);
 		}
 
 		// VERMONT AVENUE
@@ -463,6 +457,10 @@ public class Game {
 				payRent(currentPlayer, 14, 11);
 			}
 		}
+		// COMMUNITY CHEST
+		if (currentPlayer.getLocation() == 17) {
+			handleSpecialCard(currentPlayer);
+		}
 		// TENNESSE AVENUE
 		if (currentPlayer.getLocation() == 18) {
 			if (board.ownsDeed(12, currentPlayer)) {
@@ -487,6 +485,11 @@ public class Game {
 				payRent(currentPlayer, 18, 14);
 			}
 		}
+		// CHANCE
+		if (currentPlayer.getLocation() == 22) {
+			handleSpecialCard(currentPlayer);
+		}
+
 		// INDIANA AVENUE
 		if (currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(15, currentPlayer)) {
@@ -565,6 +568,10 @@ public class Game {
 				payRent(currentPlayer, 26, 23);
 			}
 		}
+		// COMMUNITY CHEST
+		if (currentPlayer.getLocation() == 33) {
+			handleSpecialCard(currentPlayer);
+		}
 		// PENNSYLVANIA AVENUE
 		if (currentPlayer.getLocation() == 34) {
 			if (board.ownsDeed(24, currentPlayer)) {
@@ -580,6 +587,10 @@ public class Game {
 			} else {
 				railRoadRent(currentPlayer, 25);
 			}
+		}
+		// CHANCE
+		if (currentPlayer.getLocation() == 36) {
+			handleSpecialCard(currentPlayer);
 		}
 		// PARK PLACE
 		if (currentPlayer.getLocation() == 37) {
@@ -605,7 +616,7 @@ public class Game {
 		}
 	}
 
-	private void handleChanceCard(Player currentPlayer) {
+	private void handleSpecialCard(Player currentPlayer) {
 		Card topcard = board.chance.get(0);
 		switch (topcard.cardName) {
 		case JAIL_FREE:
@@ -634,27 +645,18 @@ public class Game {
 
 	}
 
-	private void handleIncomeTax(Player currentPlayer) throws IOException {
-		int taxSelection = menu.payLuxuryTaxMenu();
-		switch(taxSelection) {
-		case 0:
-			currentPlayer.setBalance(-200);
-			break;
-		case 1:
-			int totalToPay = 0;
-			for (card.Property cards : currentPlayer.propertiesOwned) {
-				totalToPay += cards.getCost() * 0.1;
-			}
-			totalToPay += currentPlayer.getBalance() * 0.1;
-			// HOUSES
-			
-			System.out.println("10% of your income is: " + totalToPay);
-			currentPlayer.setBalance(totalToPay);
-			break;
-		default:
-			throw new IllegalArgumentException("Invalid selection" + taxSelection);
+	private void handleIncomeTax(Player currentPlayer) {
+
+		int totalToPay = 0;
+		for (card.Property cards : currentPlayer.propertiesOwned) {
+			totalToPay += cards.getCost() * 0.1;
 		}
-		
+		totalToPay += currentPlayer.getBalance() * 0.1;
+		// HOUSES
+
+		System.out.println("10% of your income is: " + totalToPay);
+		currentPlayer.setBalance(totalToPay);
+
 	}
 
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
