@@ -1030,7 +1030,7 @@ public class Game {
 
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void buyHouse() {
-
+		
 	}
 
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
