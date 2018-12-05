@@ -13,6 +13,7 @@ public class Player {
 	final Token token;
 	final String name;
 	int turn;
+	int inJailTurns = 0;
 	boolean isInJail = false;
 	Card[] jailCardOwned = new Card[2]; // Array to hold the jail free cards
 	ArrayList<Property> propertiesOwned = new ArrayList<Property>(); // Array to hold the property cards
@@ -23,11 +24,12 @@ public class Player {
 	 * @param name  of the player
 	 * @param token selected by the player
 	 */
-	public Player(String name, Token token, int balance, int turn) {
+	public Player(String name, Token token, int balance, int turn, int location) {
 		this.name = name;
 		this.token = token;
 		this.balance += balance;
 		this.turn = turn;
+		this.location = location;
 	}
 
 	/**
@@ -81,10 +83,18 @@ public class Player {
 		
 		return this.propertiesOwned;
 	}
+	public int getTurnInJail() {
+		return this.inJailTurns;
+	}
+	
+	public void setTurnInJail(int inJailTurns) {
+		this.inJailTurns = inJailTurns;
+	}
 
 	public String toString() {
 		return "\n" + this.name + " the " + this.token + " rolled " + this.turn + ".";
 
 	}
+	
 
 }
