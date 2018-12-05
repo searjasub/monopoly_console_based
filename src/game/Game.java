@@ -5,7 +5,6 @@ import card.Card;
 import card.RailRoad;
 import dependancy.ConsoleUI;
 import dependancy.menu;
-import enumeration.CardType;
 import enumeration.Token;
 
 public class Game {
@@ -15,7 +14,6 @@ public class Game {
 	public Player[] players;
 	Die die = new Die();
 	Board board = new Board();
-	private boolean mortgaged;
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -39,7 +37,6 @@ public class Game {
 			int total = rollForOrder();
 
 			Player newPlayer = new Player(playerName, selection, 1500, total, 0);
-			newPlayer.jailCardOwned[0] = board.chance.get(0);
 			players[i] = newPlayer;
 
 			// Finish interaction with players[i]
@@ -257,30 +254,9 @@ public class Game {
 			breakOutOfJail(currentPlayer);
 			break;
 		case 1:
-			if (currentPlayer.jailCardOwned[1] != null) {
+			if (currentPlayer.jailCardOwned != null) {
 
-				if (currentPlayer.jailCardOwned[1].cardType == CardType.CHANCE) {
-					board.chance.add(currentPlayer.jailCardOwned[1]);
-				} else {
-					board.communityChest.add(currentPlayer.jailCardOwned[1]);
-				}
-				currentPlayer.jailCardOwned[1] = null;
 				breakOutOfJail(currentPlayer);
-				turn(currentPlayer);
-			} else if (currentPlayer.jailCardOwned[0] != null) {
-				if (currentPlayer.jailCardOwned[0].cardType == CardType.CHANCE) {
-					board.chance.add(currentPlayer.jailCardOwned[0]);
-				} else {
-					board.communityChest.add(currentPlayer.jailCardOwned[0]);
-				}
-				currentPlayer.jailCardOwned[0] = null;
-				breakOutOfJail(currentPlayer);
-				turn(currentPlayer);
-
-			} else {
-				System.out.println("You don't have any \"Get out of Jail\" card");
-			}
-
 			break;
 		case 2:
 			System.out.println("" + "*********************************************************************" + "\n\nOk "
@@ -615,7 +591,26 @@ public class Game {
 			}
 		}
 	}
+	private void handleIncomeTax(Player currentPlayer) throws IOException {
+		int taxSelection = menu.payLuxuryTaxMenu();
+		switch (taxSelection) {
+		case 0:
+			currentPlayer.setBalance(-200);
+			break;
+		case 1:
+			int totalToPay = 0;
+			for (card.Property cards : currentPlayer.propertiesOwned) {
+				totalToPay += cards.getCost() * 0.1;
+			}
+			totalToPay += currentPlayer.getBalance() * 0.1;
+			// HOUSES
 
+			System.out.println("10% of your income is: " + totalToPay);
+			currentPlayer.setBalance(totalToPay);
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid selection" + taxSelection);
+		}
 	private void handleSpecialCard(Player currentPlayer) {
 		Card topcard = board.chance.get(0);
 		switch (topcard.cardName) {
@@ -645,25 +640,11 @@ public class Game {
 
 	}
 
-	private void handleIncomeTax(Player currentPlayer) {
-
-		int totalToPay = 0;
-		for (card.Property cards : currentPlayer.propertiesOwned) {
-			totalToPay += cards.getCost() * 0.1;
-		}
-		totalToPay += currentPlayer.getBalance() * 0.1;
-		// HOUSES
-
-		System.out.println("10% of your income is: " + totalToPay);
-		currentPlayer.setBalance(totalToPay);
-
-	}
-
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
-			System.out.println("\nYou will now roll the dice to see how much you will have to pay rent.");
+			System.out.println("\nYou will now roll the dice to see how much you will have to pay for rent.");
 			int selection2 = menu.rollDiceMenu();
 			if (selection2 == 0) {
 				die.roll();
@@ -809,7 +790,7 @@ public class Game {
 	 */
 	private void showProperties(Player currentPlayer) {
 		if (currentPlayer.getPropertiesOwned().isEmpty()) {
-			System.out.println("\n\nSorry, you don't own any properties.\nKeep playing to see if get better luck!");
+			System.out.println("\n\nSorry, you don't own any properties.\nKeep playing to see if you get better luck!");
 		} else {
 			System.out.print("\nThe properties you own are:\n");
 
@@ -855,26 +836,6 @@ public class Game {
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void tradeCards() {
 
-	}
-
-	// tells whether or not property is mortgaged
-	public boolean isMortgaged() {
-		return mortgaged;
-	}
-
-	// unmortgage property
-	public void setMortgage(boolean bool) {
-		mortgaged = bool;
-	}
-
-	public String toString() {
-		String status = "";
-
-		if (isMortgaged())
-			// will show if property is mortgaged
-			status += " (Mortgaged)";
-
-		return super.toString() + status;
 	}
 
 	/**
