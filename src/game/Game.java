@@ -572,18 +572,26 @@ public class Game {
 		}
 	}
 
-	private void handleIncomeTax(Player currentPlayer) {
-
-
-		int totalToPay = 0;
-		for (card.Property cards : currentPlayer.propertiesOwned) {
-			totalToPay += cards.getCost() * 0.1;
+	private void handleIncomeTax(Player currentPlayer) throws IOException {
+		int taxSelection = menu.payLuxuryTaxMenu();
+		switch(taxSelection) {
+		case 0:
+			currentPlayer.setBalance(-200);
+			break;
+		case 1:
+			int totalToPay = 0;
+			for (card.Property cards : currentPlayer.propertiesOwned) {
+				totalToPay += cards.getCost() * 0.1;
+			}
+			totalToPay += currentPlayer.getBalance() * 0.1;
+			// HOUSES
+			
+			System.out.println("10% of your income is: " + totalToPay);
+			currentPlayer.setBalance(totalToPay);
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid selection" + taxSelection);
 		}
-		totalToPay += currentPlayer.getBalance() * 0.1;
-		// HOUSES
-		
-		System.out.println("10% of your income is: " + totalToPay);
-		currentPlayer.setBalance(totalToPay);
 		
 	}
 
@@ -591,7 +599,7 @@ public class Game {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
-			System.out.println("\nYou will now roll the dice to see how much you will have to pay rent." );
+			System.out.println("\nYou will now roll the dice to see how much you will have to pay for rent." );
 			int selection2 = menu.rollDiceMenu();
 			if (selection2 == 0) {
 				die.roll();
@@ -737,7 +745,7 @@ public class Game {
 	 */
 	private void showProperties(Player currentPlayer) {
 		if (currentPlayer.getPropertiesOwned().isEmpty()) {
-			System.out.println("\n\nSorry, you don't own any properties.\nKeep playing to see if get better luck!");
+			System.out.println("\n\nSorry, you don't own any properties.\nKeep playing to see if you get better luck!");
 		} else {
 			System.out.print("\nThe properties you own are:\n");
 
