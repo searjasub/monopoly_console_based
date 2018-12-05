@@ -160,8 +160,15 @@ public class menu {
 	
 	public static int rollDiceMenu()throws IOException {
 		String[] menuOptions = new String[1];
-		menuOptions[0] = "Roll dice";
+		menuOptions[0] = "Roll Dice";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
+	}
+	public static int payLuxuryTaxMenu() throws IOException {
+		String[] menuOptions = new String[2];
+		menuOptions[0] = "Pay $200.";
+		menuOptions[1] = "Pay 10% Of Your Assets";
+		return ConsoleUI.promptForMenuSelection(menuOptions);
+			
 	}
 
 

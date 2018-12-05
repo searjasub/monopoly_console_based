@@ -177,6 +177,54 @@ public class Board {
 				+ "|   FREE   |        |        |        |        |        |        |        |        |        |          |\n"
 				+ "|  PARKING |   21   |   22   |   23   |   24   |   25   |   26   |   27   |   28   |   29   |    30    |\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
+				+ "|__________|________|________|________|________|________|________|________|________|________|__________|\n"
+				+ "|          |                                                                                |          |\n"
+				+ "|    19    |                                                                                |    31    |\n"
+				+ "|__________|                            _____________________                               |__________|\n"
+				+ "|          |                           |                     |                              |          |\n"
+				+ "|    18    |                           |                     |                              |    32    |\n"
+				+ "|__________|                           |       CHANCE        |                              |__________|\n"
+				+ "|          |                           |                     |                              |          |\n"
+				+ "|    17    |                           |_____________________|                              |    33    |      Player:\t\t " + player.getName() + "\n"
+				+ "|__________|                                                                                |__________|      Token:\t\t " + player.getToken() + "\n"
+				+ "|          |                                                                                |          |      Location:\t\t " + player.getLocation() + "\n"
+				+ "|    16    |                                                                                |    34    |      Description:\t " + squares[player.getLocation()].getName() + "\n"
+				+ "|__________|                                                                                |__________|\n"
+				+ "|          |                                                                                |          |\n"
+				+ "|    15    |                               M O N O P O L Y                                  |    35    |\n"
+				+ "|__________|                                                                                |__________|\n"
+				+ "|          |                                                                                |          |\n"
+				+ "|    14    |                                                                                |    36    |\n"
+				+ "|__________|                            _____________________                               |__________|\n"
+				+ "|          |                           |                     |                              |          |\n"
+				+ "|    13    |                           |      COMMUNITY      |                              |    37    |\n"
+				+ "|__________|                           |        CHEST        |                              |__________|\n"
+				+ "|          |                           |                     |                              |          |\n"
+				+ "|    12    |                           |_____________________|                              |    38    |\n"
+				+ "|__________|                                                                                |__________|\n"
+				+ "|          |                                                                                |          |\n"
+				+ "|    11    |                                                                                |    39    |\n"
+				+ "|__________|________________________________________________________________________________|__________|\n"
+				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
+				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
+				+ "|   JAIL   |   9    |   8    |   7    |   6    |   5    |   4    |   3    |   2    |    1   |    GO    |\n"
+				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
+				+ "|__________|________|________|________|________|________|________|________|________|________|__________|\n");
+		
+	}
+	
+	/**
+	 * Print the board in the console
+	 * @param player adding information of the current player to the right side of the board
+	 */
+	public void printColorBoard(Player player) {		
+		
+		System.out.println("\n"
+				+ " ______________________________________________________________________________________________________\n"
+				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
+				+ "|   FREE   |        |        |        |        |        |        |        |        |        |          |\n"
+				+ "|  PARKING |   21   |   22   |   23   |   24   |   25   |   26   |   27   |   28   |   29   |    30    |\n"
+				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
 				+ "|__________|" + TitleColor.RED + "########" + TitleColor.RESET+ "|________|" + TitleColor.RED + "########" + TitleColor.RESET + "|" + TitleColor.RED +  "########" + TitleColor.RESET + "|________|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|________|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|__________|\n"
 				+ "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "         |\n"
 				+ "|    19   " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "   31    |\n"

@@ -1,3 +1,4 @@
+
 package game;
 
 import java.io.IOException;
@@ -633,18 +634,27 @@ public class Game {
 
 	}
 
-	private void handleIncomeTax(Player currentPlayer) {
-
-		int totalToPay = 0;
-		for (card.Property cards : currentPlayer.propertiesOwned) {
-			totalToPay += cards.getCost() * 0.1;
+	private void handleIncomeTax(Player currentPlayer) throws IOException {
+		int taxSelection = menu.payLuxuryTaxMenu();
+		switch(taxSelection) {
+		case 0:
+			currentPlayer.setBalance(-200);
+			break;
+		case 1:
+			int totalToPay = 0;
+			for (card.Property cards : currentPlayer.propertiesOwned) {
+				totalToPay += cards.getCost() * 0.1;
+			}
+			totalToPay += currentPlayer.getBalance() * 0.1;
+			// HOUSES
+			
+			System.out.println("10% of your income is: " + totalToPay);
+			currentPlayer.setBalance(totalToPay);
+			break;
+		default:
+			throw new IllegalArgumentException("Invalid selection" + taxSelection);
 		}
-		totalToPay += currentPlayer.getBalance() * 0.1;
-		// HOUSES
-
-		System.out.println("10% of your income is: " + totalToPay);
-		currentPlayer.setBalance(totalToPay);
-
+		
 	}
 
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
