@@ -131,7 +131,7 @@ public class Board {
 		squares[2] = new Special("Community Chest", CardType.COMMUNITY_CHEST);
 		squares[3] = new square.Property("Baltic Avenue", (TitleDeed) deeds[1]);
 		squares[4] = new Special("Income Tax");
-		squares[25] = new square.RailRoad("Reading Railroad", (RailRoad) deeds[2]);
+		squares[5] = new square.RailRoad("Reading Railroad", (RailRoad) deeds[2]);
 		squares[6] = new square.Property("Oriental Avenue", (TitleDeed) deeds[3]);
 		squares[7] = new Special("Chance", CardType.CHANCE);
 		squares[8] = new square.Property("Vermont Avenue", (TitleDeed) deeds[4]);

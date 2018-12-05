@@ -619,6 +619,27 @@ public class Game {
 			throw new IllegalArgumentException("Invalid selection" + taxSelection);
 		}
 	}
+	
+	private void landOnUtilityByChace(Player currentPlayer) throws IOException {
+		int totalOwed = 0;
+		int selection = menu.printPayRentMenu();
+		if (selection == 0) {
+			System.out.println("\nYou will now roll the dice to see how much you will have to pay rent.");
+			int selection2 = menu.rollDiceMenu();
+			if (selection2 == 0) {
+				die.roll();
+				whatYouRolled();
+				for (Player playerOwner : players) {
+					if (playerOwner.propertiesOwned.contains(board.deeds[7]) || playerOwner.propertiesOwned.contains(board.deeds[20])) {
+							totalOwed = 10 * die.getTotal();
+							System.out.println("Since you rolled " + die.getTotal() + ". You are paying $" + totalOwed);	
+						playerOwner.setBalance(totalOwed);
+						currentPlayer.setBalance(-totalOwed);
+					}
+				}
+			}
+		}
+	}
 
 	private void handleSpecialCard(Player currentPlayer) throws IOException {
 
@@ -634,11 +655,16 @@ public class Game {
 			}
 			break;
 		case MOVEMENT:
-			if (topCard.getId() == 3 || topCard.getId() == 8) {
+			if (topCard.getId() == 3) {
 				// Advance to GO
 				printCardInfo(topCard);
-				currentPlayer.setLocation(0);
-				// CHECK IF JUST BY DOING THIS WILL GIVE $200
+				if(currentPlayer.getLocation() == 2){
+					movePlayer(38, currentPlayer);
+				}else if(currentPlayer.getLocation() == 17) {
+					movePlayer(23, currentPlayer);
+				} else if(currentPlayer.getLocation() == 33) {
+					movePlayer(7, currentPlayer);
+				}
 			}
 			if (topCard.getId() == 4) {
 				// Go back 3 spaces
@@ -672,49 +698,75 @@ public class Game {
 			if(topCard.getId() == 6) {
 				//Go to nearest utility
 				printCardInfo(topCard);
-				if(currentPlayer.getLocation() < 20 && currentPlayer.getLocation() >= 0) {
-					currentPlayer.setLocation(12);
-					int totalOwed = 0;
-					int selection = menu.printPayRentMenu();
-					if (selection == 0) {
-						System.out.println("\nYou will now roll the dice to see how much you will have to pay rent.");
-						int selection2 = menu.rollDiceMenu();
-						if (selection2 == 0) {
-							die.roll();
-							whatYouRolled();
-							for (Player playerOwner : players) {
-								if (playerOwner.propertiesOwned.contains(board.deeds[7]) || playerOwner.propertiesOwned.contains(board.deeds[20])) {
-									
-										totalOwed = 10 * die.getTotal();
-										System.out.println("Since you rolled " + die.getTotal() + ". You are paying $" + totalOwed);	
-									playerOwner.setBalance(totalOwed);
-									currentPlayer.setBalance(-totalOwed);
-								}
-							}
-						}
-
-					}
-				}else if(currentPlayer.getLocation() <= 39  && currentPlayer.getLocation() >= 20) {
-					currentPlayer.setLocation(28);
+				if(currentPlayer.getLocation() == 7){
+					movePlayer(5, currentPlayer);
+					landOnUtilityByChace(currentPlayer);
+				}else if(currentPlayer.getLocation() == 22) {
+					movePlayer(6, currentPlayer);
+					landOnUtilityByChace(currentPlayer);
+				} else if(currentPlayer.getLocation() == 36) {
+					movePlayer(16, currentPlayer);
+					landOnUtilityByChace(currentPlayer);
 				}
 			}
-			
+			if (topCard.getId() == 8) {
+				printCardInfo(topCard);
+				if(currentPlayer.getLocation() == 7){
+					movePlayer(33, currentPlayer);
+				}else if(currentPlayer.getLocation() == 22) {
+					movePlayer(18, currentPlayer);
+				} else if(currentPlayer.getLocation() == 36) {
+					movePlayer(4, currentPlayer);
+				}
+			}
 			if(topCard.getId() == 9) {
 				//Advance to Illinois avenue
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(17, currentPlayer);
-				}
-				else if(currentPlayer.getLocation() == 22) {
+				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(2, currentPlayer);
 				} else if(currentPlayer.getLocation() == 36) {
 					movePlayer(28, currentPlayer);
 				}
-				
 			}
+			if(topCard.getId() == 10) {
+				if(currentPlayer.getLocation() == 7){
+					movePlayer(38, currentPlayer);
+				}else if(currentPlayer.getLocation() == 22) {
+					movePlayer(23, currentPlayer);
+				} else if(currentPlayer.getLocation() == 36) {
+					movePlayer(9, currentPlayer);
+				}
+			}
+			if(topCard.getId() == 11) {
+				if(currentPlayer.getLocation() == 7){
+					movePlayer(4, currentPlayer);
+				}else if(currentPlayer.getLocation() == 22) {
+					movePlayer(29, currentPlayer);
+				} else if(currentPlayer.getLocation() == 36) {
+					movePlayer(15, currentPlayer);
+				}
+			}
+			if (topCard.getId() == 12 || topCard.getId() == 13) {
+				// Go to jail
+				printCardInfo(topCard);
+				currentPlayer.setLocation(10);
+			}
+			if(topCard.getId() == 14) {
+				if(currentPlayer.getLocation() == 7){
+					movePlayer(32, currentPlayer);
+				}else if(currentPlayer.getLocation() == 22) {
+					movePlayer(17, currentPlayer);
+				} else if(currentPlayer.getLocation() == 36) {
+					movePlayer(3, currentPlayer);
+				}
+			}
+			
 			break;
 		case PAY_BUILDING_TAX:
 			break;
 		case PAY_MONEY:
+
 			if(topCard.getId() == 15) {
 				currentPlayer.setBalance(-15);
 			}
@@ -727,6 +779,7 @@ public class Game {
 			if(topCard.getId() == 18) {
 				currentPlayer.setBalance(-100);
 			}
+
 			break;
 		case PAY_OR_RECEIVE_PLAYERS:
 			break;
