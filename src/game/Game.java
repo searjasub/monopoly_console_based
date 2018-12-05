@@ -782,6 +782,22 @@ public class Game {
 
 			break;
 		case PAY_OR_RECEIVE_PLAYERS:
+			if(topCard.getId() == 21) {
+				int totalAmountCollected = 0;
+				for(Player player : players) {
+					player.setBalance(-10);
+					totalAmountCollected += 10;
+				}
+				
+				currentPlayer.setBalance(totalAmountCollected);
+			}
+			if(topCard.getId() == 22) {
+				int totalAmountGiven = 0;
+				currentPlayer.setBalance(-50 * players.length);
+				for(Player player : players) {
+					player.setBalance(totalAmountGiven/players.length);
+				}
+			}
 			break;
 		case RECEIVE_MONEY:
 			if(topCard.getId() == 23) {
