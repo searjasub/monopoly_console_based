@@ -348,9 +348,6 @@ public class Game {
 	 * Method that will handle the options available when the player lands on a
 	 * property
 	 * 
-	 * ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ▀█▄▀▄▀██████ ▀█▄▀▄▀████▀ ▀█▄█▄███▀
-	 * ▀██▄██▀﻿
-	 * 
 	 * @param currentPlayer taking the turn
 	 */
 	private void landOnProperty(Player currentPlayer, int location) throws IOException {
