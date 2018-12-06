@@ -1143,10 +1143,22 @@ public class Game {
 			throw new IllegalArgumentException("Invalid action " + action);
 		}
 	}
+	
+	private void showPropertyNameFormated(Player currentPlayer) {
+		System.out.print("\nThe properties you own are:\n");
+
+		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+			System.out.print("[");
+			if (i == currentPlayer.getPropertiesOwned().size() - 1) {
+				System.out.print(i + "]" + currentPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
+			}
+		}
+	}
 
 	private void buy(Player currentPlayer) throws IOException {
+
 		int action = menu.printSellBuyMainMenu();
-		switch(action) {
+		switch (action) {
 		case 0:
 			String playerName = ConsoleUI.promptForInput("Enter the name of the player you want to see the properties",
 					false);
@@ -1266,6 +1278,17 @@ public class Game {
 			throw new IllegalArgumentException("Invalid action " + action);
 		}
 	}
+	
+	private void showPropertyNamesOtherPlayer(Player otherPlayer) {
+		System.out.print("\nThe properties that " + otherPlayer.getName() + " owns are:\n");
+		for (int i = 0; i < otherPlayer.getPropertiesOwned().size(); i++) {
+			System.out.print("[");
+			if (i == otherPlayer.getPropertiesOwned().size() - 1) {
+				System.out.print(i + "]\t" + otherPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
+			}
+		}
+	}
+
 
 	private int checkForJailCard(Player playerSeller) {
 		int howMany = 0;
@@ -1300,37 +1323,15 @@ public class Game {
 			System.out.print("\nThe properties you own are:\n");
 
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-				System.out.print("[");
+
 				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
 					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
 							+ " | Rent: " + currentPlayer.getPropertiesOwned().get(i).getRent() + " | Buy House: $"
 							+ currentPlayer.propertiesOwned.get(i).getBuildingCost());
 				}
 			}
-			System.out.print("]");
-
-			System.out.print("\nThe cost of buying a house is is:\n");
-
-			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-				System.out.print("[");
-				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
-					if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
-						System.out.print("Not allowed]");
-					} else {
-						System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
-					}
-				} else {
-					if (currentPlayer.propertiesOwned.get(i).getBuildingCost() == 0) {
-						System.out.print("Not allowed]");
-					} else {
-						System.out.print(currentPlayer.propertiesOwned.get(i).getBuildingCost() + "]");
-					}
-				}
-			}
 		}
 	}
-
-			// SHOW RENT
 
 	private void buyHouse(Player currentPlayer) throws IOException {
 		ArrayList<String> propertyMonopolies = new ArrayList<String>();
