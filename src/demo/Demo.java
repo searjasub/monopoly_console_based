@@ -1,23 +1,48 @@
 package demo;
 
+import dependancy.ConsoleUI;
 import enumeration.TitleColor;
 import enumeration.Token;
 import game.Game;
 import game.Player;
 
 public class Demo{
+    Game game = new Game();
 
 
-    public Demo(){}
-
-    public static void main(String[] args) throws Exception {
-        System.out.println(TitleColor.BLUE + "Look at me I'm Blue!" + TitleColor.RESET);
-        Game game = new Game();
+    public Demo(){
         game.players = new Player[3];
         game.players[0] = new Player("Sear", Token.HAT, 1300, 0, 0);
         game.players[1] = new Player("Brooke", Token.BATTLESHIP, 1300, 0, 0);
         game.players[2] = new Player("Spencer", Token.CAT, 1300, 0, 0);
-
+    }
+        
+    public static void main(String[] args) throws Exception {
+        System.out.println(TitleColor.BLUE + "Look at me I'm Blue!" + TitleColor.RESET);
+        Demo d = new Demo();
+        int menu = ConsoleUI.promptForMenuSelection(new String[] {"Land on things","cards","taxy bois", "jail :(", "auction", "trading"});
+        switch(menu){
+            case 0:
+                d.landOnProperty();
+                break;
+            case 1:
+                d.chanceAndCommunityChest();
+                break;
+            case 2:
+                d.taxes();
+                break;
+            case 3:
+                d.jail();
+                break;
+            case 4:
+                d.auctioning();
+                break;
+            case 5:
+                d.sellingAndTradingProperties();
+                break;    
+            default:
+                break;
+        }
     }
 
 

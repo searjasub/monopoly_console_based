@@ -645,8 +645,8 @@ public class Game {
 	}
 
 	private void handleSpecialCard(Player currentPlayer) throws IOException {
-
 		Card topCard = board.chance.get(0);
+		printCardInfo(topCard);
 		switch (topCard.cardName) {
 		case JAIL_FREE:
 			if (currentPlayer.jailCardOwned[0] == null) {
@@ -660,7 +660,7 @@ public class Game {
 		case MOVEMENT:
 			if (topCard.getId() == 3) {
 				// Advance to GO
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 2){
 					movePlayer(38, currentPlayer);
 				}else if(currentPlayer.getLocation() == 17) {
@@ -671,12 +671,12 @@ public class Game {
 			}
 			if (topCard.getId() == 4) {
 				// Go back 3 spaces
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				currentPlayer.setLocation(currentPlayer.getLocation() - 3);
 			}
 			if (topCard.getId() == 5 || topCard.getId() == 7) {
 				//Go to nearest railroad
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(8, currentPlayer);
 					if(board.deeds[10].getOwner() != null) {
@@ -700,7 +700,7 @@ public class Game {
 			}
 			if(topCard.getId() == 6) {
 				//Go to nearest utility
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(5, currentPlayer);
 					landOnUtilityByChace(currentPlayer);
@@ -713,7 +713,7 @@ public class Game {
 				}
 			}
 			if (topCard.getId() == 8) {
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(33, currentPlayer);
 				}else if(currentPlayer.getLocation() == 22) {
@@ -752,7 +752,7 @@ public class Game {
 			}
 			if (topCard.getId() == 12 || topCard.getId() == 13) {
 				// Go to jail
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				currentPlayer.setLocation(10);
 			}
 			if(topCard.getId() == 14) {
@@ -1049,7 +1049,7 @@ public class Game {
 
 	/**
 	 * Method to print what the balance is.
-	 * 
+	 * 	
 	 * @param currentPlayer who's turn is it.
 	 */
 	private void showBalance(Player currentPlayer) {
