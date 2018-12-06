@@ -17,8 +17,8 @@ public class Game {
 	// Class level variables
 	public int turn, countPlayers, roundCount, countOfDoublesRolled = 0;
 	public Player[] players;
-	Die die = new Die();
-	Board board = new Board();
+	public Die die = new Die();
+	public Board board = new Board();
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -666,9 +666,11 @@ public class Game {
 		}
 	}
 
-	private void handleChanceCard(Player currentPlayer) throws IOException {
 
-		Card topCard = board.chance.get(0);
+
+	private void handleChanceCard(Player currentPlayer) throws IOException {
+    Card topCard = board.chance.get(0);
+    printCardInfo(topCard);
 		board.chance.remove(0);
 		switch (topCard.cardName) {
 		case JAIL_FREE:
@@ -681,17 +683,17 @@ public class Game {
 			}
 			break;
 		case MOVEMENT:
-
 			board.chance.add(topCard);
 			if (topCard.getId() == 4) {
 				// Go back 3 spaces
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				currentPlayer.setLocation(currentPlayer.getLocation() - 3);
 				landOnProperty(currentPlayer, currentPlayer.getLocation() - 3);
 			}
 			if (topCard.getId() == 5 || topCard.getId() == 7) {
+
 				// Go to nearest railroad
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 15) {
 					movePlayer(8, currentPlayer);
 					landOnProperty(currentPlayer, 15);
@@ -716,6 +718,7 @@ public class Game {
 					}
 				}
 			}
+
 			if (topCard.getId() == 6) {
 				// Go to nearest utility
 				printCardInfo(topCard);
@@ -746,7 +749,7 @@ public class Game {
 			}
 			if (topCard.getId() == 9) {
 				// Advance to Illinois avenue
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(17, currentPlayer);
 					landOnProperty(currentPlayer, 24);
@@ -759,8 +762,8 @@ public class Game {
 				}
 			}
 			if (topCard.getId() == 10) {
-				// Take a trip to reading railroad
-				printCardInfo(topCard);
+				//Take a trip to reading railroad
+				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(38, currentPlayer);
 					landOnProperty(currentPlayer, 5);
@@ -773,8 +776,8 @@ public class Game {
 				}
 			}
 			if (topCard.getId() == 11) {
-				// Advance to St. Charles
-				printCardInfo(topCard);
+				//Advance to St. Charles
+				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(4, currentPlayer);
 					landOnProperty(currentPlayer, 11);
@@ -788,14 +791,14 @@ public class Game {
 			}
 			if (topCard.getId() == 12) {
 				// Go to jail
-				printCardInfo(topCard);
+				//printCardInfo(topCard);
 				currentPlayer.setLocation(10);
 				landOnProperty(currentPlayer, 10);
 				landOnProperty(currentPlayer, 10);
 			}
 			if (topCard.getId() == 14) {
-				// Advance to Boardwalk
-				printCardInfo(topCard);
+				//Advance to Boardwalk
+				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(32, currentPlayer);
 					landOnProperty(currentPlayer, 39);
@@ -855,6 +858,7 @@ public class Game {
 	public void handleCommunityChestCard(Player currentPlayer) throws IOException {
 		Card topCard = board.communityChest.get(0);
 		board.communityChest.remove(0);
+    printCardInfo(topCard);
 		switch (topCard.cardName) {
 		case JAIL_FREE:
 			board.communityChest.add(topCard);
@@ -1313,7 +1317,7 @@ public class Game {
 
 	/**
 	 * Method to print what the balance is.
-	 * 
+	 * 	
 	 * @param currentPlayer who's turn is it.
 	 */
 	private void showBalance(Player currentPlayer) {
