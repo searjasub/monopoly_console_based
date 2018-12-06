@@ -632,7 +632,7 @@ public class Game {
 		}
 	}
 
-	private void landOnUtilityByChace(Player currentPlayer) throws IOException {
+	private void landOnUtilityByChance(Player currentPlayer) throws IOException {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
@@ -713,13 +713,13 @@ public class Game {
 				printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(5, currentPlayer);
-					landOnUtilityByChace(currentPlayer);
+					landOnUtilityByChance(currentPlayer);
 				} else if (currentPlayer.getLocation() == 22) {
 					movePlayer(6, currentPlayer);
-					landOnUtilityByChace(currentPlayer);
+					landOnUtilityByChance(currentPlayer);
 				} else if (currentPlayer.getLocation() == 36) {
 					movePlayer(16, currentPlayer);
-					landOnUtilityByChace(currentPlayer);
+					landOnUtilityByChance(currentPlayer);
 				}
 			}
 			if (topCard.getId() == 8) {
