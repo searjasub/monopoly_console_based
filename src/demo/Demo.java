@@ -40,7 +40,7 @@ public class Demo{
                     break;
             }
         }
-
+        d.game.board.printLargeBoard();
     }
 
 

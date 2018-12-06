@@ -173,7 +173,7 @@ public class Board {
 	 * Print the board in the console
 	 * @param player adding information of the current player to the right side of the board
 	 */
-	public void printBoard(Player player) {		
+	public void printNonColorBoard(Player player) {		
 		
 		System.out.println("\n"
 				+ " ______________________________________________________________________________________________________\n"
@@ -221,7 +221,7 @@ public class Board {
 	 * Print the board in the console
 	 * @param player adding information of the current player to the right side of the board
 	 */
-	public void printColorBoard(Player player) {		
+	public void printBoard(Player player) {		
 		
 		System.out.println("\n"
 				+ " ______________________________________________________________________________________________________\n"

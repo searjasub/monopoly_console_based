@@ -13,7 +13,7 @@ public class Game {
 	public int turn, countPlayers, roundCount, countOfDoublesRolled = 0;
 	public Player[] players;
 	Die die = new Die();
-	Board board = new Board();
+	public Board board = new Board();
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
