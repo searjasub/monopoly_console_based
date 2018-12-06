@@ -22,7 +22,6 @@ public class Die {
 		Random random = new Random();
 		dieOne = random.nextInt(6) + 1;
 		dieTwo = random.nextInt(6) + 1;
-
 	}
 
 	/**
@@ -125,3 +124,4 @@ public class Die {
 		dieTwo = -2;
 		return 12;
 	}
+}
