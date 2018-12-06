@@ -644,9 +644,18 @@ public class Game {
 		}
 	}
 
+<<<<<<< HEAD
 	private void handleSpecialCard(Player currentPlayer) throws IOException {
 		Card topCard = board.chance.get(0);
 		printCardInfo(topCard);
+=======
+
+
+	private void handleChanceCard(Player currentPlayer) throws IOException {
+    Card topCard = board.chance.get(0);
+    printCardInfo(topCard);
+		board.chance.remove(0);
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 		switch (topCard.cardName) {
 		case JAIL_FREE:
 			if (currentPlayer.jailCardOwned[0] == null) {
@@ -657,6 +666,7 @@ public class Game {
 				board.chance.remove(0);
 			}
 			break;
+<<<<<<< HEAD
 		case MOVEMENT:
 			if (topCard.getId() == 3) {
 				// Advance to GO
@@ -669,15 +679,26 @@ public class Game {
 					movePlayer(7, currentPlayer);
 				}
 			}
+=======
+		case MOVEMENT:	
+			board.chance.add(topCard);
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 			if (topCard.getId() == 4) {
 				// Go back 3 spaces
 				//printCardInfo(topCard);
 				currentPlayer.setLocation(currentPlayer.getLocation() - 3);
 			}
 			if (topCard.getId() == 5 || topCard.getId() == 7) {
+<<<<<<< HEAD
 				//Go to nearest railroad
 				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
+=======
+
+				// Go to nearest railroad
+				//printCardInfo(topCard);
+				if (currentPlayer.getLocation() == 15) {
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 					movePlayer(8, currentPlayer);
 					if(board.deeds[10].getOwner() != null) {
 						int doubleRent = board.deeds[2].getRent() * 2;
@@ -698,10 +719,18 @@ public class Game {
 					}
 				}
 			}
+<<<<<<< HEAD
 			if(topCard.getId() == 6) {
 				//Go to nearest utility
 				//printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
+=======
+
+			if (topCard.getId() == 6) {
+				// Go to nearest utility
+				printCardInfo(topCard);
+				if (currentPlayer.getLocation() == 7) {
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 					movePlayer(5, currentPlayer);
 					landOnUtilityByChace(currentPlayer);
 				}else if(currentPlayer.getLocation() == 22) {
@@ -713,8 +742,15 @@ public class Game {
 				}
 			}
 			if (topCard.getId() == 8) {
+<<<<<<< HEAD
 				//printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
+=======
+
+				//Advance to GO
+				//printCardInfo(topCard);
+				if (currentPlayer.getLocation() == 7) {
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 					movePlayer(33, currentPlayer);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(18, currentPlayer);
@@ -722,9 +758,16 @@ public class Game {
 					movePlayer(4, currentPlayer);
 				}
 			}
+<<<<<<< HEAD
 			if(topCard.getId() == 9) {
 				//Advance to Illinois avenue
 				if(currentPlayer.getLocation() == 7){
+=======
+			if (topCard.getId() == 9) {
+				// Advance to Illinois avenue
+				//printCardInfo(topCard);
+				if (currentPlayer.getLocation() == 7) {
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 					movePlayer(17, currentPlayer);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(2, currentPlayer);
@@ -732,8 +775,15 @@ public class Game {
 					movePlayer(28, currentPlayer);
 				}
 			}
+<<<<<<< HEAD
 			if(topCard.getId() == 10) {
 				if(currentPlayer.getLocation() == 7){
+=======
+			if (topCard.getId() == 10) {
+				//Take a trip to reading railroad
+				//printCardInfo(topCard);
+				if (currentPlayer.getLocation() == 7) {
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 					movePlayer(38, currentPlayer);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(23, currentPlayer);
@@ -741,8 +791,15 @@ public class Game {
 					movePlayer(9, currentPlayer);
 				}
 			}
+<<<<<<< HEAD
 			if(topCard.getId() == 11) {
 				if(currentPlayer.getLocation() == 7){
+=======
+			if (topCard.getId() == 11) {
+				//Advance to St. Charles
+				//printCardInfo(topCard);
+				if (currentPlayer.getLocation() == 7) {
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 					movePlayer(4, currentPlayer);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(29, currentPlayer);
@@ -755,8 +812,15 @@ public class Game {
 				//printCardInfo(topCard);
 				currentPlayer.setLocation(10);
 			}
+<<<<<<< HEAD
 			if(topCard.getId() == 14) {
 				if(currentPlayer.getLocation() == 7){
+=======
+			if (topCard.getId() == 14) {
+				//Advance to Boardwalk
+				//printCardInfo(topCard);
+				if (currentPlayer.getLocation() == 7) {
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 					movePlayer(32, currentPlayer);
 				}else if(currentPlayer.getLocation() == 22) {
 					movePlayer(17, currentPlayer);
@@ -773,6 +837,86 @@ public class Game {
 			if(topCard.getId() == 15) {
 				currentPlayer.setBalance(-15);
 			}
+<<<<<<< HEAD
+=======
+			if (topCard.getId() == 16) {
+				currentPlayer.setBalance(-50);
+			}
+			if (topCard.getId() == 17) {
+				currentPlayer.setBalance(-50);
+			}
+			if (topCard.getId() == 18) {
+				currentPlayer.setBalance(-100);
+			}
+
+			break;
+		case PAY_OR_RECEIVE_PLAYERS:
+			board.chance.add(topCard);
+			if (topCard.getId() == 22) {
+				int totalAmountGiven = 0;
+				currentPlayer.setBalance(-50 * players.length);
+				for (Player player : players) {
+					player.setBalance(totalAmountGiven / players.length);
+				}
+			}
+			break;
+		case RECEIVE_MONEY:
+			board.chance.add(topCard);
+			if (topCard.getId() == 23) {
+				currentPlayer.setBalance(+150);
+			}
+			if (topCard.getId() == 24) {
+				currentPlayer.setBalance(+50);
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	public void handleCommunityChestCard(Player currentPlayer) throws IOException {
+ 		Card topCard = board.communityChest.get(0);
+		board.communityChest.remove(0);
+    printCardInfo(topCard);
+		switch (topCard.cardName) {
+		case JAIL_FREE:
+			board.communityChest.add(topCard);
+			if (currentPlayer.jailCardOwned[0] == null) {
+				currentPlayer.jailCardOwned[0] = topCard;
+				board.communityChest.remove(0);
+			} else {
+				currentPlayer.jailCardOwned[1] = topCard;
+				board.communityChest.remove(0);
+			}
+			break;
+		case MOVEMENT:
+			board.communityChest.add(topCard);
+			if (topCard.getId() == 3) {
+				// Advance to GO
+				printCardInfo(topCard);
+				if(currentPlayer.getLocation() == 2){
+					movePlayer(38, currentPlayer);
+					landOnProperty(currentPlayer, 0);
+				}else if(currentPlayer.getLocation() == 17) {
+					movePlayer(23, currentPlayer);
+					landOnProperty(currentPlayer, 0);
+				} else if(currentPlayer.getLocation() == 33) {
+					movePlayer(7, currentPlayer);
+					landOnProperty(currentPlayer, 0);
+				}
+			}
+			if (topCard.getId() == 13) {
+				// Go to jail
+				printCardInfo(topCard);
+				currentPlayer.setLocation(10);
+				landOnProperty(currentPlayer, 10);
+			}
+			break;
+		case PAY_BUILDING_TAX:
+			board.communityChest.add(topCard);
+			break;
+		case PAY_MONEY:
+			board.communityChest.add(topCard);
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 			if(topCard.getId() == 16) {
 				currentPlayer.setBalance(-50);
 			}

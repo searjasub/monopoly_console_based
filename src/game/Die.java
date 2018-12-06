@@ -20,8 +20,13 @@ public class Die {
 	 */
 	public void roll() {
 		Random random = new Random();
+<<<<<<< HEAD
   		dieOne = random.nextInt(6) + 1;
 		dieTwo = random.nextInt(6) + 1;
+=======
+  	dieOne = random.nextInt(6) + 1;
+    dieTwo = random.nextInt(6) + 1;
+>>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
 
 		// dieOne = 0;
 		// dieTwo = 7;
