@@ -54,7 +54,7 @@ public class Board {
 		chance.add(new Card("\t\tChance\n", "\tGo back three spaces.\n", CardType.CHANCE, CardCategory.MOVEMENT,4));
 		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n\tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,5));
 		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST UTILITY.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, throw dice and pay owner ten times the amount thrown.\n", CardType.CHANCE, CardCategory.MOVEMENT,6));
-		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,7));
+		chance.add(new Card("\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,7));
 		chance.add(new Card("\tChance\n", "\tAdvance to GO. (Collect $200)\n", CardType.CHANCE, CardCategory.MOVEMENT,8));
 		chance.add(new Card("\tChance\n", "Advance to Illinois Avenue.\nIf you pass GO, collect $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,9));
 		chance.add(new Card("\tChance\n", "Take a trip to Reading Railroad.\nIf you pass GO, collect $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,10));
@@ -66,8 +66,8 @@ public class Board {
 		communityChest.add(new Card("\t   Community Chest\n", "\tDoctor's fees. Pay $50.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50, 16));
 		communityChest.add(new Card("\t  Community Chest\n", "\tSchool fees. Pay $50.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50,17));
 		communityChest.add(new Card("\t   Community Chest\n", "\tHospital fees. Pay $100.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 100,18));
-		communityChest.add(new Card("\t    Community Chest\n", "    You are assessed for street repairs: \nPay $40 per house and $115 per hotel you own.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX,19));
-		chance.add(new Card("\t\tChance\n", "   Make general repairs on all your property: \nFor each house pay $25, for each hotel pay $100.\n", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX,20));
+		// communityChest.add(new Card("\t    Community Chest\n", "    You are assessed for street repairs: \nPay $40 per house and $115 per hotel you own.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX,19));
+		// chance.add(new Card("\t\tChance\n", "   Make general repairs on all your property: \nFor each house pay $25, for each hotel pay $100.\n", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX,20));
 		communityChest.add(new Card("\t\tCommunity Chest\n", "It is your birthday. Collect $10 from every player.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_OR_RECEIVE_PLAYERS,21));
 		chance.add(new Card("     Chance\n", "You have been elected chairman of the board.\n \tPay each player $50.\n",CardType.CHANCE, CardCategory.PAY_OR_RECEIVE_PLAYERS,22));
 		chance.add(new Card("\t\tChance\n", "Your building loan matures. Collect $150.\n", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 150,23));
@@ -87,9 +87,8 @@ public class Board {
 	
 	/**
 	 * Method to initialize every property in the game.
-	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location, rentWithOne, rentWithTwo, rentWithThree, rentWithFour, rentWithHotel) {
+	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location) {
 	 */
-
 	public void initDeeds() {
 		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1, 2, 10, 30, 90, 160, 250);
 		deeds[1] = new TitleDeed("Baltic Avenue", 60, enumeration.TitleColor.BROWN, 50, 3, 4, 20, 60, 180, 320, 450);
@@ -1077,5 +1076,4 @@ public class Board {
 		System.out.println(
 				"```````````````````````````````````````````````````````````````` M+```````````````````````````````````````M/``````````````````````````````````````:M:``````````````````````````````````````/M```````````````````````````````````````+M `````````````````````````````````````` M+``````````````````````````````````````:M-``````````````````````````````````````/M```````````````````````````````````````+M`````````````````````````````````````` sN ````````````````````````````````````````````````````````````````");
 	}
-
 }

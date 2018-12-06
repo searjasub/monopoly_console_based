@@ -125,4 +125,3 @@ public class Die {
 		dieTwo = -2;
 		return 12;
 	}
-}
