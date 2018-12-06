@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
 import card.Card;
 import card.Property;
 import card.RailRoad;
@@ -88,6 +89,7 @@ public class Board {
 	 * Method to initialize every property in the game.
 	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location, rentWithOne, rentWithTwo, rentWithThree, rentWithFour, rentWithHotel) {
 	 */
+
 	public void initDeeds() {
 		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1, 2, 10, 30, 90, 160, 250);
 		deeds[1] = new TitleDeed("Baltic Avenue", 60, enumeration.TitleColor.BROWN, 50, 3, 4, 20, 60, 180, 320, 450);

@@ -1267,10 +1267,10 @@ public class Game {
 						// accept will take card from seller to currentPlayer
 						// and swept money
 			// for testing purposes only
-			String playerName2 = ConsoleUI.promptForInput("Enter the name of the player you want to see if he has ", false);
+			String playerName2 = ConsoleUI.promptForInput("Enter the name of the player you want to see if he has \"Get Out Of Jail\" cards ", false);
 			for (Player playerSeller : players) {
 				if (playerSeller.getName().toLowerCase().equals(playerName2.toLowerCase())) {
-					showPropertyNamesOtherPlayer(playerSeller);
+					checkForJailCard(playerSeller);
 					int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want buy", 0,
 							playerSeller.getPropertiesOwned().size());
 					Property temp = playerSeller.propertiesOwned.get(selection);
@@ -1303,6 +1303,11 @@ public class Game {
 		}
 	}
 	
+	private void checkForJailCard(Player playerSeller) {
+		
+		
+	}
+
 	/**
 	 * Method to print what the balance is.
 	 * 
