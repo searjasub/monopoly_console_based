@@ -7,7 +7,8 @@ import card.Property;
 import enumeration.Token;
 
 public class Player {
-
+	
+	boolean bankrupt;
 	int balance;
 	int location;
 	final Token token;
@@ -30,6 +31,7 @@ public class Player {
 		this.balance += balance;
 		this.turn = turn;
 		this.location = location;
+		this.bankrupt = false;
 	}
 
 	/**
