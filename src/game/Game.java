@@ -729,6 +729,7 @@ public class Game {
 			}
 			if(topCard.getId() == 9) {
 				//Advance to Illinois avenue
+				printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(17, currentPlayer);
 					landOnProperty(currentPlayer, 24);
@@ -742,6 +743,7 @@ public class Game {
 			}
 			if(topCard.getId() == 10) {
 				//Taka a trip to reading railroad
+				printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(38, currentPlayer);
 					landOnProperty(currentPlayer, 5);
@@ -755,6 +757,7 @@ public class Game {
 			}
 			if(topCard.getId() == 11) {
 				//Advance to St. Charles
+				printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(4, currentPlayer);
 					landOnProperty(currentPlayer, 11);
@@ -774,6 +777,7 @@ public class Game {
 			}
 			if(topCard.getId() == 14) {
 				//Advance to Boardwalk
+				printCardInfo(topCard);
 				if(currentPlayer.getLocation() == 7){
 					movePlayer(32, currentPlayer);
 					landOnProperty(currentPlayer, 39);
