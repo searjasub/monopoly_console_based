@@ -174,7 +174,12 @@ public class Game {
 		while (!gameOver) {
 			// handle turns
 			for (int i = 0; i < players.length; i++) {
-				turn(players[i]);
+				if(!players[i].bankrupt) {
+					turn(players[i]);					
+				}
+				else {
+					continue;
+				}
 			}
 			roundCount++;
 		}
@@ -690,18 +695,15 @@ public class Game {
 			break;
 
 		case MOVEMENT:	
-
 			board.chance.add(topCard);
 			if (topCard.getId() == 4) {
 				// Go back 3 spaces
-				//printCardInfo(topCard);
 				currentPlayer.setLocation(currentPlayer.getLocation() - 3);
 				landOnProperty(currentPlayer, currentPlayer.getLocation() - 3);
 			}
 			if (topCard.getId() == 5 || topCard.getId() == 7) {
 
 				// Go to nearest railroad
-				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 15) {
 					movePlayer(8, currentPlayer);
 					landOnProperty(currentPlayer, 15);
@@ -742,8 +744,6 @@ public class Game {
 				}
 			}
 			if (topCard.getId() == 8) {
-
-
 				//Advance to GO
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(33, currentPlayer);
@@ -758,7 +758,6 @@ public class Game {
 			}
 			if (topCard.getId() == 9) {
 				// Advance to Illinois avenue
-				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(17, currentPlayer);
 					landOnProperty(currentPlayer, 24);
@@ -798,7 +797,6 @@ public class Game {
 			}
 			if (topCard.getId() == 12) {
 				// Go to jail
-				//printCardInfo(topCard);
 				currentPlayer.setLocation(10);
 				landOnProperty(currentPlayer, 10);
 				landOnProperty(currentPlayer, 10);
@@ -1355,6 +1353,7 @@ public class Game {
 		}
 	}
 
+
 	private int checkForJailCard(Player playerSeller) {
 		int howMany = 0;
 		System.out.print(playerSeller.getName() + " has ");
@@ -1365,6 +1364,7 @@ public class Game {
 			}
 		}
 		return howMany;
+
 	}
 
 	/**
@@ -1564,6 +1564,9 @@ public class Game {
 		currentPlayer.isInJail(true);
 	}
 
+	private void bankruptcy(Player currentPlayer) {
+		currentPlayer.bankrupt = true;
+	}
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
