@@ -54,7 +54,7 @@ public class Board {
 		chance.add(new Card("\t\tChance\n", "\tGo back three spaces.\n", CardType.CHANCE, CardCategory.MOVEMENT,4));
 		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n\tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,5));
 		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST UTILITY.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, throw dice and pay owner ten times the amount thrown.\n", CardType.CHANCE, CardCategory.MOVEMENT,6));
-		chance.add(new Card("\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,7));
+		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,7));
 		chance.add(new Card("\tChance\n", "\tAdvance to GO. (Collect $200)\n", CardType.CHANCE, CardCategory.MOVEMENT,8));
 		chance.add(new Card("\tChance\n", "Advance to Illinois Avenue.\nIf you pass GO, collect $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,9));
 		chance.add(new Card("\tChance\n", "Take a trip to Reading Railroad.\nIf you pass GO, collect $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,10));
@@ -87,7 +87,7 @@ public class Board {
 	
 	/**
 	 * Method to initialize every property in the game.
-	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location) {
+	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location, rentWithOne, rentWithTwo, rentWithThree, rentWithFour, rentWithHotel) {
 	 */
 	public void initDeeds() {
 		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1, 2, 10, 30, 90, 160, 250);
