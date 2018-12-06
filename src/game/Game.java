@@ -212,12 +212,9 @@ public class Game {
 					showProperties(currentPlayer);
 					break;
 				case 3:
-					buyHouse(currentPlayer);
-					break;
-				case 4:
 					sell(currentPlayer);
 					break;
-				case 5:
+				case 4:
 					buy(currentPlayer);
 
 					break;
@@ -800,7 +797,6 @@ public class Game {
 							landOnProperty(currentPlayer, 39);
 						}
 					}
-
 					break;
 				}
 			}
@@ -1035,15 +1031,12 @@ public class Game {
 				showProperties(currentPlayer);
 				break;
 			case 2:
-				buyHouse(currentPlayer);
-				break;
-			case 3:
 				sell(currentPlayer);
 				break;
-			case 4:
+			case 3:
 				buy(currentPlayer);
 				break;
-			case 5:
+			case 4:
 				isYourTurnAfterRoll = false;
 				break;
 			default:
@@ -1094,9 +1087,9 @@ public class Game {
 			break;
 		case 1:
 			if (currentPlayer.jailCardOwned[1] == null) {
-				System.out.println("You don't have any \"Get Out Of Jail\" cards");
+				System.out.println("\nYou don't have any \"Get Out Of Jail\" cards");
 			} else if (currentPlayer.jailCardOwned[0] == null && currentPlayer.jailCardOwned[1] == null) {
-				System.out.println("You don't have any \"Get Out Of Jail\" cards");
+				System.out.println("\nYou don't have any \"Get Out Of Jail\" cards");
 			} else {
 
 				int cardLocation = 0;
@@ -1176,7 +1169,7 @@ public class Game {
 				if (playerSeller.getName().toLowerCase().equals(playerName.toLowerCase())) {
 
 					if (playerSeller.propertiesOwned.isEmpty()) {
-						System.out.println(
+						System.out.println("\n" + 
 								playerSeller.getName() + " does not have any properties. Check back with him later.");
 					} else {
 
