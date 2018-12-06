@@ -1,11 +1,15 @@
 package game;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import card.Card;
 import card.Property;
 import card.RailRoad;
+import card.TitleDeed;
 import dependancy.ConsoleUI;
 import dependancy.menu;
+import enumeration.TitleColor;
 import enumeration.Token;
 
 public class Game {
