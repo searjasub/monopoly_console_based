@@ -15,7 +15,7 @@ public class Player {
 	int turn;
 	int inJailTurns = 0;
 	boolean isInJail = false;
-	Card[] jailCardOwned = new Card[2]; // Array to hold the jail free cards
+	public Card[] jailCardOwned = new Card[2]; // Array to hold the jail free cards
 	ArrayList<Property> propertiesOwned = new ArrayList<Property>(); // Array to hold the property cards
 
 	/**

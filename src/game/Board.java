@@ -66,8 +66,8 @@ public class Board {
 		communityChest.add(new Card("\t   Community Chest\n", "\tDoctor's fees. Pay $50.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50, 16));
 		communityChest.add(new Card("\t  Community Chest\n", "\tSchool fees. Pay $50.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50,17));
 		communityChest.add(new Card("\t   Community Chest\n", "\tHospital fees. Pay $100.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 100,18));
-		communityChest.add(new Card("\t    Community Chest\n", "    You are assessed for street repairs: \nPay $40 per house and $115 per hotel you own.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX,19));
-		chance.add(new Card("\t\tChance\n", "   Make general repairs on all your property: \nFor each house pay $25, for each hotel pay $100.\n", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX,20));
+		// communityChest.add(new Card("\t    Community Chest\n", "    You are assessed for street repairs: \nPay $40 per house and $115 per hotel you own.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX,19));
+		// chance.add(new Card("\t\tChance\n", "   Make general repairs on all your property: \nFor each house pay $25, for each hotel pay $100.\n", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX,20));
 		communityChest.add(new Card("\t\tCommunity Chest\n", "It is your birthday. Collect $10 from every player.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_OR_RECEIVE_PLAYERS,21));
 		chance.add(new Card("     Chance\n", "You have been elected chairman of the board.\n \tPay each player $50.\n",CardType.CHANCE, CardCategory.PAY_OR_RECEIVE_PLAYERS,22));
 		chance.add(new Card("\t\tChance\n", "Your building loan matures. Collect $150.\n", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 150,23));

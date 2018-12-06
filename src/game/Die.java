@@ -20,11 +20,11 @@ public class Die {
 	 */
 	public void roll() {
 		Random random = new Random();
-  	dieOne = random.nextInt(6) + 1;
+  		dieOne = random.nextInt(6) + 1;
 		dieTwo = random.nextInt(6) + 1;
 
-		dieOne = 0;
-		dieTwo = 7;
+		// dieOne = 0;
+		// dieTwo = 7;
 	}
 
 	/**

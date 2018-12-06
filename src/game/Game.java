@@ -12,8 +12,8 @@ public class Game {
 	// Class level variables
 	public int turn, countPlayers, roundCount, countOfDoublesRolled = 0;
 	public Player[] players;
-	Die die = new Die();
-	Board board = new Board();
+	public Die die = new Die();
+	public Board board = new Board();
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
