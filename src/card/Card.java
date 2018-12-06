@@ -1,11 +1,9 @@
 package card;
 
-import building.Building;
 import enumeration.CardCategory;
 import enumeration.CardType;
 
 public class Card {
-	Building[] buildings= new Building[5];
 	String name, desc;
 	public CardType cardType;
 	public CardCategory cardName;
