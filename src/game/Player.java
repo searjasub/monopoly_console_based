@@ -83,6 +83,7 @@ public class Player {
 		
 		return this.propertiesOwned;
 	}
+	
 	public int getTurnInJail() {
 		return this.inJailTurns;
 	}

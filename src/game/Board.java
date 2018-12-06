@@ -81,8 +81,8 @@ public class Board {
 		communityChest.add(new Card("\t Community Chest\n", "\tYou inherit $100.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100,31));
 		communityChest.add(new Card("\tCommunity Chest\n", "Holiday fund matures. Receive $100.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100,32));
 		
-		Collections.shuffle(chance);
-		Collections.shuffle(communityChest);
+		//Collections.shuffle(chance);
+		//Collections.shuffle(communityChest);
 	}
 	
 	/**
