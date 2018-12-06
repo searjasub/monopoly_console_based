@@ -101,13 +101,12 @@ public class menu {
 	 * @throws IOException
 	 */
 	public static int printTurnMenu() throws IOException {
-		String[] menuOptions = new String[6];
+		String[] menuOptions = new String[5];
 		menuOptions[0] = "Roll Dice";
 		menuOptions[1] = "See Balance";
 		menuOptions[2] = "See Your Properties";
-		menuOptions[3] = "Buy House/Hotel";
-		menuOptions[4] = "Sell Properties Or \"Get Out Of Jail\" Card";
-		menuOptions[5] = "Buy Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[3] = "Sell Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[4] = "Buy Properties Or \"Get Out Of Jail\" Card";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 	
@@ -121,13 +120,12 @@ public class menu {
 	 * @return the selection
 	 */
 	public static int printMenuAfterRoll() throws IOException {
-		String[] menuOptions = new String[6];
+		String[] menuOptions = new String[5];
 		menuOptions[0] = "See Balance";
 		menuOptions[1] = "See Your Properties";
-		menuOptions[2] = "Buy House/Hotel";
-		menuOptions[3] = "Sell Properties Or \"Get Out Of Jail\" Card";
-		menuOptions[4] = "Buy Properties Or \"Get Out Of Jail\" Card";
-		menuOptions[5] = "End Turn";
+		menuOptions[2] = "Sell Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[3] = "Buy Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[4] = "End Turn";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
