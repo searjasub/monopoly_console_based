@@ -1,11 +1,16 @@
 package game;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import card.Card;
 import card.RailRoad;
+import card.TitleDeed;
 import dependancy.ConsoleUI;
 import dependancy.menu;
+import enumeration.TitleColor;
 import enumeration.Token;
+import card.Property;
 
 public class Game {
 
@@ -208,13 +213,13 @@ public class Game {
 					showProperties(currentPlayer);
 					break;
 				case 3:
-					buyHouse();
+					buyHouse(currentPlayer);
 					break;
 				case 4:
-					sell();
+					sell(currentPlayer);
 					break;
 				case 5:
-					buy();
+					buy(currentPlayer);
 		
 					break;
 				default:
@@ -790,6 +795,8 @@ public class Game {
 			}
 			
 			break;
+				}
+			}
 		case PAY_BUILDING_TAX:
 			break;
 		case PAY_MONEY:
@@ -811,6 +818,7 @@ public class Game {
 			}
 
 			break;
+			}
 		case PAY_OR_RECEIVE_PLAYERS:
 			board.communityChest.add(topCard);
 			if (topCard.getId() == 21) {
@@ -1016,13 +1024,13 @@ public class Game {
 				showProperties(currentPlayer);
 				break;
 			case 2:
-				buyHouse();
+				buyHouse(currentPlayer);
 				break;
 			case 3:
-				sell();
+				sell(currentPlayer);
 				break;
 			case 4:
-				buy();
+				buy(currentPlayer);
 				break;
 			case 5:
 				isYourTurnAfterRoll = false;
@@ -1319,6 +1327,8 @@ public class Game {
 					}
 				}
 			}
+		}
+	}
 
 			// SHOW RENT
 
