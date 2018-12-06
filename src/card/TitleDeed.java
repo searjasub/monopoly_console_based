@@ -4,7 +4,9 @@ import enumeration.TitleColor;
 
 public class TitleDeed extends Property {
 	
-	TitleColor color;
+	public TitleColor color;
+	public int totalBuildings = 0;
+
 	/**
 	 * 
 	 * @param name
@@ -21,6 +23,7 @@ public class TitleDeed extends Property {
 	 */
 	public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location, int rent, int rentWithOne, int rentWithTwo, int rentWithThree, int rentWithFour, int rentWithHotel) {
 		super(name, cost, buildingCost, location, rent, rentWithOne, rentWithTwo, rentWithThree, rentWithFour, rentWithHotel);
+		this.color = color;
 		
 	}
 	
