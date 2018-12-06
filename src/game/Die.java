@@ -20,16 +20,8 @@ public class Die {
 	 */
 	public void roll() {
 		Random random = new Random();
-<<<<<<< HEAD
-  		dieOne = random.nextInt(6) + 1;
+		dieOne = random.nextInt(6) + 1;
 		dieTwo = random.nextInt(6) + 1;
-=======
-  	dieOne = random.nextInt(6) + 1;
-    dieTwo = random.nextInt(6) + 1;
->>>>>>> e4f3eb0ae64b619f8adc12f1f5c40bb21b536e5a
-
-		// dieOne = 0;
-		// dieTwo = 7;
 	}
 
 	/**
@@ -61,65 +53,73 @@ public class Die {
 
 	}
 
-	public int returnOne(){
+	public int returnOne() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 1;
 	}
-	public int returnTwo(){
+
+	public int returnTwo() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 2;
 	}
 
-	public int returnThree(){
+	public int returnThree() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 3;
 	}
 
-	public int returnFour(){
+	public int returnFour() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 4;
 	}
-	public int returnFive(){
+
+	public int returnFive() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 5;
 	}
-	public int returnSix(){
+
+	public int returnSix() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 6;
 	}
-	public int returnSeven(){
+
+	public int returnSeven() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 7;
 	}
-	public int returnEight(){
+
+	public int returnEight() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 8;
 	}
-	public int returnNine(){
+
+	public int returnNine() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 9;
 	}
-	public int returnTen(){
+
+	public int returnTen() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 10;
 	}
-	
-	public int returnEleven(){
+
+	public int returnEleven() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 11;
 	}
-	public int returnTwelve(){
+
+	public int returnTwelve() {
 		dieOne = -1;
 		dieTwo = -2;
 		return 12;
