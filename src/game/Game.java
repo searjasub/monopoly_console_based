@@ -268,8 +268,10 @@ public class Game {
 			breakOutOfJail(currentPlayer);
 			break;
 		case 1:
-			if (currentPlayer.jailCardOwned != null) {
-				breakOutOfJail(currentPlayer);
+			if (currentPlayer.jailCardOwned[1] != null) {
+				useCardToGetOut(currentPlayer);
+			} else if (currentPlayer.jailCardOwned[0] != null) {
+				useCardToGetOut(currentPlayer);
 			}
 			break;
 		case 2:
@@ -282,6 +284,15 @@ public class Game {
 		default:
 			throw new IllegalArgumentException("Invalid action " + action);
 		}
+
+	}
+
+	private void useCardToGetOut(Player currentPlayer) throws IOException {
+		breakOutOfJail(currentPlayer);
+		System.out.println("\n*********************************************************************"
+				+ "\nYou haved used your \"Get Out Of Jail\" card! Hopefully we won't see you again here.");
+		currentPlayer.jailCardOwned[1] = null;
+		turn(currentPlayer);
 
 	}
 
@@ -682,18 +693,17 @@ public class Game {
 				board.chance.remove(0);
 			}
 			break;
-		case MOVEMENT:
+
+		case MOVEMENT:	
 			board.chance.add(topCard);
 			if (topCard.getId() == 4) {
 				// Go back 3 spaces
-				//printCardInfo(topCard);
 				currentPlayer.setLocation(currentPlayer.getLocation() - 3);
 				landOnProperty(currentPlayer, currentPlayer.getLocation() - 3);
 			}
 			if (topCard.getId() == 5 || topCard.getId() == 7) {
 
 				// Go to nearest railroad
-				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 15) {
 					movePlayer(8, currentPlayer);
 					landOnProperty(currentPlayer, 15);
@@ -734,8 +744,7 @@ public class Game {
 				}
 			}
 			if (topCard.getId() == 8) {
-				// Advance to GO
-				printCardInfo(topCard);
+				//Advance to GO
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(33, currentPlayer);
 					landOnProperty(currentPlayer, 0);
@@ -749,7 +758,6 @@ public class Game {
 			}
 			if (topCard.getId() == 9) {
 				// Advance to Illinois avenue
-				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(17, currentPlayer);
 					landOnProperty(currentPlayer, 24);
@@ -763,7 +771,6 @@ public class Game {
 			}
 			if (topCard.getId() == 10) {
 				//Take a trip to reading railroad
-				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(38, currentPlayer);
 					landOnProperty(currentPlayer, 5);
@@ -777,7 +784,6 @@ public class Game {
 			}
 			if (topCard.getId() == 11) {
 				//Advance to St. Charles
-				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(4, currentPlayer);
 					landOnProperty(currentPlayer, 11);
@@ -791,14 +797,12 @@ public class Game {
 			}
 			if (topCard.getId() == 12) {
 				// Go to jail
-				//printCardInfo(topCard);
 				currentPlayer.setLocation(10);
 				landOnProperty(currentPlayer, 10);
 				landOnProperty(currentPlayer, 10);
 			}
 			if (topCard.getId() == 14) {
 				//Advance to Boardwalk
-				//printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(32, currentPlayer);
 					landOnProperty(currentPlayer, 39);
@@ -1124,100 +1128,96 @@ public class Game {
 	}
 
 	private void sell(Player currentPlayer) throws IOException {
-		// Choose property and set prize
-		// choose player (for loop to find the player)
-		// sout player's name to simulate we change the view
-		// acceptMenu()
-		// Accept
-		// change the owner of the deed and set money - the value agreed for second
-		// player
-		// Decline
-		// break/false?
-		//
 		int action = menu.printSellBuyMainMenu();
 		switch (action) {
 		case 0:
-			showPropertyNameFormated(currentPlayer);
-			int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want so sell", 0,
-					currentPlayer.getPropertiesOwned().size());
-			Property temp = currentPlayer.propertiesOwned.get(selection);
-			int prize = ConsoleUI.promptForInt("Enter the prize you want to sell it for", 0, Integer.MAX_VALUE);
-			String playerName = ConsoleUI.promptForInput("Enter the name of the player you want to sell the property",
-					false);
-			for (Player playerBuyer : players) {
-				if (playerBuyer.getName().toLowerCase().equals(playerName.toLowerCase())) {
-					System.out.println("Hey " + playerBuyer.getName() + ", " + currentPlayer.getName()
-							+ " wants to sell " + temp.getPropertyName() + " for $" + prize);
-					int playerBuyerSelection = menu.printAcceptMenu();
-					switch (playerBuyerSelection) {
-					case 0:
-						playerBuyer.propertiesOwned.add(temp);
-						playerBuyer.setBalance(-prize);
-						currentPlayer.propertiesOwned.remove(selection);
-						currentPlayer.setBalance(prize);
-						System.out.println(currentPlayer.getName() + " says thank you!");
-						break;
-					case 1:
-						System.out.println("Sorry " + currentPlayer.getName() + ", " + playerBuyer.getName()
-								+ " said that will not buy it for that much.");
-						break;
-					default:
-						break;
+			if (currentPlayer.getPropertiesOwned().size() == 0) {
+				System.out.println(
+						"\nSorry you don't have any properties to sell, check back later after you had purchase something");
+			} else {
+				showPropertyNameFormated(currentPlayer);
+				int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want so sell", 0,
+						currentPlayer.getPropertiesOwned().size());
+				Property temp = currentPlayer.propertiesOwned.get(selection);
+				int prize = ConsoleUI.promptForInt("Enter the prize you want to sell it for", 0, Integer.MAX_VALUE);
+				String playerName = ConsoleUI
+						.promptForInput("Enter the name of the player you want to sell the property", false);
+				for (Player playerBuyer : players) {
+					if (playerBuyer.getName().toLowerCase().equals(playerName.toLowerCase())) {
+						System.out.println("Hey " + playerBuyer.getName() + ", " + currentPlayer.getName()
+								+ " wants to sell " + temp.getPropertyName() + " for $" + prize);
+						int playerBuyerSelection = menu.printAcceptMenu();
+						switch (playerBuyerSelection) {
+						case 0:
+							playerBuyer.propertiesOwned.add(temp);
+							playerBuyer.setBalance(-prize);
+							currentPlayer.propertiesOwned.remove(selection);
+							currentPlayer.setBalance(prize);
+							System.out.println(currentPlayer.getName() + " says thank you!");
+							break;
+						case 1:
+							System.out.println("Sorry " + currentPlayer.getName() + ", " + playerBuyer.getName()
+									+ " said that will not buy it for that much.");
+							break;
+						default:
+							break;
+						}
 					}
 				}
 			}
+
 			break;
 		case 1:
-			// for testing purposes only
-			currentPlayer.jailCardOwned[1] = board.chance.get(0);
+			if (currentPlayer.jailCardOwned[1] == null) {
+				System.out.println("You don't have any \"Get Out Of Jail\" cards");
+			} else if (currentPlayer.jailCardOwned[0] == null && currentPlayer.jailCardOwned[1] == null) {
+				System.out.println("You don't have any \"Get Out Of Jail\" cards");
+			} else {
 
-			int cardLocation = 0;
-			Card temp2 = null;
-			if (currentPlayer.jailCardOwned[1] != null) {
-				cardLocation = 1;
-				temp2 = currentPlayer.jailCardOwned[1];
-			} else if (currentPlayer.jailCardOwned[0] != null) {
-				temp2 = currentPlayer.jailCardOwned[0];
-			}
+				int cardLocation = 0;
+				Card temp2 = null;
+				if (currentPlayer.jailCardOwned[1] != null) {
+					cardLocation = 1;
+					temp2 = currentPlayer.jailCardOwned[1];
+				} else if (currentPlayer.jailCardOwned[0] != null) {
+					temp2 = currentPlayer.jailCardOwned[0];
+				}
 
-			int prize2 = ConsoleUI.promptForInt("Enter the prize you want to sell it for", 0, Integer.MAX_VALUE);
-			String playerName2 = ConsoleUI.promptForInput("Enter the name of the player you want to sell the property",
-					false);
-			for (Player playerBuyer : players) {
-				if (playerBuyer.getName().toLowerCase().equals(playerName2.toLowerCase())) {
+				int prize2 = ConsoleUI.promptForInt("Enter the prize you want to sell it for", 0, Integer.MAX_VALUE);
+				String playerName2 = ConsoleUI
+						.promptForInput("Enter the name of the player you want to sell the property", false);
+				for (Player playerBuyer : players) {
+					if (playerBuyer.getName().toLowerCase().equals(playerName2.toLowerCase())) {
+						System.out.println("Hey " + playerBuyer.getName() + ", " + currentPlayer.getName()
+								+ " wants to sell a \"Get Out Of Jail Card\"" + " for $" + prize2);
+						int playerBuyerSelection = menu.printAcceptMenu();
+						switch (playerBuyerSelection) {
+						case 0:
+							if (playerBuyer.jailCardOwned[0] == null) {
+								playerBuyer.jailCardOwned[0] = temp2;
+								System.out.println("We added the card to the location 0");
+							} else if (playerBuyer.jailCardOwned[1] == null) {
+								playerBuyer.jailCardOwned[1] = temp2;
+								System.out.println("We added the card to the location 1");
+							}
+							playerBuyer.setBalance(-prize2);
 
-					// testing
-					playerBuyer.jailCardOwned[0] = board.chance.get(0);
+							if (cardLocation == 1) {
+								currentPlayer.jailCardOwned[cardLocation] = null;
+							} else if (cardLocation == 0) {
+								currentPlayer.jailCardOwned[cardLocation] = null;
+							}
+							currentPlayer.setBalance(prize2);
+							System.out.println(currentPlayer.getName() + " says thank you!");
 
-					System.out.println("Hey " + playerBuyer.getName() + ", " + currentPlayer.getName()
-							+ " wants to sell a \"Get Out Of Jail Card\"" + " for $" + prize2);
-					int playerBuyerSelection = menu.printAcceptMenu();
-					switch (playerBuyerSelection) {
-					case 0:
-						if (playerBuyer.jailCardOwned[0] == null) {
-							playerBuyer.jailCardOwned[0] = temp2;
-							System.out.println("We added the card to the location 0");
-						} else if (playerBuyer.jailCardOwned[1] == null) {
-							playerBuyer.jailCardOwned[1] = temp2;
-							System.out.println("We added the card to the location 1");
+							break;
+						case 1:
+							System.out.println("Sorry " + currentPlayer.getName() + ", " + playerBuyer.getName()
+									+ " said that will not buy it for that much.");
+							break;
+						default:
+							break;
 						}
-						playerBuyer.setBalance(-prize2);
-
-						if (cardLocation == 1) {
-							currentPlayer.jailCardOwned[cardLocation] = null;
-						} else if (cardLocation == 0) {
-							currentPlayer.jailCardOwned[cardLocation] = null;
-						}
-						currentPlayer.setBalance(prize2);
-						System.out.println(currentPlayer.getName() + " says thank you!");
-
-						break;
-					case 1:
-						System.out.println("Sorry " + currentPlayer.getName() + ", " + playerBuyer.getName()
-								+ " said that will not buy it for that much.");
-						break;
-					default:
-						break;
 					}
 				}
 			}
@@ -1230,6 +1230,7 @@ public class Game {
 	}
 
 	private void buy(Player currentPlayer) throws IOException {
+
 		int action = menu.printSellBuyMainMenu();
 		switch (action) {
 		case 0:
@@ -1237,69 +1238,110 @@ public class Game {
 					false);
 			for (Player playerSeller : players) {
 				if (playerSeller.getName().toLowerCase().equals(playerName.toLowerCase())) {
-					showPropertyNamesOtherPlayer(playerSeller);
-					int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want buy", 0,
-							playerSeller.getPropertiesOwned().size());
-					Property temp = playerSeller.propertiesOwned.get(selection);
-					int prize = ConsoleUI.promptForInt("Enter the prize you want to sell it for", 0, Integer.MAX_VALUE);
-					System.out.println("Hey " + playerSeller.getName() + ", " + currentPlayer.getName()
-							+ " wants to buy " + temp.getPropertyName() + " for $" + prize);
-					int playerSellerSelection = menu.printAcceptMenu();
-					switch (playerSellerSelection) {
-					case 0:
-						playerSeller.propertiesOwned.remove(selection);
-						playerSeller.setBalance(prize);
-						currentPlayer.propertiesOwned.add(temp);
-						currentPlayer.setBalance(-prize);
-						System.out.println("Transaction completed");
-						break;
-					case 1:
-						System.out.println("Sorry " + currentPlayer.getName() + ", " + playerSeller.getName()
-								+ " said that will not buy it for that much.");
-						break;
-					default:
-						break;
+
+					if (playerSeller.propertiesOwned.isEmpty()) {
+						System.out.println(
+								playerSeller.getName() + " does not have any properties. Check back with him later.");
+					} else {
+
+						showPropertyNamesOtherPlayer(playerSeller);
+						int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want buy", 0,
+								playerSeller.getPropertiesOwned().size());
+						Property temp = playerSeller.propertiesOwned.get(selection);
+						int prize = ConsoleUI.promptForInt("Enter the prize you want to sell it for", 0,
+								Integer.MAX_VALUE);
+						System.out.println("Hey " + playerSeller.getName() + ", " + currentPlayer.getName()
+								+ " wants to buy " + temp.getPropertyName() + " for $" + prize);
+						int playerSellerSelection = menu.printAcceptMenu();
+						switch (playerSellerSelection) {
+						case 0:
+							playerSeller.propertiesOwned.remove(selection);
+							playerSeller.setBalance(prize);
+							currentPlayer.propertiesOwned.add(temp);
+							currentPlayer.setBalance(-prize);
+							System.out.println("Transaction completed");
+							break;
+						case 1:
+							System.out.println("Sorry " + currentPlayer.getName() + ", " + playerSeller.getName()
+									+ " said that will not buy it for that much.");
+							break;
+						default:
+							break;
+						}
 					}
 				}
 			}
+
 			break;
 		case 1:
-
-			// choose player
-			// see his properties
-			// select a property
-			// set a value
-			// switch view
-			// player seller can accept or decline
-			// accept will take card from seller to currentPlayer
-			// and swept money
-			// for testing purposes only
 			String playerName2 = ConsoleUI.promptForInput(
 					"Enter the name of the player you want to see if he has \"Get Out Of Jail\" cards ", false);
 			for (Player playerSeller : players) {
 				if (playerSeller.getName().toLowerCase().equals(playerName2.toLowerCase())) {
-					checkForJailCard(playerSeller);
-					int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want buy", 0,
-							playerSeller.getPropertiesOwned().size());
-					Property temp = playerSeller.propertiesOwned.get(selection);
-					int prize = ConsoleUI.promptForInt("Enter the prize you want to sell it for", 0, Integer.MAX_VALUE);
-					System.out.println("Hey " + playerSeller.getName() + ", " + currentPlayer.getName()
-							+ " wants to buy " + temp.getPropertyName() + " for $" + prize);
-					int playerSellerSelection = menu.printAcceptMenu();
-					switch (playerSellerSelection) {
-					case 0:
-						playerSeller.propertiesOwned.remove(selection);
-						playerSeller.setBalance(prize);
-						currentPlayer.propertiesOwned.add(temp);
-						currentPlayer.setBalance(-prize);
-						System.out.println("Transaction completed");
-						break;
-					case 1:
-						System.out.println("Sorry " + currentPlayer.getName() + ", " + playerSeller.getName()
-								+ " said that will not buy it for that much.");
-						break;
-					default:
-						break;
+
+					if (playerSeller.jailCardOwned[1] == null) {
+						System.out.println(
+								"\n" + playerSeller.getName() + " does not have any \"Get Out Of Jail\" cards");
+					} else if (playerSeller.jailCardOwned[0] == null && playerSeller.jailCardOwned[1] == null) {
+						System.out.println(
+								"\n" + playerSeller.getName() + " does not have any \"Get Out Of Jail\" cards");
+					} else {
+
+						int howMany = checkForJailCard(playerSeller);
+
+						int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want buy", 0,
+								howMany);
+
+						Card temp2 = playerSeller.jailCardOwned[selection];
+
+						int prize2 = ConsoleUI.promptForInt("Enter the prize you want to buy it for", 0,
+								Integer.MAX_VALUE);
+
+						// Switch perspective
+						System.out.println("Hey " + playerSeller.getName() + ", " + currentPlayer.getName()
+								+ " wants to buy " + howMany + " card for $" + prize2);
+						int playerSellerSelection = menu.printAcceptMenu();
+						switch (playerSellerSelection) {
+						case 0:
+
+							int cardLocation = 0;
+							if (playerSeller.jailCardOwned[1] != null) {
+								cardLocation = 1;
+								temp2 = currentPlayer.jailCardOwned[1];
+							} else if (currentPlayer.jailCardOwned[0] != null) {
+								temp2 = currentPlayer.jailCardOwned[0];
+							}
+
+							if (currentPlayer.jailCardOwned[0] == null) {
+								currentPlayer.jailCardOwned[0] = temp2;
+								System.out.println("We added the card to the location 0");
+							} else if (currentPlayer.jailCardOwned[1] == null) {
+								currentPlayer.jailCardOwned[1] = temp2;
+								System.out.println("We added the card to the location 1");
+							}
+
+							playerSeller.setBalance(prize2);
+
+							// Take card out of player seller
+							if (cardLocation == 1) {
+								playerSeller.jailCardOwned[cardLocation] = null;
+								System.out.println("removed card from location 1");
+							} else if (cardLocation == 0) {
+								playerSeller.jailCardOwned[cardLocation] = null;
+
+								System.out.println("removed card from location 0");
+							}
+							currentPlayer.setBalance(-prize2);
+							System.out.println(currentPlayer.getName() + " says thank you!");
+							break;
+						case 1:
+							System.out.println("Sorry " + currentPlayer.getName() + ", " + playerSeller.getName()
+									+ " said that will not buy it for that much.");
+							break;
+						default:
+							break;
+
+						}
 					}
 				}
 			}
@@ -1311,7 +1353,17 @@ public class Game {
 		}
 	}
 
-	private void checkForJailCard(Player playerSeller) {
+
+	private int checkForJailCard(Player playerSeller) {
+		int howMany = 0;
+		System.out.print(playerSeller.getName() + " has ");
+		for (int i = 0; i < playerSeller.jailCardOwned.length; i++) {
+			if (i == playerSeller.jailCardOwned.length - 1) {
+				howMany++;
+				System.out.print(howMany + " \"Get Out Of Jail\" card");
+			}
+		}
+		return howMany;
 
 	}
 
