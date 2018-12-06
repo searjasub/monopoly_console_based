@@ -204,7 +204,7 @@ public class Game {
 					showProperties(currentPlayer);
 					break;
 				case 3:
-					buyHouse();
+					buyHouse(currentPlayer);
 					break;
 				case 4:
 					sell(currentPlayer);
@@ -999,7 +999,7 @@ public class Game {
 				showProperties(currentPlayer);
 				break;
 			case 2:
-				buyHouse();
+				buyHouse(currentPlayer);
 				break;
 			case 3:
 				sell(currentPlayer);
@@ -1286,9 +1286,119 @@ public class Game {
 	}
 
 	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
-	private void buyHouse() {
+private void buyHouse(Player currentPlayer) throws IOException {
+		ArrayList<String> propertyMonopolies = new ArrayList<String>();
+		int redColorTotal = 0;
+		int blueColorTotal = 0;
+		int brownColorTotal = 0;
+		int lightBlueColorTotal = 0;
+		int pinkColorTotal = 0;
+		int orangeColorTotal = 0;
+		int yellowColorTotal = 0;
+		int greenColorTotal = 0;
+		for (Property card : currentPlayer.propertiesOwned) {
+			if (card instanceof TitleDeed) {
+				TitleDeed newCard = (TitleDeed) card;
+				if (newCard.color == TitleColor.RED) {
+					redColorTotal++;
+				} else if (newCard.color == TitleColor.BLUE) {
+					blueColorTotal++;
+				} else if (newCard.color == TitleColor.BROWN) {
+					brownColorTotal++;
+				} else if (newCard.color == TitleColor.LIGHTBLUE) {
+					lightBlueColorTotal++;
+				} else if (newCard.color == TitleColor.PINK) {
+					pinkColorTotal++;
+				} else if (newCard.color == TitleColor.ORANGE) {
+					orangeColorTotal++;
+				} else if (newCard.color == TitleColor.YELLOW) {
+					yellowColorTotal++;
+				} else if (newCard.color == TitleColor.GREEN) {
+					greenColorTotal++;
+				}
+			}
+		}
+		if (redColorTotal == 3) {
+			propertyMonopolies.add("red");
+		}
+		if (blueColorTotal == 2) {
+			propertyMonopolies.add("blue");
+		}
+		if (brownColorTotal == 2) {
+			propertyMonopolies.add("brown");
+		}
+		if (lightBlueColorTotal == 3) {
+			propertyMonopolies.add("light blue");
+		}
+		if (pinkColorTotal == 3) {
+			propertyMonopolies.add("pink");
+		}
+		if (orangeColorTotal == 3) {
+			propertyMonopolies.add("orange");
+		}
+		if (yellowColorTotal == 3) {
+			propertyMonopolies.add("yellow");
+		}
+		if (greenColorTotal == 3) {
+			propertyMonopolies.add("green");
+		}
+		if (propertyMonopolies.size() == 0) {
+			System.out.println("You ain't got shit,,,, dawg");
+			return;
+		}
+		String[] listOfMonopolies = (String[]) propertyMonopolies.toArray();
+		int menuChoiceForColor = ConsoleUI.promptForMenuSelection(listOfMonopolies);
+		String colorValue = listOfMonopolies[menuChoiceForColor];
+		int amountOfHouses = ConsoleUI.promptForInt("How many houses do you want to buy(5 for a hotel)", 1, 5);
+		switch (colorValue) {
+		case "red":
+			currentPlayer.setBalance(amountOfHouses * -150);
+			
+//			for(int i = 0; i < amountOfHouses; i++) {
+//				
+//			for(Property deed: currentPlayer.propertiesOwned) {
+//				if(deed instanceof TitleDeed && TitleColor.RED == ((TitleDeed) deed).color) {
+//					if(((TitleDeed) deed).totalBuildings == 1) {
+//						
+//					}
+//					((TitleDeed) deed).totalBuildings += 1;
+//					
+//				}
+//				else {
+//					continue;
+//				}
+//			}
+//			
+//			}
+			
+			break;
+		case "blue":
+			currentPlayer.setBalance(amountOfHouses * -200);
+			break;
+		case "brown":
+			currentPlayer.setBalance(amountOfHouses * -50);
+			break;
+		case "light blue":
+			currentPlayer.setBalance(amountOfHouses * -50);
+			break;
+		case "pink":
+			currentPlayer.setBalance(amountOfHouses * -100);
+			break;
+		case "orange":
+			currentPlayer.setBalance(amountOfHouses * -100);
+			break;
+		case "yellow":
+			currentPlayer.setBalance(amountOfHouses * -150);
+			break;
+		case "green":
+			currentPlayer.setBalance(amountOfHouses * -200);
+			break;
+		default:
+			break;
+		}
 
 	}
+
 
 	/**
 	 * Method that will move the player base on the total number they rolled
