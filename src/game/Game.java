@@ -1126,22 +1126,9 @@ public class Game {
 		int action = menu.printSellBuyMainMenu();
 		switch (action) {
 		case 0:
-			// choose player
-			// see his properties
-			// select a property
-			// set a value
-			// switch view
-			// player seller can acept or declin
-			// accept will take card from seller to currentPlayer
-			// and swept money
-
-			String playerName = ConsoleUI.promptForInput("Enter the name of the player you want to see the properties",
-					false);
+			String playerName = ConsoleUI.promptForInput("Enter the name of the player you want to see the properties", false);
 			for (Player playerSeller : players) {
 				if (playerSeller.getName().toLowerCase().equals(playerName.toLowerCase())) {
-					// testing purposes
-					playerSeller.propertiesOwned.add(board.deeds[5]);
-					// *****************************
 					showPropertyNamesOtherPlayer(playerSeller);
 					int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want buy", 0,
 							playerSeller.getPropertiesOwned().size());
@@ -1157,7 +1144,6 @@ public class Game {
 						currentPlayer.propertiesOwned.add(temp);
 						currentPlayer.setBalance(-prize);
 						System.out.println("Transaction completed");
-						// System.out.println(currentPlayer.getName() + " says thank you!");
 						break;
 					case 1:
 						System.out.println("Sorry " + currentPlayer.getName() + ", " + playerSeller.getName()
@@ -1166,12 +1152,19 @@ public class Game {
 					default:
 						break;
 					}
-				} else {
-					System.out.println("That's not a player in this game. Try again.");
 				}
 			}
 			break;
 		case 1:
+			
+			// choose player
+						// see his properties
+						// select a property
+						// set a value
+						// switch view
+						// player seller can accept or decline
+						// accept will take card from seller to currentPlayer
+						// and swept money
 			// for testing purposes only
 			currentPlayer.jailCardOwned[1] = board.chance.get(0);
 
