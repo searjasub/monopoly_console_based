@@ -38,14 +38,15 @@ public class Game {
 			System.out.println("\nOk, " + playerName + " it is time to choose your token.");
 			Token selection = menu.chooseYourToken();
 
-			System.out.println("Time to roll the dice to see who starts.");
+			System.out.println("\nTime to roll the dice to see who starts.");
 			int total = rollForOrder();
 
+			//Player(String name, Token token, int balance, int turn, int location)
 			Player newPlayer = new Player(playerName, selection, 1500, total, 0);
 			players[i] = newPlayer;
 
 			// Finish interaction with players[i]
-			if (players.length == totalPlayers) {
+			if (players.length > totalPlayers) {
 				System.out.println("Thank you " + players[i].getName() + ".");
 			} else {
 				System.out.println("Thank you " + players[i].getName() + ". Now let me ask your friend.\n");
@@ -170,6 +171,7 @@ public class Game {
 		init(howManyPlayers);
 		while (!gameOver) {
 			// handle turns
+			//TODO Finish what happens when player is bankrupt
 			for (int i = 0; i < players.length; i++) {
 				if (!players[i].bankrupt) {
 					turn(players[i]);
@@ -193,10 +195,9 @@ public class Game {
 			handleJail(currentPlayer);
 		} else {
 			boolean isYourTurn = true;
-			System.out.println("\nAlright player, " + currentPlayer.getToken() + " you're up.");
-
 			while (isYourTurn) {
 				board.printBoard(currentPlayer);
+				System.out.println("\nAlright player, " + currentPlayer.getToken() + " you're up.");
 				int action = menu.printTurnMenu();
 				switch (action) {
 				case 0:
@@ -268,7 +269,7 @@ public class Game {
 			}
 			break;
 		case 2:
-			System.out.println("" + "*********************************************************************" + "\n\nOk "
+			System.out.println("*********************************************************************" + "\n\nOk "
 					+ currentPlayer.getName() + ", you are free now.");
 			currentPlayer.setBalance(-50);
 			breakOutOfJail(currentPlayer);
@@ -311,10 +312,13 @@ public class Game {
 		die.roll();
 		whatYouRolled();
 		movePlayer(die.getTotal(), currentPlayer);
+		
+		//TODO We can print with thread sleep like if the player is moving the token
+		//Simple println that will show each location name one by one until reached the total thrown 
 
 		System.out.println("\n*************************************\n" + "You landed on: "
 				+ board.squares[currentPlayer.getLocation()].getName() + "\n"
-				+ "*************************************");
+				+ "*************************************\n");
 		landOnProperty(currentPlayer, die.getTotal());
 
 		if (die.getDieOne() == die.getDieTwo()) {
@@ -629,7 +633,7 @@ public class Game {
 				totalToPay += cards.getCost() * 0.1;
 			}
 			totalToPay += currentPlayer.getBalance() * 0.1;
-			// HOUSES
+			//TODO Calculate houses as well
 
 			System.out.println("\n10% of your income is: " + totalToPay);
 			currentPlayer.setBalance(-totalToPay);
@@ -683,11 +687,8 @@ public class Game {
 				printCardInfo(topCard);
 				currentPlayer.setLocation(currentPlayer.getLocation() - 3);
 				landOnProperty(currentPlayer, currentPlayer.getLocation() - 3);
-
 			} else if (topCard.getId() == 5 || topCard.getId() == 7) {
-
 				// Go to nearest railroad
-				// printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(8, currentPlayer);
 					landOnProperty(currentPlayer, 15);
@@ -699,11 +700,8 @@ public class Game {
 					landOnProperty(currentPlayer, 5);
 
 				}
-			}
-
-			else if (topCard.getId() == 6) {
+			}else if (topCard.getId() == 6) {
 				// Go to nearest utility
-				printCardInfo(topCard);
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(5, currentPlayer);
 					if (board.deeds[12].getOwner() != null) {
@@ -801,7 +799,7 @@ public class Game {
 			board.chance.add(topCard);
 			break;
 		case PAY_MONEY:
-
+			board.chance.add(topCard);
 			if (topCard.getId() == 15) {
 				currentPlayer.setBalance(-15);
 			} else if (topCard.getId() == 16) {
@@ -813,10 +811,8 @@ public class Game {
 				currentPlayer.setBalance(-100);
 			}
 			break;
-
 		case PAY_OR_RECEIVE_PLAYERS:
-			board.communityChest.add(topCard);
-			// board.chance.add(topCard);
+			board.chance.add(topCard);
 			if (topCard.getId() == 22) {
 				int totalAmountGiven = 0;
 				currentPlayer.setBalance(-50 * players.length);
@@ -826,7 +822,6 @@ public class Game {
 			}
 			break;
 		case RECEIVE_MONEY:
-
 			board.chance.add(topCard);
 			if (topCard.getId() == 23) {
 				currentPlayer.setBalance(150);
@@ -1067,7 +1062,7 @@ public class Game {
 	private void payRent(Player currentPlayer, int regularRent, int deedLocation) throws IOException {
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
-			// CHECK IF OWNER HAS ALL GROUP PROPERTIES
+			//TODO CHECK IF OWNER HAS ALL GROUP PROPERTIES
 			// DOUBLE RENT
 			// CHECK IF THERE IS HOUSES/HOTELS
 			// ELSE
@@ -1218,11 +1213,9 @@ public class Game {
 
 	private void showPropertyNameFormated(Player currentPlayer) {
 		System.out.print("\nThe properties you own are:\n");
-
 		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-			System.out.print("[");
 			if (i == currentPlayer.getPropertiesOwned().size() - 1) {
-				System.out.print(i + "]" + currentPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
+				System.out.print("[" + i + "]" + currentPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
 			}
 		}
 	}
@@ -1374,7 +1367,6 @@ public class Game {
 
 	/**
 	 * Method to print what the balance is.
-	 * 
 	 * @param currentPlayer who's turn is it.
 	 */
 	private void showBalance(Player currentPlayer) {
@@ -1411,7 +1403,7 @@ public class Game {
 		}
 	}
 
-	//Currently Working on this feature
+	//TODO Currently Working on this feature
 	private void buyHouse(Player currentPlayer) throws IOException {
 		ArrayList<String> propertyMonopolies = new ArrayList<String>();
 		int redColorTotal = 0;
@@ -1557,11 +1549,15 @@ public class Game {
 		currentPlayer.isInJail(true);
 	}
 
+	/**
+	 * Set bankruptcy status as On
+	 * @param currentPlayer
+	 */
 	private void bankruptcy(Player currentPlayer) {
 		currentPlayer.bankrupt = true;
 	}
 
-	// UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
+	//TODO UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
 	}
