@@ -19,6 +19,8 @@ public class Game {
 	public Player[] players;
 	Die die = new Die();
 	public Board board = new Board();
+	
+	//TODO Make more Java Docs
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -41,7 +43,7 @@ public class Game {
 			System.out.println("\nTime to roll the dice to see who starts.");
 			int total = rollForOrder();
 
-			//Player(String name, Token token, int balance, int turn, int location)
+			// Player(String name, Token token, int balance, int turn, int location)
 			Player newPlayer = new Player(playerName, selection, 1500, total, 0);
 			players[i] = newPlayer;
 
@@ -171,7 +173,7 @@ public class Game {
 		init(howManyPlayers);
 		while (!gameOver) {
 			// handle turns
-			//TODO Finish what happens when player is bankrupt
+			// TODO Finish what happens when player is bankrupt
 			for (int i = 0; i < players.length; i++) {
 				if (!players[i].bankrupt) {
 					turn(players[i]);
@@ -312,9 +314,10 @@ public class Game {
 		die.roll();
 		whatYouRolled();
 		movePlayer(die.getTotal(), currentPlayer);
-		
-		//TODO We can print with thread sleep like if the player is moving the token
-		//Simple println that will show each location name one by one until reached the total thrown 
+
+		// TODO We can print with thread sleep like if the player is moving the token
+		// Simple println that will show each location name one by one until reached the
+		// total thrown
 
 		System.out.println("\n*************************************\n" + "You landed on: "
 				+ board.squares[currentPlayer.getLocation()].getName() + "\n"
@@ -360,7 +363,7 @@ public class Game {
 		}
 		// COMMUNITY CHEST
 		else if (currentPlayer.getLocation() == 2) {
-			handleChanceCard(currentPlayer);
+			handleCommunityChestCard(currentPlayer);
 		}
 		// BALTIC AVENUE
 		else if (currentPlayer.getLocation() == 3) {
@@ -460,7 +463,7 @@ public class Game {
 		}
 		// COMMUNITY CHEST
 		else if (currentPlayer.getLocation() == 17) {
-			handleChanceCard(currentPlayer);
+			handleCommunityChestCard(currentPlayer);
 		}
 		// TENNESSE AVENUE
 		else if (currentPlayer.getLocation() == 18) {
@@ -603,7 +606,7 @@ public class Game {
 		}
 		// LUXURY TAX
 		else if (currentPlayer.getLocation() == 38) {
-			System.out.println("\nThe bank took $100 off of your balance");
+			System.out.println("The bank took $100 off of your balance");
 			currentPlayer.setBalance(-100);
 		}
 
@@ -633,7 +636,7 @@ public class Game {
 				totalToPay += cards.getCost() * 0.1;
 			}
 			totalToPay += currentPlayer.getBalance() * 0.1;
-			//TODO Calculate houses as well
+			// TODO Calculate houses as well
 
 			System.out.println("\n10% of your income is: " + totalToPay);
 			currentPlayer.setBalance(-totalToPay);
@@ -666,17 +669,19 @@ public class Game {
 	}
 
 	private void handleChanceCard(Player currentPlayer) throws IOException {
-		Card topCard = board.chance.get(0);
+		int firstCardPosistion = 0;
+		Card topCard = board.chance.get(firstCardPosistion);
 		printCardInfo(topCard);
-		board.chance.remove(0);
+		board.chance.remove(firstCardPosistion);
 		switch (topCard.cardName) {
 		case JAIL_FREE:
+
 			if (currentPlayer.jailCardOwned[0] == null) {
 				currentPlayer.jailCardOwned[0] = topCard;
-				board.chance.remove(0);
+				board.chance.remove(firstCardPosistion);
 			} else {
 				currentPlayer.jailCardOwned[1] = topCard;
-				board.chance.remove(0);
+				board.chance.remove(firstCardPosistion);
 			}
 			break;
 
@@ -700,7 +705,7 @@ public class Game {
 					landOnProperty(currentPlayer, 5);
 
 				}
-			}else if (topCard.getId() == 6) {
+			} else if (topCard.getId() == 6) {
 				// Go to nearest utility
 				if (currentPlayer.getLocation() == 7) {
 					movePlayer(5, currentPlayer);
@@ -1016,7 +1021,7 @@ public class Game {
 			boolean playerBoughtProperty = false;
 			while (!playerBoughtProperty) {
 				for (Player AuctionPlayer : inAuction) {
-					System.out.println("Current Auction Price: " + costOfAuction);
+					System.out.println("\nCurrent Auction Price: " + costOfAuction);
 					if (AuctionPlayer == null) {
 						// skipping auctioned player
 						continue;
@@ -1027,7 +1032,7 @@ public class Game {
 						playerBoughtProperty = true;
 						AuctionPlayer.propertiesOwned.add(board.deeds[location]);
 						System.out.println("\n*******************************************************************\n"
-								+ "Congratulations " + AuctionPlayer.getName() + "! You know own this property"
+								+ "Congratulations " + AuctionPlayer.getName() + "! You know own this property\n"
 								+ "*******************************************************************\n");
 						break;
 					}
@@ -1062,7 +1067,7 @@ public class Game {
 	private void payRent(Player currentPlayer, int regularRent, int deedLocation) throws IOException {
 		int selection = menu.printPayRentMenu();
 		if (selection == 0) {
-			//TODO CHECK IF OWNER HAS ALL GROUP PROPERTIES
+			// TODO CHECK IF OWNER HAS ALL GROUP PROPERTIES
 			// DOUBLE RENT
 			// CHECK IF THERE IS HOUSES/HOTELS
 			// ELSE
@@ -1366,7 +1371,9 @@ public class Game {
 	}
 
 	/**
+	 * 
 	 * Method to print what the balance is.
+	 * 
 	 * @param currentPlayer who's turn is it.
 	 */
 	private void showBalance(Player currentPlayer) {
@@ -1375,7 +1382,6 @@ public class Game {
 
 	/**
 	 * Method to print/show the properties the current player owns.
-	 * 
 	 * @param currentPlayer who's turn is it
 	 */
 	private void showProperties(Player currentPlayer) {
@@ -1385,25 +1391,31 @@ public class Game {
 			System.out.print("\nThe properties you own are:\n");
 
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-				
-				if(currentPlayer.getPropertiesOwned().contains(board.deeds[2]) ||
-						currentPlayer.getPropertiesOwned().contains(board.deeds[10]) ||
-						currentPlayer.getPropertiesOwned().contains(board.deeds[17]) ||
-						currentPlayer.getPropertiesOwned().contains(board.deeds[25])) {
-					
+
+				if (currentPlayer.getPropertiesOwned().contains(board.deeds[2])
+						|| currentPlayer.getPropertiesOwned().contains(board.deeds[10])
+						|| currentPlayer.getPropertiesOwned().contains(board.deeds[17])
+						|| currentPlayer.getPropertiesOwned().contains(board.deeds[25])) {
+
 					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
 							+ "Rent: 1 - $25 || 2 - $50 || 3 - $100 || 4 - $200 ");
-				}else {
-					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName() + " | Rent: "
-							+ currentPlayer.getPropertiesOwned().get(i).getRent() + " | Buy House: $"
+				} else if(currentPlayer.getPropertiesOwned().contains(board.deeds[7]) 
+						|| currentPlayer.getPropertiesOwned().contains(board.deeds[20])) {
+					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
+							+ "Rent: 1 - 4 time what the dice rolled || 2 - 10 times what the dice rolled");
+				} 
+				
+				else {
+					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
+							+ " | Rent: " + currentPlayer.getPropertiesOwned().get(i).getRent() + " | Buy House: $"
 							+ currentPlayer.propertiesOwned.get(i).getBuildingCost() + "\n");
 				}
-				
+
 			}
 		}
 	}
 
-	//TODO Currently Working on this feature
+	// TODO Currently Working on this feature
 	private void buyHouse(Player currentPlayer) throws IOException {
 		ArrayList<String> propertyMonopolies = new ArrayList<String>();
 		int redColorTotal = 0;
@@ -1551,13 +1563,14 @@ public class Game {
 
 	/**
 	 * Set bankruptcy status as On
+	 * 
 	 * @param currentPlayer
 	 */
 	private void bankruptcy(Player currentPlayer) {
 		currentPlayer.bankrupt = true;
 	}
 
-	//TODO UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
+	// TODO UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
 	}
