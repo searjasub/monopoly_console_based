@@ -1326,7 +1326,7 @@ public class Game {
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
 					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
 							+ " | Rent: " + currentPlayer.getPropertiesOwned().get(i).getRent() + " | Buy House: $"
-							+ currentPlayer.propertiesOwned.get(i).getBuildingCost());
+							+ currentPlayer.propertiesOwned.get(i).getBuildingCost()+ "\n");
 				}
 			}
 		}
