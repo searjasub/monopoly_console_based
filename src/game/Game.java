@@ -1324,15 +1324,12 @@ public class Game {
 			System.out.print("\nThe properties you own are:\n");
 
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-
-				if (i == currentPlayer.getPropertiesOwned().size() - 1) {
 					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
 							+ " | Rent: " + currentPlayer.getPropertiesOwned().get(i).getRent() + " | Buy House: $"
-							+ currentPlayer.propertiesOwned.get(i).getBuildingCost());
+							+ currentPlayer.propertiesOwned.get(i).getBuildingCost()+ "\n");
 				}
 			}
 		}
-	}
 
 	private void buyHouse(Player currentPlayer) throws IOException {
 		ArrayList<String> propertyMonopolies = new ArrayList<String>();
