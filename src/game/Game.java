@@ -1397,12 +1397,12 @@ public class Game {
 						|| currentPlayer.getPropertiesOwned().contains(board.deeds[17])
 						|| currentPlayer.getPropertiesOwned().contains(board.deeds[25])) {
 
-					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
-							+ "Rent: 1 - $25 || 2 - $50 || 3 - $100 || 4 - $200 ");
+					System.out.print("\n[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
+							+ " | Rent: 1 - $25 || 2 - $50 || 3 - $100 || 4 - $200 ");
 				} else if(currentPlayer.getPropertiesOwned().contains(board.deeds[7]) 
 						|| currentPlayer.getPropertiesOwned().contains(board.deeds[20])) {
-					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
-							+ "Rent: 1 - 4 time what the dice rolled || 2 - 10 times what the dice rolled");
+					System.out.print("\n[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
+							+ " | Rent: 1 - 4 time what the dice rolled || 2 - 10 times what the dice rolled");
 				} 
 				
 				else {
