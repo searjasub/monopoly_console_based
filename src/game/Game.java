@@ -631,8 +631,8 @@ public class Game {
 			totalToPay += currentPlayer.getBalance() * 0.1;
 			// HOUSES
 
-			System.out.println("10% of your income is: " + totalToPay);
-			currentPlayer.setBalance(totalToPay);
+			System.out.println("\n10% of your income is: " + totalToPay);
+			currentPlayer.setBalance(-totalToPay);
 			break;
 		default:
 			throw new IllegalArgumentException("Invalid selection" + taxSelection);
