@@ -87,10 +87,9 @@ public class menu {
 	 * @return
 	 */
 	public static int printMainMenu() throws IOException {
-		String[] menuOptions = new String[3];
-		menuOptions[0] = "Speed Die Rules";
-		menuOptions[1] = "Classic Monopoly Rules";
-		menuOptions[2] = "Exit";
+		String[] menuOptions = new String[2];
+		menuOptions[0] = "Classic Monopoly Rules";
+		menuOptions[1] = "Exit";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
