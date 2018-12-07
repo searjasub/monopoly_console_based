@@ -33,7 +33,7 @@ public class Demo{
                 case 2:
                     d.taxes();
                     break;
-                case 4:
+                case 3:
                     d.jail();
                     break;
                 default:
