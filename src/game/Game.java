@@ -27,11 +27,12 @@ public class Game {
 	public Player[] players;
 	Die die = new Die();
 	public Board board = new Board();
-	
-	//TODO Make more Java Docs
+
+	// TODO Make more Java Docs
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
+	 * 
 	 * @param totalPlayers insert the number of player
 	 */
 	private void init(int totalPlayers) throws IOException {
@@ -372,12 +373,18 @@ public class Game {
 	 */
 	private void landOnProperty(Player currentPlayer, int location) throws IOException {
 
+		String ownerMessage = "You already own it!";
+
 		// MEDITERRANEAN AVENUE
 		if (currentPlayer.getLocation() == 1) {
 			if (board.ownsDeed(0, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 0, -60);
 			} else {
-				payRent(currentPlayer, 2, 0);
+				if (board.deeds[0].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 2, 0);
+				}
 			}
 		}
 		// COMMUNITY CHEST
@@ -389,7 +396,11 @@ public class Game {
 			if (board.ownsDeed(1, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 1, -60);
 			} else {
-				payRent(currentPlayer, 4, 1);
+				if (board.deeds[1].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 4, 1);
+				}
 			}
 		}
 		// INCOME TAX
@@ -401,7 +412,11 @@ public class Game {
 			if (board.ownsDeed(2, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 2, -200);
 			} else {
-				railRoadRent(currentPlayer, 2);
+				if (board.deeds[2].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					railRoadRent(currentPlayer, 2);
+				}
 			}
 		}
 		// ORIENTAL AVENUE
@@ -409,7 +424,11 @@ public class Game {
 			if (board.ownsDeed(3, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 3, -100);
 			} else {
-				payRent(currentPlayer, 6, 3);
+				if (board.deeds[3].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 6, 3);
+				}
 			}
 		}
 		// CHANCE
@@ -421,7 +440,11 @@ public class Game {
 			if (board.ownsDeed(4, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 4, -board.deeds[location].getCost());
 			} else {
-				payRent(currentPlayer, 6, 4);
+				if (board.deeds[4].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 6, 4);
+				}
 			}
 		}
 		// CONNECTICUT AVENUE
@@ -429,7 +452,11 @@ public class Game {
 			if (board.ownsDeed(5, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 5, -120);
 			} else {
-				payRent(currentPlayer, 8, 5);
+				if (board.deeds[5].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 8, 5);
+				}
 			}
 		}
 		// ST. CHARLES PLACE
@@ -437,39 +464,51 @@ public class Game {
 			if (board.ownsDeed(6, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 6, -140);
 			} else {
-				payRent(currentPlayer, 10, 6);
+				if (board.deeds[6].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 10, 6);
+				}
 			}
 		}
 		// ELECTRIC COMPANY
 		else if (currentPlayer.getLocation() == 12) {
 			if (board.ownsDeed(7, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 7, -150);
+			} else {if (board.deeds[7].getOwner() == currentPlayer) {
+				System.out.println(ownerMessage);
 			} else {
-				utilityRent(currentPlayer, 7);
+				utilityRent(currentPlayer, 7);}
 			}
 		}
 		// STATES AVENUE
 		else if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(8, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 8, -140);
+			} else {if (board.deeds[8].getOwner() == currentPlayer) {
+				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 10, 8);
+				payRent(currentPlayer, 10, 8);}
 			}
 		}
 		// VIRGINIA AVENUE
 		else if (currentPlayer.getLocation() == 14) {
 			if (board.ownsDeed(9, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 9, -160);
+			} else {if (board.deeds[9].getOwner() == currentPlayer) {
+				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 12, 9);
+				payRent(currentPlayer, 12, 9);}
 			}
 		}
 		// PENNSYLVANIA RAILROAD
 		else if (currentPlayer.getLocation() == 15) {
 			if (board.ownsDeed(10, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 10, -200);
+			} else {if (board.deeds[10].getOwner() == currentPlayer) {
+				System.out.println(ownerMessage);
 			} else {
-				railRoadRent(currentPlayer, 10);
+				railRoadRent(currentPlayer, 10);}
 			}
 		}
 		// ST. JAMES PLACE
@@ -477,7 +516,10 @@ public class Game {
 			if (board.ownsDeed(11, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 11, -180);
 			} else {
-				payRent(currentPlayer, 14, 11);
+				if (board.deeds[11].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				payRent(currentPlayer, 14, 11);}
 			}
 		}
 		// COMMUNITY CHEST
@@ -489,7 +531,10 @@ public class Game {
 			if (board.ownsDeed(12, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 12, -180);
 			} else {
-				payRent(currentPlayer, 14, 12);
+				if (board.deeds[12].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				payRent(currentPlayer, 14, 12);}
 			}
 		}
 		// NEW YORK AVENUE
@@ -497,7 +542,10 @@ public class Game {
 			if (board.ownsDeed(13, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 13, -200);
 			} else {
-				payRent(currentPlayer, 16, 13);
+				if (board.deeds[13].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				payRent(currentPlayer, 16, 13);}
 			}
 		}
 		// KENTUCKY AVENUE
@@ -505,7 +553,10 @@ public class Game {
 			if (board.ownsDeed(14, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 14, -220);
 			} else {
-				payRent(currentPlayer, 18, 14);
+				if (board.deeds[14].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				payRent(currentPlayer, 18, 14);}
 			}
 		}
 		// CHANCE
@@ -517,16 +568,20 @@ public class Game {
 		else if (currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(15, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 15, -220);
+			} else {if (board.deeds[15].getOwner() == currentPlayer) {
+				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 18, 15);
+				payRent(currentPlayer, 18, 15);}
 			}
 		}
 		// ILLINOIS AVENUE
 		else if (currentPlayer.getLocation() == 24) {
 			if (board.ownsDeed(16, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 16, -240);
+			} else {if (board.deeds[16].getOwner() == currentPlayer) {
+				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 20, 16);
+				payRent(currentPlayer, 20, 16);}
 			}
 		}
 		// B. & O. RAILROAD
@@ -534,23 +589,30 @@ public class Game {
 			if (board.ownsDeed(17, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 17, -200);
 			} else {
-				railRoadRent(currentPlayer, 17);
+				if (board.deeds[17].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				railRoadRent(currentPlayer, 17);}
 			}
 		}
 		// ATLANTIC AVENUE
 		else if (currentPlayer.getLocation() == 26) {
 			if (board.ownsDeed(18, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 18, -260);
+			} else {if (board.deeds[18].getOwner() == currentPlayer) {
+				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 22, 18);
+				payRent(currentPlayer, 22, 18);}
 			}
 		}
 		// VENTNOR AVENUE
 		else if (currentPlayer.getLocation() == 27) {
 			if (board.ownsDeed(19, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 19, -260);
+			} else {if (board.deeds[19].getOwner() == currentPlayer) {
+				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 22, 19);
+				payRent(currentPlayer, 22, 19);}
 			}
 		}
 		// WATER WORKS
@@ -558,7 +620,10 @@ public class Game {
 			if (board.ownsDeed(20, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 20, -150);
 			} else {
-				utilityRent(currentPlayer, 20);
+				if (board.deeds[20].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				utilityRent(currentPlayer, 20);}
 			}
 		}
 		// MARVIN GARDENS
@@ -566,7 +631,10 @@ public class Game {
 			if (board.ownsDeed(21, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 21, -280);
 			} else {
-				payRent(currentPlayer, 24, 21);
+				if (board.deeds[21].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				payRent(currentPlayer, 24, 21);}
 			}
 		}
 		// GO TO JAIL
@@ -580,7 +648,10 @@ public class Game {
 			if (board.ownsDeed(22, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 22, -300);
 			} else {
-				payRent(currentPlayer, 26, 22);
+				if (board.deeds[22].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				payRent(currentPlayer, 26, 22);}
 			}
 		}
 		// NORTH CAROLINA AVENUE
@@ -588,7 +659,10 @@ public class Game {
 			if (board.ownsDeed(23, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 23, -300);
 			} else {
-				payRent(currentPlayer, 26, 23);
+				if (board.deeds[23].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				payRent(currentPlayer, 26, 23);}
 			}
 		}
 		// COMMUNITY CHEST
@@ -600,7 +674,10 @@ public class Game {
 			if (board.ownsDeed(24, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 24, -320);
 			} else {
-				payRent(currentPlayer, 28, 24);
+				if (board.deeds[24].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				payRent(currentPlayer, 28, 24);}
 			}
 		}
 		// SHORT LINE
@@ -608,7 +685,10 @@ public class Game {
 			if (board.ownsDeed(25, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 25, -200);
 			} else {
-				railRoadRent(currentPlayer, 25);
+				if (board.deeds[25].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				railRoadRent(currentPlayer, 25);}
 			}
 		}
 		// CHANCE
@@ -619,8 +699,10 @@ public class Game {
 		else if (currentPlayer.getLocation() == 37) {
 			if (board.ownsDeed(26, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 26, -350);
+			} else {if (board.deeds[26].getOwner() == currentPlayer) {
+				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 35, 26);
+				payRent(currentPlayer, 35, 26);}
 			}
 		}
 		// LUXURY TAX
@@ -634,7 +716,10 @@ public class Game {
 			if (board.ownsDeed(27, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 27, -400);
 			} else {
-				payRent(currentPlayer, 50, 27);
+				if (board.deeds[27].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+				payRent(currentPlayer, 50, 27);}
 			}
 		}
 	}
@@ -1155,10 +1240,13 @@ public class Game {
 						int playerBuyerSelection = menu.printAcceptMenu();
 						switch (playerBuyerSelection) {
 						case 0:
+							temp.setOwner(playerBuyer);
 							playerBuyer.propertiesOwned.add(temp);
 							playerBuyer.setBalance(-price);
+
 							currentPlayer.propertiesOwned.remove(selection);
 							currentPlayer.setBalance(price);
+
 							System.out.println(currentPlayer.getName() + " says thank you!");
 							break;
 						case 1:
@@ -1383,6 +1471,7 @@ public class Game {
 
 	/**
 	 * Method to print/show the properties the current player owns.
+	 * 
 	 * @param currentPlayer who's turn is it
 	 */
 	private void showProperties(Player currentPlayer) {
@@ -1391,20 +1480,19 @@ public class Game {
 		} else {
 			System.out.print("\nThe properties you own are:\n");
 
-			for (int i = 0; i <currentPlayer.getPropertiesOwned().size(); i++) {
-				
+			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+
 				if (currentPlayer.getPropertiesOwned().get(i).equals(board.deeds[10])) {
 					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
 							+ " | Rent with: 1 - $25 || 2 - $50 || 3 - $100 || 4 - $200 \n");
-				}
-				else if(currentPlayer.getPropertiesOwned().get(i).equals(board.deeds[7])) {
+				} else if (currentPlayer.getPropertiesOwned().get(i).equals(board.deeds[7])) {
 					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
-						+ " | Rent With 1: 4 time what the dice rolled || With 2: 10 times what the dice rolled\n");
-				}else {
+							+ " | Rent With 1: 4 time what the dice rolled || With 2: 10 times what the dice rolled\n");
+				} else {
 					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
 							+ " | Rent: " + currentPlayer.getPropertiesOwned().get(i).getRent() + " | Buy House: $"
 							+ currentPlayer.propertiesOwned.get(i).getBuildingCost() + "\n");
-				}				
+				}
 			}
 		}
 	}
@@ -1448,118 +1536,118 @@ public class Game {
 	}
 
 	// TODO Currently Working on this feature
-		private void buyHouse(Player currentPlayer) throws IOException {
-			ArrayList<String> propertyMonopolies = new ArrayList<String>();
-			int redColorTotal = 0;
-			int blueColorTotal = 0;
-			int brownColorTotal = 0;
-			int lightBlueColorTotal = 0;
-			int pinkColorTotal = 0;
-			int orangeColorTotal = 0;
-			int yellowColorTotal = 0;
-			int greenColorTotal = 0;
-			for (Property card : currentPlayer.propertiesOwned) {
-				if (card instanceof TitleDeed) {
-					TitleDeed newCard = (TitleDeed) card;
-					if (newCard.color == TitleColor.RED) {
-						redColorTotal++;
-					} else if (newCard.color == TitleColor.BLUE) {
-						blueColorTotal++;
-					} else if (newCard.color == TitleColor.BROWN) {
-						brownColorTotal++;
-					} else if (newCard.color == TitleColor.LIGHTBLUE) {
-						lightBlueColorTotal++;
-					} else if (newCard.color == TitleColor.PINK) {
-						pinkColorTotal++;
-					} else if (newCard.color == TitleColor.ORANGE) {
-						orangeColorTotal++;
-					} else if (newCard.color == TitleColor.YELLOW) {
-						yellowColorTotal++;
-					} else if (newCard.color == TitleColor.GREEN) {
-						greenColorTotal++;
-					}
+	private void buyHouse(Player currentPlayer) throws IOException {
+		ArrayList<String> propertyMonopolies = new ArrayList<String>();
+		int redColorTotal = 0;
+		int blueColorTotal = 0;
+		int brownColorTotal = 0;
+		int lightBlueColorTotal = 0;
+		int pinkColorTotal = 0;
+		int orangeColorTotal = 0;
+		int yellowColorTotal = 0;
+		int greenColorTotal = 0;
+		for (Property card : currentPlayer.propertiesOwned) {
+			if (card instanceof TitleDeed) {
+				TitleDeed newCard = (TitleDeed) card;
+				if (newCard.color == TitleColor.RED) {
+					redColorTotal++;
+				} else if (newCard.color == TitleColor.BLUE) {
+					blueColorTotal++;
+				} else if (newCard.color == TitleColor.BROWN) {
+					brownColorTotal++;
+				} else if (newCard.color == TitleColor.LIGHTBLUE) {
+					lightBlueColorTotal++;
+				} else if (newCard.color == TitleColor.PINK) {
+					pinkColorTotal++;
+				} else if (newCard.color == TitleColor.ORANGE) {
+					orangeColorTotal++;
+				} else if (newCard.color == TitleColor.YELLOW) {
+					yellowColorTotal++;
+				} else if (newCard.color == TitleColor.GREEN) {
+					greenColorTotal++;
 				}
 			}
-			if (redColorTotal == 3) {
-				propertyMonopolies.add("red");
-			}
-			if (blueColorTotal == 2) {
-				propertyMonopolies.add("blue");
-			}
-			if (brownColorTotal == 2) {
-				propertyMonopolies.add("brown");
-			}
-			if (lightBlueColorTotal == 3) {
-				propertyMonopolies.add("light blue");
-			}
-			if (pinkColorTotal == 3) {
-				propertyMonopolies.add("pink");
-			}
-			if (orangeColorTotal == 3) {
-				propertyMonopolies.add("orange");
-			}
-			if (yellowColorTotal == 3) {
-				propertyMonopolies.add("yellow");
-			}
-			if (greenColorTotal == 3) {
-				propertyMonopolies.add("green");
-			}
-			if (propertyMonopolies.size() == 0) {
-				System.out.println("You ain't got shit,,,, dawg");
-				return;
-			}
-			String[] listOfMonopolies = (String[]) propertyMonopolies.toArray();
-			int menuChoiceForColor = ConsoleUI.promptForMenuSelection(listOfMonopolies);
-			String colorValue = listOfMonopolies[menuChoiceForColor];
-			int amountOfHouses = ConsoleUI.promptForInt("How many houses do you want to buy(5 for a hotel)", 1, 5);
-			switch (colorValue) {
-			case "red":
-				currentPlayer.setBalance(amountOfHouses * -150);
-	
-	//			for(int i = 0; i < amountOfHouses; i++) {
-	//				
-	//			for(Property deed: currentPlayer.propertiesOwned) {
-	//				if(deed instanceof TitleDeed && TitleColor.RED == ((TitleDeed) deed).color) {
-	//					if(((TitleDeed) deed).totalBuildings == 1) {
-	//						
-	//					}
-	//					((TitleDeed) deed).totalBuildings += 1;
-	//					
-	//				}
-	//				else {
-	//					continue;
-	//				}
-	//			}
-	//			
-	//			}
-	
-				break;
-			case "blue":
-				currentPlayer.setBalance(amountOfHouses * -200);
-				break;
-			case "brown":
-				currentPlayer.setBalance(amountOfHouses * -50);
-				break;
-			case "light blue":
-				currentPlayer.setBalance(amountOfHouses * -50);
-				break;
-			case "pink":
-				currentPlayer.setBalance(amountOfHouses * -100);
-				break;
-			case "orange":
-				currentPlayer.setBalance(amountOfHouses * -100);
-				break;
-			case "yellow":
-				currentPlayer.setBalance(amountOfHouses * -150);
-				break;
-			case "green":
-				currentPlayer.setBalance(amountOfHouses * -200);
-				break;
-			default:
-				break;
-			}
-	
 		}
+		if (redColorTotal == 3) {
+			propertyMonopolies.add("red");
+		}
+		if (blueColorTotal == 2) {
+			propertyMonopolies.add("blue");
+		}
+		if (brownColorTotal == 2) {
+			propertyMonopolies.add("brown");
+		}
+		if (lightBlueColorTotal == 3) {
+			propertyMonopolies.add("light blue");
+		}
+		if (pinkColorTotal == 3) {
+			propertyMonopolies.add("pink");
+		}
+		if (orangeColorTotal == 3) {
+			propertyMonopolies.add("orange");
+		}
+		if (yellowColorTotal == 3) {
+			propertyMonopolies.add("yellow");
+		}
+		if (greenColorTotal == 3) {
+			propertyMonopolies.add("green");
+		}
+		if (propertyMonopolies.size() == 0) {
+			System.out.println("You ain't got shit,,,, dawg");
+			return;
+		}
+		String[] listOfMonopolies = (String[]) propertyMonopolies.toArray();
+		int menuChoiceForColor = ConsoleUI.promptForMenuSelection(listOfMonopolies);
+		String colorValue = listOfMonopolies[menuChoiceForColor];
+		int amountOfHouses = ConsoleUI.promptForInt("How many houses do you want to buy(5 for a hotel)", 1, 5);
+		switch (colorValue) {
+		case "red":
+			currentPlayer.setBalance(amountOfHouses * -150);
+
+			// for(int i = 0; i < amountOfHouses; i++) {
+			//
+			// for(Property deed: currentPlayer.propertiesOwned) {
+			// if(deed instanceof TitleDeed && TitleColor.RED == ((TitleDeed) deed).color) {
+			// if(((TitleDeed) deed).totalBuildings == 1) {
+			//
+			// }
+			// ((TitleDeed) deed).totalBuildings += 1;
+			//
+			// }
+			// else {
+			// continue;
+			// }
+			// }
+			//
+			// }
+
+			break;
+		case "blue":
+			currentPlayer.setBalance(amountOfHouses * -200);
+			break;
+		case "brown":
+			currentPlayer.setBalance(amountOfHouses * -50);
+			break;
+		case "light blue":
+			currentPlayer.setBalance(amountOfHouses * -50);
+			break;
+		case "pink":
+			currentPlayer.setBalance(amountOfHouses * -100);
+			break;
+		case "orange":
+			currentPlayer.setBalance(amountOfHouses * -100);
+			break;
+		case "yellow":
+			currentPlayer.setBalance(amountOfHouses * -150);
+			break;
+		case "green":
+			currentPlayer.setBalance(amountOfHouses * -200);
+			break;
+		default:
+			break;
+		}
+
+	}
 
 	/**
 	 * Set bankruptcy status as On
