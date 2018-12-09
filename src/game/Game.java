@@ -12,6 +12,14 @@ import enumeration.TitleColor;
 import enumeration.Token;
 import card.Property;
 
+/**
+ * 
+ * @author Searjasub Lopez
+ * @author Spencer Schmollinger
+ * @author Brooke Showers
+ *
+ */
+
 public class Game {
 
 	// Class level variables
@@ -24,7 +32,6 @@ public class Game {
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
-	 * 
 	 * @param totalPlayers insert the number of player
 	 */
 	private void init(int totalPlayers) throws IOException {
