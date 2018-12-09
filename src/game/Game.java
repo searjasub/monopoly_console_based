@@ -233,6 +233,18 @@ public class Game {
 	}
 
 	/**
+	 * Method that will turn on the isInJail flag of a player and update location of
+	 * the player if is sent to jail.
+	 * 
+	 * @param currentPlayer
+	 * @param jailLocation
+	 */
+	private void sendToJail(Player currentPlayer, int jailLocation) {
+		currentPlayer.setLocation(jailLocation);
+		currentPlayer.isInJail(true);
+	}
+
+	/**
 	 * This method will handle each option of the menu to help the currentPlayer to
 	 * get out of jail.
 	 * 
@@ -1223,15 +1235,6 @@ public class Game {
 		}
 	}
 
-	private void showPropertyNameFormated(Player currentPlayer) {
-		System.out.print("\nThe properties you own are:\n");
-		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-			if (i == currentPlayer.getPropertiesOwned().size() - 1) {
-				System.out.print("[" + i + "]" + currentPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
-			}
-		}
-	}
-
 	private void buy(Player currentPlayer) throws IOException {
 
 		int action = menu.printSellBuyMainMenu();
@@ -1356,15 +1359,6 @@ public class Game {
 		}
 	}
 
-	private void showPropertyNamesOtherPlayer(Player otherPlayer) {
-		System.out.print("\nThe properties that " + otherPlayer.getName() + " owns are:\n");
-		for (int i = 0; i < otherPlayer.getPropertiesOwned().size(); i++) {
-			if (i == otherPlayer.getPropertiesOwned().size()) {
-				System.out.println("[" + i + "]\t" + otherPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
-			}
-		}
-	}
-
 	private int checkForJailCard(Player playerSeller) {
 		int howMany = 0;
 		System.out.print(playerSeller.getName() + " has ");
@@ -1397,143 +1391,40 @@ public class Game {
 		} else {
 			System.out.print("\nThe properties you own are:\n");
 
-			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-
-				if (currentPlayer.getPropertiesOwned().contains(board.deeds[2])
-						|| currentPlayer.getPropertiesOwned().contains(board.deeds[10])
-						|| currentPlayer.getPropertiesOwned().contains(board.deeds[17])
-						|| currentPlayer.getPropertiesOwned().contains(board.deeds[25])) {
-
-					System.out.print("\n[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
-							+ " | Rent: 1 - $25 || 2 - $50 || 3 - $100 || 4 - $200 ");
-				} else if(currentPlayer.getPropertiesOwned().contains(board.deeds[7]) 
-						|| currentPlayer.getPropertiesOwned().contains(board.deeds[20])) {
-					System.out.print("\n[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
-							+ " | Rent: 1 - 4 time what the dice rolled || 2 - 10 times what the dice rolled");
-				} 
+			for (int i = 0; i <currentPlayer.getPropertiesOwned().size(); i++) {
 				
-				else {
+				if (currentPlayer.getPropertiesOwned().get(i).equals(board.deeds[10])) {
+					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
+							+ " | Rent with: 1 - $25 || 2 - $50 || 3 - $100 || 4 - $200 \n");
+				}
+				else if(currentPlayer.getPropertiesOwned().get(i).equals(board.deeds[7])) {
+					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
+						+ " | Rent With 1: 4 time what the dice rolled || With 2: 10 times what the dice rolled\n");
+				}else {
 					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
 							+ " | Rent: " + currentPlayer.getPropertiesOwned().get(i).getRent() + " | Buy House: $"
 							+ currentPlayer.propertiesOwned.get(i).getBuildingCost() + "\n");
-				}
-
+				}				
 			}
 		}
 	}
 
-	// TODO Currently Working on this feature
-	private void buyHouse(Player currentPlayer) throws IOException {
-		ArrayList<String> propertyMonopolies = new ArrayList<String>();
-		int redColorTotal = 0;
-		int blueColorTotal = 0;
-		int brownColorTotal = 0;
-		int lightBlueColorTotal = 0;
-		int pinkColorTotal = 0;
-		int orangeColorTotal = 0;
-		int yellowColorTotal = 0;
-		int greenColorTotal = 0;
-		for (Property card : currentPlayer.propertiesOwned) {
-			if (card instanceof TitleDeed) {
-				TitleDeed newCard = (TitleDeed) card;
-				if (newCard.color == TitleColor.RED) {
-					redColorTotal++;
-				} else if (newCard.color == TitleColor.BLUE) {
-					blueColorTotal++;
-				} else if (newCard.color == TitleColor.BROWN) {
-					brownColorTotal++;
-				} else if (newCard.color == TitleColor.LIGHTBLUE) {
-					lightBlueColorTotal++;
-				} else if (newCard.color == TitleColor.PINK) {
-					pinkColorTotal++;
-				} else if (newCard.color == TitleColor.ORANGE) {
-					orangeColorTotal++;
-				} else if (newCard.color == TitleColor.YELLOW) {
-					yellowColorTotal++;
-				} else if (newCard.color == TitleColor.GREEN) {
-					greenColorTotal++;
-				}
+	private void showPropertyNamesOtherPlayer(Player otherPlayer) {
+		System.out.print("\nThe properties that " + otherPlayer.getName() + " owns are:\n");
+		for (int i = 0; i < otherPlayer.getPropertiesOwned().size(); i++) {
+			if (i == otherPlayer.getPropertiesOwned().size()) {
+				System.out.println("[" + i + "]\t" + otherPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
 			}
 		}
-		if (redColorTotal == 3) {
-			propertyMonopolies.add("red");
-		}
-		if (blueColorTotal == 2) {
-			propertyMonopolies.add("blue");
-		}
-		if (brownColorTotal == 2) {
-			propertyMonopolies.add("brown");
-		}
-		if (lightBlueColorTotal == 3) {
-			propertyMonopolies.add("light blue");
-		}
-		if (pinkColorTotal == 3) {
-			propertyMonopolies.add("pink");
-		}
-		if (orangeColorTotal == 3) {
-			propertyMonopolies.add("orange");
-		}
-		if (yellowColorTotal == 3) {
-			propertyMonopolies.add("yellow");
-		}
-		if (greenColorTotal == 3) {
-			propertyMonopolies.add("green");
-		}
-		if (propertyMonopolies.size() == 0) {
-			System.out.println("You ain't got shit,,,, dawg");
-			return;
-		}
-		String[] listOfMonopolies = (String[]) propertyMonopolies.toArray();
-		int menuChoiceForColor = ConsoleUI.promptForMenuSelection(listOfMonopolies);
-		String colorValue = listOfMonopolies[menuChoiceForColor];
-		int amountOfHouses = ConsoleUI.promptForInt("How many houses do you want to buy(5 for a hotel)", 1, 5);
-		switch (colorValue) {
-		case "red":
-			currentPlayer.setBalance(amountOfHouses * -150);
+	}
 
-//			for(int i = 0; i < amountOfHouses; i++) {
-//				
-//			for(Property deed: currentPlayer.propertiesOwned) {
-//				if(deed instanceof TitleDeed && TitleColor.RED == ((TitleDeed) deed).color) {
-//					if(((TitleDeed) deed).totalBuildings == 1) {
-//						
-//					}
-//					((TitleDeed) deed).totalBuildings += 1;
-//					
-//				}
-//				else {
-//					continue;
-//				}
-//			}
-//			
-//			}
-
-			break;
-		case "blue":
-			currentPlayer.setBalance(amountOfHouses * -200);
-			break;
-		case "brown":
-			currentPlayer.setBalance(amountOfHouses * -50);
-			break;
-		case "light blue":
-			currentPlayer.setBalance(amountOfHouses * -50);
-			break;
-		case "pink":
-			currentPlayer.setBalance(amountOfHouses * -100);
-			break;
-		case "orange":
-			currentPlayer.setBalance(amountOfHouses * -100);
-			break;
-		case "yellow":
-			currentPlayer.setBalance(amountOfHouses * -150);
-			break;
-		case "green":
-			currentPlayer.setBalance(amountOfHouses * -200);
-			break;
-		default:
-			break;
+	private void showPropertyNameFormated(Player currentPlayer) {
+		System.out.print("\nThe properties you own are:\n");
+		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+			if (i == currentPlayer.getPropertiesOwned().size() - 1) {
+				System.out.print("[" + i + "]" + currentPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
+			}
 		}
-
 	}
 
 	/**
@@ -1556,17 +1447,119 @@ public class Game {
 		}
 	}
 
-	/**
-	 * Method that will turn on the isInJail flag of a player and update location of
-	 * the player if is sent to jail.
-	 * 
-	 * @param currentPlayer
-	 * @param jailLocation
-	 */
-	private void sendToJail(Player currentPlayer, int jailLocation) {
-		currentPlayer.setLocation(jailLocation);
-		currentPlayer.isInJail(true);
-	}
+	// TODO Currently Working on this feature
+		private void buyHouse(Player currentPlayer) throws IOException {
+			ArrayList<String> propertyMonopolies = new ArrayList<String>();
+			int redColorTotal = 0;
+			int blueColorTotal = 0;
+			int brownColorTotal = 0;
+			int lightBlueColorTotal = 0;
+			int pinkColorTotal = 0;
+			int orangeColorTotal = 0;
+			int yellowColorTotal = 0;
+			int greenColorTotal = 0;
+			for (Property card : currentPlayer.propertiesOwned) {
+				if (card instanceof TitleDeed) {
+					TitleDeed newCard = (TitleDeed) card;
+					if (newCard.color == TitleColor.RED) {
+						redColorTotal++;
+					} else if (newCard.color == TitleColor.BLUE) {
+						blueColorTotal++;
+					} else if (newCard.color == TitleColor.BROWN) {
+						brownColorTotal++;
+					} else if (newCard.color == TitleColor.LIGHTBLUE) {
+						lightBlueColorTotal++;
+					} else if (newCard.color == TitleColor.PINK) {
+						pinkColorTotal++;
+					} else if (newCard.color == TitleColor.ORANGE) {
+						orangeColorTotal++;
+					} else if (newCard.color == TitleColor.YELLOW) {
+						yellowColorTotal++;
+					} else if (newCard.color == TitleColor.GREEN) {
+						greenColorTotal++;
+					}
+				}
+			}
+			if (redColorTotal == 3) {
+				propertyMonopolies.add("red");
+			}
+			if (blueColorTotal == 2) {
+				propertyMonopolies.add("blue");
+			}
+			if (brownColorTotal == 2) {
+				propertyMonopolies.add("brown");
+			}
+			if (lightBlueColorTotal == 3) {
+				propertyMonopolies.add("light blue");
+			}
+			if (pinkColorTotal == 3) {
+				propertyMonopolies.add("pink");
+			}
+			if (orangeColorTotal == 3) {
+				propertyMonopolies.add("orange");
+			}
+			if (yellowColorTotal == 3) {
+				propertyMonopolies.add("yellow");
+			}
+			if (greenColorTotal == 3) {
+				propertyMonopolies.add("green");
+			}
+			if (propertyMonopolies.size() == 0) {
+				System.out.println("You ain't got shit,,,, dawg");
+				return;
+			}
+			String[] listOfMonopolies = (String[]) propertyMonopolies.toArray();
+			int menuChoiceForColor = ConsoleUI.promptForMenuSelection(listOfMonopolies);
+			String colorValue = listOfMonopolies[menuChoiceForColor];
+			int amountOfHouses = ConsoleUI.promptForInt("How many houses do you want to buy(5 for a hotel)", 1, 5);
+			switch (colorValue) {
+			case "red":
+				currentPlayer.setBalance(amountOfHouses * -150);
+	
+	//			for(int i = 0; i < amountOfHouses; i++) {
+	//				
+	//			for(Property deed: currentPlayer.propertiesOwned) {
+	//				if(deed instanceof TitleDeed && TitleColor.RED == ((TitleDeed) deed).color) {
+	//					if(((TitleDeed) deed).totalBuildings == 1) {
+	//						
+	//					}
+	//					((TitleDeed) deed).totalBuildings += 1;
+	//					
+	//				}
+	//				else {
+	//					continue;
+	//				}
+	//			}
+	//			
+	//			}
+	
+				break;
+			case "blue":
+				currentPlayer.setBalance(amountOfHouses * -200);
+				break;
+			case "brown":
+				currentPlayer.setBalance(amountOfHouses * -50);
+				break;
+			case "light blue":
+				currentPlayer.setBalance(amountOfHouses * -50);
+				break;
+			case "pink":
+				currentPlayer.setBalance(amountOfHouses * -100);
+				break;
+			case "orange":
+				currentPlayer.setBalance(amountOfHouses * -100);
+				break;
+			case "yellow":
+				currentPlayer.setBalance(amountOfHouses * -150);
+				break;
+			case "green":
+				currentPlayer.setBalance(amountOfHouses * -200);
+				break;
+			default:
+				break;
+			}
+	
+		}
 
 	/**
 	 * Set bankruptcy status as On
