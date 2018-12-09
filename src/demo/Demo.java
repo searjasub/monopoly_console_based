@@ -22,7 +22,7 @@ public class Demo{
         Demo d = new Demo();
         boolean loop = true;
         while(loop){
-            int menu = ConsoleUI.promptForMenuSelection(new String[] {"exit", "Land on things","taxy bois", "jail :("});
+            int menu = ConsoleUI.promptForMenuSelection(new String[] {"Exit", "Land on squares","Taxes", "Go To Jail"});
             switch(menu){
                 case 0:
                     loop = false;
@@ -33,7 +33,7 @@ public class Demo{
                 case 2:
                     d.taxes();
                     break;
-                case 4:
+                case 3:
                     d.jail();
                     break;
                 default:
@@ -52,7 +52,7 @@ public class Demo{
 
     public void landOnProperty() throws Exception{
     for(int i = 0; i < 6; i++){
-        game.turn(game.players[i]);
+        game.turn(game.players[i % 3]);
     }
         // buy property
         // removes money 

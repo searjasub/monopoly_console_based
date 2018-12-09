@@ -54,7 +54,7 @@ public class Board {
 		chance.add(new Card("\t\tChance\n", "\tGo back three spaces.\n", CardType.CHANCE, CardCategory.MOVEMENT,4));
 		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n\tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,5));
 		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST UTILITY.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, throw dice and pay owner ten times the amount thrown.\n", CardType.CHANCE, CardCategory.MOVEMENT,6));
-		chance.add(new Card("\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,7));
+		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,7));
 		chance.add(new Card("\tChance\n", "\tAdvance to GO. (Collect $200)\n", CardType.CHANCE, CardCategory.MOVEMENT,8));
 		chance.add(new Card("\tChance\n", "Advance to Illinois Avenue.\nIf you pass GO, collect $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,9));
 		chance.add(new Card("\tChance\n", "Take a trip to Reading Railroad.\nIf you pass GO, collect $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,10));
@@ -66,6 +66,7 @@ public class Board {
 		communityChest.add(new Card("\t   Community Chest\n", "\tDoctor's fees. Pay $50.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50, 16));
 		communityChest.add(new Card("\t  Community Chest\n", "\tSchool fees. Pay $50.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50,17));
 		communityChest.add(new Card("\t   Community Chest\n", "\tHospital fees. Pay $100.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 100,18));
+		//Can't add this two cards since the building portion is not working.
 		// communityChest.add(new Card("\t    Community Chest\n", "    You are assessed for street repairs: \nPay $40 per house and $115 per hotel you own.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX,19));
 		// chance.add(new Card("\t\tChance\n", "   Make general repairs on all your property: \nFor each house pay $25, for each hotel pay $100.\n", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX,20));
 		communityChest.add(new Card("\t\tCommunity Chest\n", "It is your birthday. Collect $10 from every player.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_OR_RECEIVE_PLAYERS,21));
@@ -87,12 +88,12 @@ public class Board {
 	
 	/**
 	 * Method to initialize every property in the game.
-	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location) {
+	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location, rentWithOne, rentWithTwo, rentWithThree, rentWithFour, rentWithHotel)
 	 */
 	public void initDeeds() {
 		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1, 2, 10, 30, 90, 160, 250);
 		deeds[1] = new TitleDeed("Baltic Avenue", 60, enumeration.TitleColor.BROWN, 50, 3, 4, 20, 60, 180, 320, 450);
-		deeds[2] = new RailRoad("Reading Railroad", 5, 200);
+		deeds[2] = new RailRoad("Reading Railroad",5, 200);
 		deeds[3] = new TitleDeed("Oriental Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 6, 6, 30, 90, 270, 400, 550);
 		deeds[4] = new TitleDeed("Vermont Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 8, 6, 30, 90, 270, 400, 550);
 		deeds[5] = new TitleDeed("Connecticut Avenue", 120, enumeration.TitleColor.LIGHTBLUE, 50, 9, 8, 40, 100, 300, 450, 600);
@@ -240,7 +241,8 @@ public class Board {
 				+ "|    17    |                           |" + TitleColor.ORANGE +"#####################" + TitleColor.RESET + "|                              |    33    |      Player:\t\t " + player.getName() + "\n"
 				+ "|__________|                                                                                |__________|      Token:\t\t " + player.getToken() + "\n"
 				+ "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "         |      Location:\t\t " + player.getLocation() + "\n"
-				+ "|    16   " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "    34   |      Description:\t " + squares[player.getLocation()].getName() + "\n"
+				+ "|    16   " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "    34   |      Description:\t " + squares[player.getLocation()].getName() + ""
+						+ "\n"
 				+ "|_________" + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "_________|\n"
 				+ "|          |                                                                                |          |\n"
 				+ "|    15    |                               M O N O P O L Y                                  |    35    |\n"
@@ -302,7 +304,7 @@ public class Board {
 				+ "                                                                                         \n"
 				+ "    e   e       e88 88e   Y88b Y88   e88 88e   888 88e    e88 88e   888     Y88b Y8P     \n"
 				+ "   d8b d8b     d888 888b   Y88b Y8  d888 888b  888 888D  d888 888b  888      Y88b Y      \n"
-				+ "  e Y8b Y8b   C8888 8888D b Y88b Y C8888 8888D 888 88\" C8888  8888D 888       Y88b       \n"
+				+ "  e Y8b Y8b   C8888 8888D b Y88b Y C8888 8888D 888 88\" 8888  8888D 888       Y88b       \n"
 				+ " d8b Y8b Y8b   Y888 888P  8b Y88b   Y888 888P  888       Y888 888P  888  ,d    888       \n"
 				+ "d888b Y8b Y8b   \"88 88\"  88b Y88b    \"88 88\"   888        \"88 88\"   888,d88    888 	  \n");
 	}
