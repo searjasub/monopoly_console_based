@@ -1351,6 +1351,7 @@ public class Game {
 						case 0:
 							playerSeller.propertiesOwned.remove(selection);
 							playerSeller.setBalance(price);
+							temp.setOwner(currentPlayer);
 							currentPlayer.propertiesOwned.add(temp);
 							currentPlayer.setBalance(-price);
 							System.out.println("Transaction completed");
