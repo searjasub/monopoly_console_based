@@ -13,116 +13,175 @@ import enumeration.CardType;
 import enumeration.TitleColor;
 import square.*;
 
-
 public class Board {
-	
+
 	ArrayList<Card> communityChest = new ArrayList<Card>();
 	ArrayList<Card> chance = new ArrayList<Card>();
 	Property[] deeds = new Property[28];
 	Square[] squares = new Square[40];
 	Property deed;
-	
+
 	/**
 	 * Constructor
 	 */
 	public Board() {
-		initCards();	
+		initCards();
 		initDeeds();
 		initSquare();
 	}
-	
+
 	public int getSizeOfBoard() {
 		return squares.length;
 	}
+
 	public boolean ownsDeed(int location, Player currentPlayer) {
 		boolean deedOwned = false;
-		
-		if(deeds[location].getOwner() == null) {
+
+		if (deeds[location].getOwner() == null) {
 			deeds[location].setOwner(currentPlayer);
 			deedOwned = true;
 		}
 		return deedOwned;
 	}
-	
+
 	/**
 	 * Method to initialize every card in the game.
 	 */
 	public void initCards() {
-		chance.add(new Card("\t\tChance\n", "\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.\n", CardType.CHANCE, CardCategory.JAIL_FREE,1));
-		communityChest.add(new Card("\t\tCommunity Chest\n", "\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.\n", CardType.COMMUNITY_CHEST, CardCategory.JAIL_FREE,2));
-		communityChest.add(new Card("\t\tCommunity Chest\n", "\tAdvance to GO. (Collect $200)", CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT,3));
-		chance.add(new Card("\t\tChance\n", "\tGo back three spaces.\n", CardType.CHANCE, CardCategory.MOVEMENT,4));
-		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n\tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,5));
-		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST UTILITY.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, throw dice and pay owner ten times the amount thrown.\n", CardType.CHANCE, CardCategory.MOVEMENT,6));
-		chance.add(new Card("\t\t\tChance\n", "\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n", CardType.CHANCE, CardCategory.MOVEMENT,7));
-		chance.add(new Card("\tChance\n", "\tAdvance to GO. (Collect $200)\n", CardType.CHANCE, CardCategory.MOVEMENT,8));
-		chance.add(new Card("\tChance\n", "Advance to Illinois Avenue.\nIf you pass GO, collect $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,9));
-		chance.add(new Card("\tChance\n", "Take a trip to Reading Railroad.\nIf you pass GO, collect $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,10));
-		chance.add(new Card("\tChance\n", "Advance to St. Charles Place.\nIf you pass GO, collect $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,11));
-		chance.add(new Card("\t\t  Chance\n", "\t\tGO TO JAIL.\nGO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.\n", CardType.CHANCE, CardCategory.MOVEMENT,12));
-		communityChest.add(new Card("\t\tCommunity Chest\n", "\t\t  GO TO JAIL.\nGO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.\n", CardType.COMMUNITY_CHEST,CardCategory.MOVEMENT,13));
-		chance.add(new Card("\tChance\n", "Advance to Boardwalk.\n", CardType.CHANCE, CardCategory.MOVEMENT,14));
+		chance.add(new Card("\t\tChance\n", "\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.\n",
+				CardType.CHANCE, CardCategory.JAIL_FREE, 1));
+		communityChest.add(new Card("\t\tCommunity Chest\n",
+				"\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.\n", CardType.COMMUNITY_CHEST,
+				CardCategory.JAIL_FREE, 2));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "\tAdvance to GO. (Collect $200)",
+				CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT, 3));
+		chance.add(new Card("\t\tChance\n", "\tGo back three spaces.\n", CardType.CHANCE, CardCategory.MOVEMENT, 4));
+		chance.add(new Card("\t\t\tChance\n",
+				"\t\tADVANCE TO THE NEAREST RAILROAD.\n\tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n",
+				CardType.CHANCE, CardCategory.MOVEMENT, 5));
+		chance.add(new Card("\t\t\tChance\n",
+				"\t\tADVANCE TO THE NEAREST UTILITY.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, throw dice and pay owner ten times the amount thrown.\n",
+				CardType.CHANCE, CardCategory.MOVEMENT, 6));
+		chance.add(new Card("\t\t\tChance\n",
+				"\t\tADVANCE TO THE NEAREST RAILROAD.\n \tIf UNOWNED, you may buy it from the bank.\n If OWNED, pay owner twice the rental to which they are otherwise entitled.\n",
+				CardType.CHANCE, CardCategory.MOVEMENT, 7));
+		chance.add(
+				new Card("\tChance\n", "\tAdvance to GO. (Collect $200)\n", CardType.CHANCE, CardCategory.MOVEMENT, 8));
+		chance.add(new Card("\tChance\n", "Advance to Illinois Avenue.\nIf you pass GO, collect $200.\n",
+				CardType.CHANCE, CardCategory.MOVEMENT, 9));
+		chance.add(new Card("\tChance\n", "Take a trip to Reading Railroad.\nIf you pass GO, collect $200.\n",
+				CardType.CHANCE, CardCategory.MOVEMENT, 10));
+		chance.add(new Card("\tChance\n", "Advance to St. Charles Place.\nIf you pass GO, collect $200.\n",
+				CardType.CHANCE, CardCategory.MOVEMENT, 11));
+		chance.add(new Card("\t\t  Chance\n",
+				"\t\tGO TO JAIL.\nGO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.\n", CardType.CHANCE,
+				CardCategory.MOVEMENT, 12));
+		communityChest.add(new Card("\t\tCommunity Chest\n",
+				"\t\t  GO TO JAIL.\nGO DIRECTLY TO JAIL, DO NOT PASS GO, DO NOT COLLECT $200.\n",
+				CardType.COMMUNITY_CHEST, CardCategory.MOVEMENT, 13));
+		chance.add(new Card("\tChance\n", "Advance to Boardwalk.\n", CardType.CHANCE, CardCategory.MOVEMENT, 14));
 		chance.add(new Card("\tChance\n", "  Speeding fine $15.\n", CardType.CHANCE, CardCategory.PAY_MONEY, 15, 15));
-		communityChest.add(new Card("\t   Community Chest\n", "\tDoctor's fees. Pay $50.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50, 16));
-		communityChest.add(new Card("\t  Community Chest\n", "\tSchool fees. Pay $50.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 50,17));
-		communityChest.add(new Card("\t   Community Chest\n", "\tHospital fees. Pay $100.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_MONEY, 100,18));
-		//Can't add this two cards since the building portion is not working.
-		// communityChest.add(new Card("\t    Community Chest\n", "    You are assessed for street repairs: \nPay $40 per house and $115 per hotel you own.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX,19));
-		// chance.add(new Card("\t\tChance\n", "   Make general repairs on all your property: \nFor each house pay $25, for each hotel pay $100.\n", CardType.CHANCE, CardCategory.PAY_BUILDING_TAX,20));
-		communityChest.add(new Card("\t\tCommunity Chest\n", "It is your birthday. Collect $10 from every player.\n", CardType.COMMUNITY_CHEST, CardCategory.PAY_OR_RECEIVE_PLAYERS,21));
-		chance.add(new Card("     Chance\n", "You have been elected chairman of the board.\n \tPay each player $50.\n",CardType.CHANCE, CardCategory.PAY_OR_RECEIVE_PLAYERS,22));
-		chance.add(new Card("\t\tChance\n", "Your building loan matures. Collect $150.\n", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 150,23));
-		chance.add(new Card("\t  Chance\n", "Bank pays you dividend of $50.\n", CardType.CHANCE, CardCategory.RECEIVE_MONEY, 50,24));
-		communityChest.add(new Card("\t  Community Chest\n", "Bank error in your favor. Collect $200.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 200,25));
-		communityChest.add(new Card("\tCommunity Chest\n", "Life insurance matures. Collect $100.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100,26));
-		communityChest.add(new Card("\tCommunity Chest\n", "Income tax refund. Collect $20.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 20,27));
-		communityChest.add(new Card("\tCommunity Chest\n", "  Receive $25 consultancy fee.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 25,28));
-		communityChest.add(new Card("\t\t Community Chest\n", "You have won second prize in a beauty contest. Collect $10.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 10,29));
-		communityChest.add(new Card("\tCommunity Chest\n", "From sale of stock you get $50.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50,30));
-		communityChest.add(new Card("\t Community Chest\n", "\tYou inherit $100.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100,31));
-		communityChest.add(new Card("\tCommunity Chest\n", "Holiday fund matures. Receive $100.\n", CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100,32));
-		
+		communityChest.add(new Card("\t   Community Chest\n", "\tDoctor's fees. Pay $50.\n", CardType.COMMUNITY_CHEST,
+				CardCategory.PAY_MONEY, 50, 16));
+		communityChest.add(new Card("\t  Community Chest\n", "\tSchool fees. Pay $50.\n", CardType.COMMUNITY_CHEST,
+				CardCategory.PAY_MONEY, 50, 17));
+		communityChest.add(new Card("\t   Community Chest\n", "\tHospital fees. Pay $100.\n", CardType.COMMUNITY_CHEST,
+				CardCategory.PAY_MONEY, 100, 18));
+		// Can't add this two cards since the building portion is not working.
+		// communityChest.add(new Card("\t Community Chest\n", " You are assessed for
+		// street repairs: \nPay $40 per house and $115 per hotel you own.\n",
+		// CardType.COMMUNITY_CHEST, CardCategory.PAY_BUILDING_TAX,19));
+		// chance.add(new Card("\t\tChance\n", " Make general repairs on all your
+		// property: \nFor each house pay $25, for each hotel pay $100.\n",
+		// CardType.CHANCE, CardCategory.PAY_BUILDING_TAX,20));
+		communityChest.add(new Card("\t\tCommunity Chest\n", "It is your birthday. Collect $10 from every player.\n",
+				CardType.COMMUNITY_CHEST, CardCategory.PAY_OR_RECEIVE_PLAYERS, 21));
+		chance.add(new Card("     Chance\n", "You have been elected chairman of the board.\n \tPay each player $50.\n",
+				CardType.CHANCE, CardCategory.PAY_OR_RECEIVE_PLAYERS, 22));
+		chance.add(new Card("\t\tChance\n", "Your building loan matures. Collect $150.\n", CardType.CHANCE,
+				CardCategory.RECEIVE_MONEY, 150, 23));
+		chance.add(new Card("\t  Chance\n", "Bank pays you dividend of $50.\n", CardType.CHANCE,
+				CardCategory.RECEIVE_MONEY, 50, 24));
+		communityChest.add(new Card("\t  Community Chest\n", "Bank error in your favor. Collect $200.\n",
+				CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 200, 25));
+		communityChest.add(new Card("\tCommunity Chest\n", "Life insurance matures. Collect $100.\n",
+				CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100, 26));
+		communityChest.add(new Card("\tCommunity Chest\n", "Income tax refund. Collect $20.\n",
+				CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 20, 27));
+		communityChest.add(new Card("\tCommunity Chest\n", "  Receive $25 consultancy fee.\n", CardType.COMMUNITY_CHEST,
+				CardCategory.RECEIVE_MONEY, 25, 28));
+		communityChest
+				.add(new Card("\t\t Community Chest\n", "You have won second prize in a beauty contest. Collect $10.\n",
+						CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 10, 29));
+		communityChest.add(new Card("\tCommunity Chest\n", "From sale of stock you get $50.\n",
+				CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 50, 30));
+		communityChest.add(new Card("\t Community Chest\n", "\tYou inherit $100.\n", CardType.COMMUNITY_CHEST,
+				CardCategory.RECEIVE_MONEY, 100, 31));
+		communityChest.add(new Card("\tCommunity Chest\n", "Holiday fund matures. Receive $100.\n",
+				CardType.COMMUNITY_CHEST, CardCategory.RECEIVE_MONEY, 100, 32));
+
 		Collections.shuffle(chance);
 		Collections.shuffle(communityChest);
 	}
-	
+
 	/**
-	 * Method to initialize every property in the game.
-	 * public TitleDeed(String name, int cost, TitleColor color, int buildingCost, int location, rentWithOne, rentWithTwo, rentWithThree, rentWithFour, rentWithHotel)
+	 * Method to initialize every property in the game. public TitleDeed(String
+	 * name, int cost, TitleColor color, int buildingCost, int location,
+	 * rentWithOne, rentWithTwo, rentWithThree, rentWithFour, rentWithHotel)
 	 */
 	public void initDeeds() {
-		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1, 2, 10, 30, 90, 160, 250);
+		deeds[0] = new TitleDeed("Mediterranean Avenue", 60, enumeration.TitleColor.BROWN, 50, 1, 2, 10, 30, 90, 160,
+				250);
 		deeds[1] = new TitleDeed("Baltic Avenue", 60, enumeration.TitleColor.BROWN, 50, 3, 4, 20, 60, 180, 320, 450);
-		deeds[2] = new RailRoad("Reading Railroad",5, 200);
-		deeds[3] = new TitleDeed("Oriental Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 6, 6, 30, 90, 270, 400, 550);
-		deeds[4] = new TitleDeed("Vermont Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 8, 6, 30, 90, 270, 400, 550);
-		deeds[5] = new TitleDeed("Connecticut Avenue", 120, enumeration.TitleColor.LIGHTBLUE, 50, 9, 8, 40, 100, 300, 450, 600);
-		deeds[6] = new TitleDeed("St. Charles Place", 140, enumeration.TitleColor.PINK, 100, 11, 10, 50, 150, 450, 625, 750);
+		deeds[2] = new RailRoad("Reading Railroad", 5, 200);
+		deeds[3] = new TitleDeed("Oriental Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 6, 6, 30, 90, 270, 400,
+				550);
+		deeds[4] = new TitleDeed("Vermont Avenue", 100, enumeration.TitleColor.LIGHTBLUE, 50, 8, 6, 30, 90, 270, 400,
+				550);
+		deeds[5] = new TitleDeed("Connecticut Avenue", 120, enumeration.TitleColor.LIGHTBLUE, 50, 9, 8, 40, 100, 300,
+				450, 600);
+		deeds[6] = new TitleDeed("St. Charles Place", 140, enumeration.TitleColor.PINK, 100, 11, 10, 50, 150, 450, 625,
+				750);
 		deeds[7] = new Utility("Electric Company", 12, 150);
-		deeds[8] = new TitleDeed("States Avenue", 140, enumeration.TitleColor.PINK, 100, 13, 10, 50, 150, 450, 625, 750);
-		deeds[9] = new TitleDeed("Virginia Avenue", 160, enumeration.TitleColor.PINK, 100, 14, 12, 60, 180, 500, 700, 900);
+		deeds[8] = new TitleDeed("States Avenue", 140, enumeration.TitleColor.PINK, 100, 13, 10, 50, 150, 450, 625,
+				750);
+		deeds[9] = new TitleDeed("Virginia Avenue", 160, enumeration.TitleColor.PINK, 100, 14, 12, 60, 180, 500, 700,
+				900);
 		deeds[10] = new RailRoad("Pennsylvania Railroad", 15, 200);
-		deeds[11] = new TitleDeed("St. James Place", 180, enumeration.TitleColor.ORANGE, 100, 16, 14, 70, 200, 550, 750, 950);
-		deeds[12] = new TitleDeed("Tennessee Avenue", 180, enumeration.TitleColor.ORANGE, 100, 18, 14, 70, 200, 550, 750, 950);
-		deeds[13] = new TitleDeed("New York Avenue", 200, enumeration.TitleColor.ORANGE, 100, 19, 16, 80, 220, 600, 800, 1000);
-		deeds[14] = new TitleDeed("Kentucky Avenue", 220, enumeration.TitleColor.RED, 150, 21, 18, 90, 250, 700, 875, 1050);
-		deeds[15] = new TitleDeed("Indiana Avenue", 220, enumeration.TitleColor.RED, 150, 23, 18, 90, 250, 700, 875, 1050);
-		deeds[16] = new TitleDeed("Illinois Avenue", 240, enumeration.TitleColor.RED, 150, 24, 20, 100, 300, 750, 925, 1100);
+		deeds[11] = new TitleDeed("St. James Place", 180, enumeration.TitleColor.ORANGE, 100, 16, 14, 70, 200, 550, 750,
+				950);
+		deeds[12] = new TitleDeed("Tennessee Avenue", 180, enumeration.TitleColor.ORANGE, 100, 18, 14, 70, 200, 550,
+				750, 950);
+		deeds[13] = new TitleDeed("New York Avenue", 200, enumeration.TitleColor.ORANGE, 100, 19, 16, 80, 220, 600, 800,
+				1000);
+		deeds[14] = new TitleDeed("Kentucky Avenue", 220, enumeration.TitleColor.RED, 150, 21, 18, 90, 250, 700, 875,
+				1050);
+		deeds[15] = new TitleDeed("Indiana Avenue", 220, enumeration.TitleColor.RED, 150, 23, 18, 90, 250, 700, 875,
+				1050);
+		deeds[16] = new TitleDeed("Illinois Avenue", 240, enumeration.TitleColor.RED, 150, 24, 20, 100, 300, 750, 925,
+				1100);
 		deeds[17] = new RailRoad("B. & O. Railroad", 25, 200);
-		deeds[18] = new TitleDeed("Atlantic Avenue", 260, enumeration.TitleColor.YELLOW, 150, 26, 22, 110, 330, 800, 975, 1150);
-		deeds[19] = new TitleDeed("Ventnor Avenue", 260, enumeration.TitleColor.YELLOW, 150, 27, 22, 110, 330, 800, 975, 1150);
+		deeds[18] = new TitleDeed("Atlantic Avenue", 260, enumeration.TitleColor.YELLOW, 150, 26, 22, 110, 330, 800,
+				975, 1150);
+		deeds[19] = new TitleDeed("Ventnor Avenue", 260, enumeration.TitleColor.YELLOW, 150, 27, 22, 110, 330, 800, 975,
+				1150);
 		deeds[20] = new Utility("Water Works", 28, 150);
-		deeds[21] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29, 24, 120, 360, 850, 1025, 1200);
-		deeds[22] = new TitleDeed("Pacific Avenue", 300, enumeration.TitleColor.GREEN, 200, 31, 26, 130, 390, 900, 1100, 1275);
-		deeds[23] = new TitleDeed("North Carolina Avenue", 300, enumeration.TitleColor.GREEN, 200, 32, 26, 130, 390, 900, 1100, 1275);
-		deeds[24] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200, 34, 28, 150, 450, 1000, 1200, 1400);
+		deeds[21] = new TitleDeed("Marvin Gardens", 280, enumeration.TitleColor.YELLOW, 150, 29, 24, 120, 360, 850,
+				1025, 1200);
+		deeds[22] = new TitleDeed("Pacific Avenue", 300, enumeration.TitleColor.GREEN, 200, 31, 26, 130, 390, 900, 1100,
+				1275);
+		deeds[23] = new TitleDeed("North Carolina Avenue", 300, enumeration.TitleColor.GREEN, 200, 32, 26, 130, 390,
+				900, 1100, 1275);
+		deeds[24] = new TitleDeed("Pennsylvania Avenue", 320, enumeration.TitleColor.GREEN, 200, 34, 28, 150, 450, 1000,
+				1200, 1400);
 		deeds[25] = new RailRoad("Short Line", 35, 200);
-		deeds[26] = new TitleDeed("Park Place", 350, enumeration.TitleColor.BLUE, 200, 37, 35, 175, 500, 1100, 1300, 1500);
-		deeds[27] = new TitleDeed("Boardwalk", 400, enumeration.TitleColor.BLUE, 200, 39, 50, 200, 600, 1400, 1700, 2000);
-		
-		
+		deeds[26] = new TitleDeed("Park Place", 350, enumeration.TitleColor.BLUE, 200, 37, 35, 175, 500, 1100, 1300,
+				1500);
+		deeds[27] = new TitleDeed("Boardwalk", 400, enumeration.TitleColor.BLUE, 200, 39, 50, 200, 600, 1400, 1700,
+				2000);
+
 	}
-	
+
 	/**
 	 * Method to initialize every single square in the board
 	 */
@@ -167,15 +226,17 @@ public class Board {
 		squares[37] = new square.Property("Park Place", (TitleDeed) deeds[26]);
 		squares[38] = new Special("Luxury Tax");
 		squares[39] = new square.Property("Boardwalk", (TitleDeed) deeds[27]);
-		
+
 	}
-	
+
 	/**
 	 * Print the board in the console
-	 * @param player adding information of the current player to the right side of the board
+	 * 
+	 * @param player adding information of the current player to the right side of
+	 *               the board
 	 */
-	public void printNonColorBoard(Player player) {		
-		
+	public void printNonColorBoard(Player player) {
+
 		System.out.println("\n"
 				+ " ______________________________________________________________________________________________________\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
@@ -190,10 +251,14 @@ public class Board {
 				+ "|    18    |                           |                     |                              |    32    |\n"
 				+ "|__________|                           |       CHANCE        |                              |__________|\n"
 				+ "|          |                           |                     |                              |          |\n"
-				+ "|    17    |                           |_____________________|                              |    33    |      Player:\t\t " + player.getName() + "\n"
-				+ "|__________|                                                                                |__________|      Token:\t\t " + player.getToken() + "\n"
-				+ "|          |                                                                                |          |      Location:\t\t " + player.getLocation() + "\n"
-				+ "|    16    |                                                                                |    34    |      Description:\t " + squares[player.getLocation()].getName() + "\n"
+				+ "|    17    |                           |_____________________|                              |    33    |      Player:\t\t "
+				+ player.getName() + "\n"
+				+ "|__________|                                                                                |__________|      Token:\t\t "
+				+ player.getToken() + "\n"
+				+ "|          |                                                                                |          |      Location:\t\t "
+				+ player.getLocation() + "\n"
+				+ "|    16    |                                                                                |    34    |      Description:\t "
+				+ squares[player.getLocation()].getName() + "\n"
 				+ "|__________|                                                                                |__________|\n"
 				+ "|          |                                                                                |          |\n"
 				+ "|    15    |                               M O N O P O L Y                                  |    35    |\n"
@@ -215,58 +280,102 @@ public class Board {
 				+ "|   JAIL   |   9    |   8    |   7    |   6    |   5    |   4    |   3    |   2    |    1   |    GO    |\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
 				+ "|__________|________|________|________|________|________|________|________|________|________|__________|\n");
-		
+
 	}
-	
+
 	/**
 	 * Print the board in the console
-	 * @param player adding information of the current player to the right side of the board
+	 * 
+	 * @param player adding information of the current player to the right side of
+	 *               the board
 	 */
-	public void printBoard(Player player) {		
-		
+	public void printBoard(Player player) {
+
 		System.out.println("\n"
 				+ " ______________________________________________________________________________________________________\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
 				+ "|   FREE   |        |        |        |        |        |        |        |        |        |          |\n"
 				+ "|  PARKING |   21   |   22   |   23   |   24   |   25   |   26   |   27   |   28   |   29   |    30    |\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
-				+ "|__________|" + TitleColor.RED + "########" + TitleColor.RESET+ "|________|" + TitleColor.RED + "########" + TitleColor.RESET + "|" + TitleColor.RED +  "########" + TitleColor.RESET + "|________|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|________|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|__________|\n"
-				+ "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "         |\n"
-				+ "|    19   " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "   31    |\n"
-				+ "|_________" + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                            _____________________                               |" + TitleColor.GREEN + "#" + TitleColor.RESET + "_________|\n"
-				+ "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                           |" + TitleColor.ORANGE + "#####################" + TitleColor.RESET +  "|                              |" + TitleColor.GREEN + "#" + TitleColor.RESET + "         |\n"
-				+ "|    18   " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                           |" + TitleColor.ORANGE + "####             ####" + TitleColor.RESET + "|                              |" + TitleColor.GREEN + "#" + TitleColor.RESET + "   32    |\n"
-				+ "|_________" + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                           |" +TitleColor.ORANGE +  "####" + TitleColor.RESET + "   CHANCE    " + TitleColor.ORANGE + "####" + TitleColor.RESET + "|                              |" + TitleColor.GREEN + "#" + TitleColor.RESET + "_________|\n"
-				+ "|          |                           |" + TitleColor.ORANGE + "####             ####"  + TitleColor.RESET + "|                              |          |\n"
-				+ "|    17    |                           |" + TitleColor.ORANGE +"#####################" + TitleColor.RESET + "|                              |    33    |      Player:\t\t " + player.getName() + "\n"
-				+ "|__________|                                                                                |__________|      Token:\t\t " + player.getToken() + "\n"
-				+ "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "         |      Location:\t\t " + player.getLocation() + "\n"
-				+ "|    16   " + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "    34   |      Description:\t " + squares[player.getLocation()].getName() + ""
-						+ "\n"
-				+ "|_________" + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.GREEN + "#" + TitleColor.RESET + "_________|\n"
+				+ "|__________|" + TitleColor.RED + "########" + TitleColor.RESET + "|________|" + TitleColor.RED
+				+ "########" + TitleColor.RESET + "|" + TitleColor.RED + "########" + TitleColor.RESET + "|________|"
+				+ TitleColor.YELLOW + "########" + TitleColor.RESET + "|" + TitleColor.YELLOW + "########"
+				+ TitleColor.RESET + "|________|" + TitleColor.YELLOW + "########" + TitleColor.RESET + "|__________|\n"
+				+ "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET
+				+ "|                                                                                |"
+				+ TitleColor.GREEN + "#" + TitleColor.RESET + "         |\n" + "|    19   " + TitleColor.ORANGE + "#"
+				+ TitleColor.RESET
+				+ "|                                                                                |"
+				+ TitleColor.GREEN + "#" + TitleColor.RESET + "   31    |\n" + "|_________" + TitleColor.ORANGE + "#"
+				+ TitleColor.RESET
+				+ "|                            _____________________                               |"
+				+ TitleColor.GREEN + "#" + TitleColor.RESET + "_________|\n" + "|         " + TitleColor.ORANGE + "#"
+				+ TitleColor.RESET + "|                           |" + TitleColor.ORANGE + "#####################"
+				+ TitleColor.RESET + "|                              |" + TitleColor.GREEN + "#" + TitleColor.RESET
+				+ "         |\n" + "|    18   " + TitleColor.ORANGE + "#" + TitleColor.RESET
+				+ "|                           |" + TitleColor.ORANGE + "####             ####" + TitleColor.RESET
+				+ "|                              |" + TitleColor.GREEN + "#" + TitleColor.RESET + "   32    |\n"
+				+ "|_________" + TitleColor.ORANGE + "#" + TitleColor.RESET + "|                           |"
+				+ TitleColor.ORANGE + "####" + TitleColor.RESET + "   CHANCE    " + TitleColor.ORANGE + "####"
+				+ TitleColor.RESET + "|                              |" + TitleColor.GREEN + "#" + TitleColor.RESET
+				+ "_________|\n" + "|          |                           |" + TitleColor.ORANGE
+				+ "####             ####" + TitleColor.RESET + "|                              |          |\n"
+				+ "|    17    |                           |" + TitleColor.ORANGE + "#####################"
+				+ TitleColor.RESET + "|                              |    33    |      Player:\t\t " + player.getName()
+				+ "\n"
+				+ "|__________|                                                                                |__________|      Token:\t\t "
+				+ player.getToken() + "\n" + "|         " + TitleColor.ORANGE + "#" + TitleColor.RESET
+				+ "|                                                                                |"
+				+ TitleColor.GREEN + "#" + TitleColor.RESET + "         |      Location:\t\t " + player.getLocation()
+				+ "\n" + "|    16   " + TitleColor.ORANGE + "#" + TitleColor.RESET
+				+ "|                                                                                |"
+				+ TitleColor.GREEN + "#" + TitleColor.RESET + "    34   |      Description:\t "
+				+ squares[player.getLocation()].getName() + "" + "\n" + "|_________" + TitleColor.ORANGE + "#"
+				+ TitleColor.RESET
+				+ "|                                                                                |"
+				+ TitleColor.GREEN + "#" + TitleColor.RESET + "_________|\n"
 				+ "|          |                                                                                |          |\n"
 				+ "|    15    |                               M O N O P O L Y                                  |    35    |\n"
 				+ "|__________|                                                                                |__________|\n"
-				+ "|         " + TitleColor.PINK + "#" + TitleColor.RESET + "|                                                                                |          |\n"
-				+ "|    14   " + TitleColor.PINK + "#" + TitleColor.RESET + "|                                                                                |    36    |\n"
-				+ "|_________" + TitleColor.PINK + "#" + TitleColor.RESET + "|                            _____________________                               |__________|\n"
-				+ "|         " + TitleColor.PINK + "#" + TitleColor.RESET + "|                           |" + TitleColor.COMMUNITY_CHEST + "#####################" + TitleColor.RESET+ "|                              |" + TitleColor.BLUE + "#" + TitleColor.RESET + "         |\n"
-				+ "|    13   " + TitleColor.PINK + "#" + TitleColor.RESET + "|                           |" + TitleColor.COMMUNITY_CHEST + "###" + TitleColor.RESET + "   COMMUNITY   "+ TitleColor.COMMUNITY_CHEST+ "###" + TitleColor.RESET + "|                              |" + TitleColor.BLUE + "#" + TitleColor.RESET + "   37    |\n"
-				+ "|_________" + TitleColor.PINK + "#" + TitleColor.RESET + "|                           |" + TitleColor.COMMUNITY_CHEST + "####" + TitleColor.RESET + "    CHEST    "+ TitleColor.COMMUNITY_CHEST + "####" + TitleColor.RESET +"|                              |" + TitleColor.BLUE + "#" + TitleColor.RESET + "_________|\n"
-				+ "|          |                           |" + TitleColor.COMMUNITY_CHEST +  "######         ######" + TitleColor.RESET +  "|                              |          |\n"
-				+ "|    12    |                           |" + TitleColor.COMMUNITY_CHEST + "#####################" + TitleColor.RESET + "|                              |    38    |\n"
+				+ "|         " + TitleColor.PINK + "#" + TitleColor.RESET
+				+ "|                                                                                |          |\n"
+				+ "|    14   " + TitleColor.PINK + "#" + TitleColor.RESET
+				+ "|                                                                                |    36    |\n"
+				+ "|_________" + TitleColor.PINK + "#" + TitleColor.RESET
+				+ "|                            _____________________                               |__________|\n"
+				+ "|         " + TitleColor.PINK + "#" + TitleColor.RESET + "|                           |"
+				+ TitleColor.COMMUNITY_CHEST + "#####################" + TitleColor.RESET
+				+ "|                              |" + TitleColor.BLUE + "#" + TitleColor.RESET + "         |\n"
+				+ "|    13   " + TitleColor.PINK + "#" + TitleColor.RESET + "|                           |"
+				+ TitleColor.COMMUNITY_CHEST + "###" + TitleColor.RESET + "   COMMUNITY   " + TitleColor.COMMUNITY_CHEST
+				+ "###" + TitleColor.RESET + "|                              |" + TitleColor.BLUE + "#"
+				+ TitleColor.RESET + "   37    |\n" + "|_________" + TitleColor.PINK + "#" + TitleColor.RESET
+				+ "|                           |" + TitleColor.COMMUNITY_CHEST + "####" + TitleColor.RESET
+				+ "    CHEST    " + TitleColor.COMMUNITY_CHEST + "####" + TitleColor.RESET
+				+ "|                              |" + TitleColor.BLUE + "#" + TitleColor.RESET + "_________|\n"
+				+ "|          |                           |" + TitleColor.COMMUNITY_CHEST + "######         ######"
+				+ TitleColor.RESET + "|                              |          |\n"
+				+ "|    12    |                           |" + TitleColor.COMMUNITY_CHEST + "#####################"
+				+ TitleColor.RESET + "|                              |    38    |\n"
 				+ "|__________|                                                                                |__________|\n"
-				+ "|         " + TitleColor.PINK + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.BLUE + "#" + TitleColor.RESET + "         |\n"
-				+ "|    11   " + TitleColor.PINK + "#" + TitleColor.RESET + "|                                                                                |" + TitleColor.BLUE + "#" + TitleColor.RESET + "   39    |\n"
-				+ "|_________" + TitleColor.PINK + "#" + TitleColor.RESET + "|________________________________________________________________________________|" + TitleColor.BLUE + "#" + TitleColor.RESET + "_________|\n"
-				+ "|          |" + TitleColor.LIGHTBLUE + "########" + TitleColor.RESET +"|" + TitleColor.LIGHTBLUE + "########" + TitleColor.RESET + "|        |" + TitleColor.LIGHTBLUE + "########" +  TitleColor.RESET +"|        |        |"+ TitleColor.BROWN + "########" + TitleColor.RESET +"|        |" + TitleColor.BROWN + "########" + TitleColor.RESET +"|          |\n"
+				+ "|         " + TitleColor.PINK + "#" + TitleColor.RESET
+				+ "|                                                                                |" + TitleColor.BLUE
+				+ "#" + TitleColor.RESET + "         |\n" + "|    11   " + TitleColor.PINK + "#" + TitleColor.RESET
+				+ "|                                                                                |" + TitleColor.BLUE
+				+ "#" + TitleColor.RESET + "   39    |\n" + "|_________" + TitleColor.PINK + "#" + TitleColor.RESET
+				+ "|________________________________________________________________________________|" + TitleColor.BLUE
+				+ "#" + TitleColor.RESET + "_________|\n" + "|          |" + TitleColor.LIGHTBLUE + "########"
+				+ TitleColor.RESET + "|" + TitleColor.LIGHTBLUE + "########" + TitleColor.RESET + "|        |"
+				+ TitleColor.LIGHTBLUE + "########" + TitleColor.RESET + "|        |        |" + TitleColor.BROWN
+				+ "########" + TitleColor.RESET + "|        |" + TitleColor.BROWN + "########" + TitleColor.RESET
+				+ "|          |\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
 				+ "|   JAIL   |   9    |   8    |   7    |   6    |   5    |   4    |   3    |   2    |    1   |    GO    |\n"
 				+ "|          |        |        |        |        |        |        |        |        |        |          |\n"
 				+ "|__________|________|________|________|________|________|________|________|________|________|__________|\n");
-		
+
 	}
-	
+
 	/**
 	 * prints the welcome to the monopoly game
 	 */
@@ -289,24 +398,28 @@ public class Board {
 				+ "                           -dMMMMMMMd ++++:ohMMMMMMMMMMMMh.      -yy+`                   \n"
 				+ "                            `dMMMMMMM/sssosodMMMMMMMMMMm/         `+ys-                  \n"
 				+ "                             :MMMMMMMN/`  `:MMMMMMMMMd+`            .s:                  \n"
-				+ "                             /MNhdhdMM/    sMMMMMNho-                                    \n"
-				+ "   Y8b Y8b Y888P 888'Y88 888       e88'Y88   e88 88e       e   e     888'Y88             \n"
+				+ "                             /MNhdhdMM/    sMMMMMNho-                                    \n" + "   "
+				+ TitleColor.GREEN
+				+ "Y8b Y8b Y888P 888'Y88 888       e88'Y88   e88 88e       e   e     888'Y88             \n"
 				+ "    Y8b Y8b Y8P  888 ,'Y 888      d888  'Y  d888 888b     d8b d8b    888 ,'Y             \n"
 				+ "     Y8b Y8b Y   888C8   888     C8888     C8888 8888D   e Y8b Y8b   888C8               \n"
 				+ "      Y8b Y8b    888 \",d 888  ,d  Y888  ,d  Y888 888P   d8b Y8b Y8b  888 \",d           \n"
-				+ "       Y8P Y     888,d88 888,d88   \"88,d88   \"88 88\"   d888b Y8b Y8b 888,d88          \n"
+				+ "       Y8P Y     888,d88 888,d88   \"88,d88   \"88 88\"   d888b Y8b Y8b 888,d88" + TitleColor.RESET
+				+ "          \n"
 				+ "                                                                                         \n"
 				+ "                               88P'888'Y88   e88 88e                                     \n"
 				+ "                               P'  888  'Y  d888 888b                                    \n"
 				+ "                                   888     C8888 8888D                                   \n"
 				+ "                                   888      Y888 888P                                    \n"
 				+ "                                   888       \"88 88\"                                   \n"
-				+ "                                                                                         \n"
-				+ "    e   e       e88 88e   Y88b Y88   e88 88e   888 88e    e88 88e   888     Y88b Y8P     \n"
+				+ "                                                                                         \n" + "    "
+				+ TitleColor.RED
+				+ "e   e       e88 88e   Y88b Y88   e88 88e   888 88e    e88 88e   888     Y88b Y8P     \n"
 				+ "   d8b d8b     d888 888b   Y88b Y8  d888 888b  888 888D  d888 888b  888      Y88b Y      \n"
-				+ "  e Y8b Y8b   C8888 8888D b Y88b Y C8888 8888D 888 88\"  8888 8888D 888       Y88b       \n"
+				+ "  e Y8b Y8b   C8888 8888D b Y88b Y C8888 8888D 888 88\"  c8888 8888D 888       Y88b       \n"
 				+ " d8b Y8b Y8b   Y888 888P  8b Y88b   Y888 888P  888       Y888 888P  888  ,d    888       \n"
-				+ "d888b Y8b Y8b   \"88 88\"  88b Y88b    \"88 88\"   888        \"88 88\"   888,d88    888 	  \n");
+				+ "d888b Y8b Y8b   \"88 88\"  88b Y88b    \"88 88\"   888        \"88 88\"   888,d88    888"
+				+ TitleColor.RESET + " 	  \n");
 	}
 
 	/**
