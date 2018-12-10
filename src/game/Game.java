@@ -303,6 +303,11 @@ public class Game {
 
 	}
 
+	/**
+	 * Takes card used from jail cards owned and let user take a regular turn
+	 * 
+	 * @param currentPlayer who used the card
+	 */
 	private void useCardToGetOut(Player currentPlayer) throws IOException {
 		breakOutOfJail(currentPlayer);
 		System.out.println("\n*********************************************************************"
@@ -475,40 +480,48 @@ public class Game {
 		else if (currentPlayer.getLocation() == 12) {
 			if (board.ownsDeed(7, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 7, -150);
-			} else {if (board.deeds[7].getOwner() == currentPlayer) {
-				System.out.println(ownerMessage);
 			} else {
-				utilityRent(currentPlayer, 7);}
+				if (board.deeds[7].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					utilityRent(currentPlayer, 7);
+				}
 			}
 		}
 		// STATES AVENUE
 		else if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(8, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 8, -140);
-			} else {if (board.deeds[8].getOwner() == currentPlayer) {
-				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 10, 8);}
+				if (board.deeds[8].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 10, 8);
+				}
 			}
 		}
 		// VIRGINIA AVENUE
 		else if (currentPlayer.getLocation() == 14) {
 			if (board.ownsDeed(9, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 9, -160);
-			} else {if (board.deeds[9].getOwner() == currentPlayer) {
-				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 12, 9);}
+				if (board.deeds[9].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 12, 9);
+				}
 			}
 		}
 		// PENNSYLVANIA RAILROAD
 		else if (currentPlayer.getLocation() == 15) {
 			if (board.ownsDeed(10, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 10, -200);
-			} else {if (board.deeds[10].getOwner() == currentPlayer) {
-				System.out.println(ownerMessage);
 			} else {
-				railRoadRent(currentPlayer, 10);}
+				if (board.deeds[10].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					railRoadRent(currentPlayer, 10);
+				}
 			}
 		}
 		// ST. JAMES PLACE
@@ -519,7 +532,8 @@ public class Game {
 				if (board.deeds[11].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				payRent(currentPlayer, 14, 11);}
+					payRent(currentPlayer, 14, 11);
+				}
 			}
 		}
 		// COMMUNITY CHEST
@@ -534,7 +548,8 @@ public class Game {
 				if (board.deeds[12].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				payRent(currentPlayer, 14, 12);}
+					payRent(currentPlayer, 14, 12);
+				}
 			}
 		}
 		// NEW YORK AVENUE
@@ -545,7 +560,8 @@ public class Game {
 				if (board.deeds[13].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				payRent(currentPlayer, 16, 13);}
+					payRent(currentPlayer, 16, 13);
+				}
 			}
 		}
 		// KENTUCKY AVENUE
@@ -556,7 +572,8 @@ public class Game {
 				if (board.deeds[14].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				payRent(currentPlayer, 18, 14);}
+					payRent(currentPlayer, 18, 14);
+				}
 			}
 		}
 		// CHANCE
@@ -568,20 +585,24 @@ public class Game {
 		else if (currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(15, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 15, -220);
-			} else {if (board.deeds[15].getOwner() == currentPlayer) {
-				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 18, 15);}
+				if (board.deeds[15].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 18, 15);
+				}
 			}
 		}
 		// ILLINOIS AVENUE
 		else if (currentPlayer.getLocation() == 24) {
 			if (board.ownsDeed(16, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 16, -240);
-			} else {if (board.deeds[16].getOwner() == currentPlayer) {
-				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 20, 16);}
+				if (board.deeds[16].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 20, 16);
+				}
 			}
 		}
 		// B. & O. RAILROAD
@@ -592,27 +613,32 @@ public class Game {
 				if (board.deeds[17].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				railRoadRent(currentPlayer, 17);}
+					railRoadRent(currentPlayer, 17);
+				}
 			}
 		}
 		// ATLANTIC AVENUE
 		else if (currentPlayer.getLocation() == 26) {
 			if (board.ownsDeed(18, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 18, -260);
-			} else {if (board.deeds[18].getOwner() == currentPlayer) {
-				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 22, 18);}
+				if (board.deeds[18].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 22, 18);
+				}
 			}
 		}
 		// VENTNOR AVENUE
 		else if (currentPlayer.getLocation() == 27) {
 			if (board.ownsDeed(19, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 19, -260);
-			} else {if (board.deeds[19].getOwner() == currentPlayer) {
-				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 22, 19);}
+				if (board.deeds[19].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 22, 19);
+				}
 			}
 		}
 		// WATER WORKS
@@ -623,7 +649,8 @@ public class Game {
 				if (board.deeds[20].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				utilityRent(currentPlayer, 20);}
+					utilityRent(currentPlayer, 20);
+				}
 			}
 		}
 		// MARVIN GARDENS
@@ -634,7 +661,8 @@ public class Game {
 				if (board.deeds[21].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				payRent(currentPlayer, 24, 21);}
+					payRent(currentPlayer, 24, 21);
+				}
 			}
 		}
 		// GO TO JAIL
@@ -651,7 +679,8 @@ public class Game {
 				if (board.deeds[22].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				payRent(currentPlayer, 26, 22);}
+					payRent(currentPlayer, 26, 22);
+				}
 			}
 		}
 		// NORTH CAROLINA AVENUE
@@ -662,7 +691,8 @@ public class Game {
 				if (board.deeds[23].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				payRent(currentPlayer, 26, 23);}
+					payRent(currentPlayer, 26, 23);
+				}
 			}
 		}
 		// COMMUNITY CHEST
@@ -677,7 +707,8 @@ public class Game {
 				if (board.deeds[24].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				payRent(currentPlayer, 28, 24);}
+					payRent(currentPlayer, 28, 24);
+				}
 			}
 		}
 		// SHORT LINE
@@ -688,7 +719,8 @@ public class Game {
 				if (board.deeds[25].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				railRoadRent(currentPlayer, 25);}
+					railRoadRent(currentPlayer, 25);
+				}
 			}
 		}
 		// CHANCE
@@ -699,10 +731,12 @@ public class Game {
 		else if (currentPlayer.getLocation() == 37) {
 			if (board.ownsDeed(26, currentPlayer)) {
 				propertyMenuSelection(currentPlayer, 26, -350);
-			} else {if (board.deeds[26].getOwner() == currentPlayer) {
-				System.out.println(ownerMessage);
 			} else {
-				payRent(currentPlayer, 35, 26);}
+				if (board.deeds[26].getOwner() == currentPlayer) {
+					System.out.println(ownerMessage);
+				} else {
+					payRent(currentPlayer, 35, 26);
+				}
 			}
 		}
 		// LUXURY TAX
@@ -719,15 +753,26 @@ public class Game {
 				if (board.deeds[27].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
 				} else {
-				payRent(currentPlayer, 50, 27);}
+					payRent(currentPlayer, 50, 27);
+				}
 			}
 		}
 	}
 
+	/**
+	 * Prints the information of the card picked up
+	 * 
+	 * @param topCard the top card on the deck
+	 */
 	private void printCardInfo(Card topCard) {
 		System.out.print(topCard.getName() + topCard.getDesc());
 	}
 
+	/**
+	 * Gives you the options of what you want to do when landing on Income Tax
+	 * 
+	 * @param currentPlayer who landed on the square
+	 */
 	private void handleIncomeTax(Player currentPlayer) throws IOException {
 		int taxSelection = menu.payLuxuryTaxMenu();
 		switch (taxSelection) {
@@ -750,6 +795,12 @@ public class Game {
 		}
 	}
 
+	/**
+	 * If you get the utility card from chance, it will check if someone has that
+	 * property and then automatically charge them 10 times
+	 * 
+	 * @param currentPlayer who picked up that card
+	 */
 	private void landOnUtilityByChance(Player currentPlayer) throws IOException {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
@@ -772,6 +823,12 @@ public class Game {
 		}
 	}
 
+	/**
+	 * When landing on chance square, handles the top card of the deck and checks
+	 * for al the cases
+	 * 
+	 * @param currentPlayer the lucky one who landed there
+	 */
 	private void handleChanceCard(Player currentPlayer) throws IOException {
 		int firstCardPosistion = 0;
 		Card topCard = board.chance.get(firstCardPosistion);
@@ -944,6 +1001,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * When landed on a community chest
+	 * 
+	 * @param currentPlayer who landed
+	 */
 	public void handleCommunityChestCard(Player currentPlayer) throws IOException {
 		Card topCard = board.communityChest.get(0);
 		board.communityChest.remove(0);
@@ -1041,6 +1103,13 @@ public class Game {
 
 	}
 
+	/**
+	 * Charge the current player the amount of rent depending on how many utilities
+	 * the player owner has
+	 * 
+	 * @param currentPlayer who landed on the utility
+	 * @param deedLocation  at which location
+	 */
 	private void utilityRent(Player currentPlayer, int deedLocation) throws IOException {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
@@ -1072,6 +1141,13 @@ public class Game {
 		}
 	}
 
+	/**
+	 * checks how many properties the current player has and charge that amount of
+	 * rent
+	 * 
+	 * @param currentPlayer the one who landed on someone else railroad
+	 * @param deedLocation  location in the square
+	 */
 	private void railRoadRent(Player currentPlayer, int deedLocation) throws IOException {
 		int totalOwed = 0;
 		int selection = menu.printPayRentMenu();
@@ -1108,6 +1184,14 @@ public class Game {
 
 	}
 
+	/**
+	 * When landing on a property, it will pull up this menu asking if player wants
+	 * to buy the property or auctioned it.
+	 * 
+	 * @param currentPlayer who landed on the square
+	 * @param location      at what location
+	 * @param cost          the cost of the property they land on
+	 */
 	private void propertyMenuSelection(Player currentPlayer, int location, int cost) throws IOException {
 		int selection = menu.printBuyPropertiesMenu();
 		switch (selection) {
@@ -1218,6 +1302,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Sell properties and jail cards
+	 * 
+	 * @param currentPlayer who wants to sell it
+	 */
 	private void sell(Player currentPlayer) throws IOException {
 		int action = menu.printSellBuyMainMenu();
 		switch (action) {
@@ -1323,6 +1412,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Buy properties or jail cards from other players
+	 * 
+	 * @param currentPlayer who's performing the action
+	 */
 	private void buy(Player currentPlayer) throws IOException {
 
 		int action = menu.printSellBuyMainMenu();
@@ -1448,6 +1542,12 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Checks if the player has jail cards
+	 * 
+	 * @param playerSeller player who wants to sell
+	 * @return the amount of jail cards they hold
+	 */
 	private int checkForJailCard(Player playerSeller) {
 		int howMany = 0;
 		System.out.print(playerSeller.getName() + " has ");
@@ -1498,6 +1598,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Method to show only properties index and name when trying to buy from someone
+	 * 
+	 * @param otherPlayer the player you want to see his properties
+	 */
 	private void showPropertyNamesOtherPlayer(Player otherPlayer) {
 		System.out.print("\nThe properties that " + otherPlayer.getName() + " owns are:\n");
 		for (int i = 0; i < otherPlayer.getPropertiesOwned().size(); i++) {
@@ -1507,6 +1612,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Method to show only the properties index and name when trying to sell
+	 * 
+	 * @param currentPlayer who is trying to sell
+	 */
 	private void showPropertyNameFormated(Player currentPlayer) {
 		System.out.print("\nThe properties you own are:\n");
 		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
