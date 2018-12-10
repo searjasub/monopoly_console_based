@@ -291,8 +291,10 @@ public class Game {
 			}
 			break;
 		case 2:
-			System.out.println("*********************************************************************" + "\n\nOk "
-					+ currentPlayer.getName() + ", you are free now.");
+			System.out.println(TitleColor.YELLOW
+					+ "*********************************************************************" + TitleColor.RESET
+					+ "\n\nOk " + currentPlayer.getName() + ", you are free now.\n" + TitleColor.YELLOW
+					+ "*********************************************************************" + TitleColor.RESET);
 			currentPlayer.setBalance(-50);
 			breakOutOfJail(currentPlayer);
 			turn(currentPlayer);
@@ -310,8 +312,11 @@ public class Game {
 	 */
 	private void useCardToGetOut(Player currentPlayer) throws IOException {
 		breakOutOfJail(currentPlayer);
-		System.out.println("\n*********************************************************************"
-				+ "\nYou haved used your \"Get Out Of Jail\" card! Hopefully we won't see you again here.");
+		System.out.println(TitleColor.YELLOW + "\n*********************************************************************"
+				+ TitleColor.RESET
+				+ "\nYou haved used your \"Get Out Of Jail\" card! Hopefully we won't see you again here."
+				+ TitleColor.YELLOW + "*********************************************************************"
+				+ TitleColor.RESET);
 		currentPlayer.jailCardOwned[1] = null;
 		turn(currentPlayer);
 
@@ -344,20 +349,22 @@ public class Game {
 		// Simple println that will show each location name one by one until reached the
 		// total thrown
 
-		System.out.println("\n*************************************\n" + "You landed on: "
-				+ board.squares[currentPlayer.getLocation()].getName() + "\n"
-				+ "*************************************\n");
+		System.out.println(TitleColor.YELLOW + "\n*************************************\n" + TitleColor.RESET
+				+ "You landed on: " + board.squares[currentPlayer.getLocation()].getName() + "\n" + TitleColor.YELLOW
+				+ "*************************************\n" + TitleColor.RESET);
 		landOnProperty(currentPlayer, die.getTotal());
 
 		if (die.getDieOne() == die.getDieTwo()) {
 			countOfDoublesRolled++;
 			if (countOfDoublesRolled == 3) {
-				System.out.println(""
+				System.out.println("" + TitleColor.YELLOW
 						+ "\n*************************************************************************************\n"
-						+ currentPlayer.name
+						+ TitleColor.RESET + currentPlayer.name
 						+ " you have rolled 3 doubles. You will not be visiting jail this time; you will be going to jail.\n"
 						+ "You also lose your turn. Better luck next time!\n Have fun pumping iron.\n"
-						+ "*************************************************************************************");
+						+ TitleColor.YELLOW
+						+ "*************************************************************************************"
+						+ TitleColor.RESET);
 				sendToJail(currentPlayer, 10);
 				currentPlayer.isInJail(true);
 				countOfDoublesRolled = 0;
@@ -1218,10 +1225,14 @@ public class Game {
 						// you win pay the price.
 						AuctionPlayer.setBalance(-1 * costOfAuction);
 						playerBoughtProperty = true;
+						board.deeds[location].setOwner(AuctionPlayer);
 						AuctionPlayer.propertiesOwned.add(board.deeds[location]);
-						System.out.println("\n*******************************************************************\n"
-								+ "Congratulations " + AuctionPlayer.getName() + "! You know own this property\n"
-								+ "*******************************************************************\n");
+						System.out.println(TitleColor.YELLOW
+								+ "\n*******************************************************************\n"
+								+ TitleColor.RESET + "Congratulations " + AuctionPlayer.getName()
+								+ "! You know own this property\n" + TitleColor.YELLOW
+								+ "*******************************************************************\n"
+								+ TitleColor.RESET);
 						break;
 					}
 					System.out.println("It is your turn, " + AuctionPlayer.getName() + "!");
