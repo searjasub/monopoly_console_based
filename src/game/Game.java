@@ -13,7 +13,7 @@ import enumeration.Token;
 import card.Property;
 
 /**
- * 
+ * Final Project
  * @author Searjasub Lopez
  * @author Spencer Schmollinger
  * @author Brooke Showers
@@ -258,8 +258,11 @@ public class Game {
 
 			System.out.println("You have 3 chances to get doubles and get out of jail this turn");
 
-			int selection = ConsoleUI.promptForInt("[0]\tRoll dice", 0, 0);
-			if (selection == 0) {
+			// Giving user only one option and making them use it so they can feel that they
+			// are rolling the dice
+			int onlyOption = 0;
+			int selection = ConsoleUI.promptForInt("[0]\tRoll dice", onlyOption, onlyOption);
+			if (selection == onlyOption) {
 				die.roll();
 				whatYouRolled();
 				if (die.getDieOne() == die.getDieTwo()) {
@@ -267,7 +270,7 @@ public class Game {
 					movePlayer(die.getTotal(), currentPlayer);
 					board.printBoard(currentPlayer);
 					currentPlayer.setTurnInJail(0);
-					// handle what happens when you lay on a property
+					landOnProperty(currentPlayer, currentPlayer.getLocation());
 				} else {
 					if (currentPlayer.getTurnInJail() > 1) {
 						System.out.println(
@@ -390,7 +393,7 @@ public class Game {
 		// MEDITERRANEAN AVENUE
 		if (currentPlayer.getLocation() == 1) {
 			if (board.ownsDeed(0, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 0, -60);
+				propertyMenuSelection(currentPlayer, 0, -board.deeds[0].getCost());
 			} else {
 				if (board.deeds[0].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -406,7 +409,7 @@ public class Game {
 		// BALTIC AVENUE
 		else if (currentPlayer.getLocation() == 3) {
 			if (board.ownsDeed(1, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 1, -60);
+				propertyMenuSelection(currentPlayer, 1, -board.deeds[1].getCost());
 			} else {
 				if (board.deeds[1].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -422,7 +425,7 @@ public class Game {
 		// READING RAILROAD
 		else if (currentPlayer.getLocation() == 5) {
 			if (board.ownsDeed(2, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 2, -200);
+				propertyMenuSelection(currentPlayer, 2, -board.deeds[2].getCost());
 			} else {
 				if (board.deeds[2].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -434,7 +437,7 @@ public class Game {
 		// ORIENTAL AVENUE
 		else if (currentPlayer.getLocation() == 6) {
 			if (board.ownsDeed(3, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 3, -100);
+				propertyMenuSelection(currentPlayer, 3, -board.deeds[3].getCost());
 			} else {
 				if (board.deeds[3].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -450,7 +453,7 @@ public class Game {
 		// VERMONT AVENUE
 		else if (currentPlayer.getLocation() == 8) {
 			if (board.ownsDeed(4, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 4, -board.deeds[location].getCost());
+				propertyMenuSelection(currentPlayer, 4, -board.deeds[4].getCost());
 			} else {
 				if (board.deeds[4].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -462,7 +465,7 @@ public class Game {
 		// CONNECTICUT AVENUE
 		else if (currentPlayer.getLocation() == 9) {
 			if (board.ownsDeed(5, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 5, -120);
+				propertyMenuSelection(currentPlayer, 5, -board.deeds[5].getCost());
 			} else {
 				if (board.deeds[5].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -474,7 +477,7 @@ public class Game {
 		// ST. CHARLES PLACE
 		else if (currentPlayer.getLocation() == 11) {
 			if (board.ownsDeed(6, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 6, -140);
+				propertyMenuSelection(currentPlayer, 6, -board.deeds[6].getCost());
 			} else {
 				if (board.deeds[6].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -486,7 +489,7 @@ public class Game {
 		// ELECTRIC COMPANY
 		else if (currentPlayer.getLocation() == 12) {
 			if (board.ownsDeed(7, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 7, -150);
+				propertyMenuSelection(currentPlayer, 7, -board.deeds[7].getCost());
 			} else {
 				if (board.deeds[7].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -498,7 +501,7 @@ public class Game {
 		// STATES AVENUE
 		else if (currentPlayer.getLocation() == 13) {
 			if (board.ownsDeed(8, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 8, -140);
+				propertyMenuSelection(currentPlayer, 8, -board.deeds[8].getCost());
 			} else {
 				if (board.deeds[8].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -510,7 +513,7 @@ public class Game {
 		// VIRGINIA AVENUE
 		else if (currentPlayer.getLocation() == 14) {
 			if (board.ownsDeed(9, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 9, -160);
+				propertyMenuSelection(currentPlayer, 9, -board.deeds[9].getCost());
 			} else {
 				if (board.deeds[9].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -522,7 +525,7 @@ public class Game {
 		// PENNSYLVANIA RAILROAD
 		else if (currentPlayer.getLocation() == 15) {
 			if (board.ownsDeed(10, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 10, -200);
+				propertyMenuSelection(currentPlayer, 10, -board.deeds[10].getCost());
 			} else {
 				if (board.deeds[10].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -534,7 +537,7 @@ public class Game {
 		// ST. JAMES PLACE
 		else if (currentPlayer.getLocation() == 16) {
 			if (board.ownsDeed(11, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 11, -180);
+				propertyMenuSelection(currentPlayer, 11, -board.deeds[11].getCost());
 			} else {
 				if (board.deeds[11].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -550,7 +553,7 @@ public class Game {
 		// TENNESSE AVENUE
 		else if (currentPlayer.getLocation() == 18) {
 			if (board.ownsDeed(12, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 12, -180);
+				propertyMenuSelection(currentPlayer, 12, -board.deeds[12].getCost());
 			} else {
 				if (board.deeds[12].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -562,7 +565,7 @@ public class Game {
 		// NEW YORK AVENUE
 		else if (currentPlayer.getLocation() == 19) {
 			if (board.ownsDeed(13, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 13, -200);
+				propertyMenuSelection(currentPlayer, 13, -board.deeds[13].getCost());
 			} else {
 				if (board.deeds[13].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -574,7 +577,7 @@ public class Game {
 		// KENTUCKY AVENUE
 		else if (currentPlayer.getLocation() == 21) {
 			if (board.ownsDeed(14, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 14, -220);
+				propertyMenuSelection(currentPlayer, 14, -board.deeds[14].getCost());
 			} else {
 				if (board.deeds[14].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -591,7 +594,7 @@ public class Game {
 		// INDIANA AVENUE
 		else if (currentPlayer.getLocation() == 23) {
 			if (board.ownsDeed(15, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 15, -220);
+				propertyMenuSelection(currentPlayer, 15, -board.deeds[15].getCost());
 			} else {
 				if (board.deeds[15].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -603,7 +606,7 @@ public class Game {
 		// ILLINOIS AVENUE
 		else if (currentPlayer.getLocation() == 24) {
 			if (board.ownsDeed(16, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 16, -240);
+				propertyMenuSelection(currentPlayer, 16, -board.deeds[16].getCost());
 			} else {
 				if (board.deeds[16].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -615,7 +618,7 @@ public class Game {
 		// B. & O. RAILROAD
 		else if (currentPlayer.getLocation() == 25) {
 			if (board.ownsDeed(17, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 17, -200);
+				propertyMenuSelection(currentPlayer, 17, -board.deeds[17].getCost());
 			} else {
 				if (board.deeds[17].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -627,7 +630,7 @@ public class Game {
 		// ATLANTIC AVENUE
 		else if (currentPlayer.getLocation() == 26) {
 			if (board.ownsDeed(18, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 18, -260);
+				propertyMenuSelection(currentPlayer, 18, -board.deeds[18].getCost());
 			} else {
 				if (board.deeds[18].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -639,7 +642,7 @@ public class Game {
 		// VENTNOR AVENUE
 		else if (currentPlayer.getLocation() == 27) {
 			if (board.ownsDeed(19, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 19, -260);
+				propertyMenuSelection(currentPlayer, 19, -board.deeds[19].getCost());
 			} else {
 				if (board.deeds[19].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -651,7 +654,7 @@ public class Game {
 		// WATER WORKS
 		else if (currentPlayer.getLocation() == 28) {
 			if (board.ownsDeed(20, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 20, -150);
+				propertyMenuSelection(currentPlayer, 20, -board.deeds[20].getCost());
 			} else {
 				if (board.deeds[20].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -663,7 +666,7 @@ public class Game {
 		// MARVIN GARDENS
 		else if (currentPlayer.getLocation() == 29) {
 			if (board.ownsDeed(21, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 21, -280);
+				propertyMenuSelection(currentPlayer, 21, -board.deeds[21].getCost());
 			} else {
 				if (board.deeds[21].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -681,7 +684,7 @@ public class Game {
 		// PACIFIC AVENUE
 		else if (currentPlayer.getLocation() == 31) {
 			if (board.ownsDeed(22, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 22, -300);
+				propertyMenuSelection(currentPlayer, 22, -board.deeds[22].getCost());
 			} else {
 				if (board.deeds[22].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -693,7 +696,7 @@ public class Game {
 		// NORTH CAROLINA AVENUE
 		else if (currentPlayer.getLocation() == 32) {
 			if (board.ownsDeed(23, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 23, -300);
+				propertyMenuSelection(currentPlayer, 23, -board.deeds[23].getCost());
 			} else {
 				if (board.deeds[23].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -709,7 +712,7 @@ public class Game {
 		// PENNSYLVANIA AVENUE
 		else if (currentPlayer.getLocation() == 34) {
 			if (board.ownsDeed(24, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 24, -320);
+				propertyMenuSelection(currentPlayer, 24, -board.deeds[24].getCost());
 			} else {
 				if (board.deeds[24].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -721,7 +724,7 @@ public class Game {
 		// SHORT LINE
 		else if (currentPlayer.getLocation() == 35) {
 			if (board.ownsDeed(25, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 25, -200);
+				propertyMenuSelection(currentPlayer, 25, -board.deeds[25].getCost());
 			} else {
 				if (board.deeds[25].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -737,7 +740,7 @@ public class Game {
 		// PARK PLACE
 		else if (currentPlayer.getLocation() == 37) {
 			if (board.ownsDeed(26, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 26, -350);
+				propertyMenuSelection(currentPlayer, 26, -board.deeds[26].getCost());
 			} else {
 				if (board.deeds[26].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -755,7 +758,7 @@ public class Game {
 		// BOARDWALK
 		else if (currentPlayer.getLocation() == 39) {
 			if (board.ownsDeed(27, currentPlayer)) {
-				propertyMenuSelection(currentPlayer, 27, -400);
+				propertyMenuSelection(currentPlayer, 27, -board.deeds[27].getCost());
 			} else {
 				if (board.deeds[27].getOwner() == currentPlayer) {
 					System.out.println(ownerMessage);
@@ -1215,42 +1218,41 @@ public class Game {
 			int totalPlayersInAuction = inAuction.length;
 			boolean playerBoughtProperty = false;
 			while (!playerBoughtProperty) {
-				for (Player AuctionPlayer : inAuction) {
+				for (int i =0; i < totalPlayersInAuction; i++ ) {
 					System.out.println("\nCurrent Auction Price: " + costOfAuction);
-					if (AuctionPlayer == null) {
+					if (inAuction[i] == null) {
 						// skipping auctioned player
 						continue;
 					}
 					if (totalPlayersInAuction == 1) {
 						// you win pay the price.
-						AuctionPlayer.setBalance(-1 * costOfAuction);
+						inAuction[i].setBalance(-1 * costOfAuction);
 						playerBoughtProperty = true;
-						board.deeds[location].setOwner(AuctionPlayer);
-						AuctionPlayer.propertiesOwned.add(board.deeds[location]);
+						board.deeds[location].setOwner(inAuction[i]);
+						inAuction[i].propertiesOwned.add(board.deeds[location]);
 						System.out.println(TitleColor.YELLOW
 								+ "\n*******************************************************************\n"
-								+ TitleColor.RESET + "Congratulations " + AuctionPlayer.getName()
+								+ TitleColor.RESET + "Congratulations " + inAuction[i].getName()
 								+ "! You know own this property\n" + TitleColor.YELLOW
 								+ "*******************************************************************\n"
 								+ TitleColor.RESET);
 						break;
 					}
-					System.out.println("It is your turn, " + AuctionPlayer.getName() + "!");
+					System.out.println("It is your turn, " + inAuction[i].getName() + "!");
 					int chooseToLeave = ConsoleUI
 							.promptForMenuSelection(new String[] { "Leave The Auction", "Increment Value" });
 					if (chooseToLeave == 0) {
 						// left the auction
-						AuctionPlayer = null;
+						inAuction[i] = null;
 						totalPlayersInAuction--;
 					} else {
 						// you must auction to the death
 						int amountToIncreaseBy = ConsoleUI.promptForInt(
-								"Enter amount you want to increase the bid price by: ", 1, Integer.MAX_VALUE);
+								"\nEnter amount you want to increase the bid price by: ", 1, Integer.MAX_VALUE);
 						costOfAuction += amountToIncreaseBy;
 					}
 				}
 			}
-
 			break;
 		default:
 			break;
