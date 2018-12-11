@@ -389,9 +389,9 @@ public class Board {
 				+ "                                   888     C8888 8888D                                   \n"
 				+ "                                   888      Y888 888P                                    \n"
 				+ "                                   888       \"88 88\"                                   \n"
-				+ "                                                                                         \n" + "    "
+				+ "                                                                                         \n" 
 				+ TitleColor.RED
-				+ "e   e       e88 88e   Y88b Y88   e88 88e   888 88e    e88 88e   888     Y88b Y8P     \n"
+				+ "    e   e       e88 88e   Y88b Y88   e88 88e   888 88e    e88 88e   888     Y88b Y8P     \n"
 				+ "   d8b d8b     d888 888b   Y88b Y8  d888 888b  888 888D  d888 888b  888      Y88b Y      \n"
 				+ "  e Y8b Y8b   C8888 8888D b Y88b Y C8888 8888D 888 88\"  c8888 8888D 888       Y88b       \n"
 				+ " d8b Y8b Y8b   Y888 888P  8b Y88b   Y888 888P  888       Y888 888P  888  ,d    888       \n"
