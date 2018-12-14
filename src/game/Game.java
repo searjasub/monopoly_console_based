@@ -14,6 +14,7 @@ import card.Property;
 
 /**
  * Final Project
+ * 
  * @author Searjasub Lopez
  * @author Spencer Schmollinger
  * @author Brooke Showers
@@ -24,7 +25,7 @@ public class Game {
 
 	// Class level variables
 	public int turn, countPlayers, roundCount, countOfDoublesRolled = 0;
-	//public Player[] players;
+	// public Player[] players;
 	public ArrayList<Player> players;
 	Die die = new Die();
 	public Board board = new Board();
@@ -121,15 +122,13 @@ public class Game {
 	public void sort() {
 		for (int i = 0; i < players.size() - 1; i++) {
 			for (int j = 0; j < players.size() - i - 1; j++) {
-				if (players.get(j).getTurn() < players.get(j +1).getTurn()) {
+				if (players.get(j).getTurn() < players.get(j + 1).getTurn()) {
 					Player temp = players.get(j);
 					players.remove(j);
-					players.add(j, players.get(j+1));
-					players.remove(j +1);
+					players.add(j, players.get(j + 1));
+					players.remove(j + 1);
 					players.add(j + 1, temp);
-					
-					
-					
+
 //					Player temp = players[j];
 //					players[j] = players[j + 1];
 //					players[j + 1] = temp;
@@ -1218,56 +1217,53 @@ public class Game {
 			currentPlayer.setBalance(cost);
 			break;
 		case 1:
-			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
 			// HANDLE AUCTIONING
-			int costOfAuction = 10;
+			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
+			int auctioningPrize = 1;
+			int playerInTurn = 0;
 			ArrayList<Player> playersInAuction = new ArrayList<>();
-			
 			for (int i = 0; i < players.size(); i++) {
 				playersInAuction.add(players.get(i));
-				if(players.get(i).equals(currentPlayer)) {
-					
+				if (players.get(i).equals(currentPlayer)) {
+					playerInTurn = i;
 				}
 			}
-			
-//			int totalPlayersInAuction = playersInAuction.size();
-//			boolean playerBoughtProperty = false;
-//			while (!playerBoughtProperty) {
-//				for (int i =0; i < totalPlayersInAuction; i++ ) {
-//					System.out.println("\nCurrent Auction Price: " + costOfAuction);
-//					if (inAuction[i] == null) {
-//						// skipping auctioned player
-//						continue;
-//					}
-//					if (totalPlayersInAuction == 1) {
-//						// you win pay the price.
-//						inAuction[i].setBalance(-1 * costOfAuction);
-//						playerBoughtProperty = true;
-//						board.deeds[location].setOwner(inAuction[i]);
-//						inAuction[i].propertiesOwned.add(board.deeds[location]);
-//						System.out.println(TitleColor.YELLOW
-//								+ "\n*******************************************************************\n"
-//								+ TitleColor.RESET + "Congratulations " + inAuction[i].getName()
-//								+ "! You know own this property\n" + TitleColor.YELLOW
-//								+ "*******************************************************************\n"
-//								+ TitleColor.RESET);
-//						break;
-//					}
-//					System.out.println("It is your turn, " + inAuction[i].getName() + "!");
-//					int chooseToLeave = ConsoleUI
-//							.promptForMenuSelection(new String[] { "Leave The Auction", "Increment Value" });
-//					if (chooseToLeave == 0) {
-//						// left the auction
-//						inAuction[i] = null;
-//						totalPlayersInAuction--;
-//					} else {
-//						// you must auction to the death
-//						int amountToIncreaseBy = ConsoleUI.promptForInt(
-//								"\nEnter amount you want to increase the bid price by: ", 1, Integer.MAX_VALUE);
-//						costOfAuction += amountToIncreaseBy;
-//					}
-//				}
-//			}
+			while (playersInAuction.size() > 1) {
+				System.out.println(playersInAuction.get(playerInTurn).getName()
+						+ ", it's your turn to bid. As a reminder you have $"
+						+ playersInAuction.get(playerInTurn).getBalance());
+				System.out.println("\nThe bid is currently at $" + auctioningPrize);
+				int bidSelection = ConsoleUI.promptForMenuSelection(new String[] { "Bid", "Leave Auction" });
+				if (bidSelection == 1) {
+					playersInAuction.remove(playerInTurn);
+					playerInTurn %= playersInAuction.size();
+				} else {
+					boolean isValid = false;
+					int toAdd = 0;
+					System.out.println("Current bid is at $" + auctioningPrize);
+					while (!isValid) {
+						toAdd = ConsoleUI.promptForInt("Enter amount to bid.",
+								1, playersInAuction.get(playerInTurn).getBalance() - auctioningPrize);
+
+						if(toAdd <= auctioningPrize) {
+							System.out.println("You cant bid less or equal than the current bid");
+							continue;
+						}
+						auctioningPrize = toAdd;
+						isValid = true;
+					}
+					playerInTurn++;
+					playerInTurn %= playersInAuction.size();
+				}
+			}
+			playersInAuction.get(playerInTurn).substractBalance(auctioningPrize);
+			board.deeds[location].setOwner(playersInAuction.get(playerInTurn));
+			playersInAuction.get(playerInTurn).propertiesOwned.add(board.deeds[location]);
+			System.out.println(TitleColor.YELLOW
+					+ "\n*******************************************************************\n" + TitleColor.RESET
+					+ "Congratulations " + playersInAuction.get(playerInTurn).getName()
+					+ "! You know own this property\n" + TitleColor.YELLOW
+					+ "*******************************************************************\n" + TitleColor.RESET);
 			break;
 		default:
 			break;

@@ -51,8 +51,8 @@ public class Player {
 		return this.balance;
 	}
 	
-	public int substractBalance() {
-		return -this.balance;
+	public void substractBalance(int amount) {
+		balance -= amount;
 	}
 
 	public void setBalance(int balance) {
