@@ -25,9 +25,8 @@ public class Game {
 
 	// Class level variables
 	public int turn, countPlayers, roundCount, countOfDoublesRolled = 0;
-	// public Player[] players;
 	public ArrayList<Player> players;
-	Die die = new Die();
+	public Die die = new Die();
 	public Board board = new Board();
 
 	/**
@@ -226,11 +225,7 @@ public class Game {
 					showProperties(currentPlayer);
 					break;
 				case 3:
-					sell(currentPlayer);
-					break;
-				case 4:
-					buy(currentPlayer);
-
+					manageProperties(currentPlayer);
 					break;
 				default:
 					throw new IllegalArgumentException("Invalid action " + action);
@@ -1218,7 +1213,7 @@ public class Game {
 			break;
 		case 1:
 			// HANDLE AUCTIONING
-			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
+			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.\n");
 			int auctioningPrize = 1;
 			int playerInTurn = 0;
 			ArrayList<Player> playersInAuction = new ArrayList<>();
@@ -1229,10 +1224,10 @@ public class Game {
 				}
 			}
 			while (playersInAuction.size() > 1) {
-				System.out.println(playersInAuction.get(playerInTurn).getName()
+				System.out.println("\n" +playersInAuction.get(playerInTurn).getName()
 						+ ", it's your turn to bid. As a reminder you have $"
 						+ playersInAuction.get(playerInTurn).getBalance());
-				System.out.println("\nThe bid is currently at $" + auctioningPrize);
+				System.out.println("The bid is currently at $" + auctioningPrize + "\n");
 				int bidSelection = ConsoleUI.promptForMenuSelection(new String[] { "Bid", "Leave Auction" });
 				if (bidSelection == 1) {
 					playersInAuction.remove(playerInTurn);
@@ -1312,18 +1307,39 @@ public class Game {
 				showProperties(currentPlayer);
 				break;
 			case 2:
-				sell(currentPlayer);
+				manageProperties(currentPlayer);
 				break;
 			case 3:
-				buy(currentPlayer);
-				break;
-			case 4:
 				isYourTurnAfterRoll = false;
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid action " + action);
 			}
 		}
+	}
+
+	private void manageProperties(Player currentPlayer) throws IOException {
+		boolean areYouDone = false;
+		while(!areYouDone) {
+			int action = menu.managePropertiesMenu();
+			switch (action) {
+			case 0:
+				mortage(currentPlayer);
+				break;
+			case 1:
+				sell(currentPlayer);
+				break;
+			case 2:
+				buy(currentPlayer);
+				break;
+			case 3:
+				areYouDone = true;
+				break;
+			default:
+				break;
+			}
+		}
+		
 	}
 
 	/**
@@ -1796,5 +1812,11 @@ public class Game {
 	// TODO UNDER CONSTRUCTION - PLEASE ADD SOME CODE HERE
 	private void speedDieRules() {
 		System.out.println("Please read rules inside box.");
+	}
+	
+
+	private void mortage(Player currentPlayer) {
+		// TODO Auto-generated method stub
+		
 	}
 }

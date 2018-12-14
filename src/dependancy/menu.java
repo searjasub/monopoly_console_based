@@ -104,15 +104,10 @@ public class menu {
 		menuOptions[0] = "Roll Dice";
 		menuOptions[1] = "See Balance";
 		menuOptions[2] = "See Your Properties";
-		menuOptions[3] = "Sell Properties Or \"Get Out Of Jail\" Card";
-		menuOptions[4] = "Buy Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[3] = "Manage Your Properties";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 	
-//	public static int printSellBuyMenu() throws IOException{
-//		String[]strings menuOptions = new String[2];
-//	}
-
 	/**
 	 * Print the options after they roll for first time
 	 * 
@@ -122,9 +117,8 @@ public class menu {
 		String[] menuOptions = new String[5];
 		menuOptions[0] = "See Balance";
 		menuOptions[1] = "See Your Properties";
-		menuOptions[2] = "Sell Properties Or \"Get Out Of Jail\" Card";
-		menuOptions[3] = "Buy Properties Or \"Get Out Of Jail\" Card";
-		menuOptions[4] = "End Turn";
+		menuOptions[2] = "Manage Your Properties";
+		menuOptions[3] = "End Turn";
 		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
@@ -181,13 +175,20 @@ public class menu {
 	}
 	
 	public static int printSellBuyMainMenu() throws IOException{
-		String[] menuOption = new String[3];
-		menuOption[0] = "Property";
-		menuOption[1] = "\"Get Out Of Jail\"";
-		menuOption[2] = "Abandon transaction";
-		return ConsoleUI.promptForMenuSelection(menuOption);
+		String[] menuOptions = new String[3];
+		menuOptions[0] = "Property";
+		menuOptions[1] = "\"Get Out Of Jail\"";
+		menuOptions[2] = "Abandon Transaction";
+		return ConsoleUI.promptForMenuSelection(menuOptions);
 	}
 
-
+	public static int managePropertiesMenu() throws IOException {
+		String[] menuOptions = new String[4];
+		menuOptions[0] = "Mortgage Your Properties";
+		menuOptions[1] = "Sell Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[2] = "Buy Properties Or \"Get Out Of Jail\" Card";
+		menuOptions[3] = "Return To Main Menu";
+		return ConsoleUI.promptForMenuSelection(menuOptions);
+	}
 
 }
