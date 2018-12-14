@@ -14,6 +14,7 @@ import card.Property;
 
 /**
  * Final Project
+ * 
  * @author Searjasub Lopez
  * @author Spencer Schmollinger
  * @author Brooke Showers
@@ -24,11 +25,10 @@ public class Game {
 
 	// Class level variables
 	public int turn, countPlayers, roundCount, countOfDoublesRolled = 0;
-	public Player[] players;
+	// public Player[] players;
+	public ArrayList<Player> players;
 	Die die = new Die();
 	public Board board = new Board();
-
-	// TODO Make more Java Docs
 
 	/**
 	 * Initialize the game by assigning names, tokens and initial balance.
@@ -41,8 +41,8 @@ public class Game {
 			menu.tokenArray.add(t);
 		}
 
-		players = new Player[totalPlayers];
-		for (int i = 0; i < players.length; i++) {
+		players = new ArrayList<>();
+		for (int i = 0; i < totalPlayers; i++) {
 			String playerName = ConsoleUI.promptForInput("\nEnter player " + (i + 1) + "'s name", false);
 
 			System.out.println("\nOk, " + playerName + " it is time to choose your token.");
@@ -53,13 +53,13 @@ public class Game {
 
 			// Player(String name, Token token, int balance, int turn, int location)
 			Player newPlayer = new Player(playerName, selection, 1500, total, 0);
-			players[i] = newPlayer;
+			players.add(i, newPlayer);
 
 			// Finish interaction with players[i]
-			if (players.length > totalPlayers) {
-				System.out.println("Thank you " + players[i].getName() + ".");
+			if (players.size() > totalPlayers) {
+				System.out.println("Thank you " + players.get(i).getName() + ".");
 			} else {
-				System.out.println("Thank you " + players[i].getName() + ". Now let me ask your friend.\n");
+				System.out.println("Thank you " + players.get(i).getName() + ". Now let me ask your friend.\n");
 			}
 
 		}
@@ -98,17 +98,17 @@ public class Game {
 	private void checkForTie() throws IOException {
 		for (int i = 2; i <= 12; i++) {
 			int count = 0;
-			for (int j = 0; j < players.length; j++) {
-				if (i == players[j].getTurn()) {
+			for (int j = 0; j < players.size(); j++) {
+				if (i == players.get(j).getTurn()) {
 					count++;
 				}
 			}
 			if (count > 1) {
-				for (int j2 = 0; j2 < players.length; j2++) {
-					if (i == players[j2].getTurn()) {
+				for (int j2 = 0; j2 < players.size(); j2++) {
+					if (i == players.get(j2).getTurn()) {
 						System.out.println("\nThere is a tie!");
-						System.out.println("\n" + players[j2].getName() + ", you can roll again");
-						players[j2].setTurn(rollForOrder());
+						System.out.println("\n" + players.get(j2).getName() + ", you can roll again");
+						players.get(j2).setTurn(rollForOrder());
 						count = 0;
 					}
 				}
@@ -120,12 +120,18 @@ public class Game {
 	 * This method will sort the player in descending order
 	 */
 	public void sort() {
-		for (int i = 0; i < players.length - 1; i++) {
-			for (int j = 0; j < players.length - i - 1; j++) {
-				if (players[j].getTurn() < players[j + 1].getTurn()) {
-					Player temp = players[j];
-					players[j] = players[j + 1];
-					players[j + 1] = temp;
+		for (int i = 0; i < players.size() - 1; i++) {
+			for (int j = 0; j < players.size() - i - 1; j++) {
+				if (players.get(j).getTurn() < players.get(j + 1).getTurn()) {
+					Player temp = players.get(j);
+					players.remove(j);
+					players.add(j, players.get(j + 1));
+					players.remove(j + 1);
+					players.add(j + 1, temp);
+
+//					Player temp = players[j];
+//					players[j] = players[j + 1];
+//					players[j + 1] = temp;
 				}
 			}
 		}
@@ -182,9 +188,9 @@ public class Game {
 		while (!gameOver) {
 			// handle turns
 			// TODO Finish what happens when player is bankrupt
-			for (int i = 0; i < players.length; i++) {
-				if (!players[i].bankrupt) {
-					turn(players[i]);
+			for (int i = 0; i < players.size(); i++) {
+				if (!players.get(i).bankrupt) {
+					turn(players.get(i));
 				} else {
 					continue;
 				}
@@ -991,9 +997,9 @@ public class Game {
 			board.chance.add(topCard);
 			if (topCard.getId() == 22) {
 				int totalAmountGiven = 0;
-				currentPlayer.setBalance(-50 * players.length);
+				currentPlayer.setBalance(-50 * players.size());
 				for (Player player : players) {
-					player.setBalance(totalAmountGiven / players.length);
+					player.setBalance(totalAmountGiven / players.size());
 				}
 			}
 			break;
@@ -1211,48 +1217,53 @@ public class Game {
 			currentPlayer.setBalance(cost);
 			break;
 		case 1:
-			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
 			// HANDLE AUCTIONING
-			int costOfAuction = 10;
-			Player[] inAuction = players;
-			int totalPlayersInAuction = inAuction.length;
-			boolean playerBoughtProperty = false;
-			while (!playerBoughtProperty) {
-				for (int i =0; i < totalPlayersInAuction; i++ ) {
-					System.out.println("\nCurrent Auction Price: " + costOfAuction);
-					if (inAuction[i] == null) {
-						// skipping auctioned player
-						continue;
-					}
-					if (totalPlayersInAuction == 1) {
-						// you win pay the price.
-						inAuction[i].setBalance(-1 * costOfAuction);
-						playerBoughtProperty = true;
-						board.deeds[location].setOwner(inAuction[i]);
-						inAuction[i].propertiesOwned.add(board.deeds[location]);
-						System.out.println(TitleColor.YELLOW
-								+ "\n*******************************************************************\n"
-								+ TitleColor.RESET + "Congratulations " + inAuction[i].getName()
-								+ "! You know own this property\n" + TitleColor.YELLOW
-								+ "*******************************************************************\n"
-								+ TitleColor.RESET);
-						break;
-					}
-					System.out.println("It is your turn, " + inAuction[i].getName() + "!");
-					int chooseToLeave = ConsoleUI
-							.promptForMenuSelection(new String[] { "Leave The Auction", "Increment Value" });
-					if (chooseToLeave == 0) {
-						// left the auction
-						inAuction[i] = null;
-						totalPlayersInAuction--;
-					} else {
-						// you must auction to the death
-						int amountToIncreaseBy = ConsoleUI.promptForInt(
-								"\nEnter amount you want to increase the bid price by: ", 1, Integer.MAX_VALUE);
-						costOfAuction += amountToIncreaseBy;
-					}
+			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
+			int auctioningPrize = 1;
+			int playerInTurn = 0;
+			ArrayList<Player> playersInAuction = new ArrayList<>();
+			for (int i = 0; i < players.size(); i++) {
+				playersInAuction.add(players.get(i));
+				if (players.get(i).equals(currentPlayer)) {
+					playerInTurn = i;
 				}
 			}
+			while (playersInAuction.size() > 1) {
+				System.out.println(playersInAuction.get(playerInTurn).getName()
+						+ ", it's your turn to bid. As a reminder you have $"
+						+ playersInAuction.get(playerInTurn).getBalance());
+				System.out.println("\nThe bid is currently at $" + auctioningPrize);
+				int bidSelection = ConsoleUI.promptForMenuSelection(new String[] { "Bid", "Leave Auction" });
+				if (bidSelection == 1) {
+					playersInAuction.remove(playerInTurn);
+					playerInTurn %= playersInAuction.size();
+				} else {
+					boolean isValid = false;
+					int toAdd = 0;
+					System.out.println("Current bid is at $" + auctioningPrize);
+					while (!isValid) {
+						toAdd = ConsoleUI.promptForInt("Enter amount to bid.",
+								1, playersInAuction.get(playerInTurn).getBalance() - auctioningPrize);
+
+						if(toAdd <= auctioningPrize) {
+							System.out.println("You cant bid less or equal than the current bid");
+							continue;
+						}
+						auctioningPrize = toAdd;
+						isValid = true;
+					}
+					playerInTurn++;
+					playerInTurn %= playersInAuction.size();
+				}
+			}
+			playersInAuction.get(playerInTurn).substractBalance(auctioningPrize);
+			board.deeds[location].setOwner(playersInAuction.get(playerInTurn));
+			playersInAuction.get(playerInTurn).propertiesOwned.add(board.deeds[location]);
+			System.out.println(TitleColor.YELLOW
+					+ "\n*******************************************************************\n" + TitleColor.RESET
+					+ "Congratulations " + playersInAuction.get(playerInTurn).getName()
+					+ "! You know own this property\n" + TitleColor.YELLOW
+					+ "*******************************************************************\n" + TitleColor.RESET);
 			break;
 		default:
 			break;

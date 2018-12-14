@@ -9,11 +9,9 @@ import enumeration.Token;
 public class Player {
 	
 	boolean bankrupt;
-	int balance;
-	int location;
+	int balance, location, turn;
 	final Token token;
 	final String name;
-	int turn;
 	int inJailTurns = 0;
 	boolean isInJail = false;
 	public Card[] jailCardOwned = new Card[2]; // Array to hold the jail free cards
@@ -51,6 +49,10 @@ public class Player {
 
 	public int getBalance() {
 		return this.balance;
+	}
+	
+	public void substractBalance(int amount) {
+		balance -= amount;
 	}
 
 	public void setBalance(int balance) {
@@ -92,6 +94,10 @@ public class Player {
 	
 	public void setTurnInJail(int inJailTurns) {
 		this.inJailTurns = inJailTurns;
+	}
+	
+	public boolean isBankrupt() {
+		return false;
 	}
 
 	public String toString() {

@@ -11,12 +11,12 @@ public class Demo{
     Game game = new Game();
 
 
-    public Demo(){
-        game.players = new Player[3];
-        game.players[0] = new Player("Sear", Token.HAT, 1300, 0, 0);
-        game.players[1] = new Player("Brooke", Token.DOG, 1300, 0, 0);
-        game.players[2] = new Player("Spencer", Token.CAT, 1300, 0, 0);
-    }
+//    public Demo(){
+//        game.players = new Player[3];
+//        game.players[0] = new Player("Sear", Token.HAT, 1300, 0, 0);
+//        game.players[1] = new Player("Brooke", Token.DOG, 1300, 0, 0);
+//        game.players[2] = new Player("Spencer", Token.CAT, 1300, 0, 0);
+//    }
         
     public static void main(String[] args) throws Exception {
         Demo d = new Demo();
@@ -44,15 +44,15 @@ public class Demo{
     }
 
 
-    public void Go() throws Exception{
-        game.players[1].setLocation(39);
-        game.turn(game.players[1]);
-        // collect go
-    }
+//    public void Go() throws Exception{
+//        game.players[1].setLocation(39);
+//        game.turn(game.players[1]);
+//        // collect go
+//    }
 
     public void landOnProperty() throws Exception{
     for(int i = 0; i < 6; i++){
-        game.turn(game.players[i % 3]);
+        //game.turn(game.players[i % 3]);
     }
         // buy property
         // removes money 
@@ -61,23 +61,23 @@ public class Demo{
     }
 
     public void taxes() throws Exception{
-        game.turn(game.players[0]);
-        game.players[0].setLocation(38);
-        game.turn(game.players[0]);
-        game.players[0].setLocation(4);
-        game.turn(game.players[0]);
+//        game.turn(game.players[0]);
+//        game.players[0].setLocation(38);
+//        game.turn(game.players[0]);
+//        game.players[0].setLocation(4);
+//        game.turn(game.players[0]);
         // pay 75$ tax
         // ask to choose 200 or calculate 10% of net worth
     }
 
     public void jail() throws Exception{
-        for(int i = 0; i < 3; i++){
-            game.players[i].setLocation(10);
-            game.players[i].isInJail(true);
-            game.players[i].jailCardOwned[0] = new Card("\t\tChance\n", "\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.\n", CardType.CHANCE, CardCategory.JAIL_FREE,1);
-        }
-        game.turn(game.players[new Random().nextInt(3)]);
-    }
+//        for(int i = 0; i < 3; i++){
+//            game.players[i].setLocation(10);
+//            game.players[i].isInJail(true);
+//            game.players[i].jailCardOwned[0] = new Card("\t\tChance\n", "\tGET OUT OF JAIL FREE\nThis card may be kept until needed or traded.\n", CardType.CHANCE, CardCategory.JAIL_FREE,1);
+//        }
+//        game.turn(game.players[new Random().nextInt(3)]);
+   }
 
     public void housesBuyAndSell(){
         // do it evenly
