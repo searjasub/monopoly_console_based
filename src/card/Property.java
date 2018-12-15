@@ -12,6 +12,7 @@ public abstract class Property {
 	int rentWithThree;
 	int rentWithFour;
 	int rentWithHotel;
+	boolean isMortgage = false;
 	
 	public Property(String name, int cost, int buildingCost, int location, int rent, int rentWithOne, int rentWithTwo, int rentWithThree, int rentWithFour, int rentWithHotel) {
 		this.name = name;
@@ -58,5 +59,13 @@ public abstract class Property {
 	
 	public int getRent() {
 		return this.rent;
+	}
+	
+	public void setMortgage(boolean situation) {
+		this.isMortgage = situation;
+	}
+	
+	public boolean isMortgage() {
+		return this.isMortgage;
 	}
 }

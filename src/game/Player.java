@@ -103,12 +103,16 @@ public class Player {
 	}
 	
 	public void mortage(Property toMortgage) {
+		toMortgage.setMortgage(true);
 		this.addMoney(toMortgage.getCost() / 2);
+		System.out.println("\nYou received $" + (toMortgage.getCost() / 2) + " extra.\n");
 	}
 
-	public String toString() {
-		return "\n" + this.name + " the " + this.token + " rolled " + this.turn + ".";
-
+	public void buyAgain(Property selected) {
+		selected.setMortgage(false);
+		this.substractBalance(selected.getCost());
+		System.out.println("\nYou paid $" + selected.getCost() + " to get the property back.\n");
+		
 	}
 	
 

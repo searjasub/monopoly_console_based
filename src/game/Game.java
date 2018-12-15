@@ -1347,7 +1347,76 @@ public class Game {
 
 	}
 
-	private void mortage(Player currentPlayer) {
+	private void mortage(Player currentPlayer) throws IOException {
+		int exitButton = 0;
+		int availableToMortgage = 0;
+		int availableToPurchaseBack = 0;
+		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+			if(currentPlayer.getPropertiesOwned().get(i).isMortgage() == false) {				
+				availableToMortgage++;
+			}else if(currentPlayer.getPropertiesOwned().get(i).isMortgage() == true) {
+				availableToPurchaseBack++;
+			}
+			
+		}
+		int action = menu.printMortgageMenu();
+		switch (action) {
+		case 0:
+			if (currentPlayer.getPropertiesOwned().size() == 0) {
+				System.out.println("\nSorry, you don't have any properties to mortgage.\n");
+			} else {
+				if(availableToMortgage == 0) {
+					System.out.println("\nThere's nothing here to mortgage\n");
+				} else {					
+					System.out.println("\nHere is the list of all the properties you own");					
+					for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+						if(currentPlayer.getPropertiesOwned().get(i).isMortgage() == false) {
+							System.out.print("[" + i + "]  " + currentPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
+						}
+						if (i == currentPlayer.getPropertiesOwned().size() - 1) {
+							System.out.println("[" + (i + 1) + "]  Go Back" );
+							exitButton = (i + 1);
+						}
+					}
+					int selection = ConsoleUI.promptForInt("Please select the index of the property you want to mortgage", 0, currentPlayer.getPropertiesOwned().size());
+					if(selection == exitButton) {
+						break;
+					}
+					currentPlayer.mortage(currentPlayer.getPropertiesOwned().get(selection));
+				}
+			}
+			break;
+		case 1:
+			if (currentPlayer.getPropertiesOwned().size() == 0) {
+				System.out.println("\nSorry, you don't have any properties mortgaged\n");
+			} else {
+				if (availableToPurchaseBack > 0) {
+					System.out.println("\nHere is the list of all the properties mortgaged");					
+					for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
+						if (currentPlayer.getPropertiesOwned().get(i).isMortgage()) {
+							System.out.print("[" + i + "]  " + currentPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
+						}
+						if (i == currentPlayer.getPropertiesOwned().size() - 1) {
+							System.out.println("[" + (i + 1) + "]  Go Back" );
+							exitButton = (i + 1);
+						}
+					}
+					int selection = ConsoleUI.promptForInt("Please select the index of the property you want to buy again", 0, currentPlayer.getPropertiesOwned().size());
+					if(selection == exitButton) {
+						break;
+					}
+					currentPlayer.buyAgain(currentPlayer.getPropertiesOwned().get(selection));
+				} else {
+					System.out.println("\nThere are no properties mortgaged that you can buy\n");
+					break;
+				}
+			}
+			break;
+		case 2:
+			break;
+		default:
+			break;
+		}
 
 	}
 
@@ -1632,16 +1701,14 @@ public class Game {
 
 			for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
 
-				if (currentPlayer.getPropertiesOwned().get(i).equals(board.deeds[10])) {
-					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
-							+ " | Rent with: 1 - $25 || 2 - $50 || 3 - $100 || 4 - $200 \n");
+				if (currentPlayer.getPropertiesOwned().get(i).isMortgage()) {
+					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName() + " | Currently Mortgaged\n");
+				} else if (currentPlayer.getPropertiesOwned().get(i).equals(board.deeds[10])) {
+					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName() + " | Rent with: 1 - $25 || 2 - $50 || 3 - $100 || 4 - $200 \n");
 				} else if (currentPlayer.getPropertiesOwned().get(i).equals(board.deeds[7])) {
-					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
-							+ " | Rent With 1: 4 time what the dice rolled || With 2: 10 times what the dice rolled\n");
+					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName() + " | Rent With 1: 4 time what the dice rolled || With 2: 10 times what the dice rolled\n");
 				} else {
-					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName()
-							+ " | Rent: " + currentPlayer.getPropertiesOwned().get(i).getRent() + " | Buy House: $"
-							+ currentPlayer.propertiesOwned.get(i).getBuildingCost() + "\n");
+					System.out.print("[" + i + "] " + currentPlayer.propertiesOwned.get(i).getPropertyName() + " | Rent: " + currentPlayer.getPropertiesOwned().get(i).getRent() + " | Buy House: $" + currentPlayer.propertiesOwned.get(i).getBuildingCost() + "\n");
 				}
 			}
 		}
@@ -1654,7 +1721,9 @@ public class Game {
 	 */
 	private void showPropertyNamesOnly(Player player) {
 		for (int i = 0; i < player.getPropertiesOwned().size(); i++) {
-			if (i == player.getPropertiesOwned().size() - 1) {
+			if (player.getPropertiesOwned().get(i).isMortgage()) {
+				System.out.print("[" + i + "] " + player.propertiesOwned.get(i).getPropertyName() + " | Currently Mortgaged\n");
+			} else {				
 				System.out.print("[" + i + "]  " + player.propertiesOwned.get(i).getPropertyName() + "\n");
 			}
 		}
