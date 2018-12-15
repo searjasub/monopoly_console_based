@@ -25,9 +25,8 @@ public class Game {
 
 	// Class level variables
 	public int turn, countPlayers, roundCount, countOfDoublesRolled = 0;
-	// public Player[] players;
 	public ArrayList<Player> players;
-	Die die = new Die();
+	public Die die = new Die();
 	public Board board = new Board();
 
 	/**
@@ -226,11 +225,7 @@ public class Game {
 					showProperties(currentPlayer);
 					break;
 				case 3:
-					sell(currentPlayer);
-					break;
-				case 4:
-					buy(currentPlayer);
-
+					manageProperties(currentPlayer);
 					break;
 				default:
 					throw new IllegalArgumentException("Invalid action " + action);
@@ -1218,7 +1213,7 @@ public class Game {
 			break;
 		case 1:
 			// HANDLE AUCTIONING
-			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.");
+			System.out.println("\n\nSince you decided not to buy it, the bank will auction this property.\n");
 			int auctioningPrize = 1;
 			int playerInTurn = 0;
 			ArrayList<Player> playersInAuction = new ArrayList<>();
@@ -1229,10 +1224,10 @@ public class Game {
 				}
 			}
 			while (playersInAuction.size() > 1) {
-				System.out.println(playersInAuction.get(playerInTurn).getName()
+				System.out.println("\n" + playersInAuction.get(playerInTurn).getName()
 						+ ", it's your turn to bid. As a reminder you have $"
 						+ playersInAuction.get(playerInTurn).getBalance());
-				System.out.println("\nThe bid is currently at $" + auctioningPrize);
+				System.out.println("The bid is currently at $" + auctioningPrize + "\n");
 				int bidSelection = ConsoleUI.promptForMenuSelection(new String[] { "Bid", "Leave Auction" });
 				if (bidSelection == 1) {
 					playersInAuction.remove(playerInTurn);
@@ -1242,10 +1237,10 @@ public class Game {
 					int toAdd = 0;
 					System.out.println("Current bid is at $" + auctioningPrize);
 					while (!isValid) {
-						toAdd = ConsoleUI.promptForInt("Enter amount to bid.",
-								1, playersInAuction.get(playerInTurn).getBalance() - auctioningPrize);
+						toAdd = ConsoleUI.promptForInt("Enter amount to bid.", 1,
+								playersInAuction.get(playerInTurn).getBalance() - auctioningPrize);
 
-						if(toAdd <= auctioningPrize) {
+						if (toAdd <= auctioningPrize) {
 							System.out.println("You cant bid less or equal than the current bid");
 							continue;
 						}
@@ -1312,18 +1307,48 @@ public class Game {
 				showProperties(currentPlayer);
 				break;
 			case 2:
-				sell(currentPlayer);
+				manageProperties(currentPlayer);
 				break;
 			case 3:
-				buy(currentPlayer);
-				break;
-			case 4:
 				isYourTurnAfterRoll = false;
 				break;
 			default:
 				throw new IllegalArgumentException("Invalid action " + action);
 			}
 		}
+	}
+
+	/**
+	 * Method to manage action for properties
+	 * 
+	 * @param currentPlayer taking the turn
+	 */
+	private void manageProperties(Player currentPlayer) throws IOException {
+		boolean areYouDone = false;
+		while (!areYouDone) {
+			int action = menu.managePropertiesMenu();
+			switch (action) {
+			case 0:
+				mortage(currentPlayer);
+				break;
+			case 1:
+				sell(currentPlayer);
+				break;
+			case 2:
+				buy(currentPlayer);
+				break;
+			case 3:
+				areYouDone = true;
+				break;
+			default:
+				break;
+			}
+		}
+
+	}
+
+	private void mortage(Player currentPlayer) {
+
 	}
 
 	/**
@@ -1339,13 +1364,13 @@ public class Game {
 				System.out.println(
 						"\nSorry you don't have any properties to sell, check back later after you had purchase something");
 			} else {
-				showPropertyNameFormated(currentPlayer);
+				System.out.print("\nThe properties you own are:\n");
+				showPropertyNamesOnly(currentPlayer);
 				int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want so sell", 0,
 						currentPlayer.getPropertiesOwned().size());
 				Property temp = currentPlayer.propertiesOwned.get(selection);
 				int price = ConsoleUI.promptForInt("Enter the price you want to sell it for", 0, Integer.MAX_VALUE);
-				String playerName = ConsoleUI
-						.promptForInput("Enter the name of the player you want to sell the property", false);
+				String playerName = ConsoleUI.promptForInput("Enter the name of the player you want to sell the property", false);
 				for (Player playerBuyer : players) {
 					if (playerBuyer.getName().toLowerCase().equals(playerName.toLowerCase())) {
 						System.out.println("Hey " + playerBuyer.getName() + ", " + currentPlayer.getName()
@@ -1455,8 +1480,8 @@ public class Game {
 						System.out.println("\n" + playerSeller.getName()
 								+ " does not have any properties. Check back with him later.");
 					} else {
-
-						showPropertyNamesOtherPlayer(playerSeller);
+						System.out.print("\nThe properties that " + playerSeller.getName() + " owns are:\n");
+						showPropertyNamesOnly(playerSeller);
 						int selection = ConsoleUI.promptForInt("\nSelect the index of the card you want buy", 0,
 								playerSeller.getPropertiesOwned().size());
 						Property temp = playerSeller.propertiesOwned.get(selection);
@@ -1623,33 +1648,18 @@ public class Game {
 	}
 
 	/**
-	 * Method to show only properties index and name when trying to buy from someone
+	 * Method to show only the name of the properties
 	 * 
-	 * @param otherPlayer the player you want to see his properties
+	 * @param player
 	 */
-	private void showPropertyNamesOtherPlayer(Player otherPlayer) {
-		System.out.print("\nThe properties that " + otherPlayer.getName() + " owns are:\n");
-		for (int i = 0; i < otherPlayer.getPropertiesOwned().size(); i++) {
-			if (i == otherPlayer.getPropertiesOwned().size()) {
-				System.out.println("[" + i + "]\t" + otherPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
+	private void showPropertyNamesOnly(Player player) {
+		for (int i = 0; i < player.getPropertiesOwned().size(); i++) {
+			if (i == player.getPropertiesOwned().size() - 1) {
+				System.out.print("[" + i + "]  " + player.propertiesOwned.get(i).getPropertyName() + "\n");
 			}
 		}
 	}
-
-	/**
-	 * Method to show only the properties index and name when trying to sell
-	 * 
-	 * @param currentPlayer who is trying to sell
-	 */
-	private void showPropertyNameFormated(Player currentPlayer) {
-		System.out.print("\nThe properties you own are:\n");
-		for (int i = 0; i < currentPlayer.getPropertiesOwned().size(); i++) {
-			if (i == currentPlayer.getPropertiesOwned().size() - 1) {
-				System.out.print("[" + i + "]" + currentPlayer.propertiesOwned.get(i).getPropertyName() + "\n");
-			}
-		}
-	}
-
+	
 	/**
 	 * Method that will move the player base on the total number they rolled
 	 * 

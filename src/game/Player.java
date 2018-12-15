@@ -2,6 +2,8 @@ package game;
 
 import java.util.ArrayList;
 
+import javax.sound.midi.VoiceStatus;
+
 import card.Card;
 import card.Property;
 import enumeration.Token;
@@ -98,6 +100,10 @@ public class Player {
 	
 	public boolean isBankrupt() {
 		return false;
+	}
+	
+	public void mortage(Property toMortgage) {
+		this.addMoney(toMortgage.getCost() / 2);
 	}
 
 	public String toString() {
