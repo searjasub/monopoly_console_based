@@ -1,0 +1,39 @@
+Preparing for:
+March 8 Showdown!
+
+***Improvements***
+Magic Numbers
+What happens when someone lands on a mortgaged property.
+
+***Bugs***
+
+
+-----Hidden-----
+When you mortgage a your second property and then buy it again. It will show you the location 1. It doesn't show you 0 but technically if you press 0 you will pay for the property again, even thou that one is not mortgaged
+
+
+
+Currently Fixed
+-------- 12/06/2018 ---------
+	Added \n to show winner of auction
+	Properly shows more than 1 property
+	Go to nearest utility
+	Chance and Community cards are separated classes
+	Took off the speed die option
+	If player own railroad it will not show rent and cost for buying house
+-------- 12/07/2018 --------
+	Added some TODO
+	Move the "Player you're up" after printing the board
+	Remove empty lines - Clean code  
+	If you own utility it and want to see property it show the proper rent
+	Fixed a \n that was extra when landing on Luxury tax
+	handleChanceCard is getting updates on magic numbers
+-------- 12/09/2018 --------
+	Fixed showProperties()
+	Fixed where if you own a property and you land on it it will say that you have to pay rent instead of checking if you own it first
+-------- 12/14/2018 --------
+	Added mortgaging options
+	Formatted the menus to have mortgage	
+	Add go back option
+	Mortgage is working
+	<---Waiting to be commited
